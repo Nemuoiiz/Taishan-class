@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 答案 349元
+        // =============================================
+        document.write('<h3>自己解答</h3>')
+        const mantous = [1, 8, 3, 4, 5, 6, 7, 2, 9, 10]
+        let totalmoney = 0
+
+        for (let i in mantous) {
+            console.log(`${i * 1 + 1}*${mantous[i]}`)
+            totalmoney += (i * 1 + 1) * (mantous[i])
+        }
+        document.write(totalmoney + '元')
+
+
+        // =============================================
+        document.write('<hr><h3>老師解答</h3>')
+
+
+        const data = [1, 8, 3, 4, 5, 6, 7, 2, 9, 10]
+        let total = 0
+        for (let i = 0; i < data.length; i++) {
+            const money = (i + 1) * data[i]
+            total += money
+        }
+        document.write(total + '元')
+    </script>
+</body>
+
+</html>

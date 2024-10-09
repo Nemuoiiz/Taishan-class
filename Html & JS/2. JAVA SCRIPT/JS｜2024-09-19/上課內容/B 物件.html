@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const wdaf2e = {
+            // 定義物件 key:value
+            name: '前端技術',
+            students: 20,
+            year: 113,
+            semester: 2,
+            classroom: '1114',
+        }
+
+        document.write(wdaf2e.name + '<hr>')    // 前端技術
+        document.write(wdaf2e['classroom'] + '<hr>')       // 1114
+        const key = 'students'
+        document.write(wdaf2e[key] + `<br>`)      // 20
+
+        // 陣列可以用.length、物件不能用 .length 取有幾個 key
+        // 物件 .length 是找名為 length 的 key
+        document.write(wdaf2e.length + `<br>`)    // undefined
+        // object.keys 物件內的 key 取出為陣列
+        document.write(Object.keys(wdaf2e) + `<br>`)
+        // object.keys 物件內的 值 取出為陣列
+        document.write(Object.values(wdaf2e) + `<br>`)
+    </script>
+</body>
+
+</html>

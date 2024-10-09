@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const a = 100, b = '100'
+        // 兩個等於只判斷內容
+        if (a == b) {
+            console.log('a == b')
+        }
+        else {
+            console.log('a != b')
+        }
+
+        // 三個等於需連資料類型一同判斷
+        if (a === b) {
+            console.log('a === b')
+        }
+        else {
+            console.log('a !== b')
+        }
+
+        const c = 10, d = 20
+        if (c > d) {
+            console.log('c 大於 d')
+        }
+        else {
+            console.log('c 不大於 d')
+        }
+
+        // a >= b 代表 a 大於 b 或是 a 等於 b
+        // a <= b 代表 a 不大於 b 或是 a 不等於 b
+        // a => b 有其他表示意思，之後才會教到
+        // a =< b 沒有這個寫法
+
+        const ok = false
+        // if (ok) ---> if (ok === true)
+        if (ok) {
+            console.log('ok')
+        }
+        // if (!ok) ---> if (ok === false)
+        if (!ok) {
+            console.log('not ok')
+        }
+
+        // confirm(訊息)
+        // 跳出確認視窗，收到 true false
+        // if 內只有一行 console.log 則可省略大括號
+        const sleep = confirm('中午有沒有睡覺')
+        if (sleep) console.log('有睡覺')
+        else console.log('沒有睡覺')
+
+        const like = confirm('你喜歡 JS 嗎')
+        console.log(like ? '喜歡' : '不喜歡')
+    </script>
+</body>
+
+</html>

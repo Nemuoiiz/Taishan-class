@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function numbers (min, max ,count) {
+      const p = [];
+      while (p.length < count) {
+        let i = Math.round(Math.random()*max)
+        if (!p.includes(i) && i != 0){
+          p.push(i)
+        }
+      }
+      return p;
+    }
+    const finalNumber = numbers(1,36,6)
+
+    const j = Math.round(Math.random()*8)
+    if(j !== 0){
+      finalNumber.push(j)
+    }
+    document.write(`數字是 : ${finalNumber}`)
+  </script>
+</body>
+</html>

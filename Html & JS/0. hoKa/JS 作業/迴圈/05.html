@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const isPalindrome = (text) => {
+            // 紀錄反過來的字串
+            let str = ""
+            for (let i = text.length - 1; i >= 0; i--) {
+                str += text.charAt(i)
+                // console.log(word)
+                // console.log(i, text.charAt(i))
+            }
+            return str === text
+        }
+        const result = isPalindrome(prompt('輸入文字'))
+        console.log(result)
+    </script>
+</body>
+
+</html>

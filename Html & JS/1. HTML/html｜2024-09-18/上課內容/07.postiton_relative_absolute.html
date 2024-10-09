@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 75%;
+            margin: auto;
+            border: 1px solid #000;
+            padding: 0 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .box1,
+        .box2,
+        .box3,
+        .box4 {
+            padding: 1rem;
+        }
+
+
+        .box1 {
+            background: pink;
+        }
+
+        .box2 {
+            background: palegreen;
+        }
+
+        .box3 {
+            background: paleturquoise;
+        }
+
+        .box4 {
+            background: palegoldenrod;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 第一塊 -->
+    <div class="container">
+        <!-- 相對定位 -->
+        <h1>position:relative 相對定位</h1>
+        <p>使用位移屬性（top、right、bottom、left）會以自己原來的位置位移，且保留自身的空間進入定位層，位置也不會被別人佔據。 </p>
+        <p>父元素沒有任何的位移屬性時，會留在原地不動，這種 relative 的作法常作為 absolute 子元素位移目標的依據。</p>
+        <p>進入定位層可以使用 z-index（元素可以遮住元素）</p>
+        <div class="box1">
+            <h1>box1</h1>
+            <p>既然姑娘眼裡魅力深刻身影本科當前位置很久年輕遇到戀愛，他們的崇拜他不主板一次當地執法首次地址，照顧打電話期限站長夥伴安徽防治以便解決方案，現代化加工群眾機會它的先進教育配套意識相關圖片，增強活力當前位置，上了原則車輛調整有限深入無限承認比較無數語言說著產。
+            </p>
+        </div>
+        <div class="box2" style="position: relative; left:50px; top:50px">
+            <h1>box2</h1>
+            <p>女孩走進鐵路，國家並且以後作家吸引三年財政一片，高興職務都不離線今天夫人獎勵投訴我要，很好和他是什麼經營許可證到處運動不多究竟，和諧例如增加這個，面前型號商城一眼帶來輸入，官員工程師委員會讓我們恐怖責任編輯日本社區告知差距看看，發送首頁昨日貢獻，開發商稱。
+            </p>
+        </div>
+        <div class="box3" style="position: relative; right:100px; bottom:100px">
+            <h1>box3</h1>
+            <p>您現在體系下降電池獎勵禁止網通，意外眼睛文學意識畢業不用我們輔助查詢吃飯，區別阿摩斯沒事學生打造個人我很指標你可以，鏡頭不得版面處罰些什麼地方，他說資格綠色開發者大會土地人大名字，站在光碟退出支持她的空氣調整控制，故意個人協會別的時間實際不行長期，也要電。
+            </p>
+        </div>
+        <div class="box4">
+            <h1>box4</h1>
+            <p>公佈目光獲取義務，運輸教育活動像是而且上去綠色，信箱業主更加每年學院適用於移動老師一切想起長度四個食物發言，屬於攻擊上路天空旅遊崗位一部日本多多，風景金額一套版權所有日誌面議內置漸漸決策高度空中目的，其他二十出台經典文明設計歌詞會議的錢福建律師，特點房子。
+            </p>
+        </div>
+
+    </div>
+
+    <!-- 第二塊 -->
+    <div class="container" style="position: relative">
+        <!-- 絕對定位 -->
+        <h1>position:absolute 絕對定位</h1>
+        <p>沒有任何位移屬性（top、right、bottom、left）時，
+            該元素會脫離正常流向，提升為定位層，
+            後方元素會依據 CSS 流動的特性、流動至絕對定位元素的下方（被絕對定位元素遮住）。
+        </p>
+        <p>若祖先元素找不到 absolute、relative、fixed，
+            最後會以初始容器根源素（html）作為位移目標。
+        </p>
+        <p>父元素會用 relative 與子元素 absolute 搭配的原因是，
+            父元素可以維持再原來的位置，而 absolute、fixed 會脫離正常流向。
+        </p>
+
+        <div class="box1">
+            <h1>box1</h1>
+            <p>既然姑娘眼裡魅力深刻身影本科當前位置很久年輕遇到戀愛，他們的崇拜他不主板一次當地執法首次地址，照顧打電話期限站長夥伴安徽防治以便解決方案，現代化加工群眾機會它的先進教育配套意識相關圖片，增強活力當前位置，上了原則車輛調整有限深入無限承認比較無數語言說著產。
+            </p>
+        </div>
+        <!-- 位移屬性設定為 0 時，會往外尋找父元素做定位 -->
+        <!-- 找到 container 設定的 position 定位 -->
+        <div class="box2" style="position:absolute; top:0 ;left:1100px; width:300px">
+            <h1>box2</h1>
+            <p>女孩走進鐵路，國家並且以後作家吸引三年財政一片，高興職務都不離線今天夫人獎勵投訴我要，很好和他是什麼經營許可證到處運動不多究竟，和諧例如增加這個，面前型號商城一眼帶來輸入，官員工程師委員會讓我們恐怖責任編輯日本社區告知差距看看，發送首頁昨日貢獻，開發商稱。
+            </p>
+        </div>
+        <div class="box3">
+            <h1>box3</h1>
+            <p>您現在體系下降電池獎勵禁止網通，意外眼睛文學意識畢業不用我們輔助查詢吃飯，區別阿摩斯沒事學生打造個人我很指標你可以，鏡頭不得版面處罰些什麼地方，他說資格綠色開發者大會土地人大名字，站在光碟退出支持她的空氣調整控制，故意個人協會別的時間實際不行長期，也要電。
+            </p>
+        </div>
+        <div class="box4">
+            <h1>box4</h1>
+            <p>公佈目光獲取義務，運輸教育活動像是而且上去綠色，信箱業主更加每年學院適用於移動老師一切想起長度四個食物發言，屬於攻擊上路天空旅遊崗位一部日本多多，風景金額一套版權所有日誌面議內置漸漸決策高度空中目的，其他二十出台經典文明設計歌詞會議的錢福建律師，特點房子。
+            </p>
+        </div>
+
+        <!-- 可按 X 的視窗 -->
+        <div style="position: absolute; left:0; top: 1000px; width:200px;height:300px; background:lightblue;">
+            <p
+                style="position: absolute; right:-10px; top:-25px; width: 30px; height: 30px;border-radius: 50%; background:deeppink;line-height: 30px;text-align: center;">
+                X
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>

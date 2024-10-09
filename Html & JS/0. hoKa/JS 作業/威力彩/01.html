@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const rand = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let lotteryA = []
+
+        document.write(`A 區 : `)
+        while (lotteryA.length < 6) {
+            const num = rand(1, 38)
+            if (lotteryA.includes(num) === false) {
+                document.write(num + ' ')
+                lotteryA.push(num)
+            }
+        }
+        document.write(`<br>B 區 : ${rand(1, 8)}`)
+
+    </script>
+</body>
+
+</html>

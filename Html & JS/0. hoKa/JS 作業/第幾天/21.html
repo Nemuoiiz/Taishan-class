@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let inPut = prompt('西元年')
+        let moNth = prompt('月')
+        let daTe = prompt('日')
+        let b = true
+
+        daTe =  parseInt(daTe)
+        if ((inPut % 4 == 0 && inPut % 100 != 0)  && (moNth > 2)) {
+            let b = true 
+        } else {
+            let b = false
+        }
+        
+        while(moNth == 1){
+            break
+        }
+
+        for (let a = 1 ; a < moNth ; a++){
+        if (a == 1||a == 3||a == 5||a == 7||a == 8||a == 10||a == 12) {
+            daTe = daTe+31 
+            console.log('+31',daTe)
+        }  else if (a == 2){
+            if (b == true){
+                daTe = daTe + 29
+            } else {
+                daTe = daTe+28
+            }
+            console.log(b)
+            console.log('+28',daTe)
+        } else if (a == 4||a == 6||a == 9||a == 11){
+            daTe = daTe+30
+            console.log('+30',daTe)
+        }
+        console.log(a)
+        console.log(moNth)
+        console.log(daTe)
+        }
+        document.write(`${inPut}年的第${daTe}天`)
+    </script>
+</body>
+</html>

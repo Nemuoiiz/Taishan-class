@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 將 prompt() 輸入的英文文字大寫轉小寫
+        // 小寫轉大寫後顯示在網頁上
+        // .toUpperCase() 轉大寫
+        // .toLowerCase() 轉小寫
+
+        let input = prompt('大小寫轉換')
+        let answer = ''
+        // abCCBaa
+        // 0123456
+
+        for (i = 0; i < input.length; i++) {
+            let letter = input[i]
+            if (letter === letter.toUpperCase()) {
+                answer += letter.toLowerCase()
+            }
+            else {
+                answer += letter.toUpperCase()
+            }
+        }
+
+        document.write(answer)
+    </script>
+</body>
+
+</html>

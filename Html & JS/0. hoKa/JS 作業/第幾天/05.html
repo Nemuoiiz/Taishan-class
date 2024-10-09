@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第幾天</title>
+</head>
+
+<body>
+  <script>
+    //2023
+    //Jan	Feb	Mar	Apr	May	Jun	Jul	Aug	Sep	Oct	Nov	Dec
+    //31	28	31	30	31	30	31	31	30	31	30	31
+
+    //2024
+    //Jan	Feb	Mar	Apr	May	Jun	Jul	Aug	Sep	Oct	Nov	Dec
+    //31	29	31	30	31	30	31	31	30	31	30	31
+
+    let time = new Date();
+    const inputYears = prompt("西元年", time.getFullYear()).trim();
+    const inputMonth = prompt("月", time.getMonth() + 1).trim();
+    const inputDate = prompt("日", time.getDate()).trim();
+    let dateCount = 0;
+    let checkError = false;
+    let errorMsg = "";
+
+    //每個月天數
+    const date = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    //閏年每個月天數
+    const leapDate = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    //檢查年份、月份有沒有輸入錯誤
+    if (inputYears < 0 || inputYears === "" || isNaN(inputYears)) {
+      checkError = true;
+      errorMsg = "年份輸入錯誤";
+    } else if (
+      inputMonth > 12 ||
+      inputMonth <= 0 ||
+      inputMonth === "" ||
+      isNaN(inputMonth)
+    ) {
+      checkError = true;
+      errorMsg = "月份輸入錯誤";
+    }
+    //計算輸入月份的天數
+    for (let i = 0; i < inputMonth; i++) {
+      // 檢查天數有沒有輸入錯誤
+      if ((inputYears % 4 === 0 && inputYears % 100 !== 0) || (inputYears % 400 === 0 && inputYears % 4000 !== 0) || isNaN(inputDate)) {
+        if (inputDate > leapDate[i] || inputDate <= 0) {
+          checkError = true;
+          errorMsg = "日期輸入錯誤";
+          break;
+        }
+      } else {
+        if (inputDate > date[i] || inputDate <= 0 || isNaN(inputDate)) {
+          checkError = true;
+          errorMsg = "日期輸入錯誤";
+          break;
+        }
+      }
+
+      // 判斷是不是閏年增加每個月天數
+      if ((inputYears % 4 === 0 && inputYears % 100 !== 0) || (inputYears % 400 === 0 && inputYears % 4000 !== 0)) {
+        dateCount += leapDate[i];
+        continue;
+      } else {
+        dateCount += date[i];
+        continue;
+      }
+    }
+
+    //減去前一個月的天數
+    if (inputMonth >= 1) {
+      if ((inputYears % 4 === 0 && inputYears % 100 !== 0) || (inputYears % 400 === 0 && inputYears % 4000 !== 0)) {
+        dateCount -= leapDate[inputMonth - 1];
+      } else {
+        dateCount -= date[inputMonth - 1];
+      }
+    }
+
+    //增加輸入的天數
+    dateCount += parseInt(inputDate);
+    if (!checkError) document.write(`該年的第${dateCount}天`);
+    else document.write(`${errorMsg}`);
+  </script>
+</body>
+
+</html>

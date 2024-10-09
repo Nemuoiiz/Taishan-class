@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 製作計時器
+        // 從 10 開始倒數到 0
+        // 每秒在網頁上印出一個數字
+
+        // 迴圈做法
+        // for (let i = 10; i >= 0; i--) {
+        //     setTimeout(() => {
+        //         document.write(i + '<br>')
+        //     }, (10 - i) * 1000);
+        // }
+
+        // if else的作法
+        let time = 10
+        const countdown = setInterval(() => {
+            if (time > 0) {
+                document.write(time + '<br>')
+                time--
+            } else {
+                clearInterval(countdown)
+                document.write(time + '<br>時間到！')
+            }
+        }, 1000)
+
+        // 遞迴的寫法
+        // function countdown(num) {
+        //     if (num >= 0) {
+        //         setTimeout(() => {
+        //             document.write(num + '<br>')
+        //             countdown(num - 1)
+        //         }, 1000)
+        //     }
+        // }
+        // countdown(10)
+
+    </script>
+</body>
+
+</html>

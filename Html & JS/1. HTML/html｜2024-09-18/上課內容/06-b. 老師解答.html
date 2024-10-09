@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            color: white;
+            background: palevioletred;
+            width: 1024px;
+            height: 768px;
+            margin: auto;
+            font-family: '微軟正黑體';
+            text-align: center;
+        }
+
+        .header {
+            background: lightpink;
+            height: 100px;
+            /* 文字內容位置，高度多少就設多少 */
+            line-height: 100px;
+        }
+
+        .left {
+            background: lightblue;
+            width: 200px;
+            /* calc +、-、*、%運算子左右都要空格 */
+            height: calc(768px - 100px - 100px);
+            line-height: calc(768px - 100px - 100px);
+
+            float: left
+        }
+
+        .right {
+            background: lightskyblue;
+            width: 824px;
+            height: calc(768px - 100px - 100px);
+            line-height: calc(768px - 100px - 100px);
+
+            float: left
+        }
+
+        .footer {
+            /* overflow: hidden; */
+            height: 100px;
+            line-height: 100px;
+            background: lightpink;
+
+            clear: both;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="header">Header</div>
+        <div class="left">Left</div>
+        <div class="right">Right</div>
+        <div class="footer">Footer</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一年當中第幾天</title>
+</head>
+<body>
+
+    <script>
+        const inpYr = prompt('請輸入西元年',1989);
+        const inpMth = prompt('請輸入月',6);
+        const inpD = prompt('請輸入日',4);
+        let d = 0;      // 用來累加天數，最後會變總天數
+
+        let lastM = inpMth - 1;     // 整個月天數累加的月份：從 Jan 到上個月
+
+        let leap = '';      // 閏年? y/n
+
+        // 閏年條件：（能被 4 整除 && (不能被 100 整除 || 能被 400 整除)）
+        if ((inpYr % 4 === 0) && ((inpYr % 100 !== 0) || (inpYr % 400 === 0))){
+            document.write(`您輸入了${inpYr}年，這年是閏年<br><br>`);     //
+            // 2 月有 29 天
+            leap = true;
+        } else {
+            document.write(`您輸入了${inpYr}年，這年是平年。<br><br>`);     // 1989
+            leap = false;
+        };
+        // leap 的布林值代表是或不是閏年
+
+
+
+        if (inpMth == 1) {      // numbers of days in Jan is numbers of the year
+            d = d + inpD;
+            console.log('d=',d);
+        } else {        // Feb ~ Dec
+            for (let preMth = 1;preMth <= lastM ; preMth++) {
+                // 每次檢查現在數到的月份是 30 31 天或 二月
+                if (preMth == 1 || preMth == 3 || preMth == 5 || preMth == 7 || preMth == 8 || preMth == 10 ||preMth == 12) {
+                    d = parseInt(d) + 31;
+                    // document.write('+31<br>');
+                    console.log('+31=',d);      // 每次把 d 加 31 天，就在主控台記錄一次目前的 d
+                } else if (preMth == 4 || preMth == 6 || preMth == 9 || preMth == 11) {
+                    d = parseInt(d) + 30;
+                    // document.write('+30<br>');
+                    console.log('+30=',d);
+                } else if (preMth == 2) {
+                    // 閏年
+                    if (leap){
+                        // 2 月有 29 天
+                        d = parseInt(d) + 29;
+                        console.log('+29',d);
+                    } else {
+                        // 2 月有 28 天
+                        d = parseInt(d) + 28;
+                        console.log('+28=',d);
+                    };
+                } else {        // 多一個 else 放不存在的月份，隨便打，把月份累加數歸零
+                    d = 0;
+                    console.log('+0=',d);
+                };
+                
+            };
+            
+            d = parseInt(d) + parseInt(inpD);
+
+        };
+        document.write(`您輸入的是 ${inpYr} 年 ${inpMth} 月 ${inpD} 日<br>這天是當年的第 ${d} 天`);
+        </script>
+</body>
+</html>

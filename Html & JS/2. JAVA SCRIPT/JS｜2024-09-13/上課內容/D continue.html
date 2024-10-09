@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 跳過數字 5 的寫法
+        // 第一種
+        for (let i = 1; i <= 9; i++) {
+            if (i !== 5) {
+                document.write(i + '<br>')
+            }
+        }
+
+        document.write('<hr>')
+
+        // 第二種
+        for (let i = 1; i <= 9; i++) {
+            // i 等於 5 時不進入document.write，直接繼續下一個 i++
+            if (i === 5) {
+                continue
+            }
+            document.write(i + '<br>')
+        }
+
+        document.write('<hr>')
+
+        // break 停止迴圈
+        for (let i = 1; i <= 9; i++) {
+            // i 等於 5 時直接停止迴圈
+            if (i === 5) {
+                break
+            }
+            document.write(i + '<br>')
+        }
+    </script>
+</body>
+
+</html>

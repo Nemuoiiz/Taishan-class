@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let year = parseInt(prompt('年'))
+        let month = parseInt(prompt('月'))
+        let date = parseInt(prompt('日'))
+
+        let MD = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let YD = 0
+
+        for (let i = 0; i < month - 1; i++) {
+            YD += MD[i];
+        }
+        // 確認是否是閏年
+        if (year % 4 == 0 && month > 2) { date += 1 }
+        YD = YD + date
+
+        document.write('這是該年的第' + YD + '天')
+
+    </script>
+</body>
+
+</html>

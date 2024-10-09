@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 一球從 100 公尺高度自由落下
+        // 每次落地後反跳回原高度的一半再落下，請問：
+        // 第 10 次落地時，共經過多少公尺？
+        // 第 10 次反彈多高？
+
+        // 初始高度
+        let height = 100
+        // 總經過距離
+        let totalJump = 0
+
+        // i 為落地次數
+        for (let i = 1; i <= 10; i++) {
+            // 先加下落的距離
+            totalJump += height
+            // 計算反彈的距離
+            // 使迴圈結束後都會儲存當次反彈後的高度
+            height = height / 2
+            //  只在前 9 次落地後加上計算完的反彈距離
+            if (i < 10) {
+                totalJump += height
+            }
+        }
+
+        document.write(`第 10 次落地時，共經過 ${totalJump} 公尺<br>`)
+        document.write(`第 10 次反彈高度為 ${height} 公尺`)
+    </script>
+</body>
+
+</html>

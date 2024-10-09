@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回文</title>
+    <style>
+        /* reset 相關 */
+        * {
+            box-sizing: border-box;
+            border: none;
+        }
+
+        /* 預設input filled 顏色修改 */
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px #232325 inset;
+            /* 改成黑色 */
+            box-shadow: 0 0 0px 1000px #232325 inset;
+            -webkit-text-fill-color: #b3b3b3;
+            /* 字體顏色改成白色以符合黑色背景 */
+        }
+
+        /* 移除 input 預設 highlight */
+        input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+
+
+        /* main style */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            background: #3f3f47;
+
+            font-family: '微軟正黑體';
+        }
+
+        .calculator {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            padding: 1.5rem 2.6rem 2rem;
+            background-color: #36353d;
+            color: #b3b3b3;
+
+            border-radius: 4px;
+            box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.5);
+
+            /* flex */
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+        .calculator input {
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: #232325;
+            color: #c7c7c7;
+            font-size: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .calculator input[type="button"] {
+            margin-top: 1.6rem;
+            padding: 1rem;
+            font-size: 1.2rem;
+            background: #6664cb;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .calculator input[type="button"]:hover {
+            background: #5856b1;
+        }
+
+        #result {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+
+        /* utlts */
+        .danger {
+            color: rgb(201, 49, 49);
+        }
+
+        .success {
+            color: rgb(83, 160, 83);
+        }
+
+        /* >320 */
+        @media (min-width: 420px) {
+            .calculator {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        /* 桌面電腦 */
+        @media (min-width: 1024px) {
+            .calculator {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" placeholder="請輸入文字" id="input">
+        <input type="button" value="輸入" onclick="BtnClick()"><br>
+        <div id="result">輸入文字檢查是否為回文</div>
+    </div>
+
+    <script>
+        function BtnClick() {
+            // 取得輸入值
+            let input_str = document.querySelector('#input').value
+            if (!input_str) return
+
+            // 是回文
+            if (isPalindrome(input_str)) {
+                document.querySelector('#result').innerHTML = '是'
+                document.querySelector('#result').className = ''
+                document.querySelector('#result').classList.add('success')
+            }
+            // 不是回文
+            else {
+                document.querySelector('#result').innerHTML = '不是'
+                document.querySelector('#result').className = ''
+                document.querySelector('#result').classList.add('danger')
+            }
+        }
+
+        /**
+         * 判斷是否為回文 (偷懶寫法)
+         * return {Boolean}
+        */
+        const isPalindrome = (text) => {
+            return text === text.split('').reverse().join('')
+        }
+
+        /**
+         * 判斷是否為回文 (迴圈寫法)
+         * return {Boolean}
+        */
+        const isPalindrome2 = (text) => {
+            let newText = ''
+            for (i = text.length - 1; i >= 0; i--) {
+                newText += text[i]
+            }
+            return newText === text
+        }
+    </script>
+</body>
+
+</html>

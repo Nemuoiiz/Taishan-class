@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 將陣列內容印出成表格
+        // 每日的平均溫度
+        //      >> data[0][0] + data[1][0] + data[2][0] 直著加
+        // 時段一、時段二、時段三的平均氣溫
+        //      >> data[0][0] + data[0][1] + data[0][2] + data[0][3] 橫著加
+        // 溫度最高的日子與時段
+        // 溫度最低的日子與時段
+        //      >> data[i][j] 讓他們自己battle比大小
+// 表格
+        const data = [
+        [18.2, 17.3, 15.0, 13.4],
+        [23.8, 25.1, 20.6, 17.8],
+        [20.6, 21.5, 18.4, 15.7]
+        ]
+        document.write('<table border = 1>')
+        for ( const i in data ) {
+            document.write(`<tr>`) // 幹啊真的是不要再把 tr 的標籤放錯地方 tr 沒有要迴圈那麼多次!!!!
+            for ( const j in data[i] ) {  
+                document.write(`<td>${data[i][j]}</td>`) }
+            document.write(`</tr>`) }
+        document.write('</table>')
+
+        // =======================以上是快樂的表格=========================
+//  每日的平均溫度
+        const dateWiseTemp = [0, 0, 0, 0]      //  每日溫度分別總計，直著加
+        let TdateSum = 0
+            for ( const i in data ) {
+                for ( const j in data[i] ) {  
+                    TdateSum = data[i][j] // data 其中一個元素 (一小條陣列) 的其中一個元素
+
+                    // console.log(dateWiseTemp[j], typeof dateWiseTemp[j]) 
+                    //  如果一開始不設定[0,0,0,0]他們會是object??????????????? WHY?????????????
+                    
+                    dateWiseTemp[j] += TdateSum
+                }
+            }
+        console.log('星期別的總和溫度', dateWiseTemp) // [62.6, 63.900000000000006, 54, 46.900000000000006]
+        // 
+        // =========為什麼有那麼多小數點!!! 平均難道就除以三嗎!!!!!!!!!!! 尖叫!!!!!!!!!!==========
+//  時段一、時段二、時段三的平均氣溫        
+        const timeWiseTemp = [0, 0, 0]      //  每個時段分別總計，橫著加
+            let TtimeSum = 0
+                for ( const i in data ) {
+                    for ( const j in data[i] ) {  
+                        TtimeSum = data[i][j] // data 其中一個元素 (一小條陣列) 的其中一個元素
+
+                        // console.log(timeWiseTemp[i], typeof timeWiseTemp[i]) 
+                        //  如果一開始不設定[0,0,0,0]他們會是object??????????????? WHY?????????????
+                        
+                        timeWiseTemp[i] += TtimeSum
+                    }
+                }
+            console.log('時段別的總和溫度', timeWiseTemp) // [63.9, 87.3, 76.2]
+        // --------------------------------------------------------
+// 最高溫是哪天哪時
+// 反正才 12 筆就讓他自己 battle
+
+        let tempMax = data[0][0]
+        let dayMax = 0
+        let timeMax = 0
+        // 因為索引從 0 開始所以次數記得用小於
+        for ( i = 0; i < data.length; i++ ) {
+            for ( j = 0; j < data[i].length; j++ ) {
+            if(data[i][j] > tempMax) {
+                // 如果 battle 結果出來比其他的都大，那就記錄下來
+                tempMax = data[i][j]
+                dayMax = (j + 1)
+                timeMax = (i + 1)
+            }
+            }
+        }
+        console.log(`最高溫是星期${dayMax}時段${timeMax}`) // 最高溫是星期2時段2
+
+// 最低溫是哪天哪時
+// battle
+
+        let tempMin = data[0][0]
+        let dayMin = 0
+        let timeMin = 0
+        // 因為索引從 0 開始所以次數記得用小於
+        for ( i = 0; i < data.length; i++ ) {
+            for ( j = 0; j < data[i].length; j++ ) {
+            if(data[i][j] < tempMin) {
+                // 如果 battle 結果出來比其他的都小，那就記錄下來
+                tempMin = data[i][j]
+                dayMin = (j + 1)
+                timeMin = (i + 1)
+            }
+            }
+        }
+        console.log(`最低溫是星期${dayMin}時段${timeMin}`) // 最低溫是星期4時段1
+        
+        
+    </script>
+</body>
+</html>

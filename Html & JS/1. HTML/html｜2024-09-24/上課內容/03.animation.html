@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 75%;
+            margin: auto;
+            padding: 1rem;
+            border: 1px solid #333;
+        }
+
+        .wrap {
+            border: 5px dashed #333;
+            margin: 50px;
+            padding: 50px 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+            color: white;
+            line-height: 100px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        /* 建立動畫 */
+        /* 
+            步驟一，建立一組關鍵影格（keyframes）
+            動畫名稱自取，範例 animation
+            from(0%) => to(100%)
+        */
+
+        /* keyframes 可自己命名 */
+        @keyframes nemui {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                background-color: red;
+            }
+
+            50% {
+                transform: translate(70vw, 0) rotate(3600deg);
+                background-color: green;
+            }
+
+            90% {
+                transform: translate(0vw, 0) rotate(-3600deg);
+                background-color: green;
+            }
+
+            100% {
+                transform: translate(50vw, 0) rotate(3600deg);
+                background-color: blue;
+            }
+        }
+
+        /* 步驟二，建立一個專用的 class */
+        .animation {
+            /* 設定動畫名稱，和 keyframes 一致同名 */
+            animation-name: nemui;
+            /* 設定持續時間 ms(毫秒)、s(秒) */
+            animation-duration: 2s;
+            /* 設定播放次數，預設為 1 次，無限次為 infinite */
+            animation-iteration-count: 1;
+            /* 設定播放速率，可設為：
+                ease
+                linear 速率一致
+                ease-in
+                ease-out
+                ease-in-out
+                cubic-bazier(n,n,n,n) 允許自訂速率
+                更多轉場速率：https://easings.net
+            */
+            animation-timing-function: linear;
+            /* 播放的方向
+                normal 正向播放 (0% => 100%)
+                reverse 反向播放 (100% => 0%)
+                alternate 交替播放 (0% => 100% => 0% => 100%)
+                alternate-reverse 交替播放，先反向 (100% => 0% => 100% => 0%)
+            */
+            animation-direction: normal;
+            /* 延遲時間 */
+            animation-delay: 1s;
+            /* 填充模式（指動畫跑完時的狀態） 
+                both 動畫開始在第一幀 0%（紅色），結束在最後一幀 100%（藍色）
+                none 從黑到紅到藍，回到最初位置黑
+                forwards 從黑變紅變藍，最終位置藍
+                backwards 從紅到藍，回到最初位置黑
+            */
+            animation-fill-mode: both;
+            /* 縮寫 */
+            /*
+            第一個值為持續時間、第二個值為delay時間、第三個值為次數 */
+            animation: nemui 3s 0s 1 linear normal both running;
+        }
+    </style>
+</head>
+<div class="container">
+    <h1>動畫（animation）</h1>
+    <p>動畫與轉場的差異：</p>
+    <h2>animation</h2>
+    <ul>
+        <li>可以設定關鍵影格（keyframes）控制動畫的進度狀態，產生更複雜的動畫。</li>
+        <li>網頁載入時自動發生，也可以觸發（新增、刪除 class），還可以循環重複來回播放。</li>
+    </ul>
+
+    <h2>transition</h2>
+    <p>是一次性且沒有循環效果，必須重新再觸發一次。</p>
+    <div class="wrap">
+        <div class="box animation"></div>
+    </div>
+</div>
+
+<body>
+
+</body>
+
+</html>

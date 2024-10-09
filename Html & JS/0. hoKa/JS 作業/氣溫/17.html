@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const data = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7]
+        ]
+        // const days = ['星期一', '星期二', '星期三', '星期四']
+        // const times = ['時段一', '時段二', '時段三']
+
+
+        // document.write(`<table border="1">`)
+        // for (let i = 0; i < days.length; i++) {
+        //     document.write('<tr>')
+        //     for (let j = 0; j < days[i].length; j++) {
+        //         document.write('<td>', times[i], days[i], '<br>', '</td>')
+        //     }
+        //     document.write(`</tr>`)
+        // }
+        // document.write('</table>')
+
+        let montemp = 0
+        let tuetemp = 0
+        let wedtemp = 0
+        let thrtemp = 0
+        let tempone = 0
+        let temptwo = 0
+        let tempthr = 0
+
+
+        // 星期一平均氣溫
+        for (let i = 0; i < data.length; i++) {
+            montemp += data[i][0] / data.length
+        }
+        document.write(`星期一:` + montemp)
+
+        document.write('<hr>')
+        // 星期二平均氣溫
+
+        for (let i = 0; i < data.length; i++) {
+            tuetemp += data[i][1] / data.length
+        }
+        document.write(`星期二:` + tuetemp)
+
+        document.write('<hr>')
+
+        // 星期三平均氣溫
+        for (let i = 0; i < data.length; i++) {
+            wedtemp += data[i][2] / data.length
+        }
+        document.write(`星期三:` + wedtemp)
+
+        document.write('<hr>')
+
+        // 星期四平均氣溫
+        for (let i = 0; i < data.length; i++) {
+            thrtemp += data[i][3] / data.length
+        }
+        document.write(`星期四:` + thrtemp)
+
+        document.write('<hr>')
+
+
+
+        // 時段一、時段二、時段三的平均氣溫
+        // 時段一平均氣溫
+        for (let i = 0; i <= data.length; i++) {
+            tempone += data[0][i] / 4
+        }
+        document.write(`時段一:` + tempone)
+
+        document.write('<hr>')
+
+        // 時段二平均氣溫
+        for (let i = 0; i <= data.length; i++) {
+            temptwo += data[1][i] / 4
+        }
+        document.write(`時段二:` + temptwo)
+
+        document.write('<hr>')
+
+        // 時段三平均氣溫
+        for (let i = 0; i <= data.length; i++) {
+            tempthr += data[2][i] / 4
+        }
+        document.write(`時段三:` + tempthr)
+
+        document.write('<hr>')
+
+    </script>
+</body>
+
+</html>

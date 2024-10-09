@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判斷星座練習1</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Aries:      3/21 - 4/19          [牡羊座]
+         * Taurus:     4/20 - 5/20          [金牛座]
+         * Gemini:     5/21 - 6/21          [雙子座]
+         * Cancer:     6/22 - 7/22          [巨蟹座]
+         * Leo:        7/23 - 8/22          [獅子座]
+         * Vigro:      8/23 - 9/22          [處女座]
+         * Libra:      9/23 - 10/23         [天秤座]
+         * Scorpio:    10/24 - 11/22        [天蠍座]
+         * Ophiuchus:  11/23 - 12/21        [射手座]
+         * Capricorn:  12/22 - 1/19         [摩羯座]
+         * Aquarius:   1/20 - 2/18          [水瓶座]
+         * Pisces:     2/19 - 3/20          [雙魚座]
+         * */
+
+        const zodiacs = {
+            Aries: {
+                cnName: '牡羊座',
+                startValue: 321,
+                endValue: 419
+            },
+            Taurus: {
+                cnName: '金牛座',
+                startValue: 420,
+                endValue: 520
+            },
+            Gemini: {
+                cnName: '雙子座',
+                startValue: 521,
+                endValue: 621
+            },
+            Cancer: {
+                cnName: '巨蟹座',
+                startValue: 622,
+                endValue: 722
+            },
+            Leo: {
+                cnName: '獅子座',
+                startValue: 723,
+                endValue: 822
+            },
+            Vigro: {
+                cnName: '處女座',
+                startValue: 823,
+                endValue: 922
+            },
+            Libra: {
+                cnName: '天秤座',
+                startValue: 923,
+                endValue: 1023
+            },
+            Scorpio: {
+                cnName: '天蠍座',
+                startValue: 1024,
+                endValue: 1122
+            },
+            Ophiuchus: {
+                cnName: '射手座',
+                startValue: 1123,
+                endValue: 1221
+            },
+            Capricorn: {
+                cnName: '摩羯座',
+                startValue: 1222,
+                endValue: 119
+            },
+            Aquarius: {
+                cnName: '水瓶座',
+                startValue: 120,
+                endValue: 218
+            },
+            Pisces: {
+                cnName: '雙魚座',
+                startValue: 219,
+                endValue: 320
+            },
+        }
+
+        const username = prompt('你是誰?')
+        const birth_M = prompt('出生月份?')
+        const birth_D = prompt('出生日期?')
+
+        let birthdayValue = +(birth_M * 100) + +(birth_D)
+
+        let birthSign = '摩羯座'    // 不在範圍裡的只有摩羯座
+        Object.values(zodiacs).forEach(zodiac => {
+            if (birthdayValue >= zodiac.startValue && birthdayValue <= zodiac.endValue) {
+                birthSign = zodiac.cnName
+            }
+        })
+        document.write(`<h1> ${username} 你的星座是: ${birthSign}</h1>`)
+
+    </script>
+</body>
+
+</html>

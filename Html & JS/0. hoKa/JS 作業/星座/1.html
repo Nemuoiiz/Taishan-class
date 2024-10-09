@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const Name = prompt("請輸入姓名");
+        const Month = prompt("請輸入出生月份");
+        const Day = prompt("請輸入出生日期");
+        let Sign;
+
+        if (Month == 1)
+            Sign = Day >= 20 ? "水瓶座" : "魔羯座";
+        else if (Month == 2)
+            Sign = Day >= 19 ? "雙魚座" : "水瓶座";
+        else if (Month == 3)
+            Sign = Day >= 21 ? "牡羊座" : "雙魚座";
+        else if (Month == 4)
+            Sign = Day >= 20 ? "金牛座" : "牡羊座";
+        else if (Month == 5)
+            Sign = Day >= 21 ? "雙子座" : "金牛座";
+        else if (Month == 6)
+            Sign = Day >= 22 ? "巨蠍座" : "雙子座";
+        else if (Month == 7)
+            Sign = Day >= 23 ? "獅子座" : "巨蠍座";
+        else if (Month == 8)
+            Sign = Day >= 23 ? "處女座" : "獅子座";
+        else if (Month == 9)
+            Sign = Day >= 23 ? "天秤座" : "處女座";
+        else if (Month == 10)
+            Sign = Day >= 24 ? "天蠍座" : "天秤座";
+        else if (Month == 11)
+            Sign = Day >= 23 ? "射手座" : "天蠍座";
+        else
+            Sign = Day >= 22 ? "摩羯座" : "射手座";
+
+        alert(`${Name} 你好，你的星座是 ${Sign}`);
+    </script>
+
+</body>
+
+</html>

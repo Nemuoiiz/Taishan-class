@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 結果：12345
+        // let 為區域變數，會將當下的值記錄起來
+
+        for (let i = 1; i <= 5; i++) {
+            setTimeout(() => {
+                document.write(i + '<br>')
+            }, 3000);
+        }
+
+
+        // 結果：66666
+        // var 為全域變數
+        for (var i = 1; i <= 5; i++) {
+            setTimeout(() => {
+                document.write(i + '<br>')
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

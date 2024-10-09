@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // table 前後標籤
+        document.write('<table border="1">')
+        // i 有幾層；j 每一層有幾個
+        // 從被乘數 i 為 1 的第一橫列d運算
+        for (let i = 1; i <= 9; i++) {
+            // 做列 tr 的表格化
+            document.write('<tr>')
+            // 乘數 j 為 1 的第一直排，運算 x1~x9
+            for (let j = 1; j <= 9; j++) {
+                // 做行 td 的表格化
+                document.write(`<td>${i}x${j}=${i * j}</td>`)
+            }
+            document.write('</tr>')
+        }
+        // document.write('</table>')（可以不用打？）
+
+        // 尚未表格化時的九九乘法表
+        // for (let i = 1; i <= 9; i++) {
+        //     for (let j = 1; j <= 9; j++) {
+        //         document.write(`${i}x${j}=${i * j}<br>`)
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding-bottom: 300px;
+        }
+
+        .container {
+            width: 75%;
+            margin: 2rem auto;
+            background: #DDD;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .float-left {
+            float: left;
+            margin: 1rem;
+        }
+
+        .float-right {
+            /* 自動轉型 block */
+            float: right;
+            width: 300px;
+            height: 300px;
+            background: lemonchiffon;
+            margin: 1rem;
+        }
+
+        .menu {
+            background: lightgoldenrodyellow;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            /* 
+            BFC 區塊格式化上下文
+            可以重新定義元素的邊界、清除浮動、防止邊距重疊等。
+            讓高度塌陷的元素重新找到自己（父元素）的高度（找回背景） */
+            overflow: hidden;
+            width: 50%;
+            margin: auto;
+        }
+
+        /* float 已經讓 li 區塊化 */
+        .menu .menu-item {
+            text-align: center;
+            color: rgb(194, 44, 44);
+            background: rgb(221, 183, 133);
+            float: left;
+            width: 16%;
+            padding: 2% 1%;
+            margin: 0% 1%;
+        }
+
+        .menu .menu-item:hover {
+            background: rgb(104, 137, 187);
+            color: yellow;
+            /* 滑過去時游標會變成手指 */
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>float</h2>
+        <h3>特性一：浮動元素會從正常流向（normal flow）獨立出來</h3>
+        <p>特性二：normal flow 由左至右、由上而下的排版方式（地面的人）。</p>
+        <p>使用 float 會自動轉型成 block，所以 block 屬性都可以使用。</p>
+
+        <img class="float-left" src="https://picsum.photos/200/200/?random=10">
+        <span class="float-right">LOGO</span>
+
+        <p class="content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis error quos delectus id suscipit, qui
+            officiis iure optio ratione. Eligendi rerum nisi quidem? Adipisci eligendi quos perspiciatis, cum debitis
+            libero beatae voluptatibus accusamus rem hic, earum laboriosam provident porro sed ipsam ab similique
+            ducimus sit voluptas nostrum explicabo. Fugiat natus eligendi cum quo omnis minus et nulla vero ab ducimus
+            suscipit error aperiam nobis, dolore, similique laudantium enim magni culpa alias a exercitationem vitae
+            illo nesciunt ad? Tempora est voluptatem natus unde ducimus veniam quasi dolorem fugit cupiditate esse
+            repellat nostrum ex, quis ipsa quos similique. Enim consequatur at consectetur deleniti natus odio rerum
+            explicabo ratione nam laboriosam. Accusantium, quisquam.dolore, similique laudantium enim magni culpa alias
+            a exercitationem vitae illo nesciunt ad? Tempora est voluptatem natus unde ducimus veniam quasi dolorem
+            fugit cupiditate esse repellat nostrum ex, quis ipsa quos similique. Enim consequatur at consectetur
+            deleniti natus odio rerum explicabo ratione nam laboriosam. Accusantium, quisquam.ipsum dolor sit amet
+            consectetur adipisicing elit. Debitis error quos delectus id suscipit, qui officiis iure optio ratione.ipsum
+            dolor sit amet consectetur adipisicing elit. Debitis error quos delectus
+            id suscipit, qui officiis iure optio ratione.
+        </p>
+    </div>
+
+    <div class="container">
+        <h2>清除浮動</h2>
+        <img class="float-left" src="https://picsum.photos/200/200/?random=10">
+        <span class="float-right">LOGO</span>
+        <p class="content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis error quos delectus id suscipit, qui
+            officiis iure optio ratione. Eligendi rerum nisi quidem? Adipisci eligendi quos perspiciatis, cum debitis
+            libero beatae voluptatibus accusamus rem hic, earum laboriosam provident porro sed ipsam ab similique
+            ducimus sit voluptas nostrum explicabo. Fugiat natus eligendi cum quo omnis minus et nulla vero ab ducimus
+            suscipit error aperiam nobis, dolore, similique laudantium enim magni culpa alias a exercitationem vitae
+            illo nesciunt ad? Tempora est voluptatem natus unde ducimus veniam quasi dolorem fugit cupiditate esse
+            repellat nostrum ex, quis ipsa quos similique. Enim consequatur at consectetur deleniti natus odio rerum
+            explicabo ratione nam laboriosam. Accusantium, quisquam.dolore, similique laudantium enim magni culpa alias
+            a exercitationem vitae illo nesciunt ad? Tempora est voluptatem natus unde ducimus veniam quasi dolorem
+            fugit cupiditate esse repellat nostrum ex, quis ipsa quos similique.
+        </p>
+        <!-- 清除浮動 -->
+        <p class="content" style="clear:both;">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis error quos delectus id suscipit, qui
+            officiis iure optio ratione. Eligendi rerum nisi quidem? Adipisci eligendi quos perspiciatis, cum debitis
+            libero beatae voluptatibus accusamus rem hic, earum laboriosam provident porro sed ipsam ab similique
+            ducimus sit voluptas nostrum explicabo. Fugiat natus eligendi cum quo omnis minus et nulla vero ab ducimus
+            suscipit error aperiam nobis, dolore, similique laudantium enim magni culpa alias a exercitationem vitae
+            illo nesciunt ad? Tempora est voluptatem natus unde ducimus veniam quasi dolorem fugit cupiditate esse
+            repellat nostrum ex, quis ipsa quos similique. Enim consequatur at consectetur deleniti natus odio rerum
+            explicabo ratione nam laboriosam. Accusantium, quisquam.dolore, similique laudantium enim magni culpa alias
+            a exercitationem vitae illo nesciunt ad? Tempora est voluptatem natus unde ducimus veniam quasi dolorem
+            fugit cupiditate esse repellat nostrum ex, quis ipsa quos similique. Enim consequatur at consectetur
+            deleniti natus odio rerum explicabo ratione nam laboriosam. Accusantium, quisquam.ipsum dolor sit amet
+            consectetur adipisicing elit. Debitis error quos delectus id suscipit, qui officiis iure optio ratione.ipsum
+            dolor sit amet consectetur adipisicing elit. Debitis error quos delectus
+            id suscipit, qui officiis iure optio ratione.
+        </p>
+    </div>
+
+    <div class="container">
+        <h2>float 製作選單</h2>
+        <ul class="menu">
+            <li class="menu-item">item1</li>
+            <li class="menu-item">item2</li>
+            <li class="menu-item">item3</li>
+            <li class="menu-item">item4</li>
+            <li class="menu-item">item5</li>
+        </ul>
+    </div>
+</body>
+
+</html>

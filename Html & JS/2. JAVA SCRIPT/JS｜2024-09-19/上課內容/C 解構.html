@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 陣列
+        const numbers = [1, 2, 3, 4]
+        // let one = numbers[0]
+        // let two = numbers[1]
+        // let otherNumbers=[numbers[2],numbers[3]]
+        // ...剩餘的意思
+        let [one, two, ...otherNumbers] = numbers
+        console.log(one)
+        console.log(two)
+        // 剩餘其他值，拿掉上行也會變化
+        console.log(otherNumbers)
+
+
+        // 物件
+        const obj = { a: 1, b: 2, c: 3, d: 4 }
+        // let a = obj.a
+        // let bb = obj.b
+        // let otherObj = {
+        //     c: obj.c,
+        //     d: obj.d
+        // }
+        let b = 153154523432251
+        // 物件解構變數名稱須和 key 名稱相同
+        // 如果已經存在同名變數時以 : 重新命名
+        let { a, b: bb, ...otherObj } = obj
+        console.log(a)
+        console.log(bb)
+        console.log(otherObj)
+    </script>
+</body>
+
+</html>

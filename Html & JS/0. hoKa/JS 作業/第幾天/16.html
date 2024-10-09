@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 使用者可以輸入西元年、月、日，三個 prompt()
+        // 顯示使用者輸入的是該年的第幾天
+
+        // 以 3/5 為例，將前兩個月的天數加起來，再加上 5 天即可
+        // 需考慮閏年 +1
+        // 某些月份的天數是 30，某些月份的天數是 31
+        // parseInt(變數或是數字的文字) 可以把文字轉數字
+
+        let year = parseInt(prompt("請輸入西元年四碼數字：", ""))
+        let month = parseInt(prompt("請輸入月 1~12", ""))
+        let day = parseInt(prompt("請輸入日 1~31", ""))
+        let totalDays = 0 // 前個月為止的總天數
+
+        // 閏年條件：（能被 4 整除 && (不能被 100 整除 || 能被 400 整除)）
+        const leapY = (year % 4 === 0) && (year % 100 !== 0 || year % 400 === 0)
+        
+        let lastMonth = month - 1
+        // 如果是閏年且是 3 月以後，總日期 +1
+        if (leapY && month > 2) {
+        totalDays += 1
+        }
+
+        // 計算當年截至指定月份前的總天數
+        for (let i = 1; i <= lastMonth; i++) {
+        if (i == 2) {
+            totalDays += leapY ? 29 : 28 // 閏年 2 月 29 天，平年 28 天
+        } else if (i <= 7) {
+            totalDays += i % 2 === 1 ? 31 : 30 // 1-7 月：單 31 天，雙 30 天
+        } else {
+            totalDays += i % 2 === 1 ? 30 : 31 // 8-12 月：單 30 天，雙 31 天
+        }
+        console.log(totalDays,i)
+        }
+
+        if (month == 2 && day == 29 && !leapY) {
+        document.write(`${year}年不是閏年，2月29日出生的人沒生日可以過，重來。`)
+        } else {
+        document.write(`${year}年到${month}月${day}日為止的天數是: ${totalDays + day}天`)
+        }
+    </script>
+</body>
+</html>

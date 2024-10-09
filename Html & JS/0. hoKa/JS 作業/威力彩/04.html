@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>威力彩號碼產生器</title>
+</head>
+<body>
+    <script>
+        // rand(始, 終)
+        // 得到範圍內隨機一個整數
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+
+        // A 全部的球 1 ~ 38
+        // poolA = [1, 2, 3, ... , 38]
+        let poolA = [];
+        for (let i = 0; i < 38; i++) {
+            poolA[i] = (i + 1);
+        }
+        // 第 i = 0 顆球是 1 ; poolA[0] = 1
+
+        // A 的中獎球陣列
+        const winA = [];
+
+        // 抽六次
+        for (i = 0; i < 6; i++){
+            // 踢掉 poolA 中的 poolA[pickedIndex] 
+            // 用索引來定位抽中的球
+            const pickAndKick = (pickedIndex) => {
+                return poolA.splice(pickedIndex, 1);
+            }
+            // 抽中的號碼被踢掉
+            winA[i] = pickAndKick(rand(0, 37 - i));
+        }
+
+        // B 全部的球 1 ~ 8
+        // poolB = [1, 2, 3, ... , 8]
+        let poolB = [];
+        for (let i = 0; i < 8; i++) {
+            poolB[i] = (i + 1);
+        }
+        // 第 i = 0 顆球是 1 ; poolB[0] = 1
+
+        // B 的中獎球陣列
+        const winB = [];
+        // 抽一次
+        winB[0] = rand(1, 8);
+
+        document.write(`A 區：${winA}<br>B 區：${winB}`);
+
+    </script>
+</body>
+</html>

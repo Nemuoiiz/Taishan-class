@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大小寫</title>
+    <script src="./output.js"></script>
+    <style>
+        /* reset 相關 */
+        * {
+            box-sizing: border-box;
+            border: none;
+        }
+
+        /* 預設input filled 顏色修改 */
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px #232325 inset;
+            /* 改成黑色 */
+            box-shadow: 0 0 0px 1000px #232325 inset;
+            -webkit-text-fill-color: #b3b3b3;
+            /* 字體顏色改成白色以符合黑色背景 */
+        }
+
+        /* 移除 input 預設 highlight */
+        input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+
+
+        /* main style */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            background: #3f3f47;
+
+            font-family: '微軟正黑體';
+        }
+
+        .calculator {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            padding: 1.5rem 2.6rem 2rem;
+            background-color: #36353d;
+            color: #b3b3b3;
+
+            border-radius: 4px;
+            box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.5);
+
+            /* flex */
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+        .calculator input {
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: #232325;
+            color: #c7c7c7;
+            font-size: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .calculator input[type="button"] {
+            margin-top: 1.6rem;
+            padding: 1rem;
+            font-size: 1.2rem;
+            background: #6664cb;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .calculator input[type="button"]:hover {
+            background: #5856b1;
+        }
+
+        #result {
+            margin-top: 0;
+        }
+
+        /* utlts */
+        .danger {
+            color: rgb(201, 49, 49);
+        }
+
+        .success {
+            color: rgb(83, 160, 83);
+        }
+
+        /* >320 */
+        @media (min-width: 420px) {
+            .calculator {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        /* 桌面電腦 */
+        @media (min-width: 1024px) {
+            .calculator {
+                width: 50%;
+            }
+        }
+
+        input {
+            color: white;
+        }
+
+        .convertMark{
+            font-size: 2rem;
+            text-align: center;
+            margin: 0.5rem 0;
+            color: #ffffff99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" placeholder="輸入文字轉換大小寫" id="input" oninput="main()">
+        <div class="convertMark">⇅</div>
+        <input id="result"></input>
+    </div>
+
+    <script>
+        function main() {
+            // 取得輸入值
+            let input_str = document.querySelector('#input').value
+            // 空字串就不跑
+            if (!input_str) return
+
+            document.querySelector('#result').value = convertCase(input_str)
+        }
+
+        /**
+         * 大小寫轉換
+         * 
+         * return {string}
+        */
+        const convertCase = (text) => {
+            let result = ''
+            for (const char of text) {
+                // 等於自己轉大寫(那就是大寫，或其他東西) 轉小寫
+                if (char === char.toUpperCase()) {
+                    // 特殊符號或中文反正不管轉大小寫都長一樣，會浪費時間多轉兩次但反正結果是對的🤔
+                    result += char.toLowerCase()
+                }
+                // 不等於自己轉大寫(那就是小寫) 轉大寫
+                else {
+                    result += char.toUpperCase()
+                }
+            }
+            console.log(result)
+            return result
+        }
+    </script>
+</body>
+
+</html>

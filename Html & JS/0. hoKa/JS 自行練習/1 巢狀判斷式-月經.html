@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const mc = confirm('月經有沒有來')
+        const medicine = confirm('有沒有吃藥')
+
+        if (!mc) {
+            if (medicine) {
+                document.write('月經晚來，有吃藥，沒事')
+            }
+            else {
+                document.write('月經晚來，沒吃藥，有事')
+            }
+        } else {
+            document.write('月經有來，絕對沒事')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const Year = prompt("請輸入西元年");
+        const Month = prompt("請輸入月份");
+        const Day = prompt("請輸入日期");
+
+        const NormalYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let AnsDay = 0;
+
+        // 計算前幾個月的總天數
+        for (let i = 0; i < Month - 1; i++) {
+            AnsDay += NormalYear[i];
+        }
+
+        // 計算當月天數
+        AnsDay += parseInt(Day);
+
+        // 判斷是否閏年+1天
+        if (Year % 4 == 0 && Year % 100 != 0) {
+            AnsDay++;
+        }
+        else if (Year % 400) {
+            AnsDay++;
+        }
+
+        // 輸出結果
+        document.write(`使用者輸入的日期是${Year}年的第${AnsDay}天`);
+
+    </script>
+</body>
+
+</html>

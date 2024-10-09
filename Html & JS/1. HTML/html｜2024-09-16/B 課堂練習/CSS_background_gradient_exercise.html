@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style>
+		body {
+			text-align: center;
+		}
+
+		table {
+			margin: 1rem;
+			display: inline-block;
+		}
+
+		table,
+		tr,
+		td {
+			border: 1px solid #000;
+		}
+
+		table td {
+			width: 200px;
+			height: 200px;
+		}
+
+		.box-a {
+			background-color: crimson;
+		}
+
+		.box-b {
+			background-image: url("https://picsum.photos/200/200/?random=10");
+		}
+
+		.box-c {
+			background-image: url("https://picsum.photos/50/50/?random=10");
+			background-repeat: repeat-x;
+		}
+
+		.box-d {
+			background-image: url("https://picsum.photos/50/50/?random=10");
+			background-repeat: repeat-y;
+		}
+
+		.box-e {
+			background-image: url("https://picsum.photos/300/300/?random=10");
+			background-repeat: no-repeat;
+			background-size: 25%;
+			background-position: center;
+
+			/* 
+			background-image: url("https://picsum.photos/50/50/?random=10");
+			background-repeat: no-repeat;
+			background-position: center;
+			*/
+		}
+
+		.box-f {
+			background: rgb(255, 255, 170) url("https://picsum.photos/300/300/?random=10");
+			background-repeat: no-repeat;
+			background-size: 25%;
+			background-position: center;
+
+		}
+
+		.box-g {
+			background-image:
+				url("https://picsum.photos/200/50/?random=10"),
+				url("https://picsum.photos/200/102/?random=10"),
+				url("https://picsum.photos/200/50/?random=10");
+			background-repeat: no-repeat;
+			background-position: left top, left 50px, left bottom;
+		}
+
+		.box-h {
+			background: linear-gradient(90deg, black, blue);
+		}
+
+		.box-i {
+			background-image: radial-gradient(black, white);
+		}
+	</style>
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td class="box-a"></td>
+			<td class="box-b"></td>
+			<td class="box-c"></td>
+		</tr>
+		<tr>
+			<td class="box-d"></td>
+			<td class="box-e"></td>
+			<td class="box-f"></td>
+		</tr>
+		<tr>
+			<td class="box-g"></td>
+			<td class="box-h"></td>
+			<td class="box-i"></td>
+		</tr>
+	</table>
+</body>
+
+</html>

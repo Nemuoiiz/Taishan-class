@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 字體 -->
+    <!-- Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Fjalla One Static -->
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+    <!-- css頁面預設 -->
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        html,
+        body {
+            /*
+            設定 html,body 抓到瀏覽器的高度以達成滿版
+            section01、section02...的 height:100% 才會有作用
+            */
+            margin: auto;
+            height: 100%;
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+        }
+
+        /* 漢堡圖示 */
+        label {
+            color: #000;
+            background: #fff;
+            padding: 0.5rem;
+            display: inline-block;
+            /* cursor: pointer; */
+            /* 漢堡圖示圓型化 */
+            border-radius: 48%;
+        }
+
+        /* 間隔線 */
+        hr {
+            border: 1px solid #eee;
+            width: 90%;
+        }
+
+        /* 漢堡列 */
+        .hamburger_bar {
+            margin: 0px 0px;
+            padding: 1rem 1.5rem;
+        }
+
+        /* 將漢堡欄固定在上方 */
+        /* .fixed-header {
+            position: sticky;
+            top: 0px;
+            width: 100%;
+            padding: 15px 0px 15px 15px; */
+        /* 確保在其他內容之上 */
+        /* z-index: 1000; */
+        /* background-color: rgb(209, 59, 59); */
+        /* 背景色與側邊欄一致 */
+
+        /* } */
+
+        .toachbar {
+            width: 15%;
+            height: calc(100vh - 8%);
+            color: black;
+            background: white;
+
+            transition: 0.2s;
+            position: absolute;
+            top: 8%;
+            left: 0%;
+            transform: translate(0%, 0%);
+            overflow-y: auto;
+
+            /* margin-left: -300px; */
+        }
+
+
+        .toachbar::-webkit-scrollbar {
+            width: 0;
+            /* 隱藏滾動條 */
+        }
+
+        /* 當 hover 時顯示滾動條 */
+        .toachbar:hover::-webkit-scrollbar {
+            width: 7px;
+            /* 顯示滾動條的寬度 */
+        }
+
+        /* 滾動條樣式 */
+        .toachbar:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+        }
+
+        .toachbar li {
+            display: block;
+            /* align-items: center; */
+            font-size: 15px;
+            list-style-type: none;
+            padding: 0.55rem 0rem 0.55rem 0.8rem;
+            margin: 0rem 0.5rem 0rem 1rem;
+            border-radius: 10px;
+            /* 字距 */
+            /* letter-spacing: 1.1px; */
+        }
+
+        .toachbar a {
+            display: block;
+            /* 讓圖片和文字可以水平排列 */
+            align-items: center;
+            /* 垂直居中 */
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        .toachbar img {
+            margin: 0 2rem -0.3rem 0;
+            max-width: 30px;
+            border-radius: 50%;
+            /* padding: 0.1rem 0 0.1rem 0; */
+            vertical-align: middle;
+        }
+
+        .toachbar li i {
+            /* 圖示與文字之間的間距 */
+            margin-right: 3rem;
+            font-size: 20px;
+            /* 調整 icon 大小 */
+            max-width: 10px;
+            text-align: center;
+        }
+
+
+
+        #burger_btn {
+            display: none;
+        }
+
+        /* ~ 兄弟選擇器：選擇同層 */
+        #burger_btn:checked~.toachbar {
+            margin-left: 0;
+        }
+
+        .fa-youtube {
+            font-size: 25px;
+            /* 調整圖示大小 */
+            display: inline-block;
+            vertical-align: middle;
+            padding-left: 1rem;
+
+        }
+
+        .youtube-text {
+            font-size: 20px;
+            /* 調整文字大小 */
+            display: inline-block;
+            vertical-align: middle;
+            color: #000;
+            font-family: "Fjalla One", sans-serif;
+            font-weight: 600;
+        }
+
+        .tw-text {
+            font-family: "Noto Sans TC", sans-serif;
+            font-weight: 400;
+            font-size: 10px;
+
+            display: inline-block;
+            vertical-align: top;
+            margin: -10px;
+            margin-left: 5px;
+        }
+
+        /* sidebar 底下附註小連結------------------------------- */
+        .note {
+            margin: 1.5rem 0rem 0rem 1.5rem;
+        }
+
+        .note span,
+        .note div {
+            font-size: 0.8rem;
+            padding-bottom: 1rem;
+            padding-left: 0.3rem;
+
+            /* font-size: 0.9rem; */
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .note .copyright {
+            font-size: 0.7rem;
+            font-weight: 400;
+            /* 調整字體大小 */
+            color: #999;
+            padding-top: 10px;
+        }
+
+        /* 
+        :hover：滑鼠經過
+        :visited：已造訪連結（點擊）
+        :link：未訪問連結
+        :active：活動連結 */
+        a,
+        a:visited,
+        a:link,
+        a:active {
+            text-decoration: none;
+            color: #333;
+        }
+
+        li:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .nobg:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        /* 搜尋框列------------------------------------------------- */
+        #search {
+            width: 480px;
+            border-radius: 30px 0 0 30px;
+            border: 1px solid #ddd;
+            background-color: white;
+            font-size: 18px;
+            color: black;
+            padding: 10px 0 10px 20px;
+            margin-left: 20%;
+        }
+
+        #click {
+            background: #eee;
+            border: 1px solid #ddd;
+            border-radius: 0 30px 30px 0;
+            padding: 8.5px 20px 9px 20px;
+            margin-left: -5px;
+            cursor: pointer;
+            display: inline-block;
+
+            /* align-items: center; */
+            /* justify-content: center; */
+            font-size: 20px;
+        }
+
+        #mic {
+            width: 45px;
+            height: 45px;
+            background: #eee;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-size: 20px;
+            margin-left: 1%;
+            cursor: pointer;
+        }
+
+        #add,
+        #bell {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            border-radius: 50%;
+            font-size: 25px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #add {
+            position: fixed;
+            right: 10%;
+        }
+
+        #bell {
+            position: fixed;
+            right: 7%;
+        }
+
+        #me {
+            /* 固定在視窗位置 */
+            position: fixed;
+            top: 2%;
+            right: 50px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+
+        #me img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        #click:hover,
+        #mic:hover,
+        #add:hover,
+        #bell:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hamburger_bar">
+
+        <input id="burger_btn" type="checkbox">
+        <label for="burger_btn"><i class="fa-solid fa-bars" style="color: #000000;"></i></label>
+
+        <a href="https://www.youtube.com/">
+            <i class="fa-brands fa-youtube" style="color: #ff0000;"></i>
+            <span class="youtube-text">YouTube<sup class="tw-text">TW</sup></span>
+        </a>
+
+        <!-- 搜尋列 -->
+        <input id="search" type="text" placeholder="搜尋">
+        <button id="click"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></button>
+        <button id="mic"><i class="fa-solid fa-microphone" style="color: #000000;"></i></button>
+        <button id="add"><i class="fa-regular fa-square-plus" style="color: #000000;"></i></button>
+        <button id="bell"><i class="fa-regular fa-bell" style="color: #000000;"></i></button>
+        <div id="me"><img src="./images/me.jpg" alt="頭貼"></div>
+
+        <div class="toachbar">
+            <ul>
+                <a href="https://www.youtube.com/" title="首頁">
+                    <li><i class="fa-solid fa-house"></i>首頁</li>
+                </a>
+                <a href="https://www.youtube.com/shorts" title="Shorts">
+                    <li><i class="fa-solid fa-bolt"></i>Shorts</li>
+                </a>
+                <a href="https://www.youtube.com/feed/subscriptions" title="訂閱內容">
+                    <li><i class="fa-solid fa-laptop-medical"></i>訂閱內容</li>
+                </a>
+            </ul>
+            <hr>
+            <ul>
+                <a href="https://www.youtube.com/feed/you" title="個人中心">
+                    <li>個人中心　<i class="fa-solid fa-chevron-right"></i></li>
+                </a>
+                <a href="https://www.youtube.com/feed/history" title="觀看紀錄">
+                    <li><i class="fa-solid fa-clock-rotate-left"></i>觀看紀錄</li>
+                </a>
+                <a href="https://www.youtube.com/feed/playlists" title="播放清單">
+                    <li><i class="fa-solid fa-bars-staggered"></i>播放清單</li>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=WL" title="稍後觀看">
+                    <li><i class="fa-regular fa-clock"></i>稍後觀看</li>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=LL" title="喜歡的影片">
+                    <li><i class="fa-regular fa-thumbs-up"></i>喜歡的影片</li>
+                </a>
+            </ul>
+            <hr>
+            <ul>
+                <li class="nobg">訂閱內容</li>
+
+                <li>
+                    <a href="https://www.youtube.com/@FroggyChiu" title="呱吉">
+                        <img src="./images/froggy.jpg" alt="呱吉">呱吉
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@andysiphone8plus" title="Andy's iPhone">
+                        <img src="./images/Andy.jpg" alt="Andy's iPhone">Andy's iPhone
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@cailingliou" title="劉采翎">
+                        <img src="./images/cailin.jpg" alt="劉采翎">劉采翎
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@guesswhopts" title="誰來晚餐 GuessWho">
+                        <img src="./images/dinner.jpg" alt="誰來晚餐 GuessWho">誰來晚餐 GuessWho
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@thethemenightshow" title="公視主題之夜SHOW">
+                        <img src="./images/show.jpg" alt="公視主題之夜SHOW">公視主題之夜SHOW
+                    </a>
+                </li>
+            </ul>
+
+
+            <hr>
+            <ul>
+                <li class="nobg">探索</li>
+                <a href="https://www.youtube.com/feed/trending" title="發燒影片">
+                    <li><i class="fa-solid fa-meteor"></i>發燒影片</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ" title="音樂">
+                    <li><i class="fa-solid fa-music"></i>音樂</li>
+                </a>
+                <a href="https://www.youtube.com/feed/storefront" title="電影">
+                    <li><i class="fa-solid fa-clapperboard"></i>電影</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UC4R8DWoMoI7CAwX8_LjQHig" title="直播">
+                    <li><i class="fa-solid fa-tower-broadcast"></i>直播</li>
+                </a>
+                <a href="https://www.youtube.com/gaming" title="遊戲">
+                    <li><i class="fa-solid fa-gamepad"></i>遊戲</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UCYfdidRxbB8Qhf0Nx7ioOYw" title="新聞">
+                    <li><i class="fa-solid fa-newspaper"></i>新聞</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UCEgdi0XIXXZ-qJOFPf4JSKw" title="體育">
+                    <li><i class="fa-solid fa-trophy"></i>體育</li>
+                </a>
+                <a href="https://www.youtube.com/feed/courses_destination" title="課程">
+                    <li><i class="fa-solid fa-lightbulb"></i>課程</li>
+                </a>
+                <a href="https://www.youtube.com/podcasts" title="Podcast">
+                    <li><i class="fa-solid fa-podcast"></i>Podcast</li>
+                </a>
+            </ul>
+            <hr>
+            <ul>
+                <a href="https://www.youtube.com/account" title="設定">
+                    <li><i class="fa-solid fa-gear"></i>設定</li>
+                </a>
+                <a href="https://www.youtube.com/reporthistory" title="檢舉紀錄">
+                    <li><i class="fa-solid fa-flag"></i>檢舉紀錄</li>
+                </a>
+                <li><i class="fa-solid fa-circle-question"></i>說明</li>
+                <li><i class="fa-solid fa-house-circle-exclamation"></i>提供意見</li>
+            </ul>
+            <hr>
+            <div class="note">
+                <p>
+                    <span>簡介</span>
+                    <span>媒體</span>
+                    <span>著作權</span>
+                    <span>與我們聯絡</span>
+                </p>
+                <p>
+                    <span>創作者</span>
+                    <span>廣告</span>
+                    <span>開發人員</span>
+                </p>
+                <br>
+                <p>
+                    <span>條款</span>
+                    <span>隱私權</span>
+                    <span>政策與安全性</span>
+                </p>
+                <p>
+                    <span>YouTube 運作方式</span>
+                    <span>測試新功能</span>
+                </p>
+                <br>
+                <div class="copyright">&copy; 2024 Diane Zhang</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

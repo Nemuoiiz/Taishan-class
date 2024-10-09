@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const like = confirm('你喜歡看 BL 嗎？')
+        // 設定常數為like（type:boolean），布林值可直接用if(變數)判定
+        if (like) {
+            console.log('你是腐女')
+        } else
+            console.log('真可惜你不是腐女')
+
+        // 三元運算子
+        const message = like ? '腐女同好安安' : '真可惜你不是腐女'
+
+        console.log(123 + message)    // 123你是腐女
+        console.log(`message`)        // message
+        console.log('message')        // message
+        console.log(`123${message}`)  // 123你是腐女
+
+        // 第一行 是數字加法或字串拼接（視 message 的類型）
+        // 第二行 可紀錄換行、可使用 ${} 加入參數。上方僅輸出字面值 "message"
+        // 第三行 僅輸出字面值 "message"
+        // 第四行 是模板字串，會拼接數字和變數
+
+        console.log(typeof (message))
+        console.log(typeof `message`)
+        console.log(typeof 'message')
+        console.log(typeof `123${message}`)
+    </script>
+</body>
+
+</html>

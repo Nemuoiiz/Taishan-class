@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 請寫一個 function 判斷輸入的文字是不是正著讀和反著讀都一樣的迴文
+    // for、for of 和 for in 可以迴圈文字
+
+    const isPalindrome = (text) => {
+      // let pLen = text.length
+      for (let i in text) {
+        if (text[i] !== text[(text.length - 1) - i ]){
+          return false
+        }
+      }
+      return true
+    }
+    const result = isPalindrome(prompt('輸入文字'))
+    console.log(result)
+
+    
+//========================================================
+    // let str = 'abcd'
+
+    // console.log(str[0])       // a
+
+    // for (const s of str) {
+    //   console.log(s)
+    // }
+
+    // for (const i in str) {
+    //   console.log(str[i])
+    // }
+
+    // for (let i = 0; i < str.length; i++) {
+    //   console.log(str[i])
+    //   // 不能用 = 修改
+    //   str[i] = '1'
+    // }
+    // console.log(str)
+  </script>
+</body>
+</html>

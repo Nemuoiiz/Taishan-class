@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7]
+        ]
+        const time = ['時段一', '時段二', '時段三']
+        const d = ['', '星期一', '星期二', '星期三', '星期四']
+        // 表格
+        document.write('<table border="1">')
+        document.write('<tr><td></td><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td></tr>')
+        // for (let k = 0; k < d.length; k++) {
+        //     fpr
+        //     document.write(`<tr><td>${d[k]}</td></tr>`)
+        // }
+        for (let i = 0; i < data.length; i++) {
+            document.write(`<tr><td>${time[i]}`)
+            for (let j = 0; j < data[0].length; j++) {
+                document.write('<td>')
+                document.write(data[i][j])
+                document.write('</td>')
+            }
+            document.write('</td></tr>')
+        }
+        document.write('</table>')
+        // 日均溫
+        let sum1 = 0
+        for (let i in data) {
+            sum1 += parseFloat(data[i][0])
+        }
+        let avg1 = sum1 / 3
+        document.write('星期一均溫:', avg1, '<br>')
+        let sum2 = 0
+        for (let i in data) {
+            sum2 += parseFloat(data[i][1])
+        }
+        let avg2 = sum2 / 3
+        document.write('星期二均溫:', avg2, '<br>')
+        let sum3 = 0
+        for (let i in data) {
+            sum3 += parseFloat(data[i][2])
+        }
+        let avg3 = sum3 / 3
+        document.write('星期三均溫:', avg3, '<br>')
+        let sum4 = 0
+        for (let i in data) {
+            sum4 += parseFloat(data[i][3])
+        }
+        let avg4 = sum4 / 3
+        document.write('星期四均溫:', avg4, '<br>')
+
+        // 時段均溫
+        let sum5 = 0
+        for (let i in data[0]) {
+            sum5 += parseFloat(data[0][i])
+        }
+        let avg5 = sum5 / 4
+        document.write('時段一均溫:', avg5, '<br>')
+        let sum6 = 0
+        for (let i in data[0]) {
+            sum6 += parseFloat(data[1][i])
+        }
+        let avg6 = sum6 / 4
+        document.write('時段二均溫:', avg6, '<br>')
+        let sum7 = 0
+        for (let i in data[0]) {
+            sum7 += parseFloat(data[2][i])
+        }
+        let avg7 = sum7 / 4
+        document.write('時段三均溫:', avg7, '<br>')
+
+        // 最高溫
+        let maxt = 0
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[0].length; j++) {
+                if (maxt < data[i][j]) {
+                    maxt = data[i][j]
+                }
+            }
+        }
+        document.write('最高溫:', maxt, '<br>')
+
+        // 最低溫
+        let mint = maxt
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[0].length; j++) {
+                if (mint > data[i][j]) {
+                    mint = data[i][j]
+                }
+            }
+        }
+        document.write('最低溫:', mint)
+    </script>
+</body>
+
+</html>

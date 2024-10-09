@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 試試看自己寫一個猜數字遊戲，並加入太大、太小等提示訊息
+        // 參考：https://newush.medium.com/b37a64b30a20
+
+        let randomInt = Math.floor(Math.random() * 101)
+        // prompt 輸入的是字串，需用 parseInt 轉換成數值
+        let guessInt = parseInt(prompt('請輸入 0～100 的數字'))
+        // 猜幾次
+        let guessCount = 1
+
+        while (guessInt !== randomInt) {
+            if (guessInt < randomInt) {
+                alert(`猜第${guessCount}次！要比數字更大`)
+            } else if (guessInt > randomInt) {
+                alert(`猜第${guessCount}次！要比數字更小`)
+            }
+            // 迴圈內部更新 guessInt
+            // 當使用者輸入錯誤後再次提示輸入。
+            guessCount++
+            guessInt = parseInt(prompt('請繼續輸入數字'))
+        }
+        document.write(`在猜第${guessCount}次時中獎啦！！！你真棒`)
+
+    </script>
+</body>
+
+</html>

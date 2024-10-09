@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1️⃣ setTimeout 計時器：各式寫法
+        // setTimeout(function () {})
+        // setTimeout(() => {})
+        // const func =() => {}
+        // setTimeout(func)
+
+
+        // setTimeout(() => {
+        //     document.write('三秒鐘')
+        // }, 3000);
+
+        // ⬇️
+
+        // const write = () => {
+        //     document.write('三秒鐘')
+        // }
+        // // write不能有()
+        // setTimeout(write, 3000)
+
+
+        // const write = (ms, text) => {
+        //     document.write(`過了${ms}豪秒，${text}<br>`)
+        // }
+        // // setTimeout(function, 毫秒, 傳入 function 的參數)
+        // // 並列的 setTimeout 會同時開始計算
+        // setTimeout(write, 3000, 3000, 'abc')
+        // setTimeout(write, 5000, 5000, 'abc')
+
+        // ⬇️
+
+        // const write = (ms, text) => {
+        //     setTimeout(() => {
+        //         document.write(`過了${ms}豪秒，${text}<br>`)
+        //     }, ms)
+        // }
+        // write(3000, 'abc')
+        // write(5000, 'abc')
+
+
+        // 2️⃣ clearTimeout()
+        // ↑ 把計時器清除的語法
+
+        // 設定計時器計時 1 秒
+        let timer = setTimeout(() => {
+            document.write('aaa')
+        }, 1000)
+        // 使用 clear 清除掉，所以 1 秒鐘後也沒有出現 aaa
+        clearTimeout(timer)
+    </script>
+</body>
+
+</html>

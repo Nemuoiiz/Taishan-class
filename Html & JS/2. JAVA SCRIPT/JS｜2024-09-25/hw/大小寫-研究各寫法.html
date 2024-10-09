@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 將 prompt() 輸入的英文文字大寫轉小寫
+        // 小寫轉大寫後顯示在網頁上
+        // .toUpperCase()
+        // .toLowerCase()
+
+        let input = prompt('')
+        let answer = ''
+        // abCCBaa
+        // 0123456
+
+        // if eles 寫法
+        for (let i = 0; i < input.length; i++) {
+            // 取出字串中位置是 i 的字母
+            let a = input[i]
+            if (a === a.toUpperCase()) {
+                // 判定符合大寫字母，就轉為小寫存入
+                answer += a.toLowerCase()
+            } else {
+                // 判定不符合大寫字母，就轉為大寫存入
+                answer += a.toUpperCase()
+            }
+        }
+
+        // 三元運算子 寫法
+        // for (i = 0; i < input.length; i++) {
+        //     let letter = input[i]
+        //     answer += (letter === letter.toUpperCase()) ?
+        //         letter.toLowerCase() :
+        //         letter.toUpperCase()
+        // }
+
+        // document.write(answer)
+
+
+        //==================================================
+
+        // function的寫法
+        // function a(input) {
+        //     let answer = '';
+        //     for (let i = 0; i < input.length; i++) {
+        //         let letter = input[i];
+        //         answer += (letter === letter.toUpperCase()) ?
+        //             letter.toLowerCase() :
+        //             letter.toUpperCase();
+        //     }
+        //     return answer;
+        // }
+
+        // let input = prompt('大小寫轉換');
+        // let result = a(input);
+        // document.write(result);
+
+    </script>
+</body>
+
+</html>

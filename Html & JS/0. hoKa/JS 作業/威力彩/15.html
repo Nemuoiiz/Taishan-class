@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用上面練習完成的 function 製作威力彩號碼產生器
+        // 將隨機出的數字用 document.write() 顯示在網頁上
+
+        // 威力彩規則
+        // A 區 1~38 取 6 個數字
+        // B 區 1~ 8 取 1 個數字
+
+        // 區間內的隨機整數
+        const randomInt = (min, max) => {
+            return Math.round(Math.random() * (max - min) + min)
+        }
+
+        // A區
+        const generateA = () => {
+            let aArray = []
+            while (aArray.length < 6) {
+                let rand = randomInt(1, 38)
+                if (!aArray.includes(rand)) {
+                    aArray.push(rand)
+                }
+            }
+            return aArray
+        }
+
+        let aArray = generateA()
+
+        // B區
+        const generateB = (array) => {
+            let b
+            do {
+                b = randomInt(1, 8)
+            } while (array.includes(b))
+            return b
+        }
+
+        let bArray = generateB(aArray)
+
+
+        document.write('A區號碼：' + aArray.join(','))
+        document.write('<br>B區號碼：', bArray)
+
+    </script>
+</body>
+
+</html>

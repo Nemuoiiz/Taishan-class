@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const Name = prompt('請輸入姓名')
+        const Moon = prompt('請輸入出生月份')
+        const Day = prompt('請輸入出生日期')
+
+        const Mix = Name +'您好，您的星座是'
+        
+        if (Moon >= 12 && Day >= 22 ){
+            alert(` ${Mix} 魔羯座 `)
+        } else if ((Moon >= 12 && Day <= 21 )||(Moon >= 11 && Day >= 23 )){
+            alert(` ${Mix} 射手座`)
+        } else if ((Moon >= 11 && Day <= 22 )||(Moon >= 10 && Day >= 24 )){
+            alert(` ${Mix} 天蠍座`)
+        } else if ((Moon >= 10 && Day <= 23 )||(Moon >= 9 && Day >= 23 )){
+            alert(` ${Mix} 天秤座`)
+        } else if ((Moon >= 9 && Day <= 22 )||(Moon >= 8 && Day >= 23 )){
+            alert(` ${Mix} 處女座`)
+        } else if ((Moon >= 8 && Day <= 22 )||(Moon >= 7 && Day >= 23 )){
+            alert(` ${Mix} 獅子座`)
+        } else if ((Moon >= 7 && Day <= 22 )||(Moon >= 6 && Day >= 22 )){
+            alert(` ${Mix} 巨蟹座`)
+        } else if ((Moon >= 6 && Day <= 21 )||(Moon >= 5 && Day >= 21 )){
+            alert(` ${Mix} 雙子座`)
+        } else if ((Moon >= 5 && Day <= 20 )||(Moon >= 4 && Day >= 20 )){
+            alert(` ${Mix} 金牛座`)
+        } else if ((Moon >= 4 && Day <= 19 )||(Moon >= 3 && Day >= 21 )){
+            alert(` ${Mix} 牡羊座`)
+        } else if ((Moon >= 3 && Day <= 20 )||(Moon >= 2 && Day >= 19 )){
+            alert(` ${Mix} 雙魚座`)
+        } else if ((Moon >= 2 && Day <= 18 )||(Moon >= 1 && Day >= 20 )){
+            alert(` ${Mix} 水瓶座`)
+        } else if ((Moon >= 1 && Day <= 19 )){
+            alert(` ${Mix} 魔羯座`)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 用偽元素去做軸拉的直閱覽 */
+        @media (max-width: 1000px) {
+            thead {
+                display: none;
+            }
+
+            tr {
+                display: block;
+            }
+
+            td {
+                display: block;
+                width: 100%;
+            }
+
+            tbody td::before {
+                content: attr(data-th) ":";
+                font-weight: bold;
+                margin-right: 10px;
+            }
+
+            tbody tr:nth-child(odd) {
+                background: grey;
+                color: white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>品名</th>
+                <th>價格</th>
+                <th>商品編號</th>
+                <th>評價星數</th>
+                <th>評價則數</th>
+                <th>型號</th>
+                <th>產品尺寸</th>
+                <th>外箱尺寸</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- data-自己取的名稱 -->
+                <td data-th="#">1</td>
+                <td data-th="品名">ZeroBack 0脊限溫感按摩墊(HY-906 躺墊 床墊)</td>
+                <td data-th="價格">6600</td>
+                <td data-th="商品編號">DMADFE-A900GP9WG</td>
+                <td data-th="評價星數">4.9</td>
+                <td data-th="評價則數">31</td>
+                <td data-th="型號">HY-906</td>
+                <td data-th="產品尺寸">120x55x9cm</td>
+                <td data-th="外箱尺寸">56.5x44.5x39cm</td>
+            </tr>
+            <tr>
+                <td data-th="#">1</td>
+                <td data-th="品名">ZeroBack 0脊限溫感按摩墊(HY-906 躺墊 床墊)</td>
+                <td data-th="價格">6600</td>
+                <td data-th="商品編號">DMADFE-A900GP9WG</td>
+                <td data-th="評價星數">4.9</td>
+                <td data-th="評價則數">31</td>
+                <td data-th="型號">HY-906</td>
+                <td data-th="產品尺寸">120x55x9cm</td>
+                <td data-th="外箱尺寸">56.5x44.5x39cm</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

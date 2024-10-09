@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7]
+        ]
+
+        // 表
+        document.write('<table border=1>')
+        document.write('<tr>')
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+                document.write('<td>' + `${data[i][j]}` + '</td>')
+            } document.write('</tr>')
+        }
+        document.write('</table>')
+
+        document.write('<hr>')
+
+
+        // 每日溫度:星期一[0][0]+[1][0]+[2][0]
+        let w1 = 0
+        for (let i = 0; i < 3; i++) {
+            w1 += data[i][0]
+        }
+        document.write('星期一的平均溫度是' + w1 / 3 + '度。' + '<br>')
+
+        let w2 = 0
+        for (let i = 0; i < 3; i++) {
+            w2 += data[i][1]
+        }
+        document.write('星期二的平均溫度是' + w2 / 3 + '度。<br>')
+
+        let w3 = 0
+        for (let i = 0; i < 3; i++) {
+            w3 += data[i][2]
+        }
+        document.write('星期三的平均溫度是' + w3 / 3 + '度。<br>')
+
+        let w4 = 0
+        for (let i = 0; i < 3; i++) {
+            w4 += data[i][3]
+        }
+        document.write('星期四的平均溫度是' + w4 / 3 + '度。<br>')
+
+        document.write('<hr>')
+
+
+        // 時段一平均溫度:data[0]總和/4
+        let tep1 = 0
+        for (let j = 0; j < data[0].length; j++) {
+            tep1 += data[0][j]
+        }
+        document.write('時段一的平均溫度是' + tep1 / 4 + '度。<br>')
+        // for in 寫法
+        // let total1 = 0
+        // for(const i in data[0]) {
+        //     console.log(i, total1 += data[0][i]);
+        // } document.write(total1/4)
+
+        let tep2 = 0
+        for (let j = 0; j < data[1].length; j++) {
+            tep2 += data[1][j]
+        }
+        document.write('時段二的平均溫度是' + tep2 / 4 + '度。<br>')
+
+        // let tep3 = 0
+        // for (let j=0; j < data[2].length; j++) {
+        //     tep3 += data[2][j]
+        // }
+        // document.write('時段三的平均溫度是' + tep3/4 + '度。<br>' )
+        let total3 = 0
+        for (const i in data[2]) {
+            console.log(i, total3 += data[2][i])
+        } document.write('時段三的平均溫度是' + total3 / 4 + '度。<br>')
+
+        //溫度最高的日子與時段
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+                console.log(i, j, data[i][j])
+            }
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

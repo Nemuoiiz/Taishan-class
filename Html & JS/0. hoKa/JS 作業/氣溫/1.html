@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 30px;
+            font-family: '微軟正黑體';
+        }
+
+        span {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const data = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7]
+        ]
+        const TimePeriod = ['時段一', '時段二', '時段三'];
+        const Weeks = ['星期一', '星期二', '星期三', '星期四'];
+        const AvgOfTime = [0, 0, 0];
+        const AvgOfWeeks = [0, 0, 0, 0];
+        let MaxIndexI = 0, MaxIndexJ = 0, MinIndexI = 0, MinIndexJ = 0;
+
+        // 將陣列內容印出成表格
+        document.write('<table border="1">');
+        document.write('<tr>');
+        document.write('<td>');
+        for (const week of Weeks) {
+            document.write(`<td>${week}</td>`);
+        }
+        for (const i in data) {
+            document.write('<tr>');
+            document.write(`<td>${TimePeriod[i]}</td>`);
+            for (const j in data[i]) {
+                document.write(`<td>${data[i][j]}</td>`);
+                AvgOfTime[i] += data[i][j];
+                AvgOfWeeks[j] += data[i][j] / 3;
+                if (data[i][j] >= data[MaxIndexI][MaxIndexJ]) {
+                    MaxIndexI = i;
+                    MaxIndexJ = j;
+                }
+                if (data[i][j] <= data[MinIndexI][MinIndexJ]) {
+                    MinIndexI = i;
+                    MinIndexJ = j;
+                }
+            }
+            AvgOfTime[i] /= 4;
+            document.write('</tr>');
+        }
+        document.write('</table>');
+
+        document.write('<hr>');
+        for (const i in AvgOfWeeks)
+            document.write(`${Weeks[i]}的平均溫度為${AvgOfWeeks[i]}<br>`);
+        document.write('<hr>');
+        for (const i in AvgOfTime)
+            document.write(`${TimePeriod[i]}的平均氣溫為${AvgOfTime[i]}<br>`);
+        document.write('<hr>');
+        document.write(`溫度最高的日子與時段為<span>${Weeks[MaxIndexJ]}</span>的<span>${TimePeriod[MaxIndexI]}</span>，<span>${data[MaxIndexI][MaxIndexJ]}</span><br>`);
+        document.write(`溫度最低的日子與時段為<span>${Weeks[MinIndexJ]}</span>的<span>${TimePeriod[MinIndexI]}</span>，<span>${data[MinIndexI][MinIndexJ]}</span><br>`);
+
+    </script>
+</body>
+
+</html>

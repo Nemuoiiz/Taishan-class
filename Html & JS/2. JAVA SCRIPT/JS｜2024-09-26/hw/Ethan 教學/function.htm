@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 無回傳值
+        // function a() {
+        //     document.write('1')
+        // }
+
+        // a()
+
+        // // 有回傳值
+        // function b() {
+        //     return 2
+        // }
+
+        // let two = b();
+        // document.write(two)
+
+        // // 兩個以上參數計算
+        // function plus(a, b) {
+        //     return a + b
+        // }
+
+        // let result = plus(10, 10);
+        // document.write(result)
+
+
+        // // 需要重複執行的情況
+        // function printSixTime(abc) {
+        //     document.write(abc)
+        //     document.write(abc)
+        //     document.write(abc)
+        //     document.write(abc)
+        //     document.write(abc)
+        //     document.write(abc)
+        // }
+
+        // printSixTime('nihao')
+
+        const one = 1;
+        const two = 2;
+
+        function minus(a, b) {
+            return a - b
+        }
+
+
+        // function plus(a, b) {
+        //     return a + b
+        // }
+        // 寫成箭頭函式
+        const plus = (a, b) => { return a + b }
+
+        function print(c) {
+            document.write(c)
+        }
+
+        //(1+2)+(2-1)
+
+        let x = plus(one, two)
+        let y = minus(two, one)
+        print(x + y)
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Example 1:
+
+        // Input: nums = [2,7,11,15], target = 9
+        // Output: [0,1]
+        // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+
+        let nums1 = [2, 7, 11, 15]
+        let target1 = 9
+        var twoSum1 = function (nums1, target1) {
+            for (let i = 0; i <= nums1.length; i++) {
+                for (let j = i + 1; j < nums1.length; j++) {
+                    if (nums1[i] + nums1[j] === target1 && i !== j) {
+                        return [i, j]
+                    }
+                }
+            }
+        }
+
+        document.write(`陣列 [2, 7, 11, 15] 中，兩數總和為 9 的是第 ${twoSum1(nums1, target1)} 位號數<br>`)
+
+
+        // Example 2:
+
+        // Input: nums = [3,2,4], target = 6
+        // Output: [1,2]
+
+        let nums2 = [3, 2, 4]
+        let target2 = 6
+
+
+        var twoSum2 = function (nums2, target2) {
+            for (let a = 0; a <= nums2.length; a++) {
+                for (let b = a + 1; b < nums2.length; b++) {
+                    if (nums2[a] + nums2[b] === target2 && a !== b) {
+                        return [a, b]
+                    }
+                }
+            }
+        }
+
+        document.write(`陣列 [3, 2, 4] 中，兩數總和為 6 的是第 ${twoSum2(nums2, target2)} 位號數<br>`)
+
+
+        // Example 3:
+
+        // Input: nums = [3,3], target = 6
+        // Output: [0,1]
+
+        let nums3 = [3, 3]
+        let target3 = 6
+
+        var twoSum3 = function (nums3, target3) {
+            for (let c = 0; c < nums3.length; c++) {
+                for (let d = c + 1; d < nums3.length; d++) {
+                    if (nums3[c] + nums3[d] === target3 && c !== d) {
+                        return [c, d]
+                    }
+                }
+            }
+        };
+
+        document.write(`陣列 [3, 3] 中，兩數總和為 6 的是第 ${twoSum3(nums3, target3)} 位號數<br>`)
+    </script>
+</body>
+
+</html>

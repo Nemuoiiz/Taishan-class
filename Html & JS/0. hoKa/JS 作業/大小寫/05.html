@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const text = prompt()
+        let str = '';
+        //a 97 z 122
+        //A 65 Z 90
+
+        for (let i = 0; i < text.length; i++) {
+            (text.charCodeAt(i) >= 97 && text.charCodeAt(i)) ?
+                str += String.fromCharCode(text.charCodeAt(i) - 32) :
+                (text.charCodeAt(i) >= 65 && text.charCodeAt(i) <= 90) ?
+                    str += String.fromCharCode(text.charCodeAt(i) + 32) : ''
+        }
+        document.write(str)
+    </script>
+</body>
+
+</html>

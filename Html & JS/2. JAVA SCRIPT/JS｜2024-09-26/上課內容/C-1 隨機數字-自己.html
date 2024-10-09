@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 製作隨機數字 function
+        // 提供最小整數和最大整數，回傳一個區間內的隨機整數
+
+        // min=1
+        // max=100
+
+        const rand = (min, max) => {
+            // Math.floor.(Math.random()*(100-5+1))+5
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        console.log(rand(5, 100))
+
+
+        // 檢查
+        for (let i = 1; i <= 100; i++) {
+            let number = Math.floor(Math.random() * (100 - 5 + 1)) + 5
+            console.log(number)
+            if (number === 5) {
+                console.log('有5')
+            } else if (number === 100) {
+                console.log('有100')
+            }
+        }
+
+    </script>
+</body>
+
+</html>

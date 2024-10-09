@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第幾天計算器</title>
+</head>
+
+<body>
+    <script>
+        const year = prompt('年分')
+        const month = prompt('月份')
+        const day = prompt('日期')
+
+        let months = ''
+
+        if (month == 1) {
+            months = '0'
+        } else if (month == 2) {
+            months = '31'
+        } else if (month == 3) {
+            months = '59'
+        } else if (month == 4) {
+            months = '90'
+        } else if (month == 5) {
+            months = '120'
+        } else if (month == 6) {
+            months = '151'
+        } else if (month == 7) {
+            months = '181'
+        } else if (month == 8) {
+            months = '212'
+        } else if (month == 9) {
+            months = '243'
+        } else if (month == 10) {
+            months = '273'
+        } else if (month == 11) {
+            months = '304'
+        } else if (month == 12) {
+            months = '334'
+        }
+
+        let years = ''
+
+        if (((year % 4 == 0 && year % 100 !== 0) || (year % 400 == 0 && year % 4000 !== 0)) && month > 3) {
+            years = '1'
+        } else {
+            years = '0'
+        }
+
+        document.write(`西元${year}年${month}月${day}日<br>`)
+        document.write('是那年的第'); document.write(parseInt(day) + parseInt(months) + parseInt(years)); document.write('天')
+
+    </script>
+</body>
+
+</html>

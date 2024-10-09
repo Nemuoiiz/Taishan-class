@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            /* 
+            inline-block
+            inline => 外在行為排列方式像行內元素
+            block => 內在行為使用 box-model 的屬性像區塊元素
+            */
+            /* position: absolute; 具有緊縮寬度的特性，會縮至與內容一樣寬度 */
+            /* background-color: lightblue; */
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: aqua;
+
+        }
+
+        .dice {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            border-radius: 1rem;
+            background-image: linear-gradient(45deg, #ccc, #fff);
+            box-shadow: 0.2rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            position: relative;
+        }
+
+        .point-red {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+        }
+
+        .point-black {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: black;
+            position: absolute;
+        }
+
+        /* 點數位置 */
+        .center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .left-top {
+            top: 10%;
+            left: 10%;
+        }
+
+        .left-bottom {
+            left: 10%;
+            bottom: 10%;
+        }
+
+        .right-top {
+            top: 10%;
+            right: 10%;
+        }
+
+        .right-bottom {
+            right: 10%;
+            bottom: 10%;
+        }
+
+        .center-left {
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+        }
+
+        .center-right {
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 1 -->
+        <div class="dice">
+            <div class="point-red center"></div>
+        </div>
+        <!-- 2 -->
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black right-bottom"></div>
+        </div>
+        <!-- 3 -->
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black center"></div>
+            <div class="point-black right-bottom"></div>
+        </div>
+        <!-- 4 -->
+        <div class="dice">
+            <div class="point-red left-top"></div>
+            <div class="point-red right-bottom"></div>
+            <div class="point-red right-top"></div>
+            <div class="point-red left-bottom"></div>
+        </div>
+        <!-- 5 -->
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black right-bottom"></div>
+            <div class="point-black center"></div>
+            <div class="point-black right-top"></div>
+            <div class="point-black left-bottom"></div>
+        </div>
+        <!-- 5 -->
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black right-bottom"></div>
+            <div class="point-black center-right"></div>
+            <div class="point-black center-left"></div>
+            <div class="point-black left-top"></div>
+            <div class="point-black right-bottom"></div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

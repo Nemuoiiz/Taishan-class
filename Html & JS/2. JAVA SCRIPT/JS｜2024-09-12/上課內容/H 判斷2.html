@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const rain = false, wind = false
+        // &&需兩邊同時符合才成立
+        if (!rain && !wind) console.log('出門')
+        else console.log('在家')
+
+        // 符合其中一個條件即成立
+        const dinner = '炸雞'
+        if (dinner === '炸雞' || dinner === '披薩') {
+            console.log('好耶')
+        }
+        else {
+            console.log('不好耶')
+        }
+
+        const code = confirm('你會寫 code 嗎')
+        const game = confirm('你會玩原神嗎')
+        const player = confirm('你是可莉玩家嗎')
+        // 「寫 code」或「是原神又是可莉玩家」，前後其中一項成立即可
+        if ((game && player) || code) {
+            console.log('酷欸')
+        }
+        else {
+            console.log('不酷')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+html,
+body {
+    /*
+    設定 html,body 抓到瀏覽器的高度以達成滿版
+    section01、section02...的 height:100% 才會有作用
+    */
+    height: 100%;
+}
+
+body {
+    /* 統一字型 */
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+
+/* 建立寬度一致且水平置中的容器 */
+.container {
+    width: 75%;
+    margin: auto;
+}
+
+.h-100 {
+    /* !important 是指讓此設定優先權最高 */
+    height: 100% !important;
+}
+
+
+/* 導覽列 ---------------------------------------------------------- */
+
+#header {
+    width: 75%;
+    height: 60px;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    /* background: red; */
+    /* 💠shadow */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    z-index: 1000;
+}
+
+#header .menu {
+    width: 100%;
+    height: 60px;
+    background: url('../images/nav-bg-full.jpg')repeat-x center;
+    /* font-size 處理幽靈空白-1 */
+    font-size: 0;
+    /*
+    子層 li 變成 inline-block 屬性
+    父層 menu 可對子層使用 text-align 水平居中
+    */
+    text-align: center;
+    /* 進入定位層 */
+    position: absolute;
+    top: 25px;
+    /* 和 logo 同樣進入定位層，會蓋住 logo 需往下壓一層 */
+    z-index: -1;
+}
+
+#header .menu li {
+    /* font-size 處理幽靈空白-2 */
+    font-size: 1rem;
+    /* inline-box 會有 4px 左右的幽靈空白要注意 */
+    display: inline-block;
+    padding: 1rem 0;
+}
+
+/* 選擇器盡量三層內結束 */
+/* #header .menu li a{} => 四層太多 */
+#header .menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1.5rem;
+    /*
+    需下在起始部分，鼠標觸發時跟移開時才會都有 0.5s 效果
+    放在下方 hover 選擇器內，移開時會無效果
+    */
+    transition: 0.5s;
+}
+
+#header .menu a:hover {
+    background: rgba(255, 60, 0, 0.3);
+}
+
+/* 空出導覽列中間來放 logo */
+#header .menu li:nth-child(3) {
+    margin-right: 15%;
+}
+
+/* 導覽列左側邊框 */
+#header .menu::before {
+    content: "";
+    /* /cover => 設定 background-size */
+    background: url('../images/nav-bg-left.png') no-repeat left top/cover;
+    width: 12px;
+    height: 60px;
+    /* 偽元素誕生是 inline、absolute 可以轉型為 block */
+    position: absolute;
+    left: -10px;
+}
+
+/* 導覽列右側邊框 */
+#header .menu::after {
+    content: "";
+    background: url('../images/nav-bg-right.png') no-repeat right top/cover;
+    width: 12px;
+    height: 60px;
+    position: absolute;
+    right: -10px;
+}
+
+/* logo */
+#header .logo {
+    width: 15%;
+    /* 進入定位層 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background: red; */
+}
+
+/* 
+圖片欲符合父容器的尺寸，需要設定 width: 100% 
+若圖片超過父容器的尺寸，可以設定 max-width: 100%
+*/
+#header .logo img {
+    width: 100%;
+    /* 也可寫成 max-width: 100%; */
+}
+
+
+/* 首頁 -------------------------------------------------------- */
+
+#section01 {
+    background: url('../images/section01-bg.jpg') no-repeat center/cover;
+    position: relative;
+}
+
+#section01 .main-news {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#section01 .main-news h1 {
+    font-size: 2.5rem;
+    font-style: italic;
+    color: yellow;
+    /* 對文字的陰影 */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1),
+        0 0 10px rgba(0, 0, 0, 1),
+        0 0 15px rgba(0, 0, 0, 1);
+}
+
+
+/* 遊戲介紹 ------------------------------------------------------- */
+
+#section02 {
+    background: url('../images/section02-bg.jpg') no-repeat center/cover;
+
+    /* 以巢狀結構的寫法，但不可以包太多層 */
+    .container {
+        height: 100%;
+        position: relative;
+        /* background: lightblue; */
+
+        .row {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* background: lavender; */
+            width: 100%;
+            /* 處理幽靈空白-1 */
+            font-size: 0;
+
+            .col {
+                /*
+                box-sizing 用來重新計算盒模型
+                border、padding 都會算在 width 裡面
+                */
+                box-sizing: border-box;
+                color: white;
+                width: 50%;
+                display: inline-block;
+                padding: 5rem 1rem;
+                /* 處理幽靈空白-2 */
+                font-size: 1rem;
+                /* 💠vertical-align 兩個 col 居中對齊 */
+                vertical-align: middle;
+
+                h1 {
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    line-height: 1.5;
+                    text-indent: 2rem;
+                    letter-spacing: 1px;
+                    margin-bottom: 1rem;
+                }
+
+                iframe {
+                    width: 100%;
+                    height: 300px;
+                    border: 5px solid rgba(0, 0, 0, 0.5);
+                    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.8);
+                }
+            }
+        }
+    }
+}
+
+
+/* 角色列表 ------------------------------------------------------ */
+
+#section03 {
+    /* background: linear-gradient(45deg, #222 40%, #aaa 0%); */
+    background: linear-gradient(45deg, #222 40%, #aaa 40%);
+}
+
+/* 上欄位容器 */
+#section03 .col:nth-child(1) {
+    height: 65%;
+    /* background: lightcyan; */
+}
+
+/* 下欄位容器 */
+#section03 .col:nth-child(2) {
+    height: 35%;
+    /* background: bisque; */
+}
+
+/* 角色資料 ------------------------------------------------------ */
+
+#section03 .role_info .role {
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    padding: 5rem 1.5rem 0;
+    float: left;
+    /* background: lightgreen; */
+}
+
+#section03 .role_info .role img {
+    width: 100%;
+    height: 100%;
+}
+
+
+#section03 .role_info .info {
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    padding: 8rem 1rem 5rem;
+    float: right;
+    /* background: palevioletred; */
+}
+
+/* 讓全部角色都先消失 */
+#section03 .role_info>div {
+    display: none;
+    height: 100%;
+}
+
+/* 讓 radio 選單 checked 狀態時，觸發隔壁的 div 讓其顯示 */
+#section03 .role_info input:checked+div {
+    display: block;
+}
+
+#section03 .role_info input {
+    display: none;
+}
+
+/* 減少層級寫法 #section03 .info h1 */
+#section03 .role_info .info h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 減少層級寫法 #section03 .info p */
+#section03 .role_info .info p {
+    padding: 0.5rem 0;
+    line-height: 1.2;
+}
+
+
+
+/* 角色清單 ----------------------------------------------------- */
+
+#section03 .role_list {
+    /* 消除幽靈空白 */
+    font-size: 0;
+    text-align: center;
+}
+
+#section03 .role_list label {
+    /* 100 除 7 */
+    width: 7%;
+    display: inline-block;
+    margin: 0 0 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#section03 .role_list label:hover {
+    filter: drop-shadow(0 0 5px rgb(255, 0, 0)) drop-shadow(0 0 10px rgb(255, 0, 0));
+}
+
+#section03 .role_list img {
+    width: 100%;
+}
+
+#section03 .role_list label:nth-child(3)~label {
+    /* 明亮度變 0.4 */
+    filter: brightness(0.4);
+    /* 滑鼠改回一般箭頭 */
+    cursor: auto;
+}
+
+/* footer------------------------------------------------------ */
+
+#footer {
+    background: black;
+    color: white;
+    padding: 2rem 0;
+}
+
+#footer .row {
+    overflow: hidden;
+}
+
+#footer .row .col {
+    width: 25%;
+    float: left;
+}
+
+#footer .card {
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+#footer h1 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#footer li {
+    line-height: 1.4;
+    padding-left: 1.5rem;
+}
+
+#footer .card h3 {
+    margin: 1rem 0;
+}
+
+/*
+font awesome 的 icon 是當作一般文字使用
+可以設定 color、font-size、text-align...等等的屬性
+*/
+#footer .card>i {
+    width: 30px;
+    font-size: 1.3rem;
+    color: orange;
+}
+
+
+#footer .copyright {
+    text-align: center;
+    padding: 3rem 0;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let input = prompt();
+        let key = "";
+
+        for (let i = 0; i < input.length; i++) {
+            let words = input[i];
+            if (words === words.toUpperCase()) {
+                key += words.toLowerCase();
+            } else {
+                key += words.toUpperCase();
+            }
+        }
+        document.write(key)
+
+    </script>
+</body>
+
+</html>

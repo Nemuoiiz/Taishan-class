@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const cat = prompt('輸入貓的品種')
+
+        if (cat === '虎斑貓') {
+            document.write('淡琥珀色 或 黃綠色')
+        }
+        // || 運算符的作用是進行「布林值的短路運算」
+        // 若寫成 else if (cat === '黑貓' || '賓士貓')
+        // 在這裡 '賓士貓' 作為一個非空字串，它的布林值會被視為 true
+        // 因此這個條件會永遠為真
+        else if (cat === '黑貓' || cat === '賓士貓') {
+            document.write('金黃色 或 綠寶石色')
+        }
+        else if (cat === '白貓') {
+            document.write('藍色 或 藍黃異色瞳')
+        }
+        else {
+            document.write('查無此品種')
+        }
+
+        // 三元運算子（業界這樣寫可以嗎？會不好讀？）波動拳
+        const a =
+            cat === '虎斑貓' ? '<br>淡琥珀色 或 黃綠色' :
+                cat === '黑貓' || cat === '賓士貓' ? '<br>金黃色 或 綠寶石色' :
+                    cat === '白貓' ? '<br>藍色 或 藍黃異色瞳' : '<br>查無此品種'
+        document.write(a)
+
+        // switch
+        switch (cat) {
+            case '虎斑貓':
+                document.write('<br>淡琥珀色 或 黃綠色')
+                break
+            case '黑貓':
+            case '賓士貓':
+                document.write('<br>金黃色 或 綠寶石色')
+                break
+            case '白貓':
+                document.write('<br>藍色 或 藍黃異色瞳')
+                break
+            default:
+                document.write('<br>查無此品種')
+        }
+    </script>
+</body>
+
+</html>

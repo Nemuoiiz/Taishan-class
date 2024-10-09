@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a target="framename"></a>
+    <script>
+        const input = prompt()
+
+        for (let i = 0; i < input; i++) {
+            // 左半部的白色星星
+            for (let j = 0; j < input - i - 1; j++) {
+                document.write('☆')
+            }
+            // 中間的黑色星星
+            for (let j = 0; j < i * 2 + 1; j++) {
+                document.write('★')
+            }
+            // 右半部的白色星星
+            for (let j = 0; j < input - i - 1; j++) {
+                document.write('☆')
+            }
+            document.write('<br>')
+        }
+    </script>
+</body>
+
+</html>

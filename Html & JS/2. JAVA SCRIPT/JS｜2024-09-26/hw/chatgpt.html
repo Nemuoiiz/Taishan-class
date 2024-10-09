@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 隨機產生 min 到 max 之間的數字 (包含 min 和 max)
+        const rand = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // 產生 A 區號碼
+        const generateA = () => {
+            let A區號碼 = [];
+            while (A區號碼.length < 6) {
+                let num = rand(1, 38);
+                if (!A區號碼.includes(num)) {
+                    A區號碼.push(num);
+                }
+            }
+            return A區號碼;
+        }
+
+        // 產生 B 區號碼
+        const generateB = (A區號碼) => {
+            let B區號碼;
+            do {
+                B區號碼 = rand(1, 8);
+            } while (A區號碼.includes(B區號碼)); // 確保 B 區號碼不與 A 區號碼重複
+            return B區號碼;
+        }
+
+        // 顯示號碼
+        const showNumbers = () => {
+            let A區號碼 = generateA();
+            let B區號碼 = generateB(A區號碼);
+
+            document.write("A區號碼: " + A區號碼.join(", ") + "<br>");
+            document.write("B區號碼: " + B區號碼);
+        }
+
+        showNumbers(); // 執行號碼顯示
+    </script>
+</body>
+
+</html>

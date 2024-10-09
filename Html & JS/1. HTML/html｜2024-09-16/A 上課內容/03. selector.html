@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>選擇器</title>
+    <style>
+        /* 
+        Class、id 命名規則：
+            1. 以 . 開始宣告類別選擇器
+            2. 不能數字開頭，例如：.123color => x
+            3. 有區分大小寫
+            4. 允許使用英文、數字、連字號(-)、底線(_)，一般框架都使用連字號
+                例如：.text-center, .display-1, card-title, h1, .rounded-1
+            5.可以中文，但不要做
+        */
+
+        /* 用功用來命名選擇器 */
+        .h1-title-color {
+            color: rgb(42, 78, 145);
+        }
+
+        .font-size {
+            font-size: 50px;
+        }
+
+        /* 不好的命名 */
+        .a {
+            color: red;
+        }
+
+        .b {
+            color: blue;
+        }
+
+        li {
+            color: rgb(245, 149, 59);
+        }
+
+        .active {
+            color: rgb(247, 217, 197);
+            background-color: rgb(139, 179, 124);
+        }
+
+        /* id選擇器最前頭使用 # */
+        #header {
+            color: red;
+        }
+
+        #main {
+            color: rgb(226, 141, 43);
+        }
+
+        #sidebar {
+            color: rgb(86, 138, 84);
+        }
+
+
+        #footer {
+            color: rgb(70, 117, 161);
+        }
+
+        #header h1 {
+            color: rgb(194, 122, 158);
+        }
+
+        p {
+            color: rgb(134, 98, 167)
+        }
+
+        /* 後代選擇器，半形空白表示 */
+        nav p {
+            color: red;
+            font-size: 30px;
+        }
+
+        /* 子代選擇器，以 > 表示 */
+        /* 只有 nav 的下一層會被選擇起來 */
+        nav>p {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS 的選擇器</h1>
+    <p>CSS 有非常多的選擇器，幫助我們在撰寫樣式時，運用選擇器選擇到我們的目標。</p>
+    <h1 class="h1-title-color font-size">Class 選擇器</h1>
+    <p>Class 具有重複使用的特性，是所有選擇器中使用最高的選擇器。</p>
+
+    <h1>1.重複使用</h1>
+    <h1 class="h1-title-color">title1</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+    <h1 class="h1-title-color">title2</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+
+    <h1>相同元素但需要不同表示時</h1>
+    <ul>
+        <li>Lorem ipsum dolor sit.</li>
+        <li>Lorem ipsum dolor sit.</li>
+        <li class="active">Lorem ipsum dolor sit.</li>
+        <li>Lorem ipsum dolor sit.</li>
+        <li>Lorem ipsum dolor sit.</li>
+    </ul>
+
+    <hr>
+
+    <h1>id 選擇器</h1>
+    <p>一份文件裡面，只允許一個獨一無二的 id（唯一性），就像身分證不能重複。</p>
+
+    <!-- 第二行重複命名了，不可以‧ -->
+    <p id="nemui">lorem</p>
+    <p id="nemui">lorem</p>
+
+    <p>id 常被用來劃分內容的區塊，以及程式用作選擇目標（以程式來說，id 是最快、最簡單、最直接的方式）</p>
+
+    <h2>劃分內容區塊</h2>
+    <div id="header">
+        <h1>header 區塊</h1>
+        <p>Lorem ipsum dolor sit.</p>
+    </div>
+    <div id="main">main 區塊</div>
+    <div id="sidebar">sidebar 區塊</div>
+    <div id="footer">footer 區塊</div>
+
+
+    <h1>後代選擇器與子代選擇器</h1>
+    <nav>
+        <!-- 子代 + 後代-->
+        <p>Lorem ipsum dolor sit.
+            <!-- 子代 + 後代-->
+        <div>
+            <!-- 後代 -->
+            <p>Lorem ipsum dolor sit.</p>
+        </div>
+        </p>
+    </nav>
+</body>
+
+</html>

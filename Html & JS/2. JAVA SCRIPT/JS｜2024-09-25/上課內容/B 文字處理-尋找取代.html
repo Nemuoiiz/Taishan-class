@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let text = '外賣 咖哩拌飯 咖哩烏冬'
+
+        // 1️⃣ .includes('尋找文字', 從第幾個字開始往後找)
+        // 檢查有沒有包含'尋找文字'，回傳 boolean
+        // 從第幾個字開始找（第二個值） => 可選填，預設是 0
+
+        // let includesCurry = text.includes('咖哩')
+        // 從第 9 個數開始算，空白也會算入，得出結論沒有 '咖哩' => false
+        let includesCurry = text.includes('咖哩', 9)
+        console.log('includesCurry', includesCurry)
+
+        // 2️⃣ .indexOf('尋找文字', 從第幾個索引開始往後找)
+
+        // 檢查有沒有包含'尋找文字'，回傳第一個符合的索引 => -1 代表找不到
+        // 從第幾個字開始找（第二個值） => 選填，預設是 0
+        let indexCurry = text.indexOf('咖哩', 9)
+        console.log('indexCurry', indexCurry)
+
+        // 3️⃣ .lastIndexOf('尋找文字', 從第幾個索引開始往前找)
+        // 檢查有沒有包含'尋找文字'，回傳第一個符合的索引 => -1 代表找不到
+        // 從第幾個索引開始找（第二個值） => 選填，預設是 text.length -1
+        let lastIndexCurry = text.lastIndexOf('咖哩', 9)
+        console.log('lastIndexCurry', lastIndexCurry)
+
+        // 4️⃣-1　.replace('尋找文字', 取代文字)
+        // 只會取代第一個符合的文字
+        let replaceCurry = text.replace('咖哩', '三色豆')
+        console.log(replaceCurry)
+
+        // 4️⃣-2　.replace(Regex, 取代文字) 
+        // g 代表 global => 選取全部
+        // 有加 g => 將符合的全部取代
+        // 沒有 g => 只取代第一個
+        let replaceRegexCurry = text.replace(/咖哩/g, '三色豆')
+        console.log(replaceRegexCurry)
+
+        // ====================================================
+        // Regex 又稱正規表示式、正則表達式、規則運算式
+
+        // 5️⃣ .match(Regex)
+        // 回傳符合的結果陣列
+        // 找不到時回傳 null
+        let email = 'aaaa@gmai.com'
+        let matchEmail = email.match(/^[\w]+@[\w]+\.[\w]+$/g)
+        console.log('matchEmail', matchEmail)
+
+
+        // 6️⃣ .matchAll(Regex)
+        // 回傳符合的結果，只能用迴圈取各個結果的資料
+        // let matchAllEmail = email.matchAll(/^[\w]+@[\w]+\.[\w]+$/g)
+        // let matchAllEmail = email.matchAll(/^[\w]+)@([\w]+)\.([\w]+)$/g)
+        let matchAllEmail = email.matchAll(/^(?<account>[\w]+)@(?<domain>[\w]+)\.([\w]+)$/g)
+        console.log('matchAllEmail', matchAllEmail)
+        for (const match of matchAllEmail) {
+            // 0: "aaaa@gmai.com"
+            // groups: undefined
+            // index: 0
+            // input: "aaaa@gmai.com"
+            console.log(match)
+        }
+
+        // 🔻範例
+        let balls = 'football, basketball,baseball'
+        let matchAllBalls = balls.matchAll(/ball/g)
+        console.log('matchAllBalls', matchAllBalls)
+        for (const match of matchAllBalls) {
+            // 0: "ball"
+            // groups: undefined
+            // index: 4
+            // input: "football, basketball,baseball"
+            console.log(match)
+        }
+
+
+        // 🔻正則表達式用在 Replace
+        // let emailReplace = email.replace(/^([\w]+)@([\w]+)\.([\w]+)$/g, '帳號是 $1，網域名稱是 $2，TLD 名稱是 $3')
+        let emailReplace = email.replace(
+            /^(?<account>[\w]+)@(?<domain>[\w]+)\.(?<tld>[\w]+)$/g,
+            '帳號是 $<account>，網域名稱是 $<domain>，TLD 名稱是 $<tld>'
+        )
+        console.log('emailReplace', emailReplace)
+    </script>
+</body>
+
+</html>

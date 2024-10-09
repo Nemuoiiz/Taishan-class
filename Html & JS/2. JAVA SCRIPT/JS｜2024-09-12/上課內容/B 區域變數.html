@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 1
+        {
+            let a = 2
+            console.log(a)      // 2
+        }
+        console.log(a)      // 1
+
+        let b = 1
+        {
+            // 無 let 宣告，會先在這一層尋找有無其他 b 的變數
+            // 沒有找到就會往外一層找，並取代外面一層的 let b = 1 變數
+            b = 2
+            console.log(b)      // 2
+        }
+        console.log(b)      // 2
+
+        // 盡量先做宣告，不做會被儲存在window之中
+        // c = 3
+        // console.log(c)       //3
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 0.
+        let a = { data: 100 }
+        let b = a
+        console.log(a, b)   //100 100
+        a.data = 1000
+        console.log(a, b)   // 1000 1000
+
+        let c = { data: 100 }
+        let d = c
+        console.log(c, d)   // 100 100
+        c = { data: 1000 }  // 換成新物件，和上面的宣告已經無關
+        console.log(c, d)   // 1000 100
+
+
+        // 1.改動是同一個東西，使用 function 要小心改動到原始資料
+        const e = { data: 100 }
+        function test(input) {
+            input.data = 1000
+            console.log(input)  // 1000
+            console.log(e)      // 1000
+        }
+        test(e)
+        console.log(e)          // 1000
+
+
+        // 2.-1 不同宣告裡的物件
+        // 進行改動時為不同東西、不會影響
+        const f = { data: 100 }
+        function test2(input) {
+            input = { data: 1000 }
+            console.log(input)  // 1000
+            console.log(f)      // 100
+        }
+        test2(f)
+        console.log(f)          // 100
+
+        // 2.-2 不同宣告裡的數字
+        // 進行改動時依然是不同東西，不會影響
+        let g = 100
+        function test3(input) {
+            input = 1000
+            console.log(input)  // 1000
+            console.log(g)      // 100
+        }
+        test3(g)
+        console.log(g)          // 100
+    </script>
+</body>
+
+</html>

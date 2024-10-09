@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7]
+        ]
+        const totalTime = [0, 0, 0, 0]
+        const totalDay = [0, 0, 0]
+
+        for (let i = 0; i < data.length; i++) {
+            console.log('data[i]', i, data[i])
+            for (let j = 0; j < data[i].length; j++) {
+                const total = data[i][j] / 4
+                console.log('data[i][j]', i, j, data[i][j], total)
+                totalTime[j] += total
+                totalDay[i] += total
+            }
+        }
+        console.log(totalTime)
+        console.log(totalDay)
+
+        const temp = {
+            name: '溫度',
+            url: 'https://rogeraabbccdd.github.io/F2E-book/basic/array-object.html',
+            products: [
+                { name: none, name: '星期一', name: '星期二', name: '星期三', name: '星期四' },
+                { name: '時段一', name: '18.2', name: '17.3', name: '15.0', name: '13.4' },
+                { name: '時段二', name: '23.8', name: '25.1', name: '20.6', name: '17.8' },
+                { name: '時段三', name: '20.6', name: '21.5', name: '18.4', name: '15.7' }
+
+            ]
+        }
+        document.write('<table border="1">')
+        document.write('<caption>')
+        document.write(`<a href="${temp.url}">${temp.name}</a>`)
+        document.write('</caption>')
+        for (let i = 0; i < temp.products.length; i++) {
+            document.write('<tr>')
+            document.write(`<td>${temp.products[i].name}</td>`)
+            document.write(`<td>${temp.products[i].name}</td>`)
+            document.write('</tr>')
+
+        }
+
+    </script>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>星期一</td>
+                <td>星期二</td>
+                <td>星期三</td>
+                <td>星期四</td>
+            </tr>
+            <tr>
+                <td>時段一</td>
+                <td>18.2</td>
+                <td>17.3</td>
+                <td>15.0</td>
+                <td>13.4</td>
+            </tr>
+
+            <tr>
+                <td>時段二</td>
+                <td>23.8</td>
+                <td>25.1</td>
+                <td>20.6</td>
+                <td>17.8</td>
+            </tr>
+
+            <tr>
+                <td>時段三</td>
+                <td>20.6</td>
+                <td>21.5</td>
+                <td>18.4</td>
+                <td>15.7</td>
+            </tr>
+
+        </tbody>
+</body>
+
+</html>

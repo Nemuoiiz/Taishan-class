@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // // 1️⃣
+        // // function 動作名稱 (值){執行的程式碼}
+        // // 1-1
+        // function GoodMorning() {
+        //     document.write('早上好，現在我有冰淇淋')
+        // }
+        // // 1-2
+        // // 也可以寫成下方，用 const 來宣告避免 function 被不小心取代
+        // const GoodMorning = function(){
+        //     document.write('早上好，現在我有冰淇淋')
+        // }
+
+        // // 一定要呼喚 function 才會看的到
+        // GoodMorning()
+
+        // // 2️⃣
+        // // function 宣告兩個變數 time, item，代表存入的東西
+        // function GoodMorning(time, item) {
+        //     document.write(`${time}好，現在我有${item}`)
+        // }
+        // GoodMorning('早上', '冰淇淋')
+        // document.write('<br>')
+        // GoodMorning('中午', '桂格超大便當')
+        // document.write('<br>')
+        // // 沒有可呼喚的值，會出現 undefined
+        // GoodMorning('晚上',)
+
+        // // 3️⃣
+        // function GoodMorning(time = '早上', item = '冰淇淋') {
+        //     console.log(arguments)
+        //     document.write(`${time}好，現在我有${item}`)
+        // }
+        // GoodMorning('早上', '冰淇淋')
+        // document.write('<br>')
+        // // 有預設值，儘管沒有寫入也會呈現預設
+        // GoodMorning('中午',)
+        // document.write('<br>')
+        // // 雖然沒有呈現出來第三個值
+        // // 但使用 console.log(arguments) 會發現有紀錄 123 的值
+        // // 網頁 F12 => Arguments可檢視
+        // GoodMorning(undefined, '雞排', 123)
+
+        // // 4️⃣
+        // function GoodMorning(time = '早上', item = '冰淇淋') {
+        //     // 一個 function 只能有一個 return
+        //     // return 下面的程式碼不會執行
+        //     return `${time}好，現在我有${item}`
+        //     console.log(123)    // 123 不會執行
+        // }
+        // console.log(GoodMorning('中午'))    // 顯示在 console 中
+        // const text = GoodMorning('海綿寶寶尼', '神奇海螺')      // 可隨意替換 text 來使用 function
+        // document.write(`<h1>${text}</h1>`)
+
+        // // 5️⃣ 箭頭函式寫法
+        // const GoodMorning = (time = '早上', item = '冰淇淋') => {
+        //     // 箭頭函式沒辦法用 arguments
+        //     // F12：Uncaught ReferenceError: arguments is not defined
+        //     // console.log(arguments)
+        //     return `${time}好，現在我有${item}`
+        // }
+        // const text = GoodMorning()
+        // document.write(`<h1>${text}</h1>`)
+
+
+
+        // 🔻綜合練習
+        // 編寫一個 function，判斷傳入的數字是不是偶數
+        // 是的話回傳 true，不是則回傳 false
+
+        // 箭頭參數剛好一個，且沒有預設值時不需要()
+        // 空值或是兩個值以上皆需要()
+        const isEven = number => {
+            // if (number % 2 === 0) return true
+            // else return flase
+            return number % 2 === 0
+        }
+        console.log(isEven(1))
+        console.log(isEven(2))
+
+        // 剛好只有一行 return 時不需要 {}
+        const isOdd = number => number % 2 === 1
+        console.log(isOdd(1))
+        console.log(isOdd(2))
+
+
+        // 🔻如果簡寫的 return 的是物件，要用 () 包
+        // {} 無省略時如下
+        const obj1 = () => {
+            return { a: 1, b: 2 }
+        }
+        console.log(obj1())
+        // 去掉外層可省略的 {} 後，還有物件本身的 {}，因此要用 ()包起來
+        const obj2 = () => ({ a: 1, b: 2 })
+        console.log(obj2())
+    </script>
+</body>
+
+</html>

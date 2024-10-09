@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>威力彩</title>
+    <script>
+        // 偷懶用console.log
+        const log = (...args) => console.log(...args)
+    </script>
+    <style>
+        /* reset 相關 */
+        * {
+            box-sizing: border-box;
+            border: none;
+        }
+
+        /* 預設input filled 顏色修改 */
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px #232325 inset;
+            /* 改成黑色 */
+            box-shadow: 0 0 0px 1000px #232325 inset;
+            -webkit-text-fill-color: #b3b3b3;
+            /* 字體顏色改成白色以符合黑色背景 */
+        }
+
+        /* 移除 input 預設 highlight */
+        input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* main style */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            background: #3f3f47;
+
+            font-family: '微軟正黑體';
+        }
+
+        .calculator {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            padding: 1.5rem 2rem 2rem;
+            background-color: #36353d;
+            color: #b3b3b3;
+
+            border-radius: 4px;
+            box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.5);
+
+            /* flex */
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+        .calculator input {
+            padding: 1rem;
+            background: #232325;
+            color: #c7c7c7;
+            font-size: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .calculator input[type="button"] {
+            margin-top: 1rem;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            background: #6664cb;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .calculator input[type="button"]:hover {
+            background: #5856b1;
+        }
+
+        #result {}
+
+        /* utlts */
+        .danger {
+            color: rgb(201, 49, 49);
+        }
+
+        .success {
+            color: rgb(83, 160, 83);
+        }
+
+        /* 文字不換行 */
+        .word-nowrap {
+            white-space: nowrap;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+
+        .mt-1\.5 {
+            margin-top: 1.5rem;
+        }
+
+        /* >320 */
+        @media (min-width: 500px) {
+            .calculator {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        /* 桌面電腦 */
+        @media (min-width: 1024px) {
+            .calculator {
+                width: 60%;
+            }
+        }
+
+        section {
+            display: flex;
+            width: 100%;
+            min-height: 4.3rem;
+            margin-top: 0.6rem;
+        }
+
+        section>input {
+            box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.5);
+        }
+
+        section>span {
+            padding: 0.5rem 0.8rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: #51515d;
+            border-radius: 4px 0 0 4px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 4rem;
+        }
+
+        .displayNumber {
+            padding: 1rem 1.6rem;
+            background: #232325;
+            color: #c7c7c7;
+            font-size: 1.5rem;
+            line-height: 2.3rem;
+            border-radius: 0 4px 4px 0;
+            flex: 1
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <section class="word-nowrap">
+            <span>A區</span><div class="displayNumber" id="area_A"></div>
+            <!-- <span>A</span><input type="text" id="area_A" readonly> -->
+            <!-- <span>B</span><div class="displayNumber" id="area_B"></div> -->
+        </section>
+        <section class="word-nowrap">
+            <span>B區</span><div class="displayNumber" id="area_B"></div>
+            <!-- <span>B</span><input type="text" id="area_B" readonly> -->
+        </section>
+        <input type="button" onclick="main()" value="威力彩">
+    </div>
+
+    <script>
+        // 點擊會觸發的部分
+        function main() {
+            // 取得DOM
+            const area_A = document.querySelector('#area_A')
+            const area_B = document.querySelector('#area_B')
+
+            // 把陣列用join串成string(比較好看)
+            const poolA_str = lottery(38, 6).join(', ')
+            const poolB_str = lottery(8, 1).join(', ')
+
+            // 顯示在畫面上
+            area_A.innerHTML = poolA_str
+            area_B.innerHTML = poolB_str
+
+            log(`A: ${poolA_str}\nB: ${poolB_str}`)
+        }
+
+        // 產生隨機數字(min ~ max)
+        const randomIntRange = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+
+        /**
+         * lottery(poolLength, takingCount)
+         * 
+         * @param {number} poolLength - 彩池總數
+         * @param {number} takingCount - 抽幾次
+         * 
+         * return {number[]} - 抽中的數字陣列
+        */
+        const lottery = (poolLength, takingCount) => {
+            // 根據 poolLength 動態產生彩池
+            // 例: poolLength = 10, pool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            const pool = []
+            for (let i = 1; i <= poolLength; i++) {
+                pool.push(i)
+            }
+
+            // 根據 takingCount 次數抽獎，回傳抽中的數字陣列
+            const result = []
+            for (let i = 0; i < takingCount; i++) {
+                // splice(起始位置, 刪除幾個)
+                // 刪掉的元素存在 taken(陣列)，要加[0]取出第一個(也只有一個)
+                let taken = pool.splice(randomIntRange(0, pool.length - 1), 1)[0]
+
+                // 塞回 result 陣列的屁股
+                result.push(taken)
+            }
+            return result
+        }
+    </script>
+</body>
+
+</html>

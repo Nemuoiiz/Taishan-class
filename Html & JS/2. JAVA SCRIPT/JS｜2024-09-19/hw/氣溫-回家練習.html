@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const days = ['　', '星期一', '星期二', '星期三', '星期四'];
+        const time = ['時段一', '時段二', '時段三'];
+        const data = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7]
+        ]
+
+
+        // 陣列內容印出表格
+        document.write('<table border="1">');
+
+        // 第一行：顯示星期
+        document.write('<tr><td>　</td>');
+        for (let i = 1; i < days.length; i++) {
+            document.write(`<td>${days[i]}</td>`);
+        }
+        document.write('</tr>');
+
+        // 後續行：顯示時段和數據
+        for (let i = 0; i < time.length; i++) {
+            document.write('<tr>');
+            document.write(`<td>${time[i]}</td>`);
+            for (let j = 0; j < data[i].length; j++) {
+                document.write(`<td>${data[i][j]}</td>`);
+            }
+            document.write('</tr>');
+        }
+
+        document.write('</table>');
+        document.write('<hr>')
+
+
+        // 各時段平均氣溫
+        for (let i = 0; i < data.length; i++) {
+            let timeAverage = 0
+            for (let j = 0; j < data[0].length; j++) {
+                timeAverage += data[i][j]
+            }
+            document.write(`時段${i + 1}的平均溫度：${(timeAverage / data[0].length)}<br>`);
+        }
+
+        document.write('<hr>')
+
+
+        // 每日的平均溫度計算
+        for (let i = 0; i < data[0].length; i++) {
+            let dayAverage = 0
+            for (let j = 0; j < data.length; j++) {
+                dayAverage += data[j][i]
+            }
+            document.write(`星期${i + 1}的平均溫度：${(dayAverage / data.length)}<br>`);
+        }
+
+
+        // 溫度最高的日子與時段
+        // let max = data[0][0]
+        // for (let i = 0; i < data.length; i++) {
+        //     for (let j = 0; j < data[0].length; j++) {
+        //         //如果舊溫度<=新溫度 舊溫度=新溫度
+        //         if (max <= data[i][j])
+        //             max = data[i][j]
+        //     }
+        // }
+        // document.write(`溫度最高的日子：${(max / data[0].length)}<br>`);
+    </script>
+</body>
+
+</html>

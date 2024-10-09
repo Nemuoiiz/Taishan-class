@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const fullName = prompt('請輸入姓名')
+        const birthmonth = prompt('請輸入出生月份')
+        const birthdate = prompt('請輸入出生日期')
+
+        document.write(`${fullName} 你好，你的星座是`)
+        if ((birthmonth == 3 && birthdate >= 21) || (birthmonth == 4 && birthdate <= 20)) {
+            document.write('牡羊座')
+        } else if ((birthmonth == 4 && birthdate >= 21) || (birthmonth == 5 && birthdate <= 21)) {
+            document.write('金牛座')
+        } else if ((birthmonth == 5 && birthdate >= 22) || (birthmonth == 6 && birthdate <= 21)) {
+            document.write('雙子座')
+        } else if ((birthmonth == 6 && birthdate >= 22) || (birthmonth == 7 && birthdate <= 22)) {
+            document.write('巨蟹座')
+        } else if ((birthmonth == 7 && birthdate >= 23) || (birthmonth == 8 && birthdate <= 22)) {
+            document.write('獅子座')
+        } else if ((birthmonth == 8 && birthdate >= 23) || (birthmonth == 9 && birthdate <= 22)) {
+            document.write('處女座')
+        } else if ((birthmonth == 9 && birthdate >= 23) || (birthmonth == 10 && birthdate <= 23)) {
+            document.write('天秤座')
+        } else if ((birthmonth == 10 && birthdate >= 24) || (birthmonth == 11 && birthdate <= 22)) {
+            document.write('天蠍座')
+        } else if ((birthmonth == 11 && birthdate >= 23) || (birthmonth == 12 && birthdate <= 21)) {
+            document.write('射手座')    
+        } else if ((birthmonth == 12 && birthdate >= 22) || (birthmonth == 1 && birthdate <= 19)) {
+            document.write('魔羯座') 
+        } else if ((birthmonth == 1 && birthdate >= 20) || (birthmonth == 2 && birthdate <= 18)) {
+            document.write('水瓶座')
+        } else if ((birthmonth == 2 && birthdate >= 19) || (birthmonth == 3 && birthdate <= 20)) {
+            document.write('雙魚座')         
+        }
+
+    </script>
+</body>
+
+</html>

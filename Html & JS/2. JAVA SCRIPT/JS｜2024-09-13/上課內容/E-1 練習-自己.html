@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 印星星塔，結構如下圖
+        // 使用者能用 prompt() 輸入星星塔層數
+        let input = prompt("請輸入星星塔的層數")
+        let count = 1
+
+        // 不建議使用 while
+        // 若 while 等不到值，後續內容不會跑
+        while (count <= input) {
+            for (let i = 1; i <= count; i++) {
+                document.write('★')
+            }
+            document.write('<br>')
+            count++
+        }
+    </script>
+</body>
+
+</html>

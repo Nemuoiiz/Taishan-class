@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 使用偽元素做出特效 */
+        h1 {
+            display: inline-block;
+        }
+
+        h1::after {
+            content: "";
+            width: 0%;
+            height: 10px;
+            background: blue;
+            display: block;
+            transition: width .5s;
+            margin: auto;
+        }
+
+        h1:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>嗨嗨你好呀</h1>
+</body>
+
+</html>

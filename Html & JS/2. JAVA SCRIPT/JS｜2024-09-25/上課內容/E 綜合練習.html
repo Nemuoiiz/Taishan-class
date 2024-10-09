@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 將 prompt() 輸入的文字移除前後空白後
+        // 倒過來後顯示在網頁上
+
+        document.write(prompt('').trim().split('').reverse().join(''))
+
+        // .trim()      移除前後空白（此時型別：文字）
+        // .split()     文字分割成66666陣列（此時型別：文字轉陣列）
+        // .reverse()   陣列反轉（此時型別：陣列）
+        // .join()      將陣列用連接文字組成文字（物件陣列不適用）（此時型別：陣列轉文字）
+    </script>
+</body>
+
+</html>

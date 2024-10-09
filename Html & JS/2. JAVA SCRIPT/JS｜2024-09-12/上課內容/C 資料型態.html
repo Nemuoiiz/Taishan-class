@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 數字，直接打、不需要引號
+        let num = 1
+        let pi = 3.14
+        // 布林值，直接打、不需要引號
+        // 有引號的話會變成 文字
+        let on = true
+        let off = false
+
+        // 文字
+        // ''和 "" 內不能換行
+        // 文字內使用相同引號時以反斜線 \ 來跳脫字元 
+        let text1 = 'aaaaa\'aa'
+        let text2 = "aaa\"aaaa"
+        // console.log(text1)       //aaaaa'aa
+        // console.log(text2)       //aaa"aaaa
+
+        // ``內可以換行
+        let text3 = `
+        asdasd
+        sdsdgesf
+        dgshe;rhshs`
+
+        // typeof 顯示後面變數的資料型態名稱
+        console.log(typeof num, pi, on)
+        // console.log() 可以一次紀錄多東西，以 , 分隔
+        // 前者的 text3 為內容；後 text3 為判斷的資料型態
+        console.log(text3, typeof text3)
+        console.log(on, typeof on)
+
+        // 使用 typeof 來判斷以下時，分別為：
+        // let apple = 2    資料型態：數字
+        // let apple ='2'   資料型態：文字
+        // let apple =`2`   資料型態：文字（可換行）
+        // let apple = ture 資料型態：布林值 boolean
+
+    </script>
+</body>
+
+</html>

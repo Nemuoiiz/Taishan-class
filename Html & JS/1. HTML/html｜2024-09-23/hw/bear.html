@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 熊臉 */
+        .bear {
+            width: 400px;
+            height: 400px;
+            background: black;
+            border: 20px solid #fff;
+            border-radius: 50%;
+
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        /* 腮紅 */
+        .bear::before,
+        .bear::after {
+            content: "";
+            width: 90px;
+            height: 90px;
+            background: red;
+            border-radius: 50%;
+
+            position: absolute;
+            top: 50%;
+        }
+
+        /* 左邊腮紅 */
+        .bear::before {
+            content: "";
+            left: 7%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 右邊腮紅 */
+        .bear::after {
+            content: "";
+            right: 7%;
+            transform: translate(50%, -50%);
+        }
+
+        /* 耳朵的部分 */
+        .ear::before,
+        .ear::after {
+            content: "";
+            border: 12px solid #000;
+            background: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+
+            position: absolute;
+            top: 0%;
+        }
+
+        /* 左邊耳朵 */
+        .ear::before {
+            content: "";
+            left: 10%;
+        }
+
+        /* 右邊耳朵 */
+        .ear::after {
+            content: "";
+            right: 10%;
+        }
+
+        /* 眼睛的部分 */
+        .eye_left,
+        .eye_right {
+            width: 74px;
+            height: 74px;
+            background: #000;
+            border: 12px solid #fff;
+            border-radius: 50%;
+
+            position: absolute;
+            top: 19%;
+        }
+
+        /* 左眼 */
+        .eye_left {
+            left: 20%;
+        }
+
+        /* 右眼 */
+        .eye_right {
+            right: 20%;
+        }
+
+        /* 口鼻的部分 */
+        .nose_mouth {
+            background: #fff;
+            width: 150px;
+            height: 105px;
+            border-radius: 50%;
+
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .nose_mouth::before,
+        .nose_mouth::after {
+            content: "";
+            background: #000;
+            border-radius: 50%;
+
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+        }
+
+        /* 上鼻子 */
+        .nose_mouth::before {
+            content: "";
+            width: 40px;
+            height: 28px;
+            top: 22%;
+
+        }
+
+        /* 下嘴巴 */
+        .nose_mouth::after {
+            content: "";
+            width: 93px;
+            height: 35px;
+            top: 63%;
+        }
+
+        /* 中三角形 */
+        .v-mark {
+            width: 200px;
+            height: 200px;
+
+            position: relative;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        /* V 形的畫法 */
+        /* 第一種：使用 skew（傾斜）的解法 */
+        .v-mark::before,
+        .v-mark::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: rgb(255, 255, 255);
+
+            position: absolute;
+            top: 60px;
+        }
+
+        /* 左傾斜 */
+        .v-mark::before {
+            content: "";
+            left: 55px;
+            transform: skew(45deg, 0deg);
+        }
+
+        /* 右傾斜 */
+        .v-mark::after {
+            content: "";
+            right: 55px;
+            transform: skew(-45deg, 0deg);
+        }
+
+        /* 第二種：使用 transparent 的解法 */
+        /* 上 + 下三角形 */
+        /* .v-mark::before,
+        .v-mark::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 45px solid transparent;
+            border-right: 45px solid transparent;
+            border-top: 36px solid #000;
+
+            position: absolute;
+            transform: translate(-50%, 0%);
+        } */
+
+        /* 上三角形 */
+        /* .v-mark::before {
+            top: -72px;
+            z-index: 1;
+        } */
+
+        /* 下三角形 */
+        /* .v-mark::after {
+            top: -15px;
+            z-index: 1;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="bear">
+        <div class="ear"></div>
+        <div class="eye_left"></div>
+        <div class="eye_right"></div>
+        <div class="nose_mouth"></div>
+        <div class="v-mark"></div>
+    </div>
+</body>
+
+</html>

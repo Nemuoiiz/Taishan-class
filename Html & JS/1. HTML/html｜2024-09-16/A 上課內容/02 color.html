@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色碼使用</title>
+</head>
+
+<body>
+    <h1>使用顏色名稱</h1>
+    <!-- color : dark / light 暗色亮色 -->
+    <p style="color:red">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, aliquam in.</p>
+
+    <h1>使用 16 進位色碼</h1>
+    <!--
+        16進位
+        0~9, A~F => 10~15
+        ff => 15*1 + 15*16 = 255
+    -->
+    <!-- 色碼共六位，為兩兩一組，分別代表 R、G、B -->
+    <p style="color:#ff0000">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#00ff00">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#0000ff">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#ffffff">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#000000">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#777777">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#333333">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#bbbbbb">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <!-- 也可以八碼，最後兩位為透明度-->
+    <p style="color:#ff000077">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+    <!-- 色碼一組內相同可以只寫一個 -->
+    <h2>兩兩相同可以只寫一個</h2>
+    <p style="color:#f00">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#0f0">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#00f">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#fff">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#333">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:#354">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+
+    <h2>使用 rgb() 或 rgba()</h2>
+    <!-- rgb(r ,g ,b) 10進位數字 0~255 -->
+    <p style="color:rgb(255, 0, 0)">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:rgb(0, 255 ,0)">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p style="color:rgb(0, 0, 255)">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+    <!-- rgba(r ,g, b, a) 
+    多一個值是 alpha 透明度，0.1~1 之間-->
+    <p style="color:rgb(255, 0, 0,0.5)">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <!-- 四值空格分開，斜線區分透明度 -->
+    <p style="color:rgb(255 0 0 / 0.5)">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // {
+        //     // 一般 key 只能是文字（除了 map)
+        //     key: value
+        // }
+
+        // const person1 = {
+        //     firstName: 'AA',
+        //     lastName: 'BB',
+        //     fullName: function () {
+        //         // this 指的是現在這個物件
+        //         console.log(this)
+        //         return this.firstName + this.lastName
+        //     },
+        //     hi() {
+        //         return '你好我是' + this.fullName()
+        //     },
+        //     hi2: () => {
+        //         // 箭頭函式的 this 不是指物件而是 window
+        //         console.log(this)
+        //         return '你好我是' + this.fullName()
+        //     }
+        // }
+        // console.log(person1.firstName)
+        // console.log(person1.lastName)
+        // console.log(person1.fullName())
+        // console.log(person1.hi())
+        // // console.log(person1.hi2())
+
+
+        // 避免大筆資料重複寫入、直接建立 class 來統一管理
+        // 通常 class 的第一個字會大寫
+        class Person {
+            // constructior 建構函數
+            // 物件建立時執行的東西，建立物件本身的概念（人是什麼資訊構成的）
+            constructor(firstName, lastName) {
+                this.firstName = firstName
+                this.lastName = lastName
+            }
+            fullName() {
+                // this 指的是現在這個物件
+                console.log(this)
+                return this.firstName + this.lastName
+            }
+        }
+        // 新增東西，AABB 代指執行時的東西
+        const person1 = new Person('AA', 'BB')
+        console.log(person1.fullName())
+        const person2 = new Person('CC', 'DD')
+        console.log(person2.fullName())
+    </script>
+</body>
+
+</html>

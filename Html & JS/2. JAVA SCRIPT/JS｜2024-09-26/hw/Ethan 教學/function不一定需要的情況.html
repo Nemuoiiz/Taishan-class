@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const randomInt = (min, max) => {
+            return Math.round(Math.random() * (max - min) + 1)
+        }
+
+        let A區號碼 = [];
+        while (A區號碼.length < 6) {
+            let num = randomInt(1, 38);
+            if (!A區號碼.includes(num)) {
+                A區號碼.push(num);
+            }
+        }
+
+        document.write("A區號碼: " + A區號碼.join(", ") + "<br>")
+
+    </script>
+</body>
+
+</html>

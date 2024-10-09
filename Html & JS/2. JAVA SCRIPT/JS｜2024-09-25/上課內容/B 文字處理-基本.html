@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let account = '   sdffsaf  afsasdaf         '
+        console.log(account)
+
+        // 1️⃣ .trim()
+        // 移除前後空白，文字中間的空白會保留（最常被使用）
+        account = account.trim()
+        console.log(account)
+
+        // 2️⃣ .toUpperCase()
+        // 轉大寫
+        // 例如護照名稱等等轉換會用到
+        account = account.toUpperCase()
+        console.log(account)
+
+        // 3️⃣ .toLowerCase()
+        // 轉小寫
+        account = account.toLowerCase()
+        console.log(account)
+
+        // 判斷型態是文字的話，可以綜合使用語法：
+        console.log(account.trim().toUpperCase())
+    </script>
+</body>
+
+</html>

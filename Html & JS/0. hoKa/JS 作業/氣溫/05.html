@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>氣溫</title>
+</head>
+
+<body>
+  <script>
+    const data = [
+      [18.2, 17.3, 15.0, 13.4],
+      [23.8, 25.1, 20.6, 17.8],
+      [20.6, 21.5, 18.4, 15.7],
+    ];
+
+    const day = ["一", "二", "三", "四"];
+
+    document.write(`<table border="1">`);
+    document.write(
+      `<tr><th></th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th></tr>`
+    );
+    for (let i = 0; i < data.length; i++) {
+      document.write(`<tr><th>時段${day[i]}</th>`);
+      for (let j = 0; j < data[i].length; j++) {
+        document.write(`<td>${data[i][j]}</td>`);
+      }
+      document.write(`</tr>`);
+    }
+    document.write(`</table>`);
+    document.write(`<hr>`)
+
+    //每日的平均氣溫
+    for (let i = 0; i < day.length; i++) {
+      let avg = 0;
+      for (let j = 0; j < data.length; j++) {
+        avg += data[j][i];
+      }
+      avg /= 3;
+      document.write(`星期${day[i]}的平均氣溫:${avg}<br>`);
+    }
+    document.write(`<hr>`)
+
+    // 時段一、時段二、時段三的平均氣溫
+    for (let i = 0; i < data.length; i++) {
+      let avg = 0;
+      for (let j = 0; j < data[i].length; j++) {
+        avg += data[i][j];
+      }
+      avg /= data[i].length;
+      document.write(`時段${day[i]}的平均氣溫:${avg}<br>`);
+    }
+    document.write(`<hr>`)
+
+    // 紀錄最高氣溫
+    let maxTemp = data[0][0];
+    // 紀錄最低氣溫
+    let minTemp = data[0][0];
+    // 紀錄氣溫最高的日子與時段
+    let maxTempWeek = 0;
+    let maxTempTime = 0;
+    // 紀錄氣溫最低的日子與時段
+    let minTempWeek = 0;
+    let minTempTime = 0;
+    for (let i = 0; i < data.length; i++) {
+      for (let j = 0; j < data[i].length; j++) {
+        if (maxTemp <= data[i][j + 1]) {
+          maxTemp = data[i][j + 1];
+          maxTempWeek = i;
+          maxTempTime = j + 1;
+        }
+        if (minTemp >= data[i][j + 1]) {
+          minTemp = data[i][j + 1];
+          minTempWeek = i;
+          minTempTime = j + 1;
+        }
+      }
+    }
+    document.write(
+      `溫度最高的日子與時段:星期${day[maxTempWeek]}的時段${day[maxTempTime]}，${maxTemp}<br>`
+    );
+    document.write(
+      `溫度最低的日子與時段:星期${day[minTempWeek]}的時段${day[minTempTime]}，${minTemp}<br>`
+    );
+  </script>
+</body>
+
+</html>

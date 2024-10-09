@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min) + min)
+        }
+
+        let numbers = [];
+        while (numbers.length < 6) {
+            let count = rand(1, 38)
+            if (!numbers.includes(count)) {
+                numbers.push(count)
+            }
+        }
+        document.write(`威力彩號碼<br>A區:${numbers}<br>`)
+        numbers.push(rand(1, 8))
+        document.write(`B區:${numbers[numbers.length - 1]}`)
+
+
+    </script>
+</body>
+
+</html>

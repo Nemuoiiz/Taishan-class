@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 初始為空的文字
+        // 若設定 let input ='abc'     0
+        let input = ''
+        // 記錄使用者輸入幾次
+        let count = 0
+        // while 常用於不確定次數的迴圈
+        while (input !== 'abc') {
+            input = prompt('abc')
+            count++
+        }
+        document.write(count)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 以下reset，達成滿版 */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #a,
+        #b,
+        #c {
+            /* 網頁高度 */
+            height: 100vh;
+            width: 100%;
+
+            /* 讓標題置中定位在每個滿版色區塊內 */
+            position: relative;
+            /* 若設定成 absolute 會脫離正常流向，色區塊會疊在一起（下蓋上） */
+            /* position: absolute; */
+        }
+
+        #a {
+            background: lightblue;
+        }
+
+        #b {
+            background: lightcoral;
+        }
+
+        #c {
+            background: lightgreen;
+        }
+
+        #a h1,
+        #b h1,
+        #c h1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 
+        #b h1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #c h1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        } */
+    </style>
+</head>
+
+<body>
+    <section id="a">
+        <h1>title a</h1>
+    </section>
+    <section id="b">
+        <h1>title b</h1>
+    </section>
+    <section id="c">
+        <h1>title c</h1>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 環境設定開始 */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: "微軟正黑體";
+        }
+
+        /* 繼承視窗高度 */
+        html,
+        body {
+            height: 100%;
+        }
+
+        /* section 也繼承高度 */
+        section {
+            height: 100%;
+            /* 水平垂直置中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        section:nth-child(odd) {
+            background: lightcyan;
+        }
+
+        section:nth-child(even) {
+            background: lemonchiffon;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+
+        .dashed {
+            display: inline-block;
+            border: 5px dashed #000;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+        }
+
+        /* 環境設定結束 */
+
+
+        /* 位移 */
+        .translate {
+            /* 第一個參數是水平移動、第二個參數是垂直移動 */
+            /* px、rem、em、%... */
+            /* 使用 % 實際會以元素本身的尺寸來計算，ex: width 300px => 50%(150px) */
+            transform: translate(100px, 100px);
+            /* 也可以設定單一方向 */
+            transform: translateX(100px);
+            /* 最終設定會覆蓋上方的幾行 transform 設定 */
+            transform: translateY(100px);
+
+            /* transform 和下面其他幾個不同
+            沒有原點，無法設定 transform-origin */
+        }
+
+        /* 縮放 */
+        .scale {
+            /* 數值是以倍數顯示，沒有單位 */
+            transform: scale(1.5);
+            /* 可以是負數，會顛倒過來 */
+            transform: scale(-1);
+            /* 單一方向 */
+            transform: scaleX(3);
+            transform: scaleY(3);
+
+            transform: scale(2);
+            /* 改變原點 */
+            /* 預設就是 center、center(50%) */
+            /* 關鍵字有 left、right、top、bottom、center */
+            /* 如果省略第二個值，會視為 center(50%) */
+            transform-origin: center right;
+            transform-origin: 100px 300px;
+
+            /* scale、ratate、skew 都可以設定 transform-origin */
+        }
+
+        /* 旋轉 */
+        .rotate {
+            /* 一定要加角度單位 deg
+            正為順時針、負為逆時針旋轉 */
+            transform: rotate(45deg);
+            /* 可設定單一值 */
+            transform: rotateY(0deg);
+            transform: rotateX(180deg);
+            /* 原點在虛線方格的上方中央 */
+            transform-origin: center top;
+        }
+
+        /* 傾斜 */
+        .skew {
+            /* 一定要加單位
+            值一為 X 的傾斜，值二為 Y 的傾斜 */
+            transform: skew(45deg, 0deg);
+            transform: skewX(0deg);
+            transform: skewY(60deg);
+            transform-origin: center center;
+        }
+
+        /* 設定多屬性 */
+        .more {
+            /* 屬性之間不用逗點 */
+            /* 如果為多屬性，函式會由左至右套用，
+            作用順序非常重要，順序不同結果不同 */
+
+            /*
+            先移動、才旋轉
+            先旋轉，才移動
+            兩者最終位置是不一樣的
+             */
+            transform: translateX(100px) rotate(45deg);
+            transform: rotate(45deg) translateX(100px);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>Translate（位移）</h1>
+        <div class="dashed">
+            <div class="box translate">translate（位移）</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Scale（縮放）</h1>
+        <div class="dashed">
+            <div class="box scale">scale（縮放）</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Rotate（旋轉）</h1>
+        <div class="dashed">
+            <div class="box rotate">rotate（旋轉）</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Skew（傾斜）</h1>
+        <div class="dashed">
+            <div class="box skew">skew（傾斜）</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>設定多屬性</h1>
+        <div class="dashed">
+            <div class="box more">設定多屬性</div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = []
+        for (let i = 0; i < 6; i++) {
+            let a = Math.round(Math.random() * 37) + 1
+            while (arr.includes(a) == true) {
+                a = Math.round(Math.random() * 37) + 1
+            }
+            arr.push(a)
+        }
+        document.write("A 區:" + arr + "<br>")
+        document.write('B 區 :', Math.round(Math.random() * 7) + 1)
+
+        // arr.push(a)
+        // if (arr.includes(a) == true) {
+        //     arr.pop()
+        //     a = Math.round(Math.random() * 10)
+        //     arr.push(a)
+        // }
+
+
+
+    </script>
+</body>
+
+</html>

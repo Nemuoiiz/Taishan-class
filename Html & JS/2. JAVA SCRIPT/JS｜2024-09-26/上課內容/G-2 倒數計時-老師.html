@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 製作計時器
+        // 從 10 開始倒數到 0
+        // 每秒在網頁上印出一個數字
+
+        // 老師解法
+        let num = 10
+        let timer = setInterval(() => {
+            document.write(num + '<br>')
+            num--
+            if (num < 0) {
+                clearTimeout(timer)
+                document.write('時間到嚕！')
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>

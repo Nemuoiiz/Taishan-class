@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 是選到 <nav class="menu"> */
+        #header .menu-item {
+            background-color: aquamarine;
+        }
+
+        /* 是選到 <div id="header" class="menu abc"> */
+        #header.menu abc .menu-item {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header" class="menu abc">
+        <nav class="menu">
+            <div class="menu-item">item1</div>
+            <div class="menu-item">item1</div>
+            <div class="menu-item">item1</div>
+            <div class="menu-item">item1</div>
+            <div class="menu-item">item1</div>
+        </nav>
+    </div>
+</body>
+
+</html>

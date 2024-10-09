@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const day =
+      ['禮拜一','禮拜二','禮拜三','禮拜四']
+    
+      const time =
+      ['時段一','時段二','時段三']
+    
+    
+      const data = [
+      [18.2, 17.3, 15.0, 13.4],
+      [23.8, 25.1, 20.6, 17.8],
+      [20.6, 21.5, 18.4, 15.7]
+      ]
+
+      document.write('<table border = "1">')
+          document.write('<tr>')
+            document.write('<th>','</th>')
+            document.write('<td>',"星期一",'</td>')
+              document.write('<td>',"星期二",'</td>')
+              document.write('<td>',"星期三",'</td>')
+              document.write('<td>',"星期四",'</td>')
+          document.write('</tr>')
+          for (let i = 1 ; i <= time.length ; i++){
+            document.write(`<tr><td>${time[i-1]}</td>`)
+              for (let j = 1 ; j <= day.length ; j++){
+                document.write(`<td>${data[i-1][j-1]}</td>`)
+              }
+              document.write('</tr>')
+              document.write('<tf>')
+                document.write('<tr>')
+                  document.write('</tr>')
+                  document.write('</tf>')
+            }
+            document.write('</table>','<hr>')
+
+
+          let total = 0
+          let totaltemp = [0, 0, 0, 0]
+          let totaltemp1 = [0, 0, 0]
+
+          for (let k = 0; k < data.length; k++) {
+      console.log('data[k]', k, data[k])
+      for (let l = 0; l < data[k].length; l++) {
+        const total = data[k][l]
+        totaltemp[l] += total
+      }
+    }
+
+    for(let key in totaltemp){
+        if (typeof totaltemp[key] ==='number'){
+          totaltemp[key] = totaltemp[key] / 3
+        }
+      }
+      document.write(totaltemp,'<hr>')
+
+      for (let k = 0; k < data.length; k++) {
+      console.log('data[k]', k, data[k])
+      for (let l = 0; l < data[k].length; l++) {
+        const total = data[k][l]
+        console.log('data[k][l]', k, l, data[k][l])
+        totaltemp1[k] += total
+        console.log(totaltemp1)
+      }
+    }
+
+    for(let lock in totaltemp1){
+        if (typeof totaltemp1[lock] ==='number'){
+          totaltemp1[lock] = totaltemp1[lock] / 4
+        }
+      }
+      document.write(totaltemp1,'<hr>')
+  </script>
+</body>
+</html>

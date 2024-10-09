@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // n = 1、m = 5
+        // n = 1, sum = 1
+        // n = 2, sum = 3
+        // n = 3, sum = 6
+
+        // n = 5、m = 10
+        // n = 5, sum =5
+        // n = 6, sum =11
+
+        // // 🔻自己作答
+        // const calculate = (n, m) => {
+        //     let count = 1
+        //     while (n <= m) {
+        //         n += (n + 1)
+        //         count++
+        //     }
+        //     return count
+        // }
+
+        // const number1 = parseInt(prompt('n'))
+        // const number2 = parseInt(prompt('m'))
+        // console.log(calculate(number1, number2))
+
+
+        // 🔻老師解答
+        const calculate = (n, m) => {
+            // 數過的總和
+            let sum = 0
+            // 次數
+            let count = 0
+            // 數數的條件
+            // 總和 <=m
+            while (sum <= m) {
+                // 總和 + 目前數到的數字
+                sum += n
+                // 數字 +1
+                n++
+                // 次數 +1
+                count++
+            }
+            return count
+        }
+
+        const number1 = parseInt(prompt('n'))
+        const number2 = parseInt(prompt('m'))
+        console.log(calculate(number1, number2))
+    </script>
+</body>
+
+</html>

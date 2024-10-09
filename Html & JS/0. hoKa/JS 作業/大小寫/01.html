@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const input = prompt("輸入英文文字").split("")
+        input.forEach((value, index) => {
+            if (value.charCodeAt(0) >= 'A'.charCodeAt(0) && value.charCodeAt(0) <= 'Z'.charCodeAt(0))
+                input[index] = value.toLowerCase()
+            else if (value.charCodeAt(0) >= 'a'.charCodeAt(0) && value.charCodeAt(0) <= 'z'.charCodeAt(0))
+                input[index] = value.toUpperCase()
+        })
+
+        document.write(input.join(""))
+    </script>
+</body>
+
+
+</html>

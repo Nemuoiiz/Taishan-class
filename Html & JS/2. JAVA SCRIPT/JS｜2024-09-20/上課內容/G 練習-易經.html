@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // const BaGua = { 1: 乾, 2: 兌, 3: 離, 4: 震, 5: 巽, 6: 坎, 7: 艮, 8: 坤 }
+        // const YuanSu = { 1: 天, 2: 澤, 3: 火, 4: 雷, 5: 風, 6: 水, 7: 山, 8: 地 }
+        const gua = (array) => {
+            // 將剛好整除的坤移到最前面，讓順序符合餘數 0、1、2....
+            const data = ['坤', '乾', '兌', '離', '震', '巽', '坎', '艮',]
+            const down = array[0] % 8
+            const up = array[1] % 8
+            const yao = array[2] % 6 || 6
+
+            return [data[down], data[up], yao]
+
+        }
+        // 436、112、920=>上震下坤 第2爻
+
+        // 收到的數字轉成整數
+        const number1 = parseInt(prompt('第一個數字'))
+        const number2 = parseInt(prompt('第二個數字'))
+        const number3 = parseInt(prompt('第三個數字'))
+        // 三個數字組成陣列
+        const numbers = [number1, number2, number3]
+        // 上方陣列放進 function 中的 gua = (array)
+        const result = gua(numbers)
+        console.log(result[0]) // 輸出 離
+        console.log(result[1]) // 輸出 震
+        console.log(result[2]) // 輸出 2
+    </script>
+</body>
+
+</html>

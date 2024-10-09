@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font and Text</title>
+
+    <!-- 設定 google font 字型的 link -->
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&family=Noto+Sans+TC:wght@100..900&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        /* 文件預設字體大小 16px */
+        /* 一般預設即為 16px，下方其實可以不用設定 */
+        html {
+            font-size: 16px;
+        }
+
+        /* 也可以用 :root 選擇到 html，:root 是偽類選擇器的一種 */
+        :root {
+            font-size: 16px;
+        }
+
+        /* 頁面預設的字型 */
+        body {
+            font-family: '標楷體'
+        }
+
+        .font-style {
+            /*
+            字型：由左至右判定使用者是否有該字形。
+            如下：如果對方有微軟正黑體就使用，沒有會依序往右檢查可以用字型 */
+            font-family: '微軟正黑體', Verdana, Geneva, Tahoma, sans-serif;
+            /* 字體大小 */
+            font-size: 30px;
+            /* 斜體 */
+            font-style: italic;
+            /* 粗體（字重）還可以用 100-900 去設定字體粗細 */
+            font-weight: bold;
+        }
+
+        /* 定義字型，需要字體檔案 */
+        @font-face {
+            font-family: 'myFont';
+            src: url('./Adine\ Kirnberg.ttf'), url('./waltograph42.otf'), url('./Antro_Vectra_Bolder.otf');
+        }
+
+        .font-set {
+            font-family: 'myFont';
+            font-size: 50px;
+        }
+
+        /* 使用 google font */
+        .google-font {
+            font-family: "Londrina Solid", sans-serif;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 40px;
+        }
+
+        .noto-sans-chinese {
+            font-family: "Noto Sans TC", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 30px;
+        }
+
+        .text-style {
+            /* text-align
+            設定文字、inline、inline-block 的對齊方式：left、right、center */
+            text-align: left;
+            /* none、underline、overline、line-through */
+            text-decoration: underline;
+            /* 縮排 */
+            text-indent: 32px;
+            /* 大小寫 uppercase、lowwecase、capitalize */
+            text-transform: capitalize;
+            /* 文字陰影
+            水平位移(+為右，-為左) 垂直位移(+為下，-為上) 模糊半徑 顏色 */
+            text-shadow: 5px 5px 3px rgb(0, 0, 0, 0.5);
+            /*
+            單字之間的間隔
+            以空格來判定可不可以間隔，因此對中文無效 */
+            word-spacing: 16px;
+            /* 字母之間的間隔 */
+            letter-spacing: 8px;
+            /* 行高，可以用單位或是倍數去設定 */
+            font-size: 30px;
+            line-height: 32px;
+            line-height: 2.5;
+        }
+
+        /* 設定連結狀態的樣式 */
+        /* 第一種 */
+        a {
+            color: green;
+        }
+
+
+        /* 第二種 */
+        /* LoVe HAte 記憶口訣 */
+
+        /* 連結初始狀態 */
+        a:link {
+            text-decoration: none;
+            color: crimson;
+            font-size: 20px;
+        }
+
+        /* 連結拜訪過後的狀態 */
+        a:visited {
+            color: gray;
+        }
+
+        /* 屬標停留於連結時的狀態 */
+        a:hover {
+            font-size: 30px;
+            color: darkgoldenrod;
+            text-decoration: underline;
+        }
+
+        /* 連結點擊時的狀態 */
+        a:active {
+            color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1. Font 樣式</h1>
+    <p class="font-style">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae vel laudantium ea qui dolores
+        sit adipisci illum asperiores quaerat iure. Eum animi, officia hic iste consequatur aut consequuntur dolores
+        explicabo?
+    </p>
+
+    <hr>
+
+    <h2>自訂字型</h2>
+    <p class="font-set">Lorem ipsum dolor sit.</p>
+
+    <hr>
+
+    <h2>Google Fonts</h2>
+    <p class="google-font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, sunt eos.</p>
+    <p class="noto-sans-chinese">青青子衿，悠悠我心。</p>
+
+    <hr>
+    <h2>2. Text 樣式設定</h2>
+    <!-- .text-style 直接打出 -->
+    <div class="text-style">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, beatae. Velit asperiores sed explicabo nesciunt
+        culpa, reprehenderit facilis unde iusto ex temporibus vero tempore quibusdam, pariatur illo dignissimos
+        repudiandae laborum!
+    </div>
+
+
+    <h1>可以被 text-align 去對齊的三種類型</h1>
+    <!-- 皆在父元素寫入 -->
+    <!-- 文字 -->
+    <div style="text-align: center;">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+
+    <!-- inline 底線連結 -->
+    <div style="text-align: center;">
+        <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+    </div>
+
+    <!-- inline-block 連結按鈕 -->
+    <div style="text-align: center;">
+        <button>Lorem ipsum dolor sit amet consectetur adipisicing elit.</button>
+    </div>
+
+
+    <!-- 圖片 -->
+    <div style="text-align: center;">
+        <img src="https://picsum.photos/100/100/?random=10">
+    </div>
+
+
+    <div style="text-align: center;">
+        <!-- div 本身是一個 block，父元素無法用 text-align 去做對齊 -->
+        <div style="height:100px; width:100px; background-color: red;"></div>
+    </div>
+
+    <hr>
+
+    <h1>3. 連結顏色狀態的變化</h1>
+    <a href="#">Google</a>
+
+    <hr>
+
+    <h1>4. rem 與 em 兩個單位的差異</h1>
+    <ul>
+        <li>文件字體預設大小為 16px，也就是 1rem。</li>
+        <li>:root 指的是 html 的根元素。</li>
+    </ul>
+
+    <h2>rem</h2>
+    <p>rem 為 root font-size 的倍數</p>
+    <!-- 16px -->
+    <div style="font-size: 1rem">
+        font
+        <!-- 32px -->
+        <div style="font-size: 2rem">
+            font
+            <!-- 48px -->
+            <div style="font-size: 3rem">font</div>
+        </div>
+    </div>
+
+    <h2>em</h2>
+    <p>em 需要找父層或是祖先層 font-size 的倍數</p>
+    <!-- 16px -->
+    <div style="font-size: 1em">
+        font
+        <!-- 32px -->
+        <div style="font-size: 2em">
+            font
+            <div style="font-size: 3em">font</div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天氣</title>
+</head>
+<body>
+    <script>
+        const data = [
+        [18.2, 17.3, 15.0, 13.4],
+        [23.8, 25.1, 20.6, 17.8],
+        [20.6, 21.5, 18.4, 15.7]
+        ];
+        
+        // 銷售員 1 號的銷售數陣列是 data[0]
+        document.write('<table border="1px">');
+        document.write('<th><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>平均</td></th>')
+        for (let i = 0; i < data.length; i++) {         // i 有三組陣列 i0, i1, i2 迴圈走三次
+            let totalTime = 0;          // 時段溫度度數加總（計算平均用）
+            document.write('<tr>');
+            document.write(`<td>時段 ${i+1}</td>`);
+            console.log();
+            for (let j = 0; j < data[i].length; j++) {
+                document.write(`<td>${data[i][j]}</td>`);
+                totalTime += data[i][j]
+            }
+            document.write(`<td>${totalTime / 4}</td>`);    // 該時段溫度加總再除以四，得平均
+            document.write('</tr>');
+            
+        }
+        
+        let totalDay = 0;
+        // table footer 記錄每天平均
+        document.write(`<tf><td>平均</td>`);
+        for (let i = 0; i <= 3; i++) {
+            // console.log(data[i]);
+            totalDay = 0;
+            totalDay = data[0][i] + data[1][i] + data[2][i];
+            document.write(`<td>${(totalDay / 3)}</td>`);
+
+        }
+        document.write(`</tf>`);
+        document.write('</table>');
+    </script>
+</body>
+</html>

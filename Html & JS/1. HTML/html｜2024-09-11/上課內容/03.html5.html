@@ -1,0 +1,65 @@
+<!-- html5 的結構（! + shift + enter） -->
+<!-- !DOCTYPE 宣告 html 的版本 -->
+<!DOCTYPE html>
+<!-- lang 語系 -->
+<html lang="en">
+
+<head>
+    <!-- <標籤 屬性="值"> 標記內容 </標籤> -->
+    <!-- utf-8 字元編碼，確保網頁瀏覽時正常。例如若無此行，使用繁體中文網頁，非中文語系之他國人士的裝置瀏覽時會產生亂碼 -->
+    <meta charset="UTF-8">
+    <!-- RWD 響應式網頁，必須要這行。各裝置瀏覽比例才會正常 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 連結外部 css 檔案 -->
+    <link rel="stylesheet" href="./css/example.css">
+
+    <!-- 本文件使用的 css -->
+    <style>
+        body {
+            background: #ffe
+        }
+
+
+        h1 {
+            color: blue
+        }
+
+
+        h2 {
+            color: green
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML、CSS、JavaScript 三者的關係</h1>
+
+    <h2>HTML => 結構、內容</h2>
+    以房子類比：蓋房子時的建材<br>
+    以人類比：骨架<br>
+
+    <h2>CSS => 樣式、外觀</h2>
+    以房子類比：室內裝潢的概念<br>
+    以人類比：皮膚、衣服、配件<br>
+
+    <h2>JavaScript => 互動、行為</h2>
+    以房子類比：瓦斯開關按了會有瓦斯<br>
+    以人類比：行為、動作<br>
+
+    <h1>Javascript 小按鈕</h1>
+    <button id="btn">按鈕</button>
+    <!-- 連結外部 js 檔案 -->
+    <script src="./js/example.js"></script>
+
+    <!-- 本文件的 js 程式 -->
+    <script>
+        // const 為宣告
+        const btn = document.querySelector('#btn')
+        btn.onclick = function () {
+            alert('hellow world')
+        }
+    </script>
+</body>
+
+</html>

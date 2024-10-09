@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* body 為 block，自帶上下 margin 8px */
+        body {
+            margin: 0;
+            padding-bottom: 300px;
+        }
+
+        hr {
+            margin: 30px 0;
+        }
+
+        .menu {
+            background: lightblue;
+
+            /* 清除點點 */
+            list-style: none;
+            /* 父元素區塊 水平置中 */
+            margin: auto;
+            width: 900px;
+            padding: 0;
+            /* 子元素區塊 水平置中 */
+            text-align: center;
+
+            /* 只要用 inline-block 排版就會出現幽靈空白，約 4px 左右 */
+            /* ⭐消除幽靈空白 1.子元素區塊之間使用 font-size  */
+            font-size: 0;
+        }
+
+        .menu li {
+            width: 150px;
+            background: #999;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .menu a {
+            /* 為了佔據整個父元素 li 的寬度 */
+            display: block;
+            /* display:inline-block 也可以 */
+
+            color: bisque;
+
+            /* ⭐消除幽靈空白 2.再顯示文字大小 */
+            padding: 1rem 2rem;
+            background: lightsalmon;
+            font-size: 1.5rem;
+        }
+
+        /* a:hover 滑過去作用 */
+        /* a: hover hover變成 a 的後代 */
+        .menu a:hover {
+            color: white;
+            background-color: #999;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>區塊盒與行內盒</h1>
+    <p>css 是盒子的世界，基礎盒子有 區塊類大類 與 行內 兩種</p>
+    <p>區塊類：block、table、flex……</p>
+
+    <h3>請同學說出以下兩行差異</h3>
+    <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
+    <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
+
+    <h3>上方加上背景顏色後</h3>
+    <!-- div 占滿父容器 body -->
+    <div style="background: gold;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
+    <span style="background: lightskyblue;">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
+
+    <hr>
+
+    <h2>區塊盒（區塊元素）</h2>
+    <p>例子：div、h1~h6、p、ul、li、table……</p>
+    <ul>
+        <li>區塊誕生後會佔據父元素的寬度，前後會斷行，即便設定寬度，也不容許其他人使用他的空間。</li>
+        <li>區塊可以正常使用 width、height、margin、padding。</li>
+    </ul>
+
+    <div style="background: gold; width:300px">Lorem ipsum dolor sit amet.</div>
+    <div style="background: gold; width:1000px">Lorem ipsum dolor sit amet.</div>
+    <div style="background: gold; width:500px">Lorem ipsum dolor sit amet.</div>
+    <div style="background: gold; width:100px">Lorem ipsum dolor sit amet.</div>
+
+    <h2>可以用背景顏色來測試父子元素的空間</h2>
+    <div style="width:800px; background:lightblue ;">
+        <p style="background: lightsalmon; width:300px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+            quis,
+            dolorem
+            molestias, excepturi tempore facere illum est nobis rem incidunt vitae sunt porro sapiente alias corporis
+            corrupti tenetur totam inventore!
+        </p>
+    </div>
+
+    <hr>
+
+    <h2>行內盒（行內元素）</h2>
+    <p>例子：span、a、em、strong……</p>
+    <ul>
+        <li>只能擁有自己內容的空間，逐一由左至右，由上而下排列。</li>
+        <li>前後不會斷行。</li>
+        <li>可以被父元素的 text-align 影響、以及本身可以使用 vertical-align 屬性（行內專用屬性，block 不行）</li>
+        <li>寬高無法設定，例如第一個設定 10000px 也沒有作用。</li>
+    </ul>
+
+    <span style="background: rgb(153, 196, 153); width:1000px; height:10000px">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+    <span style="background: rgb(153, 196, 153);">Lorem ipsum dolor sit amet.</span>
+
+    <hr>
+
+    <h2>display 轉型，可以將盒子轉型成其他例行</h2>
+    <p>display：inline-block 製作橫向選單。</p>
+    <p>inline-block，拆成兩部分來看，inline 是指排列方式，block 可以設定盒模型屬性。</p>
+    <ul class="menu">
+        <li><a href="#">link</a></li>
+        <li><a href="#">link</a></li>
+        <li><a href="#">link</a></li>
+        <li><a href="#">link</a></li>
+        <li><a href="#">link</a></li>
+    </ul>
+
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 📌題目 
+        // 用上面練習完成的 function 製作威力彩號碼產生器
+        // 將隨機出的數字用 document.write() 顯示在網頁上
+        // 威力彩規則
+        // A 區 1~38 取 6 個數字
+        // B 區 1~ 8 取 1 個數字
+
+
+        // 區間內的隨機整數
+
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+
+        const groupA = []
+
+        // 💠 第一種：用 while 來解題
+        // while (groupA.length < 6) {
+        //     const number = rand(1, 38)
+        //     if (!groupA.includes(number)) {
+        //         groupA.push(number)
+        //     }
+        // }
+
+        // 💠 第二種：用 for 來解題
+        // for (let i = 0; i < 6; i++) {
+        //     const number = rand(1, 38)
+        //     if (!groupA.includes(number)) {
+        //         groupA.push(number)
+        //     } else {
+        //         // i-- 會與 i++ 相抵消
+        //         // 以防數字出現重複時少 push 出數字
+        //         i--
+        //     }
+        // }
+
+        // 💠 第三種：考慮機率問題的解法
+        // 第一個數取出機率為 1/37
+        // 第二個數取出機率則需為 1/36...以此類推
+
+        // 1️-1. 設陣列的方式
+        // const numbers = []
+        // for (let i = 1; i <= 38; i++) {
+        //     numbers.push(i)
+        // }
+
+        // 1-2️. 設陣列的方式
+        // 使用 Array 建立一個長度為 38 的值並將之轉陣列
+        // 加上 map 的 function 來增加數字
+        const numbers = Array.from({ length: 38 }, (value, index) => {
+            return index + 1
+        })
+
+        // 2. 設完陣列跑迴圈
+        for (let i = 0; i < 6; i++) {
+            // 取隨機數字
+            const index = rand(0, numbers.length - 1)
+            // 將取出數字 push 進 groupA
+            groupA.push(numbers[index])
+            // 使用 splice 拿掉已求出的數字
+            numbers.splice(index, 1)
+        }
+
+        document.write(`A區號碼：<br>${groupA}`)
+
+
+    </script>
+</body>
+
+</html>

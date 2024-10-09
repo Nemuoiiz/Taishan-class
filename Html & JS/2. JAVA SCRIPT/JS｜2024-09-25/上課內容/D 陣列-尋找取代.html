@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const numbers1 = [100, 200, 300, 100]
+
+        // 🔹 .includes()   💡
+        console.log(numbers1.includes(200))         // true
+        // 🔹 .indexOf()    💡
+        console.log(numbers1.indexOf(100, 2))       // 3
+        // 🔹 .lateIndexOf()
+        console.log(numbers1.lastIndexOf(100, 2))   // 0
+
+        // 產生出的是新的物件，並不等於原本的物件
+        const arr = [{ a: 1 }]
+        console.log(arr.includes({ a: 1 }))         // false
+
+        const obj = [{ b: 2 }]
+        const arr2 = [obj]
+        console.log(arr2.includes(obj))             // true
+
+
+        // ==================================================
+
+
+        const numbers2 = [100, 200, 300, 400, 500]
+        // 1️⃣ .some(function)
+        // 判斷陣列有沒有東西執行 function 後 return true
+        // 回傳布林值
+        // 🔸 有一個值符合就可以成立
+
+        const some = numbers2.some(value => {
+            return value > 300
+        })
+        // const some = number2.some(value => value >300)
+        console.log('some', some)       // some true
+
+
+        // 2️⃣ .every(function)
+        // 判斷陣列所有東西執行 function 後 return true
+        // 回傳布林值
+        // 🔸 所有值都符合才會成立
+
+        const every = numbers2.every(value => {
+            return value > 300
+        })
+        console.log('every', every)     // every false
+
+
+        // 3️⃣ .find(function)
+        // 找第一個執行後 return true
+        // 回傳值
+        // 🔸 前 → 後，遇到第一個符合的值後回傳
+
+        const find = numbers2.find(value => {
+            return value > 300
+        })
+        console.log('find', find)       // find 400
+
+
+        // 4️⃣ .findLast(function)
+        // 找第一個執行後 return true
+        // 回傳值
+        // 🔸 後 → 前，遇到第一個符合的值後回傳
+
+        const findLast = numbers2.findLast(value => {
+            return value > 300
+        })
+        console.log('findLast', findLast)       // findLast 500
+
+
+        // 5️⃣ .findIndex(function)   💡
+        // 找第一個執行後 return true
+        // 回傳索引，找不到是 -1
+        // 🔸 前 → 後，遇到第一個符合的值後回傳 '索引'
+
+        const findIndex = numbers2.findIndex(value => {
+            return value > 300
+        })
+        console.log('findIndex', findIndex)       // findIndex 3
+
+
+
+        // 6️⃣ .findLastIndex(function)
+        // 找第一個執行後 return true
+        // 回傳索引
+        // 🔸 後 → 前，遇到第一個符合的值後回傳 '索引'
+
+        const findLastIndex = numbers2.findLastIndex(value => {
+            return value > 300
+        })
+        console.log('findLastIndex', findLastIndex)       // findLastIndex 4
+
+
+        // 7️⃣ .filter(function)  💡
+        // 將所有 return true 的值產生出新陣列
+        const filter = numbers2.filter(value => {
+            return value > 300
+        })
+        console.log('filter', filter)       // Array(2) [400, 500]
+    </script>
+</body>
+
+</html>

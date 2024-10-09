@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let str = 'abcba'
+        // console.log(str[0])
+
+        // for (const s of str) {
+        //     console.log(s)
+        // }
+        // // for (const i of str) {
+        // //     console.log(str[i])
+        // // }
+        // for (let i = 0; i < str.length; i++) {
+        //     console.log(str[i])
+        //     // 不能用 = 修改
+        //     // str[i] = '1'
+        // }
+        // console.log(str)
+
+
+        const isPalindrome = (text) => {
+            for (let i = 0; i < text.length; i++) {
+                if (text[i] === text[text.length - (i + 1)]) {
+                    return true
+                } else
+                    return false
+            }
+        }
+        const result = isPalindrome(prompt('輸入文字'))
+        console.log(result)
+
+
+    </script>
+</body>
+
+</html>

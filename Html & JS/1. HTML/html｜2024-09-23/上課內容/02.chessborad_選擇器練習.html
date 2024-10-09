@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 所有 reset */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            height: 800px;
+            width: 800px;
+            /* 放在 table 只對外框畫顏色 */
+            border: 1px solid black;
+            /* 若 tr td 都有畫線，需用 border-collapse 變成單線框 */
+            border-collapse: collapse;
+
+            /* 網頁置中 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* 只寫 top、left 會移動過頭 */
+            /* 使用 transform:translate 移動元素本身寬高各一半的距離 */
+            transform: translate(-50%, -50%);
+        }
+
+        td {
+            /* border: 1px solid #666; */
+            width: 100px;
+            height: 100px;
+        }
+
+        /* 奇數列的         奇數格 */
+        tr:nth-child(odd) td:nth-child(odd),
+        /* 偶數列的         偶數格 */
+        tr:nth-child(even) td:nth-child(even) {
+            background: black;
+        }
+
+        /* 偶數列的         奇數格 */
+        tr:nth-child(even) td:nth-child(odd),
+        /* 奇數列的         偶數格 */
+        tr:nth-child(odd) td:nth-child(even) {
+            background: white;
+        }
+
+        /* 黑色方格的 hover 效果 */
+        tr:nth-child(odd) td:nth-child(odd):hover,
+        tr:nth-child(even) td:nth-child(even):hover {
+            background-color: lightcoral;
+            /* 滑過時變為紅色 */
+            transform: translateX(10px) rotate(45deg);
+            /* 保持滑過時的動作效果 */
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 8*8 黑白表格 -->
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+
+</html>

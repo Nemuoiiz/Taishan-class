@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1️⃣ .map(function)
+        // 將每個東西執行 function 的 return 值變成新的陣列
+        const numbers = [100, 200, 300]
+        const numbersDouble = numbers.map(value => {
+            return value * 2
+        })
+        console.log(numbers, numbersDouble)
+
+        // 2️⃣ .reduce((累計值, 現在值) => {}, 初始值)
+        // 初始值可不設，預設是陣列內的第一個東西
+        // 累計之後 return 的值會代入下一次迴圈。例如：購物車金額
+        const numbers2 = [100, 200, 300, 400, 500]
+        const numbers2Total = numbers2.reduce((total, value) => {
+            console.log(total, value)
+            return total + value
+        })
+        console.log(numbers2Total)
+
+        // 3️⃣ .sort((a, b) => {})
+        // 把陣列內的東西兩兩比較，a = 後面的值，b = 前面的值
+        // return 0 --> 不會變
+        // return < 0 --> a在前（原陣列正著排）
+        // return > 0 --> b在前（原陣列反著排）
+        // return a - b --> 小至大（數字比較後正著排 => 升序）
+        // reruen b - a --> 大至小（數字比較後倒著排 => 降序）
+        const numbers3 = [1, 100, 50, 114514, 1919810, 123456789, 1234]
+        numbers3.sort((a, b) => {
+            console.log(a, b)
+            return a - b
+        })
+        console.log(numbers3)
+
+        // 補充說明
+        // 在 (a, b) => a-b 時：
+        // a > b --> a-b > 0，回傳 1 ，a 放在 b 後面，順序為 b, a，因為 a > b 所以是「升序」
+        // a < b --> a-b < 0，回傳 -1，a 放在 b 前面，順序為 a, b，因為 a < b 同樣是「升序」
+
+        // 同樣地，在 (a, b) => b-a 時：
+        // a > b --> b-a < 0，回傳 -1，b 放在 a 後面，順序為 a, b，因為 a > b 所以是「降序」
+        // a < b --> b-a > 0，回傳 1 ，b 放在 a 前面，順序為 b, a，因為 a < b 同樣是「降序」
+
+
+        // 3️⃣ .sort((a,b) => {}) 搭配 a.localeCompare(b,'語言')
+        const texts = ['a', '一', 'h', '二', 'c', '三', 'u', '四', 'd']
+        texts.sort((a, b) => {
+            // a.localeCompare(b, 語言名稱) 比較文字的編碼順序
+            // a 在前 --> -1
+            // b 在前 --> 1
+            // 相等 --> 0
+            return a.localeCompare(b, 'en')     // 'en'：字母大於中文；'zh-tw'：中文大於字母
+        })
+        console.log(texts)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    const lang = ('語言', '?')
+
+    if (lang === 'zh-tw') {
+        document.write('中文台灣')
+    } else if (lang === 'jp-jp') {
+        document.write('日文')
+    } else if (lang === 'ko-kr') {
+        document.write('韓文')
+    } else if (lang === 'en' || lang === 'en-us') {
+        document.write('英文')
+    } else {
+        document.write('窩不知道peko')
+    }
+
+    document.write('<hr>')
+
+    // 三元運算子
+    const name =
+        // 值 ? '符合的' : '不符合'
+        lang === 'zh-tw' ? '中文台灣' :
+            lang === 'jp-jp' ? '日文' :
+                lang === 'ko-kr' ? '韓文' :
+                    (lang === 'en' || lang === 'en-us') ? '英文' : '窩不知道peko'
+    document.write(name)
+
+    document.write('<hr>')
+
+    switch (lang) {
+        case 'zh-tw':
+            document.write('中文台灣')
+            break
+        case 'jp-jp':
+            document.write('日文')
+            break
+        case 'ko-kr':
+            document.write('韓文')
+            break
+        // case 'en':
+        // document.write('en 英文')
+        // case 'en-us':
+        // document.write('en-us 英文')
+        // 沒有 break 時，輸入 en 會顯示「en 英文en-us 英文」
+        case 'en':
+        case 'en-us':
+            document.write('英文')
+            break
+        default:
+            document.write('窩不知道peko')
+            break
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>

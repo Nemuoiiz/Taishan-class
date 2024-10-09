@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 100
+        let b = '10'
+        let c = 'a'
+        console.log(a + b)      // 10010
+        console.log(a - b)      // 90
+        console.log(a - c)      // NaN，非數
+
+        // prompt(文字)
+        // 出現顯示文字的輸入框，跳出來時網頁是暫停狀態
+        // 會收到輸入的文字，如果使用者按取消則是收到 null
+        const lastName = prompt('請輸入姓氏')
+        const firstName = prompt('請輸入名字')
+        const fullName = lastName + firstName
+        // 若姓取消、名輸入 AAA，console.log 結果會為 nullAAA
+        console.log(fullName)
+
+        // documet 文件
+        // 在文字中塞入變數有 ''+'' 與 `${}`兩種寫法
+        document.write('<h1>' + fullName + '</h1>')
+        document.write(`<h1>${fullName}</h>`)
+    </script>
+</body>
+
+</html>

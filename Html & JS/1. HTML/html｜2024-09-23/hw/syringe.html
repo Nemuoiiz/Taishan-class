@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 細針筒底部 */
+        .a {
+            width: 380px;
+            height: 55px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            background-image: linear-gradient(to bottom,
+                    #fff 0%,
+                    #ccc 62%,
+                    #fff 95% 100%);
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 針筒屁股按鈕 */
+        .a::before {
+            content: "";
+            width: 40px;
+            height: 80px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            background-image: linear-gradient(to bottom,
+                    #fff 0%,
+                    #ccc 60%,
+                    #fff 95% 100%);
+
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            transform: translate(-95%, -50%);
+        }
+
+        /* 針頭的部分 */
+        .a::after {
+            content: "";
+            width: 70px;
+            height: 0.1px;
+            background: #000;
+
+            position: absolute;
+            top: 50%;
+            right: -71px;
+        }
+
+        /* 胖針筒底圖 */
+        .b {
+            width: 300px;
+            height: 80px;
+            color: #aaa;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+
+            border: 1px solid #bbb;
+            background-image:
+                linear-gradient(to right,
+                    /* 第一個值：顏色開始點；第二個值：顏色結束點 */
+                    #fff 0 45%,
+                    #000 45% 55%,
+                    rgb(253, 255, 155) 55% 100%);
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* MIT字樣、刻度 */
+        .b::before {
+            width: 300px;
+            height: 10px;
+            content: "Made In Taiwan";
+            padding-left: 2px;
+            line-height: 144px;
+            background-image:
+                linear-gradient(to left,
+                    rgb(0, 0, 0, 0.3) 1px, transparent 0px);
+            background-repeat: repeat;
+            background-size: 10px 10px, 10px 10px;
+
+            position: absolute;
+            top: 50%;
+            left: -1.5px;
+            top: 5px;
+            transform: translate(0, -50%);
+        }
+
+        /* 針筒陰影 */
+        .b::after {
+            content: "";
+            width: 300px;
+            height: 80px;
+            opacity: 0.2;
+            background-image:
+                linear-gradient(to bottom,
+                    #fff 0%,
+                    #000 60%,
+                    #fff 95% 100%);
+
+            position: absolute;
+            top: 50%;
+            right: -1px;
+            transform: translate(0, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a">
+        <div class="b"></div>
+    </div>
+</body>
+
+</html>
