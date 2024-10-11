@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立科技高中－校園社團介紹網</title>
+
+    <style>
+        /* 首頁 */
+        #main {
+            width: 1024px;
+            height: 768px;
+            margin: auto;
+
+            background: pink;
+        }
+
+        /* 網站標題區 */
+        #top {
+            width: 1000px;
+            height: 65px;
+            margin: auto;
+            text-align: center;
+
+            background: lightblue;
+        }
+
+
+        /* 左側--------------------------------------- */
+        #left {
+            width: 215px;
+            height: calc(768px - 65px - 20px);
+            margin-left: 12px;
+            float: left;
+
+            /* background: gold; */
+        }
+
+        #menu {
+            width: 215px;
+            height: calc(768px - 65px - 25px - 20px);
+
+            background: white;
+        }
+
+        #update {
+            width: 215px;
+            height: 25px;
+
+            font-family: "標楷體";
+            color: #000;
+            text-align: center;
+            font-size: 16px;
+
+            /* background: lemonchiffon; */
+        }
+
+        /* 右側---------------------------------------- */
+        #right {
+            width: 770px;
+            height: calc(768px - 65px - 20px);
+            margin-right: 12px;
+            float: right;
+
+            background: gray;
+        }
+
+
+        marquee {
+            width: 770px;
+            height: 29px;
+
+            font-family: "標楷體";
+            color: #00f;
+            font-size: 24px;
+
+            background: yellow;
+        }
+
+        /* 頁尾版權區 -------------------------------------*/
+        #footer {
+            width: 1000px;
+            height: 20px;
+            clear: both;
+            margin: auto;
+
+            /* background: black */
+            font-family: "標楷體";
+            color: #000;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <div id="main">
+
+        <!-- 標題區 -->
+        <div id="top">
+            <a href="./index.html"><img src="./images/logo.png" alt="國立科技高中校園社團介紹網" title="國立科技高中校園社團介紹網"></a>
+        </div>
+
+        <div id="left">
+            <!-- 選單區 -->
+            <div id="menu"></div>
+            <!-- 日期更新區 -->
+            <div id="update">最近更新日期：2024/10/11</div>
+        </div>
+
+        <div id="right">
+            <!-- 跑馬燈區 -->
+            <marquee>歡迎光臨校園社團介紹網，參觀後請支持社團活動並熱烈參與</marquee>
+            <!-- 網頁內容區 -->
+            <div id="content"></div>
+        </div>
+
+        <!-- 頁尾版權區 -->
+        <div id="footer">網頁設計及維護：15張宥青</div>
+    </div>
+</body>
+
+</html>
