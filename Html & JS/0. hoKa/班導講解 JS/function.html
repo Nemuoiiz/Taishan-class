@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log("Hello JS")
+
+        // function 是印章模板的概念
+        // 第一個印章模板：
+        function HelloFun() {
+            console.log("Hello I am Nemui")
+        }
+
+        // // 實際手拿起印章來蓋
+        // HelloFun();
+        // HelloFun();
+        // HelloFun();
+
+        // 第二個印章模板：
+        function helloName(name) {
+            console.log(`Hello${name}`)
+        }
+
+        // 用 for 迴圈蓋十次印章
+        for (let i = 1; i <= 10; i++) {
+            console.log(`這是第${i}次`)
+            // HelloFun();
+            helloName('小明')
+        }
+    </script>
+</body>
+
+</html>
