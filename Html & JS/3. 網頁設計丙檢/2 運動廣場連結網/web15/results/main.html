@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 從 index.html 複製過來，text-align:center 拿掉 */
+        table {
+            width: 100%;
+            /* collapse 為合併儲存格，可以把 td 間的縫隙消掉 */
+            border-collapse: collapse;
+        }
+
+        /* 最新消息區 */
+        #news {
+            width: 280px;
+            height: 460px;
+            border: 1px solid #999;
+            /* 浮動左側 */
+            float: left;
+        }
+
+        #news h1 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* 將主題列由 td 變為 th 拆開來做 */
+        #news th {
+            background: #39f;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* td 相關事宜部分一致設定 */
+        #news td {
+            font-size: 12px;
+            /* 行高，單位非 px 要注意 */
+            line-height: 2;
+        }
+
+        /* 消息主題的基數排，使用 class 來設定背景條紋顏色 */
+        .odd {
+            background: #ffc;
+        }
+
+        /* 消息主題的偶數排，使用 class 來設定背景條紋顏色 */
+        .even {
+            background: #ddd;
+        }
+
+        /* 圖片展示區 */
+        #photo {
+            width: 590px;
+            height: 460px;
+            border: 1px solid #999;
+            /* 浮動右側 */
+            float: right;
+
+            background: #333;
+            color: #ff0;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        #big {
+            /* 💡 紙本沒有說尺寸，數字要自己記一下 */
+            width: 570px;
+            height: 340px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 最新消息區 -->
+    <div id="news">
+        <h1>最新消息</h1>
+        <!-- 5*2 表格 : table>tr*5>td*2 -->
+        <table>
+            <tr>
+                <!-- 0201.text -->
+                <!-- 改為本身是粗體且水平置中的 th -->
+                <th>主題</th>
+                <th>發布日期</th>
+            </tr>
+            <tr class="odd">
+                <td><img src="../images/0201.png">公告全國技能競賽相關事宜</td>
+                <td>113/10/15</td>
+            </tr>
+            <tr class="even">
+                <td><img src="../images/0201.png">公告即測即評及發證相關事宜</td>
+                <td>113/10/15</td>
+            </tr>
+            <tr class="odd">
+                <td><img src="../images/0201.png">公告網頁設計修題相關事宜</td>
+                <td>113/10/15</td>
+            </tr>
+            <tr class="even">
+                <td><img src="../images/0201.png">公告網路架設應檢相關事宜</td>
+                <td>113/10/15</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 圖片展示區 -->
+    <div id="photo">
+        <!-- 3*4 表格 : table>tr*3>td*4 -->
+        <table>
+            <!-- 大圖片 -->
+            <tr>
+                <!-- 合併表格 -->
+                <td colspan="4">
+                    <!-- 大圖只有唯一一張，所以用 id -->
+                    <img id="big" src="../images/0202A.png" alt="">
+                </td>
+            </tr>
+            <!-- 小圖片們 -->
+            <tr>
+                <!-- 小圖有很多張，所以用 class -->
+                <td><img class="small" src="../images/0202B.png"></td>
+                <td><img class="small" src="../images/0203B.png"></td>
+                <td><img class="small" src="../images/0204B.png"></td>
+                <td><img class="small" src="../images/0205B.png"></td>
+            </tr>
+            <tr>
+                <!-- 0202.txt -->
+                <td>第30屆倫敦奧運</td>
+                <td>許淑淨奪舉重銀牌</td>
+                <td>第26屆深圳世大運</td>
+                <td>第27屆喀山世大運</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- 引入 jQuery -->
+    <script src="../others/jquery-2.1.4.min.js"></script>
+
+    <script>
+        // 方法1️⃣ 原生 js
+        // 1. 先抓大圖．小圖元素
+        const big = document.querySelector('#big')
+        const imgs = document.querySelectorAll('.small')
+        console.log(big)
+        console.log(imgs)
+
+        // 2. 使用 forEach 來對小圖們做循環迭代的動作
+        // [img.small, img.small, img.small, img.small] => imgs
+        imgs.forEach(function (img, index) {
+            // console.log(img, index)
+
+            // 3.點擊小圖可以抽換大圖的路徑
+            img.onclick = function () {
+                // index 預設為 0 ，index + 2 會從 2 開始跑
+                // console.log(index)
+                big.src = `../images/020${index + 2}A.png`
+            }
+        })
+
+        console.log('---------------------------------')
+
+        // 方法2️⃣ jQuery
+        // $() => 起手式，一個叫 $() 的函式
+        $('.small').each(function (index, img) {
+            $(img).on('click', function () {
+                // .attr('屬性名稱','設定值')
+                $('#big').attr('src', `../images/020${index + 2}A.png`)
+            })
+        })
+    </script>
+</body>
+
+</html>

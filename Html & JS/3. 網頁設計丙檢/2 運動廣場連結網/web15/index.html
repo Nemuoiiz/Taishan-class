@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勞動部勞動力發展署─運動廣場連結網</title>
+
+    <style>
+        body {
+            background-color: #42413C;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            /* collapse 為合併儲存格，可以把 td 間的縫隙消掉 */
+            border-collapse: collapse;
+        }
+
+        /* 不計分 */
+        table td {
+            /* 移除圖片多出來的空間 */
+            padding: 0;
+        }
+
+        /* 首頁區 */
+        #main {
+            width: 1024px;
+            height: 768px;
+            margin: auto;
+            background: #fff;
+        }
+
+        /* 網站標題區 */
+        #top {
+            width: 1024px;
+            height: 90px;
+            background: #00b0f0;
+        }
+
+        .logo {
+            width: 180px;
+            height: 90px;
+        }
+
+        .title {
+            font-size: 52px;
+            font-family: "標楷體";
+            color: #fff;
+            /* text-shadow: 陰影往右．陰影往下．模糊係數．顏色*/
+            text-shadow: 10px 10px 15px #333;
+
+        }
+
+
+        /* 選單區 */
+        #menu {
+            width: 1024px;
+            height: 25px;
+            /* background: lightcoral; */
+        }
+
+        #menu a {
+            color: #000;
+            background: #eee;
+            /* 去除底線 */
+            text-decoration: none;
+            /* 使範圍佔滿表格空間 */
+            display: block;
+        }
+
+        #menu a:hover {
+            font-size: 14px;
+            font-weight: bold;
+            color: #f00;
+            background: #ff0;
+            /* cursor: pointer; */
+        }
+
+
+        /* 網頁內容區 */
+        /* 注意 content 要設定 padding ; pdf 的 p.33（五）網頁內容區需含... */
+        #content {
+            /* box-sizing 可以讓 padding 算在寬度裡面 */
+            box-sizing: border-box;
+            width: 1024px;
+            height: calc(768px - 90px - 25px - 45px);
+            padding: 20px;
+            /* background: lawngreen; */
+
+            /* 不用 box-sizing 的做法
+            width: calc(1024px - 40px);
+            padding: 20px;
+            height: calc(768px - 90px - 25px - 45px - 40px); */
+
+            background: #fff;
+            color: #000;
+            font-size: 14px;
+        }
+
+        iframe {
+            /* 由 content 的寬高扣掉 上+下、左+右 各 40px 的 padding */
+            width: calc(1024px - 40px);
+            height: calc(768px - 90px - 25px - 45px - 40px);
+        }
+
+        /* 頁尾版權區 */
+        #footer {
+            width: 1024px;
+            height: 45px;
+            background: #ccc;
+
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 首頁區 -->
+    <div id="main">
+        <!-- 網站標題區 -->
+        <div id="top">
+            <!-- 一列兩欄 table>tr>td*2 -->
+            <table>
+                <tr>
+                    <td class="logo">
+                        <a href="./index.html">
+                            <img src="./images/logo.png" alt="運動廣場連結網-回首頁" title="運動廣場連結網-回首頁">
+                        </a>
+                    </td>
+                    <td class="title">運動廣場連結網</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 選單區 -->
+        <div id="menu">
+            <!-- table>tr>td*7 -->
+            <!-- 平均分配空間．td 也不會抖動 -->
+            <table style="table-layout: fixed;">
+                <tr>
+                    <!-- 💡 首頁連結的無須 target -->
+                    <td><a href="./index.html">首頁</a></td>
+                    <td><a href="./results/health.html" target="Nemui">健康天地</a></td>
+                    <td><a href="./results/basketball.html" target="Nemui">籃球介紹</a></td>
+                    <td><a href="./results/baseball.html" target="Nemui">棒球介紹</a></td>
+                    <td><a href="./results/swimming.html" target="Nemui">游泳介紹</a></td>
+                    <td><a href="./results/msgboard.html" target="Nemui">訪客留言</a></td>
+                    <td><a href="./results/reference.html" target="Nemui">資料來源</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 網頁內容區 -->
+        <div id="content">
+            <!-- iframe 的 name 與選單區 target 命名須一致 -->
+            <iframe src="./results/main.html" frameborder="0" name="Nemui"></iframe>
+        </div>
+
+        <!-- 頁尾版權區 -->
+        <div id="footer">
+            網頁設計及維護：15張宥青<br>
+            最近更新日期：2024/10/15
+        </div>
+    </div>
+</body>
+
+</html>
