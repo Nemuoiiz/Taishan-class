@@ -28,6 +28,7 @@
         <li>2</li>
         <li>3</li>
     </div>
+
     <script>
         // .children 下一層的所有元素
         const links = document.getElementById('links').children
@@ -39,6 +40,27 @@
             console.log(element.href)
             element.innerText = 'Google'
         }
+
+        // id 要加 #
+        const list1 = document.querySelector('#list1')
+        // .firstElementChild 下一層的第一個
+        // .classList.add()   新增 class
+        list1.firstElementChild.classList.add('text-blue')
+
+        // .lastElementChild 下一層的最後一個
+        // 寫法 1️⃣
+        // list1.lastElementChild.classList.add('text-blue', 'outline')
+        // 寫法 2️⃣
+        const classes = ['text-blue', 'outline']
+        list1.lastElementChild.classList.add(...classes)
+
+        // .className 取得所有 class ，以空白分隔
+        console.log(list1.lastElementChild.className)           // text-blue outline
+        console.log(list1.lastElementChild.classList)           // DOMTokenList(2)
+        console.log(list1.lastElementChild.classList[0])        // text-blue
+        console.log(list1.lastElementChild.classList[1])        // outline
+        console.log(list1.lastElementChild.classList.length)    // 2
+        console.log(list1.lastElementChild.classList.value)     // text-blue outline
     </script>
 </body>
 
