@@ -10,7 +10,7 @@
             color: blue;
         }
 
-        .border {
+        .outline {
             /* outline 不會被算進空間大小裡面 */
             outline: 1px solid black;
         }
@@ -22,15 +22,21 @@
         <a href="https://x.com">X</a>
         <a href="https://fb.com">FB</a>
     </div>
-
-    <div id="list1">
+    <ul id="list1">
         <li>1</li>
         <li>2</li>
         <li>3</li>
-    </div>
+    </ul>
+    <ul id="list2">
+        <li>1</li>
+        <li>2</li>
+        <li id="list2li3">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
 
     <script>
-        // .children 下一層的所有元素
+        // 1️⃣ .children 取得下一層的所有元素
         const links = document.getElementById('links').children
         for (const element of links) {
             // 兩種寫法都可以，下面比較常被使用
@@ -41,26 +47,51 @@
             element.innerText = 'Google'
         }
 
-        // id 要加 #
+        // id 要記得加 #
         const list1 = document.querySelector('#list1')
-        // .firstElementChild 下一層的第一個
+        // 2️⃣ .firstElementChild 取得下一層的第一個
         // .classList.add()   新增 class
         list1.firstElementChild.classList.add('text-blue')
 
-        // .lastElementChild 下一層的最後一個
-        // 寫法 1️⃣
+        // 3️⃣ .lastElementChild 取得下一層的最後一個
         // list1.lastElementChild.classList.add('text-blue', 'outline')
-        // 寫法 2️⃣
+        // 也可寫成：
         const classes = ['text-blue', 'outline']
         list1.lastElementChild.classList.add(...classes)
 
-        // .className 取得所有 class ，以空白分隔
+        // 🔸 .className 取得所有 class ，以空白分隔
         console.log(list1.lastElementChild.className)           // text-blue outline
         console.log(list1.lastElementChild.classList)           // DOMTokenList(2)
         console.log(list1.lastElementChild.classList[0])        // text-blue
         console.log(list1.lastElementChild.classList[1])        // outline
         console.log(list1.lastElementChild.classList.length)    // 2
         console.log(list1.lastElementChild.classList.value)     // text-blue outline
+
+        const list2li3 = document.getElementById('list2li3')
+        // Sibling 的意思是相鄰同層
+        // 4️⃣ .previousElementSibling 取得同一層的前一個
+        list2li3.previousElementSibling.classList.add('text-blue')
+        // 🔸 
+        // .classList.add()        新增 class
+        // .classList.remove()     移除 class
+        list2li3.previousElementSibling.classList.add('outline')
+        list2li3.previousElementSibling.classList.remove('outline')
+
+
+        // 5️⃣ .nextELementSibling 同一層的後一個
+        // list2li3.previousElementSibling.previousElementSibling.classList.toggle('text-blue')
+        // 上面太長可以寫成下列迴圈
+        let el = list2li3
+        for (let i = 0; i < 2; i++) {
+            el = el.nextElementSibling
+        }
+        // 🔸 .toggle 有就新增．沒有就移除
+        el.classList.toggle('text-blue')
+        // 🔸 .classList.contains() 有沒有包含
+        console.log(el.classList.contains('text-blue'))     // true
+
+        // 6️⃣ .parentElement() 取得上一層元素
+        list2li3.parentElement.style.background = 'gray'
     </script>
 </body>
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #countdown {
+            color: blue;
+            font-weight: bold;
+            font-family: "微軟正黑體";
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="countdown"></div>
+
+    <script>
+        // 製作倒數計時器：
+        //    使用者用 prompt() 輸入秒數數字
+        //    在網頁只能有一行字顯示 剩餘 X 秒，秒數不能變負數，顏色為藍色
+        //    時間到時文字變成紅色的 時間到
+        let timeLeft = parseInt(prompt("請輸入倒數秒數："));
+
+        // 選取倒數計時顯示的 DOM 元素
+        const countEl = document.getElementById('countdown');
+
+        // 更新倒數時間的函數
+        function updateCountdown() {
+            if (timeLeft > 0) {
+                countEl.innerText = `剩餘 ${timeLeft} 秒`;
+                timeLeft--;
+            } else {
+                countEl.innerText = "時間到";
+                countEl.style.color = "red";
+                clearInterval(timer);
+            }
+        }
+
+        // 每秒更新一次倒數計時
+        let timer = setInterval(updateCountdown, 1000);
+        updateCountdown()
+    </script>
+</body>
+
+</html>

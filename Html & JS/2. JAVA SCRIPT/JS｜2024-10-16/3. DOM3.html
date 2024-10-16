@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <p>青青子衿，悠悠我心。</p>
+    </div>
+
+    <div id="div2">
+        <p>但為君故，沉吟至今。</p>
+    </div>
+
+    <div id="div3">
+        <p>月明星稀，烏鵲南飛。</p>
+    </div>
+
+    <div id="div4">
+        <p>繞樹三匝，何枝可依。</p>
+    </div>
+
+    <div id="div5">
+        <p>短歌行。</p>
+    </div>
+
+    <ul id="list1">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+    </ul>
+    <ul id="list2">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        // 🔻新增
+        // 1️⃣
+        const div1 = document.getElementById('div1')
+        div1.innerHTML += '<p>+=innerHTML</p>'
+        // insertAdjacentHTML(位置, HTML)
+        // 以下有四種位置：
+        div1.insertAdjacentHTML('beforebegin', '<p>beforebegin</p>')
+        div1.insertAdjacentHTML('afterbegin', '<p>afterbegin</p>')
+        div1.insertAdjacentHTML('beforeend', '<p>beforeend</p>')
+        div1.insertAdjacentHTML('afterend', '<p>afterend</p>')
+
+        // 2️⃣
+        // insertAdjacentElement => 搭配 creatElement
+        const div2 = document.getElementById('div2')
+        const p2 = document.createElement('p')          // const 建立 p 標籤
+        p2.innerText = '11111'                          // 新增內容
+        div2.insertAdjacentElement('afterbegin', p2)    // 使其顯示
+
+        // 3️⃣
+        const div3 = document.getElementById('div3')
+        const p3 = document.createElement('p')          // const 建立 p 標籤
+        p3.innerText = 'p3'                             // 新增內容
+        const a3 = document.createElement('a')          // const 建立 a 標籤
+        a3.innerText = 'a3'                             // 新增內容
+        a3.href = '#'                                   // 新增連結
+        // .append()        下一層的後面，可以用 , 分隔多個元素
+        // .prepend()       下一層的前面，可以用 , 分隔多個元素
+        // .appendChild()   下一層的後面，只能放一個；沒有 .prependChild()
+        // 若不存在於 DOM 的東西，會放上去
+        div3.append(p3, a3)
+        // 已經存在於 DOM 的東西，則會移動位置  
+        div3.prepend(a3)
+
+        // 🔻刪除
+        const div4 = document.getElementById('div4')
+
+        // 💠 .remove() 刪除
+        // div4.children[0].remove()
+
+        // 💠 .removeChild() 較少使用
+        // () 內的東西一定要是裡面東西
+        // return 被刪掉的東西
+        // div4.removeChild(div4.firstElementChild)
+
+        // 清除所有內層元素
+        // 第1️⃣種：while
+        // while (div4.firstElementChild) {
+        //     // div4.firstElementChild.remove()
+        //     div4.removeChild(div4.firstElementChild)
+        // }
+
+        // 第2️⃣種：children
+        // const div4children = div4.children
+        // for (const element of div4children) {
+        //     element.remove()
+        // }
+
+        // 第3️⃣種：innerHTML
+        div4.innerHTML = ''
+
+        // 🔻取代
+        const div5 = document.getElementById('div5')
+        const img5 = document.createElement('img')
+        img5.src = 'https://github.com/wdaweb.png'
+        img5.width = 50
+        // 💠.replaceChild(新, 舊)
+        // 新的取代元素內舊的
+        // 如果新的東西不存在於 DOM 會放上去，已經存在於 DOM 的東西會移動位置
+        // 舊的一定要在元素內
+        div5.replaceChild(img5, div5.firstElementChild)
+
+        // 🔻移動
+        const list1 = document.getElementById('list1')
+        const list2 = document.getElementById('list2')
+        // 💠.insertBefore(A,B)
+        // A 放到 B 元素前面
+        // B 一定要在元素內
+        // 如果新的東西不存在於 DOM 會放上去，已經存在於 DOM 的東西會移動位置
+        // list1.insertBefore(list2.firstElementChild, list1.lastElementChild)
+        // ↪ 白話解釋：把 list2 的第一個 (1)，放到 lish1 的最後一個 (C) 前面
+
+        // B 如果是 null，會被放在最後面
+        list1.insertBefore(list2.firstElementChild, null)
+        // ↪ 白話解釋：把 list2 的第一個 (1)，放到 list1 的最後
+    </script>
+</body>
+
+</html>
