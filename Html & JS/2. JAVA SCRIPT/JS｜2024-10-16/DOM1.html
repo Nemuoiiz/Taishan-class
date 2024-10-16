@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-blue {
+            color: blue;
+        }
+
+        .text-blue::before {
+            content: '藍色';
+            color: skyblue;
+        }
+
+        .text-blue::first-letter {
+            color: hotpink;
+        }
+
+        .text-blue:hover {
+            color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="title">ABCDEFG</h1>
+    <h2>
+        <i>111</i>
+    </h2>
+    <h2>
+        <i>222</i>
+    </h2>
+    <h3 class="text-red">aaa</h3>
+    <h3 class="text-red">bbb</h3>
+    <h3 class="text-center">aaa</h3>
+    <h3 class="text-center">bbb</h3>
+    <h3 class="text-blue">aaa</h3>
+    <h3 class="text-blue">bbb</h3>
+
+    <script>
+        // 1️⃣ .getElementById()
+        // 使用 const 以避免不小心被取代
+        // title'EL' => element 元素
+        // 用 id 名稱抓取元素
+        const titleEL = document.getElementById('titleEL')
+        // .innerText = 元素內的文字
+        console.log(`title 的文字是 ${title.innerText}`)
+        title.innerText = '123456'
+
+        // 2️⃣ .getElementsByTagName()
+        // 用標籤名稱抓取元素
+        // Element's' 複數，抓下來的一定是陣列
+        const h2 = document.getElementsByTagName('h2')
+        // .innerHTML = 元素內的 HTML 的文字
+        // 會連空格都給，可用 .trim() 消除空格
+        console.log(h2[0].innerHTML.trim())
+        console.log(h2[0].innerText)
+        console.log(h2)
+
+        // 💡 取下來的 HTMLcollection => 不能使 array.forEach 會出現錯誤
+        // h2.forEach(element => {
+        //     console.log(element.innerHTML.trim())
+        // });
+
+        // 💡 取下來的 HTMLcollection => 可以使用 for of、for in
+        for (const element of h2) {
+            console.log(element.innerHTML.trim())
+        }
+
+        // 3️⃣ .getElementsByClassName()
+        // Element's' 取得為陣列，依然不能使用 forEach
+        const red = document.getElementsByClassName('text-red')
+        for (const element of red) {
+            // .style. 樣式名稱
+            // 取得或是修改行內樣式
+            element.style.color = 'red'
+            console.log(element.style.color)
+        }
+
+        // 4️⃣
+        // .querySelectorAll() 用選擇器取符合的 '全部' 東西
+        // .querySelector()    用選擇器取符合的 '一個' 東西
+        const center = document.querySelectorAll('.text-center')    // text-center 要加 .
+        for (const element of center) {
+            // 水平置中為例，有-號可以改成駝峰式命名法
+            element.style.textAlign = 'center'
+            element.style['text-align'] = 'center'
+        }
+
+        const blue = document.querySelectorAll('.text-blue')    // text-center 要加 .
+        for (const element of blue) {
+            console.log(element.style.color)    // 空的抓不到
+            // 5️⃣ getComputedStyle()
+            // 取得元素其最終樣式的值，唯讀
+            console.log(getComputedStyle(element).color)        // rgb(0, 0, 255)
+            // ⭕ 可以取 ::befor, ::after, ::first-letter
+            console.log(getComputedStyle(element, '::before').color)        // rgb(135, 206, 235)
+            console.log(getComputedStyle(element, '::first-letter').color)  // rgb(255, 105, 180)
+            // ❌ 取不到 :hover, :active
+            console.log(getComputedStyle(element, ':hover').color)  // 空的抓不到
+            console.log(getComputedStyle(element, ':active').color) // 空的抓不到
+
+        }
+    </script>
+</body>
+
+</html>

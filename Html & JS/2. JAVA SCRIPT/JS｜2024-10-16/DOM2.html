@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-blue {
+            color: blue;
+        }
+
+        .border {
+            /* outline 不會被算進空間大小裡面 */
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="links">
+        <a href="https://x.com">X</a>
+        <a href="https://fb.com">FB</a>
+    </div>
+
+    <div id="list1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </div>
+    <script>
+        // .children 下一層的所有元素
+        const links = document.getElementById('links').children
+        for (const element of links) {
+            // 兩種寫法都可以，下面比較常被使用
+            // element.setAttribute('href', 'https://google.com')
+            element.href = 'https://google.com'
+            // console.log(element.getAttribute('href'))
+            console.log(element.href)
+            element.innerText = 'Google'
+        }
+    </script>
+</body>
+
+</html>
