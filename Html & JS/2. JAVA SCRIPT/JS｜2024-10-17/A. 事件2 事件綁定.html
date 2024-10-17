@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 只對一個東西做綁定，使用 id -->
+    <input type="button" value="btn1" id="btn1">
+    <input type="button" value="unbind" id="unbind">
+    <hr>
+    <!-- 一次對多個做綁定，使用 class -->
+    <input type="button" value="my-btn" class="my-btn">
+    <input type="button" value="my-btn" class="my-btn">
+    <input type="button" value="my-btn" class="my-btn">
+
+    <script>
+        // 🔻只對一個東西做綁定
+        // .getElementById
+        const btn1 = document.getElementById('btn1')
+
+        // 寫法1️⃣
+        // btn.onclick = function () { }
+
+        // 寫法2️⃣
+        // const abc = () => { }
+        // btn.onclick = abc
+
+        // 寫法3️⃣．老師較常用的
+        btn1.onclick = () => {
+            btn1.value = 'ABCD'
+            alert('ABCD')
+        }
+
+        // 🔹清空或更改顯示文字
+        const unbind = document.getElementById('unbind')
+        unbind.onclick = () => {
+            // 用 null 清空綁定的內容
+            // btn1.onclick = null
+            btn1.onclick = () => {
+                // 更改 btn1 按鈕的顯示文字
+                btn1.value = 'EFGH'
+            }
+        }
+
+
+        // 🔻一次對多個做綁定
+        // .getElementsByClassName
+        const myBtn = document.getElementsByClassName('my-btn')
+        for (const element of myBtn) {
+            element.onclick = () => {
+                alert('1234')
+            }
+        }
+
+        // 無效的寫法，陣列必須一個一個加上事件，不能一次加
+        // my Btn.onclick = () => {
+        //     alert('1234')
+        // }
+    </script>
+</body>
+
+</html>

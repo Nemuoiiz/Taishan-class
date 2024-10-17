@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="on" id="on">
+    <input type="button" value="listener" id="listener">
+
+    <script>
+        const on = document.getElementById('on')
+        const listener = document.getElementById('listener')
+
+        // 💡 比較一下 on 與 listener 的差異
+
+        // 🔻 on 會被最後一個取代
+        on.onclick = () => {
+            alert('on 1')
+        }
+        on.onclick = () => {
+            alert('on 2')
+        }
+
+        // 🔻 listener 可綁定疊加，一次多個
+        listener.addEventListener('click', () => {
+            alert('listener 1')
+        })
+        listener.addEventListener('click', () => {
+            alert('listener 2')
+        })
+    </script>
+</body>
+
+</html>

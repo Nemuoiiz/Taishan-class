@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #div {
+            width: 100px;
+            height: 100px;
+            background: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="div"></div>
+    <p id="key"></p>
+
+    <!-- min 最小值、max 最大值、value 初始值、step 拖曳單位 -->
+    <input type="range" id="range" min="0" max="100" value="20" step="20">
+    <!-- 文字設為跟上列 value 同值 -->
+    <p id="range-value">20</p>
+
+    <!-- type 放在 form 裡面網頁會自動幫忙檢查格式 -->
+    <input type="email" id="email">
+
+    <script>
+
+        const div = document.getElementById('div')
+        // event 會包含事件的相關資訊
+        // div.onclick=(event)=>{}
+        // 於網頁點擊方塊後，主控台會出現資訊
+        div.addEventListener('click', (event) => {
+            console.log(event)
+        })
+
+        const key = document.getElementById('key')
+        // 鍵盤類的事件只能綁在 document
+        // documet.body = body
+        // documet.head = head
+        // documet.documentElement = html
+        // 於網頁按鍵盤，主控台會出現資訊
+        document.onkeydown = (event) => {
+            console.log(event)
+            // 以文字顯示按了什麼鍵
+            key.innerText = event.key
+        }
+
+        const range = document.getElementById('range')
+        const rangeValue = document.getElementById('range-value')
+        // 🔻input
+        range.addEventListener('input', () => {
+            console.log('range input')
+            // 拖曳時就已經改變數值，一路追蹤變化到最後
+            rangeValue.innerText = range.value
+        })
+
+        // 🔻change
+        range.addEventListener('change', () => {
+            console.log('range chanege')
+            // 拖曳放開後才會改變數值，只於最終改變
+            // rangeValue.innerText = range.value
+        })
+
+
+        const email = document.getElementById('email')
+        email.addEventListener('focus', () => {
+            console.log('focus')
+        })
+        email.addEventListener('blur', () => {
+            console.log('blur')
+        })
+        email.addEventListener('change', () => {
+            console.log('change')
+        })
+        email.addEventListener('input', () => {
+            console.log('input')
+            // 如果 email 值包含 @gmail.com 時
+            if (email.value.includes('@gmail.com')) {
+                // 顯示樣式 outline 綠色粗框
+                email.style.outline = '5px solid green'
+            } else {
+                // 顯示樣式 outline 紅色粗框
+                email.style.outline = '5px solid red'
+            }
+        })
+    </script>
+</body>
+
+</html>

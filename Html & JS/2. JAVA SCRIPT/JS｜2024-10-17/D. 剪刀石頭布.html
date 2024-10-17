@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="✌️" id="scissors">
+    <input type="button" value="✊" id="rock">
+    <input type="button" value="🖐️" id="paper">
+
+    <hr>
+
+    <span>贏：<span id="winCount">0</span></span>
+    <span>輸：<span id="loseCount">0</span></span>
+    <span>平手：<span id="tieCount">0</span></span>
+
+    <ul>
+        <li></li>
+    </ul>
+
+
+    <script>
+        // 猜拳按鈕元素
+        const scissors = document.getElementById('scissors')
+        const rock = document.getElementById('rock')
+        const paper = document.getElementById('paper')
+
+        // 勝負次數元素
+        const winCountEl = document.getElementById('winCount')
+        const loseCountEl = document.getElementById('loseCount')
+        const tieCountEl = document.getElementById('tieCount')
+
+        // 勝負初始為 0
+        let winCount = 0
+        let loseCount = 0
+        let tieCount = 0
+
+
+
+    </script>
+</body>
+
+</html>

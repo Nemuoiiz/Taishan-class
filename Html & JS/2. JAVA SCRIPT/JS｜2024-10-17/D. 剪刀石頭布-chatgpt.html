@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="✌️" id="scissors">
+    <input type="button" value="✊" id="rock">
+    <input type="button" value="🖐️" id="paper">
+
+    <hr>
+
+    <span>輸：<span id="loseCount">0</span></span>
+    <span>贏：<span id="winCount">0</span></span>
+    <span>平手：<span id="drawCount">0</span></span>
+
+    <br><br>
+
+    <span>你出 <span id="playerChoice">-</span>，</span>
+    <span>電腦出 <span id="computerChoice">-</span></span>
+    <span><span id="result"></span></span>
+
+    <script>
+        // 取得按鈕
+        const scissors = document.getElementById('scissors')
+        const rock = document.getElementById('rock')
+        const paper = document.getElementById('paper')
+
+        // 取得顯示元素
+        const playerChoiceDisplay = document.getElementById('playerChoice')
+        const computerChoiceDisplay = document.getElementById('computerChoice')
+        const resultDisplay = document.getElementById('result')
+
+        const winCountDisplay = document.getElementById('winCount')
+        const loseCountDisplay = document.getElementById('loseCount')
+        const drawCountDisplay = document.getElementById('drawCount')
+
+        // 記錄勝負平次數
+        let winCount = 0
+        let loseCount = 0
+        let drawCount = 0
+
+        // 電腦隨機選擇
+        function getComputerChoice() {
+            const choices = ['scissors', 'rock', 'paper']
+            const randomIndex = Math.floor(Math.random() * choices.length)
+            return choices[randomIndex]
+        }
+
+        // 比較結果
+        function getResult(player, computer) {
+            if (player === computer) {
+                return 'draw'
+            } else if (
+                (player === 'scissors' && computer === 'paper') ||
+                (player === 'rock' && computer === 'scissors') ||
+                (player === 'paper' && computer === 'rock')
+            ) {
+                return 'win'
+            } else {
+                return 'lose'
+            }
+        }
+
+        // 更新結果並記錄
+        function playGame(playerChoice) {
+            const computerChoice = getComputerChoice()
+            const result = getResult(playerChoice, computerChoice)
+
+            // 更新顯示
+            playerChoiceDisplay.innerText = convertToEmoji(playerChoice)
+            computerChoiceDisplay.innerText = convertToEmoji(computerChoice)
+            resultDisplay.innerText = result === 'win' ? '，你贏了！' : result === 'lose' ? '，你輸了！' : '，平手！'
+
+            // 更新計數
+            if (result === 'win') {
+                winCount++
+                winCountDisplay.innerText = winCount
+            } else if (result === 'lose') {
+                loseCount++
+                loseCountDisplay.innerText = loseCount
+            } else {
+                drawCount++
+                drawCountDisplay.innerText = drawCount
+            }
+        }
+
+        // 將文字轉成對應的表情符號
+        function convertToEmoji(choice) {
+            if (choice === 'scissors') return '✌️'
+            if (choice === 'rock') return '✊'
+            if (choice === 'paper') return '🖐️'
+        }
+
+        // 綁定按鈕事件
+        scissors.addEventListener('click', () => playGame('scissors'))
+        rock.addEventListener('click', () => playGame('rock'))
+        paper.addEventListener('click', () => playGame('paper'))
+    </script>
+</body>

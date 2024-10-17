@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #out {
+            width: 300px;
+            height: 300px;
+            background: rgb(250, 242, 158);
+        }
+
+        #in {
+            width: 100px;
+            height: 100px;
+            background: rgb(189, 228, 215);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://x.com" id="link">X</a>
+    <div id="out">
+        <div id="in"></div>
+    </div>
+
+    <script>
+        const link = document.getElementById('link')
+        link.onclick = (event) => {
+            // 🔸 .preventDefault()
+            // 停止預設動作（這邊是停止了推特網站的跳頁）
+            // 可用在停止連結跳頁、停止表單送出
+            event.preventDefault()
+        }
+
+        // ---- 比較 out 包著 in 時，點擊不同區塊間的兩者差異 ---------------
+        const divOut = document.getElementById('out')
+        const divIn = document.getElementById('in')
+
+        // 🔻 點擊大方塊時只會點到 out
+        divOut.onclick = (event) => {
+            // event.target 指向觸發事件的元素（點擊時到底點到誰）
+            // event.currentTarget 指向 eventListener 依附的元素
+            console.log('out', event.target)
+        }
+        // 🔻 由於 out 包著 in，基於事件的冒泡機制
+        //    點擊小方塊時會同時點到 out 跟 in
+        // 💡 事件冒泡：指的是事件逐層往上傳遞，直到根元素的過程
+        divIn.onclick = (event) => {
+            console.log('in', event.target)
+            // 💡 停止冒泡機制，點擊小方塊時就只會點到 in
+            event.stopPropagation()
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="按鈕" class="my-btn">
+    <input type="button" value="按鈕" class="my-btn">
+    <input type="button" value="按鈕" class="my-btn">
+    <input type="button" value="按鈕" class="my-btn">
+    <input type="button" value="移除按鈕" id="unbind">
+
+    <script>
+        // 🔸 為了移除跟新增時的 function 一致
+        // 必須另外命名
+        const hi = () => {
+            alert(1234)
+        }
+
+        // 🔻.querySelectorAll 放多個 css 的選擇器
+        const myBtn = document.querySelectorAll('.my-btn')
+        for (const element of myBtn) {
+            // 'click' 為指定事件
+            // element.addEventListener('click', () => {
+            //     alert(1234)
+            // })
+
+            // 🔸 移除跟新增時的 function 必須一致
+            element.addEventListener('click', hi)
+        }
+
+        // 🔻.querySelector 放單一 css 的選擇器，id 要加 #
+        const unbind = document.querySelector('#unbind')
+        unbind.addEventListener('click', () => {
+            for (const element of myBtn) {
+                // .removeEventListener：移除 'click' 指定事件
+                // 🔸 移除跟新增時的 function 必須一致
+                element.removeEventListener('click', hi)
+            }
+        })
+
+    </script>
+</body>
+
+</html>
