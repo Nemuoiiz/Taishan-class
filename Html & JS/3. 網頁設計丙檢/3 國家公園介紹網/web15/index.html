@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國家公園介紹網</title>
+
+    <style>
+        #main {
+            width: 1024px;
+            height: 768px;
+            margin: auto;
+
+            /* background: lightblue; */
+        }
+
+        #top {
+            width: 1000px;
+            height: 65px;
+            margin: auto;
+            /* 讓 gif 圖片水平對齊 */
+            text-align: center;
+
+            background: #0000FF;
+        }
+
+        #left {
+            width: 200px;
+            height: calc(768px - 65px - 20px);
+            float: left;
+            margin-left: 12px;
+
+            background: #0FF;
+        }
+
+        .menu {
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu img {
+            width: 120px;
+            height: 40px;
+        }
+
+        .menu img:hover {
+            /* 💡 很重要要記起來 */
+            filter: hue-rotate(120deg);
+        }
+
+        /*
+        兩種方式新增空白間隔
+        1️⃣ 一個可以加上 a 類別去增加 2、4、6 高度
+        2️⃣ 替 2、4、6 加上 &nbsp
+        */
+        .a {
+            height: 20px;
+        }
+
+        .download {
+            text-align: center;
+        }
+
+        #right {
+            width: calc(1000px - 200px);
+            height: calc(768px - 65px - 20px);
+            float: right;
+            margin-right: 12px;
+
+            /* background: red; */
+        }
+
+        marquee {
+            width: 800px;
+            height: 29px;
+
+            /* 以下考題沒有要求： */
+            /* 處理掉 marquee 下方的空白 */
+            vertical-align: middle;
+            /* 使 marquee 的文字垂直置中 */
+            line-height: 29px;
+        }
+
+        iframe {
+            width: 800px;
+            height: calc(768px - 65px - 20px - 29px);
+            /* background: pink; */
+        }
+
+        #footer {
+            width: 1000px;
+            height: 20px;
+            clear: both;
+            margin: auto;
+
+            font-family: "標楷體";
+            font-size: 16px;
+            color: #000;
+            text-align: center;
+            /* background: pink; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="top">
+            <a href="./index.html"><img src="./images/park0307.gif" alt=""></a>
+        </div>
+        <div id="left">
+            <!-- table>tr*7>td -->
+            <table class="menu">
+                <tr>
+                    <td>
+                        <a href="./park/yangmingshan.html" target="iframe">
+                            <img src="./images/park0302.jpg" alt="陽明山國家公園" title="陽明山國家公園">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- 空白字元 -->
+                    <td class="a">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="./park/sheipa.html" target="iframe">
+                            <img src="./images/park0303.jpg" alt="雪霸國家公園" title="雪霸國家公園">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- 空白字元 -->
+                    <td class="a">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><img src="./images/park0304.jpg" alt="太魯閣國家公園" title="太魯閣國家公園"></td>
+                </tr>
+                <tr>
+                    <td class="a">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><img src="./images/park0305.jpg" alt="玉山國家公園" title="玉山國家公園"></td>
+                </tr>
+            </table>
+            <!-- 💡 替 a 屬性加上 downlaod 才能產生下載功能-->
+            <p class="download"><a href="./others/park.mp3" download>檔案下載</a></p>
+        </div>
+        <div id="right">
+            <marquee>歡迎進入國家公園介紹網，本網站有詳細的國家公園介紹哦！</marquee>
+            <iframe src="./others/main.html" frameborder="0" name="iframe"></iframe>
+        </div>
+        <div id="footer">
+            網頁設計及維護：15張宥青、最近更新日期：2024/10/28
+        </div>
+    </div>
+</body>
+
+</html>
