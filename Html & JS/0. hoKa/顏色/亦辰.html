@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .block {
+            width: 300px;
+            height: 300px;
+            background-color: rgb(0, 0, 0);
+            border: 5px solid black;
+            box-shadow: 5px 5px 10px black;
+            margin-bottom: 20px;
+        }
+
+        .color-value {
+            display: inline-block;
+            width: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block"></div>
+    <div class="red">
+        <input type="range" name="red" id="red" min="0" max="255" value="0" class="input-color">
+        <span class="color-value">0</span>
+        <button class="random-btn">隨機</button>
+    </div>
+    <div class="green">
+        <input type="range" name="green" id="green" min="0" max="255" value="0" class="input-color">
+        <span class="color-value">0</span>
+        <button class="random-btn">隨機</button>
+    </div>
+    <div class="blue">
+        <input type="range" name="blue" id="blue" min="0" max="255" value="0" class="input-color">
+        <span class="color-value">0</span>
+        <button class="random-btn">隨機</button>
+    </div>
+
+    <script>
+        const inputColor = document.querySelectorAll('.input-color')
+        const block = document.querySelector('.block')
+        const colorValue = document.querySelectorAll('.color-value')
+        const randomBtn = document.querySelectorAll('.random-btn')
+        //let rgb
+
+        inputColor.forEach((element, index) => {
+            element.oninput = () => {
+                colorValue[index].textContent = element.value
+                block.style.backgroundColor = getColor();
+            }
+        })
+
+        const blue = document.getElementById('blue')
+
+        randomBtn.forEach((element, index) => {
+            element.onclick = () => {
+                colorValue[index].textContent = Math.floor(Math.random() * 255);
+                inputColor[index].value = colorValue[index].textContent;
+                block.style.backgroundColor = getColor();
+                //block.style.backgroundColor = rgb
+            }
+        })
+
+        function getColor() {
+            var rgb = `rgb(${colorValue[0].textContent},${colorValue[1].textContent},${colorValue[2].textContent})`
+            //block.style.backgroundColor = rgb
+            return rgb
+        }
+
+    </script>
+
+
+</body>
+
+</html>
