@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 丙檢第二題 jQuery 延伸 -->
+    <script>
+        // let name = 'hello'
+        // var name = 'hello'
+
+        // person 物件
+        person = {
+            name: 'Nemui',
+            age: 20,
+            sayMyname: function () {
+                console.log(`我的名字叫 ${this.name}！`)
+            },
+
+            // ES6 寫法，與上面相同
+            sayMyname() {
+                console.log(`我的名字叫 ${this.name}！`)
+            },
+
+            sayMyname2: () => {
+                console.log(`我的名字叫 ${this.name}！`)
+            }
+        }
+
+        person.sayMyname()      // 一般函式可以抓到 person 的 name
+        person.sayMyname2()     // 箭頭函式沒有自己的作用域，抓不到 name
+
+    </script>
+</body>
+
+</html>
