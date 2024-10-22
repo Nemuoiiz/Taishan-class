@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顏色選擇器</title>
+    <style>
+        div {
+            border: 1px solid black;
+            width: 400px;
+            padding: 1rem;
+        }
+
+        #color-area {
+            border: 1px solid black;
+            margin: 1rem;
+            width: 200px;
+            height: 200px;
+            background: rgb(0, 0, 0);
+        }
+
+        span {
+            display: inline-block;
+            width: 2rem;
+        }
+
+        p {
+            display: inline-block;
+        }
+
+        .rag {
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="color-area"></div>
+    <div>
+        <p>R:</p>
+        <input class="rag" type="range" min="0" max="255" value="0">
+        <span>0</span>
+        <input class="btn" type="button" value="隨機">
+
+        <br>
+        <p>G:</p>
+        <input class="rag" type="range" min="0" max="255" value="0">
+        <span>0</span>
+        <input class="btn" type="button" value="隨機">
+
+        <br>
+        <p>B:</p>
+        <input class="rag" type="range" min="0" max="255" value="0">
+        <span>0</span>
+        <input class="btn" type="button" value="隨機">
+    </div>
+    <script>
+        // 隨機函數
+        const rand = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        const div = document.getElementById('color-area')
+
+        const inputs = document.getElementsByClassName('rag')
+        const span = document.getElementsByTagName('span')
+        const btns = document.getElementsByClassName('btn')
+
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('input', () => {
+                span[i].innerText = `${inputs[i].value}`
+                div.style.background = `rgb(${inputs[0].value},${inputs[1].value},${inputs[2].value})`;
+            })
+
+            btns[i].addEventListener('click', () => {
+                inputs[i].value = `${rand(0, 255)}`
+                span[i].innerText = `${inputs[i].value}`
+                div.style.background = `rgb(${inputs[0].value},${inputs[1].value},${inputs[2].value})`;
+            })
+        }
+    </script>
+</body>
+
+</html>
