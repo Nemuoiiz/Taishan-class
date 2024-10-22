@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB 顏色選擇器 (各色隨機)</title>
+    <style>
+        /* body {
+            text-align: center;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+        } */
+
+        .color-box {
+            width: 200px;
+            height: 200px;
+            /* margin: 20px auto; */
+            border: 1px solid #ccc;
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
+            font-size: 18px;
+        }
+
+        .sliders {
+            width: 300px;
+            /* margin: 0 auto; */
+        }
+
+        /* 
+        .slider-container {
+            margin-bottom: 15px;
+        } */
+
+        /* input[type="range"] {
+            width: 100%;
+        } */
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>RGB 顏色選擇器</h1>
+
+    <div class="color-box" id="colorBox"></div>
+
+    <div class="sliders">
+        <div class="slider-container">
+            <label for="redRange">紅色 (R):</label>
+            <input type="range" id="redRange" min="0" max="255" value="127" oninput="updateColor()">
+            <button onclick="randomizeRed()">隨機</button>
+        </div>
+        <div class="slider-container">
+            <label for="greenRange">綠色 (G):</label>
+            <input type="range" id="greenRange" min="0" max="255" value="127" oninput="updateColor()">
+            <button onclick="randomizeGreen()">隨機</button>
+        </div>
+        <div class="slider-container">
+            <label for="blueRange">藍色 (B):</label>
+            <input type="range" id="blueRange" min="0" max="255" value="127" oninput="updateColor()">
+            <button onclick="randomizeBlue()">隨機</button>
+        </div>
+    </div>
+
+    <script>
+        function updateColor() {
+            const r = document.getElementById('redRange').value;
+            const g = document.getElementById('greenRange').value;
+            const b = document.getElementById('blueRange').value;
+            const colorBox = document.getElementById('colorBox');
+            const rgbColor = `rgb(${r}, ${g}, ${b})`;
+            colorBox.style.backgroundColor = rgbColor;
+            colorBox.textContent = rgbColor;
+        }
+
+        function randomizeRed() {
+            const randomR = Math.floor(Math.random() * 256);
+            document.getElementById('redRange').value = randomR;
+            updateColor();
+        }
+
+        function randomizeGreen() {
+            const randomG = Math.floor(Math.random() * 256);
+            document.getElementById('greenRange').value = randomG;
+            updateColor();
+        }
+
+        function randomizeBlue() {
+            const randomB = Math.floor(Math.random() * 256);
+            document.getElementById('blueRange').value = randomB;
+            updateColor();
+        }
+    </script>
+</body>
+
+</html>
