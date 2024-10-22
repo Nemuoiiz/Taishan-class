@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            text-align: center;
+            background: #ffc;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-family: "標楷體";
+            font-weight: bolder;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        /* 小圖 */
+        .img {
+            width: 60px;
+            height: 45px;
+            border: medium solid #00f;
+        }
+
+        .img:hover {
+            border: medium solid #0ff;
+            /* 手指 */
+            cursor: pointer;
+        }
+
+        #big {
+            width: 400px;
+            height: 300px;
+            border: 5px solid #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>蘭嶼賞魚去</h1>
+    <!-- table>tr*3>td*5 -->
+    <table>
+        <tr>
+            <td colspan="5"><img id="big" src="../images/0551.jpg"></td>
+        </tr>
+        <tr>
+            <td><br></td>
+            <td><br></td>
+            <td><br></td>
+            <td><br></td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td><img class="img" src="../images/0551.jpg" alt=""></td>
+            <td><img class="img" src="../images/0552.jpg" alt=""></td>
+            <td><img class="img" src="../images/0553.jpg" alt=""></td>
+            <td><img class="img" src="../images/0554.jpg" alt=""></td>
+            <td><img class="img" src="../images/0555.jpg" alt=""></td>
+        </tr>
+    </table>
+
+    <!-- 💡 引入 jQuery -->
+    <!-- <script src="../jquery-2.1.4.min.js"></script> -->
+
+    <script>
+        // ✅ 原生 JS 寫法 --------------------------------
+
+        const big = document.querySelector('#big')
+        const imgs = document.querySelectorAll('.img')
+
+        imgs.forEach(function (img, index) {
+            img.addEventListener('click', function () {
+                big.src = `../images/055${index + 1}.jpg`
+            })
+        })
+
+
+        // ✅ jQuery 寫法 --------------------------------
+
+        $('.img').each(function (index, img) {
+            $(this).click(function () {
+                $('#big').attr('src', `../images/055${index + 1}.jpg`)
+            })
+        })
+    </script>
+</body>
+
+</html>
