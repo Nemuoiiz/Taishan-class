@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: "Iansui";
+        }
+
+        #color-box {
+            width: 200px;
+            height: 200px;
+            border: 5px inset #ccc;
+            border-radius: 10px;
+            margin: 40px;
+        }
+
+        div {
+            margin: 10px 25px;
+        }
+
+        input {
+            margin: 0px 10px;
+        }
+
+        span {
+            display: inline-block;
+            width: 35px;
+        }
+
+        button {
+            color: #fff;
+            background: #999;
+            border: 3px solid #999;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: #555;
+            background: #ccc;
+            border: 3px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顯示顏色的方塊 -->
+    <div id="color-box"></div>
+
+    <!-- 紅色列 -->
+    <div>
+        紅色
+        <input id="rRange" type="range" max="255" min="0" value="0">
+        <span id="rValue">0</span>
+        <button id="randomR">隨機</button>
+    </div>
+
+    <!-- 綠色列 -->
+    <div>
+        綠色
+        <input id="gRange" type="range" max="255" min="0" value="0">
+        <span id="gValue">0</span>
+        <button id="randomG">隨機</button>
+    </div>
+
+    <!-- 藍色列 -->
+    <div>
+        藍色
+        <input id="bRange" type="range" max="255" min="0" value="0">
+        <span id="bValue">0</span>
+        <button id="randomB">隨機</button>
+    </div>
+
+
+    <script>
+        // 把元素叫下來
+        // 色彩顯示區塊
+        const colorBox = document.getElementById('color-box')
+        // 控制 RGB 顏色的 input 滑桿
+        const rRange = document.getElementById('rRange')
+        const gRange = document.getElementById('gRange')
+        const bRange = document.getElementById('bRange')
+        // 對應當前 RGB 顏色的數字顯示
+        const rValue = document.getElementById('rValue')
+        const gValue = document.getElementById('gValue')
+        const bValue = document.getElementById('bValue')
+        // 把按鈕叫下來
+        const randomR = document.getElementById('randomR');
+        const randomG = document.getElementById('randomG');
+        const randomB = document.getElementById('randomB');
+
+        // 設定 colorNow 為函數的 function 來更新顯示顏色
+        function colorNow() {
+            // input 滑桿的數值 (最大為 255, 最小為 0)
+            const r = rRange.value
+            const g = gRange.value
+            const b = bRange.value
+
+            // span 顯示數字更改
+            rValue.innerText = r
+            gValue.innerText = g
+            bValue.innerText = b
+
+            colorBox.style.backgroundColor = `rgb(${r},${g},${b})`
+        }
+
+        // 隨機數字
+        function getRandomValue() {
+            return Math.floor(Math.random() * 256);
+        }
+
+        // 隨機紅色按鈕
+        randomR.addEventListener('click', function () {
+            const randomR = getRandomValue()
+            rRange.value = randomR  // 更新紅色滑桿
+            colorNow()
+        })
+
+        // 隨機綠色按鈕
+        randomG.addEventListener('click', function () {
+            const randomG = getRandomValue()
+            gRange.value = randomG  // 更新綠色滑桿
+            colorNow()
+        })
+
+        // 隨機藍色按鈕
+        randomB.addEventListener('click', function () {
+            const randomB = getRandomValue()
+            bRange.value = randomB  // 更新藍色滑桿
+            colorNow()
+        })
+
+        // 監聽 input 滑桿值以觸發 colorNow() 更新顏色
+        rRange.addEventListener('input', colorNow);
+        gRange.addEventListener('input', colorNow);
+        bRange.addEventListener('input', colorNow);
+
+        colorNow()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: "Iansui";
+        }
+
+        #color-box {
+            width: 200px;
+            height: 200px;
+            border: 5px inset #ccc;
+            border-radius: 10px;
+            margin: 40px;
+        }
+
+        div {
+            margin: 10px 25px;
+        }
+
+        input {
+            margin: 0px 10px;
+        }
+
+        span {
+            display: inline-block;
+            width: 35px;
+        }
+
+        button {
+            color: #fff;
+            background: #999;
+            border: 3px solid #999;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: #555;
+            background: #ccc;
+            border: 3px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顯示顏色的方塊 -->
+    <div id="color-box"></div>
+
+    <!-- 紅色列 -->
+    <div>
+        紅色
+        <input id="rRange" type="range" max="255" min="0" value="0">
+        <span id="rValue">0</span>
+        <button id="randomR">隨機</button>
+    </div>
+
+    <!-- 綠色列 -->
+    <div>
+        綠色
+        <input id="gRange" type="range" max="255" min="0" value="0">
+        <span id="gValue">0</span>
+        <button id="randomG">隨機</button>
+    </div>
+
+    <!-- 藍色列 -->
+    <div>
+        藍色
+        <input id="bRange" type="range" max="255" min="0" value="0">
+        <span id="bValue">0</span>
+        <button id="randomB">隨機</button>
+    </div>
+
+
+    <script>
+        // 把元素叫下來
+        const colorBox = document.getElementById('color-box');
+        const ranges = {
+            r: document.getElementById('rRange'),
+            g: document.getElementById('gRange'),
+            b: document.getElementById('bRange')
+        };
+        const values = {
+            r: document.getElementById('rValue'),
+            g: document.getElementById('gValue'),
+            b: document.getElementById('bValue')
+        };
+        const buttons = {
+            r: document.getElementById('randomR'),
+            g: document.getElementById('randomG'),
+            b: document.getElementById('randomB')
+        };
+
+        // 更新顏色與顯示數字的函數
+        function updateColor() {
+            const r = ranges.r.value;
+            const g = ranges.g.value;
+            const b = ranges.b.value;
+
+            values.r.innerText = r;
+            values.g.innerText = g;
+            values.b.innerText = b;
+
+            colorBox.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        // 產生隨機數字
+        function getRandomValue() {
+            return Math.floor(Math.random() * 256);
+        }
+
+        // 給 RGB 滑桿和隨機按鈕設置事件
+        ['r', 'g', 'b'].forEach(color => {
+            ranges[color].addEventListener('input', updateColor);
+            buttons[color].addEventListener('click', () => {
+                ranges[color].value = getRandomValue();
+                updateColor();
+            });
+        });
+
+        // 初始更新顏色
+        updateColor();
+    </script>
+</body>
+
+</html>
