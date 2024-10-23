@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #square {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="square"></div>
+
+    紅色
+    <input class="range" type="range" max="255" min="0" value="0">
+    <span class="text">000</span>
+    <input type="button" value="隨機" class="random">
+
+    <br>
+
+    綠色
+    <input class="range" type="range" max="255" min="0" value="0">
+    <span class="text">000</span>
+    <input type="button" value="隨機" class="random">
+
+    <br>
+
+    藍色
+    <input class="range" type="range" max="255" min="0" value="0">
+    <span class="text">000</span>
+    <input type="button" value="隨機" class="random">
+
+
+    <script>
+        const range = document.getElementsByClassName('range')
+        const text = document.getElementsByClassName('text')
+        const random = document.getElementsByClassName('random')
+        const square = document.getElementById('square')
+
+        for (let i = 0; i < 3; i++) {
+            range[i].addEventListener('input', () => {
+                // .padStart(位數,'補數') => 填充字串於開頭
+                // .padEnd(位數,'補數')   => 填充字串於結尾
+                text[i].innerText = range[i].value.padStart(3, '0')
+                square.style.background = `rgb(${range[0].value}, ${range[1].value}, ${range[2].value})`
+            })
+            random[i].addEventListener('click', () => {
+                range[i].value = Math.round(Math.random() * 255)
+                text[i].innerText = range[i].value.padStart(3, '0')
+                square.style.background = `rgb(${range[0].value}, ${range[1].value}, ${range[2].value})`
+            })
+        }
+    </script>
+</body>
+
+</html>

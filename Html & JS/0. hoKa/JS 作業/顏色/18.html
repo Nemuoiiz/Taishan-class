@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色调节器</title>
+    <style>
+        .color {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="color" id="color"></div>
+
+    <input type="range" min="0" max="255" value="0" oninput="updateColor()" id="one"><span>0</span><br>
+    <input type="range" min="0" max="255" value="0" oninput="updateColor()" id="two"><br>
+    <input type="range" min="0" max="255" value="0" oninput="updateColor()" id="three"><br>
+
+
+    <script>
+        function updateColor() {
+            const one = document.getElementById('one').value
+            const two = document.getElementById('two').value
+            const three = document.getElementById('three').value
+            const colors = rgb(${ one }, ${ two }, ${ three })
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 20px;
+            font-family: "Courier New";
+        }
+
+        #colorBox{
+            width: 350px;
+            height: 350px;
+            border: 2mm ridge rgba(11, 114, 114, 0.646);
+            border-radius: 25% 10%;
+            box-shadow: 5px 5px 5px gray;
+        }
+
+        p{
+            display: inline-block;
+        }
+
+        span{
+            display: inline-block;
+            width: 3rem;
+        }
+
+
+        .rgb{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="colorBox"></div>
+
+    <br>
+
+    <p>R</p>
+    <input type="range"  class="rgb" min="0" max="255" value="67" >
+    <span>67</span>
+    <input type="button" value="隨機" class="btn">
+
+    <br>
+
+    <p>G</p>
+    <input type="range"  class="rgb" min="0" max="255" value="91" >
+    <span>91</span>
+    <input type="button" value="隨機" class="btn">
+
+    <br>
+
+    <p>B</p>
+    <input type="range"  class="rgb" min="0" max="255" value="254" >
+    <span>254</span>
+    <input type="button" value="隨機" class="btn">
+
+    <script>
+        const rand = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        const div = document.getElementById('colorBox')
+        const span = document.getElementsByTagName('span')
+        const input = document.getElementsByClassName('rgb')
+        const btn = document.getElementsByClassName('btn')
+
+        for (let i = 0; i < input.length; i++) {
+            input[i].addEventListener('input', () => {
+                span[i].innerText = `${input[i].value}`
+                div.style.background = `rgb(${input[0].value},${input[1].value},${input[2].value})`;
+            })
+
+            btn[i].addEventListener('click', () => {
+                input[i].value = `${rand(0, 255)}`
+                span[i].innerText = `${input[i].value}`
+                div.style.background = `rgb(${input[0].value},${input[1].value},${input[2].value})`;
+            })
+        }
+
+        const initializeColorBox = () => {
+        div.style.background = `rgb(${input[0].value},${input[1].value},${input[2].value})`;
+        span[0].innerText = `${input[0].value}`; // 顯示 R 的值
+        span[1].innerText = `${input[1].value}`; // 顯示 G 的值
+        span[2].innerText = `${input[2].value}`; // 顯示 B 的值
+    };
+
+    // 調用初始化函數
+    initializeColorBox();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div {
+        width: 100px;
+        height: 100px;
+        background: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div"></div>
+    <br />
+    <table>
+      <tr>
+        <td><input type="range" id="range1" min="0" max="255" value="0" /></td>
+        <td><p id="range-value">0</p></td>
+        <td><input type="button" value="隨機" id="random" /></td>
+      </tr>
+      <tr>
+        <td><input type="range" id="range2" min="0" max="255" value="0" /></td>
+        <td><p id="range1-value">0</p></td>
+        <td><input type="button" value="隨機" id="random" /></td>
+      </tr>
+      <tr>
+        <td><input type="range" id="range3" min="0" max="255" value="0" /></td>
+        <td><p id="range2-value">0</p></td>
+        <td><input type="button" value="隨機" id="random" /></td>
+      </tr>
+    </table>
+    <script>
+      const div = document.getElementById("div");
+      const random = document.getElementById("random");
+
+      const rangeValue = document.getElementById("range-value");
+      const range1 = document.getElementById("range1");
+      range1.addEventListener("input", () => {
+        rangeValue.innerText = range1.value;
+      });
+
+      const rangeValue1 = document.getElementById("range1-value");
+      const range2 = document.getElementById("range2");
+      range2.addEventListener("input", () => {
+        rangeValue1.innerText = range2.value;
+      });
+
+      const rangeValue2 = document.getElementById("range2-value");
+      const range3 = document.getElementById("range3");
+      range3.addEventListener("input", () => {
+        rangeValue2.innerText = range3.value;
+      });
+
+      div.parentElement.style.background = (225, 225, 225);
+    </script>
+  </body>
+</html>

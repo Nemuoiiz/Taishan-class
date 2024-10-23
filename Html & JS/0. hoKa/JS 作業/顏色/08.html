@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pickcolor {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="pickcolor"></div><br>
+    <input type="range" min="0" max="255" value="0" step="1" id="range1"> <span id="num1">0</span> <input type="button"
+        value="隨機" id="random1"><br>
+    <input type="range" min="0" max="255" value="0" step="1" id="range2"> <span id="num2">0</span> <input type="button"
+        value="隨機" id="random2"><br>
+    <input type="range" min="0" max="255" value="0" step="1" id="range3"> <span id="num3">0</span> <input type="button"
+        value="隨機" id="random3">
+
+    <script>
+        const pickcolor = document.getElementById('pickcolor')
+        const range1 = document.getElementById('range1')
+        const num1 = document.getElementById('num1')
+
+        range1.addEventListener('input', () => {
+            num1.innerText = range1.value
+        })
+        range1.addEventListener('change', () => {
+            pickcolor.style.backgroundColor = `rgb(${range1.value},${range2.value},${range3.value})`
+        })
+
+        const range2 = document.getElementById('range2')
+        const num2 = document.getElementById('num2')
+        range2.addEventListener('input', () => {
+            num2.innerText = range2.value
+        })
+        range2.addEventListener('change', () => {
+            pickcolor.style.backgroundColor = `rgb(${range1.value},${range2.value},${range3.value})`
+        })
+
+        const range3 = document.getElementById('range3')
+        const num3 = document.getElementById('num3')
+        range3.addEventListener('input', () => {
+            num3.innerText = range3.value
+        })
+        range3.addEventListener('change', () => {
+            pickcolor.style.backgroundColor = `rgb(${range1.value},${range2.value},${range3.value})`
+        })
+
+        const random1 = document.getElementById('random1')
+        random1.onclick = () => {
+            const r1 = Math.round(Math.random() * 255)
+            range1.value = r1
+            num1.innerText = range1.value
+            pickcolor.style.backgroundColor = `rgb(${range1.value},${range2.value},${range3.value})`
+        }
+        const random2 = document.getElementById('random2')
+        random2.onclick = () => {
+            const r2 = Math.round(Math.random() * 255)
+            range2.value = r2
+            num2.innerText = range2.value
+            pickcolor.style.backgroundColor = `rgb(${range1.value},${range2.value},${range3.value})`
+        }
+        const random3 = document.getElementById('random3')
+        random3.onclick = () => {
+            const r3 = Math.round(Math.random() * 255)
+            range3.value = r3
+            num3.innerText = range3.value
+            pickcolor.style.backgroundColor = `rgb(${range1.value},${range2.value},${range3.value})`
+        }
+    </script>
+</body>
+
+</html>

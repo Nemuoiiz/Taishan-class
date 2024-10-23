@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #colorDisplay {
+            width: 150px;
+            height: 150px;
+            background-color: rgb(0, 0, 0);
+        }
+
+        #rgbRanges {
+            display: flex;
+            flex-flow: column;
+            align-items: start;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="colorDisplay"></div>
+    <div id="rgbRanges">
+        <input type="range" name="r" id="input_r" value="0">
+        <input type="range" name="r" id="input_g" value="0">
+        <input type="range" name="r" id="input_b" value="0">
+    </div>
+
+    <script>
+
+        const colorDisplay = document.querySelector('#colorDisplay');
+        const inputs = document.querySelectorAll('input');
+
+        for (const input of inputs) {
+            console.log(input)
+
+            input.oninput = function () {
+                colorDisplay.style.backgroundColor = `rgb(${input_r.value * 2.55}, ${input_g.value * 2.55}, ${input_b.value * 2.55})`;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: "Iansui";
+        }
+
+        #color-box {
+            width: 200px;
+            height: 200px;
+            border: 5px inset #ccc;
+            border-radius: 10px;
+            margin: 40px;
+        }
+
+        div {
+            margin: 10px 25px;
+        }
+
+        input {
+            margin: 0px 10px;
+        }
+
+        span {
+            display: inline-block;
+            width: 35px;
+        }
+
+        button {
+            color: #fff;
+            background: #999;
+            border: 3px solid #999;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: #555;
+            background: #ccc;
+            border: 3px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="color-box"></div>
+
+    <div>
+        紅色
+        <input id="rRange" type="range" max="255" min="0" value="0">
+        <span id="rValue">0</span>
+        <button id="randomR">隨機</button>
+    </div>
+
+    <div>
+        綠色
+        <input id="gRange" type="range" max="255" min="0" value="0">
+        <span id="gValue">0</span>
+        <button id="randomG">隨機</button>
+    </div>
+
+    <div>
+        藍色
+        <input id="bRange" type="range" max="255" min="0" value="0">
+        <span id="bValue">0</span>
+        <button id="randomB">隨機</button>
+    </div>
+
+
+    <script>
+
+        const colorBox = document.getElementById('color-box')
+        const rRange = document.getElementById('rRange')
+        const gRange = document.getElementById('gRange')
+        const bRange = document.getElementById('bRange')
+        const rValue = document.getElementById('rValue')
+        const gValue = document.getElementById('gValue')
+        const bValue = document.getElementById('bValue')
+        const randomR = document.getElementById('randomR');
+        const randomG = document.getElementById('randomG');
+        const randomB = document.getElementById('randomB');
+
+        function colorNow() {
+            const r = rRange.value
+            const g = gRange.value
+            const b = bRange.value
+
+            rValue.innerText = r
+            gValue.innerText = g
+            bValue.innerText = b
+
+            colorBox.style.backgroundColor = `rgb(${r},${g},${b})`
+        }
+
+        function getRandomValue() {
+            return Math.floor(Math.random() * 256);
+        }
+
+        randomR.addEventListener('click', function () {
+            const randomR = getRandomValue()
+            rRange.value = randomR
+            colorNow()
+        })
+
+        randomG.addEventListener('click', function () {
+            const randomG = getRandomValue()
+            gRange.value = randomG
+            colorNow()
+        })
+
+        randomB.addEventListener('click', function () {
+            const randomB = getRandomValue()
+            bRange.value = randomB
+            colorNow()
+        })
+
+        rRange.addEventListener('input', colorNow);
+        gRange.addEventListener('input', colorNow);
+        bRange.addEventListener('input', colorNow);
+
+        colorNow()
+    </script>
+</body>
+
+</html>

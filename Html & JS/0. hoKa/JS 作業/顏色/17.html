@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #square {
+            width: 150px;
+            height: 150px;
+            background: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="square"></div>
+    <input type="range" id="r" min="0" max="255" value="0" step="1">
+    <span id="rValue">0</span>
+    <input type="button" value="隨機" id="rbtn"><br>
+
+    <input type="range" id="g" min="0" max="255" value="0" step="1">
+    <span id="gValue">0</span>
+    <input type="button" value="隨機" id="gbtn"><br>
+
+
+    <input type="range" id="b" min="0" max="255" value="0" step="1">
+    <span id="bValue">0</span>
+    <input type="button" value="隨機" id="bbtn"><br>
+
+    <script>
+        const square = document.getElementById('square')
+        const rRange = document.getElementById('r')
+        const rValue = document.getElementById('rValue')
+
+        rRange.addEventListener('input', () => {
+            rValue.innerText = rRange.value
+            square.style['background-color'] = (`rgb(${rRange.value}, ${gRange.value}, ${bRange.value})`)
+        })
+        const gRange = document.getElementById('g')
+        const gValue = document.getElementById('gValue')
+        gRange.addEventListener('input', () => {
+            gValue.innerText = gRange.value
+            square.style['background-color'] = (`rgb(${rRange.value}, ${gRange.value}, ${bRange.value})`)
+        })
+
+        const bRange = document.getElementById('b')
+        const bValue = document.getElementById('bValue')
+        bRange.addEventListener('input', () => {
+            bValue.innerText = bRange.value
+            square.style['background-color'] = (`rgb(${rRange.value}, ${gRange.value}, ${bRange.value})`)
+        })
+
+        const rbtn = document.getElementById('rbtn')
+        rbtn.onclick = () => {
+            rRange.value = Math.round(Math.random() * 255)
+            rValue.innerText = rRange.value
+            square.style['background-color'] = (`rgb(${rRange.value}, ${gRange.value}, ${bRange.value})`)
+        }
+
+        const gbtn = document.getElementById('gbtn')
+        gbtn.onclick = () => {
+            gRange.value = Math.round(Math.random() * 255)
+            gValue.innerText = gRange.value
+            square.style['background-color'] = (`rgb(${rRange.value}, ${gRange.value}, ${bRange.value})`)
+        }
+
+        const bbtn = document.getElementById('bbtn')
+        bbtn.onclick = () => {
+            bRange.value = Math.round(Math.random() * 255)
+            bValue.innerText = bRange.value
+            square.style['background-color'] = (`rgb(${rRange.value}, ${gRange.value}, ${bRange.value})`)
+        }
+
+
+    </script>
+</body>
+
+</html>

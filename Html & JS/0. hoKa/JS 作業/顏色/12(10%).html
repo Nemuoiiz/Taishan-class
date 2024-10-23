@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>隨機rgb</title>
+      <style>
+            #block{
+                  width: 300px;
+                  height: 300px;
+                  background:lightblue;
+                  margin: auto;
+            }
+
+            p{
+                  margin: auto;
+                  text-align: center;
+            }
+
+      </style>
+</head>
+<body>
+      <form>
+            <p id="block"></p>
+            <br>
+            <p id="p1">
+                  <input type="range" class="ran">
+                  <input type="button" value="隨機" class="btn">
+            </p>
+
+            <p id="p2">
+                  <input type="range" class="ran">
+                  <input type="button" value="隨機" class="btn">
+            </p>
+
+            <p id="p3">
+                  <input type="range" class="ran">
+                  <input type="button" value="隨機" class="btn">
+            </p>
+      </form>
+      <script>
+            const block = document.querySelector('#block')
+            const ran = document.getElementsByClassName('.ran')
+            const btn = document.getElementsByClassName('.btn')
+
+            const p1 = document.getElementById('p1')
+            const p2 = document.getElementById('p2')
+            const p3 = document.getElementById('p3')
+
+            // btn.onclick = () => {
+            //       block.
+            // }
+
+            ran.onclick = (math) => {
+                  console.log( Math.round(Math.random() * 256))    
+            }
+      </script>
+</body>
+</html>

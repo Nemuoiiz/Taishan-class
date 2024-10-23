@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        #colorBox {
+            width: 300px;
+            height: 300px;
+            background: #000;
+            display: inline-block
+        }
+
+        tr:nth-child(1),
+        tr:nth-child(5) {
+            text-align: center;
+            /* background-color: aquamarine; */
+        }
+
+        td:nth-child(1) {
+            width: 180px;
+        }
+
+        table {
+            width: 260px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <table>
+        <tr>
+            <td colspan="2">
+                <div id="colorBox"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="range" id="rangeR" min="0" max="255" value="0">
+                <span id="valueR">0</span>
+            </td>
+            <td>
+                <button id="randomR">隨機 R</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="range" id="rangeG" min="0" max="255" value="0">
+                <span id="valueG">0</span>
+            </td>
+            <td>
+                <button id="randomG">隨機 G</button>
+            </td>
+        </tr>
+        <tr>
+            <td> <input type="range" id="rangeB" min="0" max="255" value="0">
+                <span id="valueB">0</span>
+            </td>
+            <td>
+                <button id="randomB">隨機 B</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><button id="randomS">隨便來一個啦</button></td>
+        </tr>
+    </table>
+
+
+    <script>
+        const colorBox = document.getElementById('colorBox')
+        const rangeR = document.getElementById('rangeR')
+        const rangeG = document.getElementById('rangeG')
+        const rangeB = document.getElementById('rangeB')
+        const valueR = document.getElementById('valueR')
+        const valueG = document.getElementById('valueG')
+        const valueB = document.getElementById('valueB')
+
+        // 改變 Box 的顯示顏色
+        function changeColor() {
+            let r = parseInt(rangeR.value)
+            let g = parseInt(rangeG.value)
+            let b = parseInt(rangeB.value)
+            colorBox.style.background = `rgb(${r}, ${g}, ${b})`
+
+            valueR.innerText = r
+            valueG.innerText = g
+            valueB.innerText = b
+        }
+
+        // 聽到按按鈕: 生隨機數 R & G & B // 怎麼辦 為什麼他們會三個一起變 // 原來是我忘記指定元素來監聽了
+        document.getElementById('randomR').addEventListener('click', () => {
+            rangeR.value = Math.floor(Math.random() * 256)
+            changeColor()
+        })
+        document.getElementById('randomG').addEventListener('click', () => {
+            rangeG.value = Math.floor(Math.random() * 256)
+            changeColor()
+        })
+        document.getElementById('randomB').addEventListener('click', () => {
+            rangeB.value = Math.floor(Math.random() * 256)
+            changeColor()
+        })
+        document.getElementById('randomS').addEventListener('click', () => {
+            rangeR.value = Math.floor(Math.random() * 256)
+            rangeG.value = Math.floor(Math.random() * 256)
+            rangeB.value = Math.floor(Math.random() * 256)
+            changeColor()
+        })
+
+        // 滑桿改數
+        rangeR.addEventListener('input', changeColor);
+        rangeG.addEventListener('input', changeColor);
+        rangeB.addEventListener('input', changeColor);
+
+
+
+    </script>
+</body>
+
+</html>

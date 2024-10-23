@@ -29,42 +29,60 @@
         <span class="color-value">0</span>
         <button class="random-btn">隨機</button>
     </div>
-    <div class="blue">
-        <input type="range" name="blue" id="blue" min="0" max="255" value="0" class="input-color">
-        <span class="color-value">0</span>
-        <button class="random-btn">隨機</button>
-    </div>
     <div class="green">
         <input type="range" name="green" id="green" min="0" max="255" value="0" class="input-color">
         <span class="color-value">0</span>
         <button class="random-btn">隨機</button>
     </div>
-
+    <div class="blue">
+        <input type="range" name="blue" id="blue" min="0" max="255" value="0" class="input-color">
+        <span class="color-value">0</span>
+        <button class="random-btn">隨機</button>
+    </div>
 
     <script>
         const inputColor = document.querySelectorAll('.input-color')
         const block = document.querySelector('.block')
         const colorValue = document.querySelectorAll('.color-value')
         const randomBtn = document.querySelectorAll('.random-btn')
-        let rgb
 
-        inputColor.forEach((element, index) => {
+        // 用forEach 
+        // inputColor.forEach((element, index) => {
+        //     element.oninput = () => {
+        //         colorValue[index].textContent = element.value
+        //         checkColor();
+        //     }
+        // })
+
+        // randomBtn.forEach((element, index) => {
+        //     element.onclick = () => {
+        //         colorValue[index].textContent = Math.floor(Math.random() * 255);
+        //         inputColor[index].value = colorValue[index].textContent;
+        //         checkColor();
+        //     }
+        // })
+
+        // 用for of，搭配entries ->可以獲得index、element，要用陣列去接
+        for (const [index, element] of inputColor.entries()) {
             element.oninput = () => {
                 colorValue[index].textContent = element.value
                 checkColor();
             }
-        })
+        }
 
-        randomBtn.forEach((element, index) => {
+        for (const [index, element] of randomBtn.entries()) {
             element.onclick = () => {
                 colorValue[index].textContent = Math.floor(Math.random() * 255);
                 inputColor[index].value = colorValue[index].textContent;
                 checkColor();
             }
-        })
+        }
 
         function checkColor() {
-            rgb = `rgb(${colorValue[0].textContent},${colorValue[1].textContent},${colorValue[2].textContent})`
+            const [red, green, blue] = colorValue
+            let rgb = `rgb(${red.textContent},${green.textContent},${blue.textContent})`
+            // rgb = `rgb(${colorValue[0].textContent},${colorValue[1].textContent},${colorValue[2].textContent})`
+
             block.style.backgroundColor = rgb
         }
 
