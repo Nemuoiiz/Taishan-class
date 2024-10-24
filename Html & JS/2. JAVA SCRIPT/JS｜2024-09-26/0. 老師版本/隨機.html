@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // for (let i = 1; i <= 100; i++) {
+    //   const num = Math.round(Math.random() * 50)
+    //   console.log(num)
+    //   if (num === 0) {
+    //     console.log('有 0')
+    //   } else if (num === 100) {
+    //     console.log('有 100')
+    //   }
+    // }
+
+    const rand = (min, max) => {
+      return Math.round(Math.random() * (max - min)) + min
+    }
+
+    for (let i = 1; i <= 100; i++) {
+      console.log(rand(50, 100))
+    }
+  </script>
+</body>
+</html>

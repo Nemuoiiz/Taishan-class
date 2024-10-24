@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #out {
+      width: 300px;
+      height: 300px;
+      background: grey;
+    }
+
+    #in {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="https://x.com" id="link">X</a>
+  <div id="out">
+    <div id="in"></div>
+  </div>
+  <script>
+    const link = document.getElementById('link')
+    link.onclick = (event) => {
+      event.preventDefault()
+    }
+
+    const divOut = document.getElementById('out')
+    const divIn = document.getElementById('in')
+    divOut.onclick = (event) => {
+      console.log('out', event.target)
+    }
+    divIn.onclick = (event) => {
+      console.log('in', event.target)
+      event.stopPropagation()
+    }
+  </script>
+</body>
+
+</html>

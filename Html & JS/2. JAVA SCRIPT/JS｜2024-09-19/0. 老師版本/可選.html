@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const userA = {
+      name: 'AAA',
+      info: {
+        email: 'aaa@gmail.com',
+        // address: {
+        //   city: '',
+        //   postcode: ''
+        // }
+      }
+    }
+    const userB = {
+      name: 'BBB',
+      info: {
+        email: 'bbb@gmail.com',
+        address: {
+          city: '新北市',
+          postcode: 243
+        }
+      }
+    }
+    console.log(userA.name)
+    console.log(userA.info.email)
+    console.log(userA.info.address)
+    console.log(userA.info.address?.city)
+    console.log(userA.info.address?.postcode)
+
+    const games = [
+      { name: 'FINAL FANTASY XVI', price: 1490 },
+      {
+        name: 'FF7', price: 995,
+        dev: {
+          name: 'SE'
+        }
+      },
+      {
+        name: 'KINGDOM HEARTS', price: 2990,
+        dev: {
+          name: 'SE'
+        }
+      }
+    ]
+    for (let i = 0; i < games.length; i++) {
+      document.write(`
+        <p>
+          ${games[i].name}，價格: ${games[i].price}，
+          開發商為 ${games[i].dev?.name || '??????'}
+        </p>
+      `)
+    }
+  </script>
+</body>
+</html>
