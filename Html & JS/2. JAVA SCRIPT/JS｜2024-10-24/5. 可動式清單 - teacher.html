@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 使用 form 包起來可以連動使用鍵盤 enter 來 submit -->
+    <form id="form">
+        <input type="text" name="aaa" id="input-text">
+        <input type="submit" value="新增">
+    </form>
+    <ul id="list"></ul>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+
+    <script>
+        $('#form').submit(function (event) {
+            const value = $('#input-text').val()
+
+            if (value.length > 0) {
+                $('#list').append(`
+                <li>
+                    ${value}
+                    <input type="button" value="⛌" class="btn-del">
+                </li>
+                `)
+
+                // 清空
+                $('#input-text').val('')
+            }
+
+            // 💡 jQ 事件的 return false
+            // 等於同時執行了以下兩個動作：
+            // .preventDefault() 阻止默認行為（ex.表單提交）
+            // .stopPropagation() 阻止事件繼續冒泡到其他元素上
+            return false
+        })
+
+
+        $('#list').on('click', '.btn-del', function () {
+            $(this).parent().remove()
+        })
+
+
+    </script>
+
+</body>
+
+</html>

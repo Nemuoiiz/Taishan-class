@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *,
+        body {
+            margin: 10px;
+            font-family: "微軟正黑體";
+            font-size: 20px;
+        }
+
+        #input-text {
+            width: 300px;
+            height: 40px;
+            border: 1px solid #555;
+            border-radius: 50px;
+            padding-left: 20px;
+        }
+
+        #add {
+            width: 70px;
+            height: 50px;
+            border: 1px solid lightblue;
+            border-radius: 40px;
+            color: #fff;
+            background: lightblue;
+            cursor: pointer;
+        }
+
+        li {
+            margin: 10px 0px
+        }
+
+        button {
+            margin: 0px 10px;
+            font-weight: bold;
+            color: lightcoral;
+            background: none;
+            border: none;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" id="input-text">
+        <input type="submit" value="新增" id="add">
+    </form>
+
+    <ul id="text"></ul>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+
+    <script>
+
+        // 🔻使用 <form> + <input type="button"> 的版本
+        // // 點擊新增按鈕時，將輸入框的文字新增為 <ul> 中的一個 <li> 項目
+        // $('#add').on('click', function () {
+        //     const inputText = $('#input-text').val()     // 取得輸入框的值
+        //     if (inputText) {
+        //         // li 要在 ul 裡面因此使用 .append
+        //         $('#text').append('<li>' + inputText + '<button class="delete-btn">⛌</button></li>')
+        //         // 清空輸入框
+        //         $('#input-text').val('')
+
+        //         $('.delete-btn').on('click', function () {
+        //             $(this).parent().remove()  // 刪除按鈕所在的 <li> 元素
+        //         })
+        //     }
+        // })
+
+        // 🔻 使用 <form> + <input type="submit"> 的版本
+        // 點擊新增按鈕時，將輸入框的文字新增為 <ul> 中的一個 <li> 項目
+        $('#form').submit(function (event) {
+            const inputText = $('#input-text').val()     // 取得輸入框的值
+
+            if (inputText.length > 0) {
+                // li 要在 ul 裡面因此使用 .append
+                $('#text').append('<li>' + inputText + '<button class="delete-btn">⛌</button></li>')
+
+                // 清空輸入框
+                $('#input-text').val('')
+            }
+            return false
+        })
+
+        // 🥨 '刪除按鈕' 的綁定設置
+
+        // ❌ 無法刪除的錯誤寫法
+        // $('.delete-btn').on('click', function () {
+        //     $(this).parent().remove()
+        // })
+        // $('.delete-btn').on('click', ...) 為靜態的事件綁定方法
+        // 這意味著它只會對已經存在於 DOM 中的 .delete-btn 元素有效
+        // 而在動態新增 li 元素時，新增的 .delete-btn 並沒有綁定到這個事件
+
+        // ✔️ 使用 '事件委派' 來處理刪除按鈕的點擊事件
+        // 將刪除按鈕的事件綁定到 #text 父元素上
+        // 這樣即使是動態生成的 .delete-btn 也能正常觸發
+        $('#text').on('click', '.delete-btn', function () {
+            $(this).parent().remove()
+        })
+
+    </script>
+</body>
+
+</html>

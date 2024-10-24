@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        hr {
+            margin: 50px 0px;
+            border: 1px dashed #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="list1">
+        <p>LIST 1</p>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+    </div>
+    <hr>
+    <div id="list2">
+        <p>LIST 2</p>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+    </div>
+    <hr>
+    <div id="list3">
+        <p>LIST 3</p>
+        <ul>
+            <li id="list3liA">A</li>
+            <li id="list3liB">B</li>
+            <li id="list3liC">C</li>
+            <li id="list3liD">D</li>
+            <li id="list3liE">E</li>
+            <li id="list3liF">F</li>
+            <li id="list3liG">G</li>
+        </ul>
+    </div>
+    <hr>
+    <div id="list4" style="padding:20px">
+        <div style="padding:20px">
+            <p>LIST 4</p>
+            <ul>
+                <li>A</li>
+                <li id="list4liB">B</li>
+                <li>C</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+
+        // 1️⃣ .find(選擇器) = 在有所內層找符合的
+        $('#list1').find('li').eq(1).css('color', 'red')
+        // 上列 jQ 寫成原生 JS 的寫法
+        // document.querySelector('#list1').querySelectorAll('li')[1].style.color = 'red'
+
+        // 2️⃣ .children(選擇器)
+        // 在下一層找符合的，() 內沒寫選擇器就是全部
+        $('#list2').children('li').text('123')                  // #list2 下一層只有 <p> 跟 <ul>，無 <li> 因此沒有作用
+        $('#list2').children('p').css('color', 'red')           // #list2 下一層 <p> 加上紅字
+        $('#list2').children().css('border', '1px solid black') // #list2 下一層的全部加上 1px 黑色實線框框
+
+        // 3️⃣
+        // .prev()              同一層內前一個：  可以用選擇器過濾，必須符合選擇器才能作用
+        // .prevAll()           同一層內前面所有：可以用選擇器過濾，必須符合選擇器才能作用
+        // .preUntill(選擇器)   同一層內前面到選擇器間所有，不含頭尾🔸找不到選擇器時 = .preAll()
+
+        // .next()              同一層內後一個：  可以用選擇器過濾，必須符合選擇器才能作用
+        // .nextAll()           同一層內後面所有：可以用選擇器過濾，必須符合選擇器才能作用
+        // .nextUntill(選擇器)  同一層內後面到選擇器間所有，不含頭尾🔸找不到選擇器時 = .nextAll()
+
+        // .siblings(選擇器)    同一層其他：可以用選擇器過濾，必須符合選擇器才能作用
+
+        const list3liD = $('#list3liD')
+
+        list3liD.prev('#list3liB').css('color', 'red')  // list3liD 前一個是 #list3liC，#list3liB 不符合因此不作用
+        list3liD.next().css('color', 'red')             // list3liD 後一個是 #list3liE，直接作用
+
+        list3liD.prevAll().css('background', 'pink')        // list3liD 前面的所有套用'粉色背景'
+        list3liD.nextAll().css('background', 'lightblue')   // list3liD 後面的所有套用'藍色背景'
+
+        list3liD.prevUntil('#list3liB').css('text-align', 'center') // list3liD 到 list3liB 之間套用'置中'，不含頭尾
+        list3liD.nextUntil('#list3liF').css('text-align', 'center') // list3liD 到 list3liF 之間套用'置中'，不含頭尾
+
+        list3liD.siblings().css('font-style', 'italic') // list3liD 外的其他套用'斜體字樣'
+
+        // 4️⃣
+        // .parent()                上一層，可以用選擇器過濾，必須符合選擇器才能作用
+        // .parents()               一層直到 <html>，可以用選擇器過濾，必須符合選擇器才能作用
+        // .parentsUntill(選擇器)   往上到選擇器間所有，不含頭尾🔸找不到選擇器時 = .parents()
+        // .closest(選擇器)         往上找符合選擇器的第一個
+
+        const list4liB = $('#list4liB')
+        list4liB.parent().css('background', 'skyblue')              // list4liB 上一層為 ul 背景套用
+        list4liB.parents('div').css('background', 'lightpink')      // list4liB 直到 <html> 背景套用
+        // list4liB 往上到 <body> 之間都套用字重，但不含頭尾的 list4liB 和 <body>
+        // 但有往上作用於 ul，因此 list <ul> 內清單文字也會套用字重
+        list4liB.parentsUntil('body').css('font-weight', 'bold')
+        list4liB.closest('div').css('border', '1px solid black')    // list4liB 往上找到第一個 div 加上 1px 黑色實線框框
+    </script>
+
+</body>
+
+</html>

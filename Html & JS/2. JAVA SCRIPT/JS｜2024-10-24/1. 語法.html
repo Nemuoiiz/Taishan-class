@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .text-red {
+            color: red;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .bg-gray {
+            background: gray;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 id="title">111AAA</h1>
+    <p class="text">111</p>
+    <p class="text">222</p>
+
+    <div id="div">
+        <p>總經理持續周圍動物，顧客先後傳奇文學事。</p>
+    </div>
+
+    <a href="https://fb.com" class="link">FB</a>
+    <a href="https://x.com" class="link">X</a>
+
+    <ul id="list1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+
+    <ul id="list2">
+        <li class="a">a</li>
+        <li class="b">b</li>
+        <li class="b">b</li>
+        <li class="c">c</li>
+    </ul>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+
+    <script>
+
+        // 1️⃣ .text() = .innertext
+        // () 內有參數 = 修改
+        // () 內沒參數 = 取值
+
+        // 🔸 id
+        console.log($('#title').text())     // 111AAA
+        $('#title').text('222BBB')
+
+        // 如果有多個，取道的文字會連在一起，修改會一起改
+        // 🔸 class
+        console.log($('.text').text())      // 111222
+        $('.text').text('222BBB')
+
+        // 2️⃣ .html() = innerHTML
+        // () 內有參數 = 修改
+        // () 內沒參數 = 取值
+        console.log($('#div').html().trim())    // <p>總經理持續周圍動物，顧客先後傳奇文學事。</p>
+        $('#div').html('<i>AAABBBCCC</i>')
+
+        // 3️⃣ .eq() 指定第幾個
+        // 使用 [] 後面不能用 jQ 語法，只能接原生 JS 
+        // $('.link')[0].text() <--- 錯誤
+        console.log($('.link')[0].innerText)    // 原生 JS 寫法     // FB
+        console.log($('.link').eq(0).text())    // 正確 jQ 寫法     // FB
+
+        // 4️⃣ .length
+        console.log($('.link').length)
+
+        // 5️⃣
+        // .attr(屬性, 值)  修改屬性
+        // .attr(屬性)      取屬性
+        $('.link').eq(0).attr('target', '_blank')     // 修改為用新分頁打開 link
+        console.log($('.link').eq(0).attr('href'))    // https://fb.com
+
+        // 🔸 修改多個屬性用 {}
+        $('.link').eq(1).attr({ href: 'https://github.com', target: '_blank' })
+        $('.link').eq(1).text('GitHub')
+
+        // 6️⃣ 
+        // .first() = eq(0) 第一個
+        // .last()  = 最後一個
+        // .css(樣式, 值) = 修改樣式
+        // .css(樣式)     = 取樣式
+        $('#list1 li').first().css('color', 'red')
+        console.log($('#list1 li').first().css('color'))    // rgb(255, 0, 0)
+        $('#list1 li').last().css({ textAlign: 'center', color: 'blue', 'background-color': 'gray' })
+
+        // 7️⃣
+        // .filter(選擇器)  = 在目前結果中過濾 '符合的'
+        // .not(選擇器)     = 在目前結果中過濾 '不符合的'
+        // .addClass()      = 新增 Class，可用空白分隔多個
+        // .removeClass()   = 移除 Class，可用空白分隔多個
+        // .hasClass()      = 有沒有 Class，可用空白分隔多個
+        // .toggleClass()   = 切換 　Class，可用空白分隔多個
+        $('#list2 li').filter('.a').addClass('text-red text-center bg-gray').removeClass('text-center') // 增加紅字灰底置中、移除置中
+        console.log($('#list2 li').filter('.b').hasClass('text-red'))   // 有沒有 '紅字 class' => false
+        $('#list2 li').not('.a').addClass('text-center')                // 除了 a 項外都 text-align:center
+    </script>
+</body>
+
+</html>

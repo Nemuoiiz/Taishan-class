@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        hr {
+            margin: 50px 0px;
+            border: 1px dashed #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 點擊 -->
+    <input type="button" value="按鈕" id="btn">
+
+    <hr>
+
+    <!-- 解除 -->
+    <input type="text" id="input-text">
+    <input type="button" value="解除" id="input-text-off">
+    <p id="text"></p>
+
+    <hr>
+
+    <!-- 新增 -->
+    <input type="button" value="新增" id="btn-add">
+    <div id="target">
+        <p>aaaaa</p>
+    </div>
+
+    <hr>
+
+    <div id="btns">
+        <input type="button" value="按鈕" class="btn">
+    </div>
+
+    <!-- ---------------------------------------- -->
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+
+        // 1️⃣ 
+        // .click(funtion)          綁定事件
+        // .click()                 觸發事件 (程式幫你點按鈕)
+        // .on(事件名稱, function)  綁定事件
+        // .one(事件名稱, function) 綁定事件，只執行一次
+        // .off(事件名稱, function) 解除綁定事件，沒有指定 function 的話就會全部解除
+
+        // 🔸 按鈕點擊
+        // jQ 的 function 盡量不要用箭頭函數，才能用 this
+        $('#btn').click(function (event) {
+            // this 代表觸發事件的東西
+            // .val() 輸入欄位的 value
+            // () 有東西 = 修改
+            // () 沒東西 = 取值
+            $(this).val('點過了')
+        })
+
+        // 🔸 按鈕解綁
+        // 設定名為 setText 的 function
+        // 將輸入框的內容顯示在 #text 的元素中
+        function setText() {
+            // $(this).val() 是取得當前觸發事件的元素的值
+            // 因為後面有綁定函式，因此這裡的 this 會指向輸入框 #input-text
+            $('#text').text($(this).val())
+        }
+        // #input-text 綁定 setText 函式
+        $('#input-text').on('input', setText)
+        // 點擊 #input-text-off 按鈕時取消綁定
+        $('#input-text-off').on('click', function () {
+            $('#input-text').off('input', setText)
+        })
+
+        // 🔸 新增
+        $('#btn-add').click(function () {
+            // .append()        裡面後面
+            // .prepend()       裡面前面
+            // .insertBefore()  外面前面
+            // .insertAfter()   外面後面
+            // HTML 文字是新增，現有東西是移動
+            const target = $('#target')
+            target.append('<p>append</p>')
+            target.prepend('<p>prepend</p>')
+            $('<p>insertBefore</p>').insertBefore(target)
+            $('<p>insertAfter</p>').insertAfter(target)
+        })
+
+        // 🔹 綁定該物件本身
+        // 只對網頁一開始的 .btn 綁定，新增的 .btn 無效
+        // $('.btn').click(function () {
+        //     $('<input type="button" value="按鈕" class="btn">').insertAfter($(this))
+        // })
+
+        // 📌解方
+        function add() {
+            const newBtn = $('<input type = "button" value = "按鈕" class="btn">')
+            newBtn.insertAfter($(this))
+            newBtn.click(add)  // 新按鈕繼續綁定 add 函式，實現無限新增按鈕
+        }
+        $('.btn').click(add)
+
+        // 🔹 綁定該物件外的那層 
+        // 點到 #btns (= 外層包的 div) 而且是點到 .btn 才有反應
+        // $('#btns').on('click', '.btn', function () {
+        //     $('<input type="button" value="按鈕" class="btn">').insertAfter($(this))
+        // })
+
+    </script>
+</body>
+
+</html>
