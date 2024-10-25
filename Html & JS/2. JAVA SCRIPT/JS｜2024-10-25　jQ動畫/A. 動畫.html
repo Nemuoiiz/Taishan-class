@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #img {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="變小" id="btn1">
+    <input type="button" value="變大" id="btn2">
+
+    <input type="button" value="移動" id="btn3">
+    <input type="button" value="停止" id="btn4">
+
+    <input type="button" value="淡入" id="btn5">
+    <input type="button" value="淡出" id="btn6">
+
+    <input type="button" value="半透明" id="btn7">
+    <input type="button" value="淡入淡出切換" id="btn8">
+
+    <input type="button" value="滑上" id="btn9">
+    <input type="button" value="滑下" id="btn10">
+    <input type="button" value="滑上滑下切換" id="btn11">
+
+
+
+    <hr>
+    <img src="https://github.com/wdaweb.png" id="img">
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        // 💡 太難記的話，只要記得下面兩個就好：
+        // .animate(CSS, slow/fast/毫秒, 'linear', 完成時的 function ) 動畫
+        // .stop(是否停止之後的動畫, 是否跳到動畫結束) 停止動畫
+
+        // 1️⃣ .animate({ 樣式: 值 }, 動畫長度, linear, 動畫結束執行的 function)
+        // 動畫長度預設 400，可以寫 ms 或是 fast(200)，slow(600)
+        // 'linear' 不填預設是 swing(ease)
+        // 只支援數字類動畫，例如上下左右，padding、margin、寬高（顏色不支援）
+
+        // 🔸 變小按鈕
+        $('#btn1').click(function () {
+            $('#img').animate({
+                width: '100px',
+                height: '100px'
+            }, function () {
+                console.log('變小了')
+            })
+        })
+
+        // 🔸 變大按鈕
+        $('#btn2').click(function () {
+            $('#img').animate({
+                width: '+=100px',
+                height: '+=100px'
+            }, 'solow', function () {
+                console.log('變大了')
+            })
+        })
+
+        // 🔸 移動按鈕
+        // <style> 要設定 relative 相對位置
+        $('#btn3').click(function () {
+            $('#img')
+                .animate({ left: '+=50px' }, 2000, 'linear', function () {
+                    console.log('往右了')
+                })
+                .animate({ top: '+=50px' }, 2000, 'linear', function () {
+                    console.log('往下了')
+                })
+        })
+
+        // 2️⃣ .stop(是否停止之後的動畫, 是否跳到目前動畫結束的狀態)
+        // 如果第二個參數是 true，第一個個就必須視 true
+        // 預設都是 false
+        // $('#img').stop()            ---> 直接播下一個動畫
+        // $('#img').stop(true, false) ---> 原地停下
+        // $('#img').stop(true, true)  ---> 跳到目前動畫結束
+
+        $('#btn4').click(function () {
+            $('#img').stop()
+        })
+
+        // 3️⃣
+        // .fadeIn(動畫長度, 'linear', function)    ---> 淡入
+        // .fadeOut(動畫長度, 'linear', function)   ---> 淡出
+        // 💡 淡出 .fadeOut 後會加上 display:none，要注意可能造成跑版
+
+        // 🔸 淡入
+        $('#btn5').click(function () {
+            $('#img').fadeIn()
+        })
+
+        // 🔸 淡出
+        $('#btn6').click(function () {
+            $('#img').fadeOut()
+        })
+
+        // 4️⃣ .fadeTo(動畫長度, 不透明度, 'linear', function)
+        // 💡 前兩個值: '動畫長度'跟 '不透明度' 必填
+        $('#btn7').click(function () {
+            $('#img').fadeTo(1000, 0.5)
+        })
+
+        // 5️⃣ .fadeToggle()
+        // 目前是淡入狀態就淡出，淡出狀態就淡入
+        $('#btn8').click(function () {
+            $('#img').fadeToggle()
+        })
+
+        // 6️⃣ 滑上、滑下、滑上滑下切換
+        // 此語法是使用調整高度來達到效果
+
+        // 🔸 滑上
+        // .slideUp(動畫長度, 'linear', function)
+        // 滑上效果是改變元素的 height 性質，直到它變成 0 ，接著隱藏該元素。
+        $('#btn9').click(function () {
+            $('#img').slideUp(2000)
+        })
+
+        // 🔸 滑下
+        // .slideDown(動畫長度, 'linear', function)
+        // 滑下效果是改變元素的 height 性質，從 0 到它在 CSS 樣式中所設定的大小。
+        $('#btn10').click(function () {
+            $('#img').slideDown(2000)
+        })
+
+        // 🔸 滑上滑下切換
+        // .slideToggle(動畫長度, 'linear', function)
+        // 滑動切換效果 => 如果現在是滑上就改成滑下，反之滑下就改成滑上
+        $('#btn11').click(function () {
+            $('#img').slideToggle(2000)
+        })
+    </script>
+
+</body>
+
+</html>

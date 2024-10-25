@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 
+        clip-path:
+        https://bennettfeely.com/clippy 
+        https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path
+        */
+
+        /* carousel：圖片輪播 */
+        #carousel {
+            /* clip-path 可視遮罩 */
+            clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+            width: 200px;
+            height: 200px;
+            position: relative;
+            /* 可視範圍以外都隱藏 */
+            overflow: hidden;
+        }
+
+        #nums {
+            /* 五張圖片，一張寬度 200px => 200px*5 */
+            width: 1000px;
+            height: 200px;
+            position: absolute;
+        }
+
+        /* 隱藏小間隙 */
+        #nums>div {
+            float: left;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 150px;
+            color: black;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 可視範圍 -->
+    <div id="carousel">
+        <div id="nums">
+            <div style="transform: rotate(180deg)">春</div>
+            <div>倒</div>
+            <div>了</div>
+            <div>4</div>
+            <div>5</div>
+        </div>
+    </div>
+
+    <input type="button" value="&lt;" id="btn-prev">
+    <input type="button" value="&gt;" id="btn-next">
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        // 紀錄目前的圖片索引 index
+        let now = 0
+
+        $('#btn-next').click(function () {
+            // 現在索引   下一張有沒有在範圍內
+            // now       (now + 1 <= 4)      可不可以翻
+            // 0          1 <= 4              O
+            // 1          2 <= 4              O
+            // 2          3 <= 4              O
+            // 3          4 <= 4              O
+            // 4          5 <= 4              X
+            if (now + 1 <= 4) {
+                now++
+                $('#nums')
+                    .stop(true, true)
+                    // 增加彈跳效果
+                    // .animate({ left: now * 200 * -1 - 25 })
+                    .animate({ left: now * 200 * -1 })
+            }
+        })
+        $('#btn-prev').click(function () {
+            if (now - 1 >= 0) {
+                now--
+                $('#nums')
+                    .stop(true, true)
+                    // 增加彈跳效果
+                    // .animate({ left: now * 200 * -1 + 25 })
+                    .animate({ left: now * 200 * -1 })
+            }
+        })
+    </script>
+</body>
+
+</html>
