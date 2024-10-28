@@ -76,6 +76,7 @@
 
 <body>
     <!-- 最新消息區 -->
+    <!-- ✴️ <div> 包 <table> -->
     <div id="news">
         <h1>最新消息</h1>
         <!-- 5*2 表格 : table>tr*5>td*2 -->
@@ -194,14 +195,18 @@
         //     // });
         // })
 
-        // 方法 3️⃣
+        // // 方法 3️⃣
+        // $('.small').click(function () {
+        //     let small_pic = $(this).attr('src')
+        //     // console.log(apath)
+        //     big_pic = small_pic.replace('B', 'A')
+        //     // console.log(apath)
+        //     $('#big').attr('src', big_pic)
+        // })
+
         $('.small').click(function () {
-            let small_pic = $(this).attr('src')
-            // console.log(apath)
-            big_pic = small_pic.replace('B', 'A')
-            // console.log(apath)
-            $('#big').attr('src', big_pic)
-        })
+            $('#big').attr('src', $(this).attr('src').replace('B', 'A'));
+        });
     </script>
 </body>
 

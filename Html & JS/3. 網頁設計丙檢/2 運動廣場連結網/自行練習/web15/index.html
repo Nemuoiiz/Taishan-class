@@ -4,78 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>勞動部勞動力發展署─運動廣場連結網</title>
+    <title>勞動部勞動力發展署─運動廣場連結網t</title>
 
     <style>
         body {
-            background: #42413c;
+            background: #43413c;
+        }
+
+        #main {
+            width: 1024px;
+            height: 768px;
+            background: #fff;
+            margin: auto;
+        }
+
+        #top {
+            width: 1024px;
+            height: 90px;
+            background: #00b0f0;
         }
 
         table {
             width: 100%;
-            text-align: center;
+            /* padding: 0px; */
             border-collapse: collapse;
+            text-align: center;
         }
 
-        table td {
-            padding: 0;
+        #top table td {
+            padding: 0px;
         }
 
-        /* 首頁區 */
-        #main {
-            width: 1024px;
-            height: 768px;
-            margin: auto;
-            background: #fff;
-        }
-
-        /* 網站標題區 */
-        #top {
-            width: 1024px;
-            height: 90px;
-            background: #00B0F0;
-        }
-
-        .logo {
+        #top #logo {
+            text-align: left;
             width: 180px;
             height: 90px;
         }
 
-        .title {
+        #top #title {
             font-size: 52px;
             font-family: "標楷體";
             color: #fff;
             text-shadow: 10px 10px 15px #333;
         }
 
-
-        /* 選單區 */
         #menu {
             width: 1024px;
             height: 25px;
-            /* background: lightgoldenrodyellow; */
 
+            /* background: gold; */
         }
 
         #menu a {
+            line-height: 25px;
+            display: block;
+            text-decoration: none;
+
             background: #eee;
             color: #000;
-            text-decoration: none;
-            display: block;
         }
 
         #menu a:hover {
-            font-size: 14px;
             background: #ff0;
             color: #f00;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        /* 網頁內容區 */
         #content {
             width: 1024px;
             height: calc(768px - 90px - 25px - 45px);
+
             background: #fff;
             font-size: 14px;
             color: #000;
@@ -83,12 +83,6 @@
             box-sizing: border-box;
         }
 
-        iframe {
-            width: calc(1024px - 40px);
-            height: calc(768px - 90px - 25px - 45px - 40px);
-        }
-
-        /* 頁尾版權區 */
         #footer {
             width: 1024px;
             height: 45px;
@@ -98,28 +92,30 @@
             font-size: 14px;
             text-align: center;
         }
+
+        iframe {
+            width: calc(1024px - 40px);
+            height: calc(768px - 90px - 25px - 45px - 40px);
+        }
     </style>
 </head>
 
 <body>
-    <!-- 首頁區 -->
     <div id="main">
 
-        <!-- 網站標題區 -->
         <div id="top">
             <table>
                 <tr>
-                    <td class="logo">
+                    <td id="logo">
                         <a href="./index.html">
                             <img src="./images/logo.png" alt="運動廣場連結網-回首頁" title="運動廣場連結網-回首頁">
                         </a>
                     </td>
-                    <td class="title">運動廣場連結網</td>
+                    <td id="title">運動廣場連結網</td>
                 </tr>
             </table>
         </div>
 
-        <!-- 選單區 -->
         <div id="menu">
             <table style="table-layout: fixed;">
                 <tr>
@@ -134,15 +130,13 @@
             </table>
         </div>
 
-        <!-- 網頁內容區 -->
-        <!-- 預設放置的內容為 main.htm 網頁 -->
         <div id="content">
             <iframe src="./results/main.html" frameborder="0" name="iframe"></iframe>
         </div>
 
-        <!-- 頁尾版權區 -->
-        <div id="footer">網頁設計及維護：15張宥青<br>
-            最近更新日期：2024/10/21
+        <div id="footer">
+            網頁設計及維護：15張宥青<br>
+            最近更新日期：2024/10/28
         </div>
 
     </div>

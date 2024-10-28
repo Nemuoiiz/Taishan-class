@@ -12,23 +12,26 @@
             border-collapse: collapse;
         }
 
+
         #news {
             width: 280px;
             height: 460px;
             border: 1px solid #999;
-            /* background: paleturquoises; */
+
             float: left;
         }
 
         #news h1 {
             font-size: 16px;
             font-weight: bold;
+            /* text-align: left; */
         }
 
         #news th {
             background: #39f;
-            font-size: 14px;
             color: #fff;
+            /* text-align: center; */
+            font-size: 14px;
         }
 
         #news td {
@@ -36,31 +39,28 @@
             line-height: 2;
         }
 
-        .odd {
+
+        .a {
             background: #ffc;
         }
 
-        .even {
+        .b {
             background: #ddd;
         }
 
-        #photo {
+        #photos {
             width: 590px;
             height: 460px;
-            float: right;
-            border: 1px solid #999;
 
-            color: #ff0;
+            float: right;
             background: #333;
             font-size: 14px;
+            color: #ff0;
+
             text-align: center;
+            border: 1px solid #999;
 
-            /* 不計分不用設 */
-            padding-top: 6px;
         }
-
-
-
 
         #big {
             width: 570px;
@@ -70,41 +70,36 @@
 </head>
 
 <body>
-    <!-- 最新消息區 -->
     <div id="news">
         <h1>最新消息</h1>
-
         <table>
             <tr>
                 <th>主題</th>
                 <th>發布日期</th>
             </tr>
-            <tr class="odd">
+            <tr class="a">
                 <td><img src="../images/0201.png">公告全國技能競賽相關事宜</td>
-                <td>113/10/21</td>
+                <td>113/10/28</td>
             </tr>
-            <tr class="even">
+            <tr class="b">
                 <td><img src="../images/0201.png">公告即測即評及發證相關事宜</td>
-                <td>113/10/21</td>
+                <td>113/10/28</td>
             </tr>
-            <tr class="odd">
+            <tr class="a">
                 <td><img src="../images/0201.png">公告網頁設計修題相關事宜</td>
-                <td>113/10/21</td>
+                <td>113/10/28</td>
             </tr>
-            <tr class="even">
+            <tr class="b">
                 <td><img src="../images/0201.png">公告網路架設應檢相關事宜</td>
-                <td>113/10/21</td>
+                <td>113/10/28</td>
             </tr>
         </table>
     </div>
 
-    <!-- 圖片展示區 -->
-    <div id="photo">
+    <div id="photos">
         <table>
             <tr>
-                <td colspan="4">
-                    <img id="big" src="../images/0202A.png">
-                </td>
+                <td colspan="4"><img id="big" src="../images/0202A.png"></a></td>
             </tr>
             <tr>
                 <td><img class="small" src="../images/0202B.png"></td>
@@ -124,10 +119,8 @@
     <script src="../others/jquery-2.1.4.min.js"></script>
 
     <script>
-        $('.small').each(function (index, img) {
-            $(img).on('click', function () {
-                $('#big').attr('src', `../images/020${index + 2}A.png`)
-            })
+        $('.small').click(function () {
+            $('#big').attr('src', $(this).attr('src').replace('B', 'A'))
         })
     </script>
 </body>

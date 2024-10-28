@@ -5,56 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <style>
-        .bread {
-            color: red;
+        #bread {
+            color: #f00;
             font-weight: bold;
             margin-bottom: 1rem;
         }
 
         table {
-            /* 表格置中 */
-            margin: auto;
-            /* 合併儲存格之間距離*/
             border-collapse: collapse;
-            /* 儲存格間距 */
-            border-spacing: 0px;
-            /* 表格外框 */
-            border: 1px solid #ddd;
+            margin: auto;
         }
 
         td {
             padding: 2px;
-            /* 表格內的格線 */
             border: 1px solid #ddd;
         }
 
-        /* 第一列 */
-        td:nth-child(1) {
+        td:nth-child(odd) {
             width: 120px;
-            /* 文字置中對齊 */
             text-align: center;
         }
 
-        /* 第二列 */
-        td:nth-child(2) {
+        td:nth-child(even) {
             width: 580px;
         }
     </style>
 </head>
 
 <body>
-    <!-- 跑馬燈 -->
     <marquee>謝謝蒞臨本網站，請給予我們支持、鼓勵與建言。</marquee>
-    <div class="bread">現在位置：首頁＞訪客留言</div>
-    <!-- 💡 要用 form 包住 table，沒包住 reset 會無法清空 -->
+
+    <div id="bread">現在位置：首頁＞訪客留言</div>
+
     <form>
-        <!-- table>tr*6>td*2 -->
         <table>
             <tr>
                 <td>姓　　名</td>
-                <!-- 💡 size 記一下 -->
                 <td><input type="text" size="20"></td>
             </tr>
             <tr>
@@ -64,7 +51,6 @@
             <tr>
                 <td>性　　別</td>
                 <td>
-                    <!-- radio 單選．checked 預設選取 -->
                     <input type="radio" name="sex" checked>男
                     <input type="radio" name="sex">女
                 </td>
@@ -72,9 +58,7 @@
             <tr>
                 <td>職業類別</td>
                 <td>
-                    <!-- 選單 -->
                     <select>
-                        <!-- 0207.txt -->
                         <option>-----------請選擇職業類別-----------</option>
                         <option>1.現役軍人</option>
                         <option>2.專業人員</option>
@@ -84,16 +68,15 @@
             </tr>
             <tr>
                 <td>留言內容</td>
-                <!-- rows 高．cols 寬 -->
                 <td><textarea rows="10" cols="78"></textarea></td>
             </tr>
             <tr>
                 <td>
-                    <!-- onclick="alert('訊息')" 點擊彈出視窗 -->
                     <input type="submit" value="送出" onclick="alert('歡迎蒞臨本網站，您的寶貴意見我們會儘速處理與回覆，謝謝！')">
                     <input type="reset" value="重寫">
                 </td>
-                <td></td>
+                <td>
+                </td>
             </tr>
         </table>
     </form>
