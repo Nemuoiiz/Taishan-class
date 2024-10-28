@@ -186,18 +186,18 @@
 
     <script>
         // ✅ 原生 JS 寫法 --------------------------------
-        const imgs = document.querySelectorAll('.img')
+        // const imgs = document.querySelectorAll('.img')
 
-        imgs.forEach(function (img, index) {
-            // 鼠標移上時觸發事件
-            img.addEventListener('mouseover', function () {
-                img.src = `./images/050${index + 1}r.gif`
-            });
-            // 鼠標離開時觸發
-            img.addEventListener('mouseout', function () {
-                img.src = `./images/050${index + 1}b.gif`
-            })
-        });
+        // imgs.forEach(function (img, index) {
+        //     // 鼠標移上時觸發事件
+        //     img.addEventListener('mouseover', function () {
+        //         img.src = `./images/050${index + 1}r.gif`
+        //     });
+        //     // 鼠標離開時觸發
+        //     img.addEventListener('mouseout', function () {
+        //         img.src = `./images/050${index + 1}b.gif`
+        //     })
+        // });
 
 
         // ❌錯誤寫法，原生 JS 沒有 hover 事件
@@ -233,6 +233,7 @@
                 $(img).attr('src', `./images/050${index + 1}b.gif`)
             })
         })
+
 
         // 使用什麼樣的資料型態，決定其使用的屬性方法
         // 例如：字串      => 可以操作他的屬性、方法

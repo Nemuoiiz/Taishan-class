@@ -140,58 +140,67 @@
     <script src="../others/jquery-2.1.4.min.js"></script>
 
     <script>
-        // 方法1️⃣ 原生 js
-        // 1. 先抓大圖．小圖元素
-        const big = document.querySelector('#big')
-        const imgs = document.querySelectorAll('.small')
-        // console.log(big, imgs)
-        // console.log(imgs)
+        // // 方法 1️⃣ 原生 js
+        // // 1. 先抓大圖．小圖元素
+        // const big = document.querySelector('#big')
+        // const imgs = document.querySelectorAll('.small')
+        // // console.log(big, imgs)
+        // // console.log(imgs)
 
-        // 2. 使用 forEach 來對小圖們做循環迭代的動作
-        // [img.small, img.small, img.small, img.small] => imgs
-        imgs.forEach(function (img, index) {
-            // console.log(     img, index)
+        // // 2. 使用 forEach 來對小圖們做循環迭代的動作
+        // // [img.small, img.small, img.small, img.small] => imgs
+        // imgs.forEach(function (img, index) {
+        //     // console.log(     img, index)
 
-            // 3.點擊小圖可以抽換大圖的路徑
-            img.onclick = function () {
-                // index 預設為 0 ，index + 2 會從 2 開始跑
-                // console.log(index)
-                big.src = `../images/020${index + 2}A.png`
-            }
-        })
+        //     // 3.點擊小圖可以抽換大圖的路徑
+        //     img.onclick = function () {
+        //         // index 預設為 0 ，index + 2 會從 2 開始跑
+        //         // console.log(index)
+        //         big.src = `../images/020${index + 2}A.png`
+        //     }
+        // })
 
-        imgs2 = Array.form(imgs)
-        console.log(imgs2)
+        // // imgs2 = Array.form(imgs)
+        // // console.log(imgs2)
 
-        console.log('---------------------------------')
-        // jQuery 的選擇方法
-        // 對符合 CSS 的選擇器去做選擇
-        // 對 DOM 元素去做選擇
+        // console.log('---------------------------------')
 
+        // // ✅ jQuery 的選擇方法
+        // // 對符合 CSS 的選擇器去做選擇
+        // // 對 DOM 元素去做選擇
 
-        // 方法2️⃣ jQuery
-        // $() => 起手式，一個叫 $() 的函式
+        // // 方法 2️⃣ jQuery
+        // // $() => 起手式，一個叫 $() 的函式
 
-        // img 為變數代名詞可以隨意取
-        // 注意不要打成 `img`、'img' 會選擇到網頁內所有的圖片
-        $('.small').each(function (index, img) {
-            // 🔸console.log($('img')) => 這個是指選擇所有圖片 img 的元素
-            // 🔸console.log($(img)) => 指當下 img 元素這個人去做事情
-            $(img).on('click', function () {
-                // .attr('屬性名稱','設定值')
-                $('#big').attr('src', `../images/020${index + 2}A.png`)
-            })
+        // // img 為變數代名詞可以隨意取
+        // // 注意不要打成 `img`、'img' 會選擇到網頁內所有的圖片
+        // $('.small').each(function (index, img) {
+        //     // 🔸console.log($('img')) => 這個是指選擇所有圖片 img 的元素
+        //     // 🔸console.log($(img)) => 指當下 img 元素這個人去做事情
+        //     $(img).on('click', function () {
+        //         // .attr('屬性名稱','設定值')
+        //         $('#big').attr('src', `../images/020${index + 2}A.png`)
+        //     })
 
-            // 🔸也可以用 this 代替 img，但要用一般 function：
-            // $(this).on('click', function () {
-            //     $('#big').attr('src', `../images/020${index + 2}A.png`)
-            // })
+        //     // 🔸也可以用 this 代替 img，但要用一般 function：
+        //     // $(this).on('click', function () {
+        //     //     $('#big').attr('src', `../images/020${index + 2}A.png`)
+        //     // })
 
-            // 🔸箭頭函式要小心 this 是無法抓到當下這個 img
-            // 會往外面找到 window：
-            // $(this).on('click', () => {
-            //     $('#big').attr('src', `../images/020${index + 2}A.png`);
-            // });
+        //     // 🔸箭頭函式要小心 this 是無法抓到當下這個 img
+        //     // 會往外面找到 window：
+        //     // $(this).on('click', () => {
+        //     //     $('#big').attr('src', `../images/020${index + 2}A.png`);
+        //     // });
+        // })
+
+        // 方法 3️⃣
+        $('.small').click(function () {
+            let small_pic = $(this).attr('src')
+            // console.log(apath)
+            big_pic = small_pic.replace('B', 'A')
+            // console.log(apath)
+            $('#big').attr('src', big_pic)
         })
     </script>
 </body>

@@ -69,27 +69,35 @@
     </table>
 
     <!-- 💡 引入 jQuery -->
-    <!-- <script src="../jquery-2.1.4.min.js"></script> -->
+    <script src="../jquery-2.1.4.min.js"></script>
 
     <script>
-        // ✅ 原生 JS 寫法 --------------------------------
+        // // ✅ 原生 JS 寫法 --------------------------------
 
-        const big = document.querySelector('#big')
-        const imgs = document.querySelectorAll('.img')
+        // const big = document.querySelector('#big')
+        // const imgs = document.querySelectorAll('.img')
 
-        imgs.forEach(function (img, index) {
-            img.addEventListener('click', function () {
-                big.src = `../images/055${index + 1}.jpg`
-            })
-        })
+        // imgs.forEach(function (img, index) {
+        //     img.addEventListener('click', function () {
+        //         big.src = `../images/055${index + 1}.jpg`
+        //     })
+        // })
 
 
-        // ✅ jQuery 寫法 --------------------------------
+        // // ✅ jQuery 寫法 --------------------------------
 
-        $('.img').each(function (index, img) {
-            $(this).click(function () {
-                $('#big').attr('src', `../images/055${index + 1}.jpg`)
-            })
+        // 方法 1️⃣
+        // $('.img').each(function (index, img) {
+        //     $(this).click(function () {
+        //         $('#big').attr('src', `../images/055${index + 1}.jpg`)
+        //     })
+        // })
+
+
+        // 方法 2️⃣
+        $('.img').click(function () {
+            let small_pic = $(this).attr('src')
+            $('#big').attr('src', small_pic)
         })
     </script>
 </body>
