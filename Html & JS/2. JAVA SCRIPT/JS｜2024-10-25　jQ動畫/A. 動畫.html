@@ -33,7 +33,8 @@
 
 
     <hr>
-    <img src="https://github.com/wdaweb.png" id="img">
+    <!-- <img src="https://github.com/wdaweb.png" id="img"> -->
+    <img src="https://picsum.photos/500/500/?random=10" id="img">
 
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
@@ -127,21 +128,21 @@
         // .slideUp(動畫長度, 'linear', function)
         // 滑上效果是改變元素的 height 性質，直到它變成 0 ，接著隱藏該元素。
         $('#btn9').click(function () {
-            $('#img').slideUp(2000)
+            $('#img').slideUp()
         })
 
         // 🔸 滑下
         // .slideDown(動畫長度, 'linear', function)
         // 滑下效果是改變元素的 height 性質，從 0 到它在 CSS 樣式中所設定的大小。
         $('#btn10').click(function () {
-            $('#img').slideDown(2000)
+            $('#img').slideDown()
         })
 
         // 🔸 滑上滑下切換
         // .slideToggle(動畫長度, 'linear', function)
         // 滑動切換效果 => 如果現在是滑上就改成滑下，反之滑下就改成滑上
         $('#btn11').click(function () {
-            $('#img').slideToggle(2000)
+            $('#img').slideToggle()
         })
     </script>
 
