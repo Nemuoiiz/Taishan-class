@@ -7,21 +7,15 @@
     <title>Document</title>
 
     <style>
-        body {
-            text-align: center;
-        }
-
         table {
             margin: auto;
             border-collapse: collapse;
+            text-align: center;
         }
 
-
         td {
+            border: 1px solid #000;
             height: 32px;
-            line-height: 32px;
-            text-align: center;
-            border: 1px solid #333;
         }
 
         td:nth-child(1) {
@@ -32,9 +26,14 @@
             width: 350px;
         }
 
+        form {
+            text-align: center;
+        }
+
         .a {
             background: #fdd;
         }
+
 
         .b {
             background: #ff9;
@@ -52,22 +51,22 @@
 </head>
 
 <body>
+    <table class="a">
+        <tr>
+            <td>公司名稱</td>
+            <td>大家來購物有限公司</td>
+        </tr>
+        <tr>
+            <td>公司電子信箱</td>
+            <td>service@test.labor.gov.tw</td>
+        </tr>
+        <tr>
+            <td>服務項目</td>
+            <td>網路購物服務</td>
+        </tr>
+    </table>
+    <br>
     <form>
-        <table class="a">
-            <tr>
-                <td>公司名稱</td>
-                <td>大家來購物有限公司</td>
-            </tr>
-            <tr>
-                <td>公司電子信箱</td>
-                <td>service@test.labor.gov.tw</td>
-            </tr>
-            <tr>
-                <td>服務項目</td>
-                <td>網路購物服務</td>
-            </tr>
-        </table>
-        <br>
         <table class="b">
             <tr>
                 <td>客戶姓名</td>
