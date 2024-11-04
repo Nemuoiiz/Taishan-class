@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書曼的旅遊相簿</title>
+
+    <style>
+        body {
+            background: #333;
+        }
+
+        #main {
+            width: 1024px;
+            height: 768px;
+            background: #ffc;
+            margin: auto;
+        }
+
+        #menu {
+            width: 150px;
+            height: 768px;
+            /* background: bisque; */
+            float: left;
+        }
+
+        #menu table {
+            margin: auto;
+            text-align: center;
+
+            font-size: 12px;
+            font-weight: bolder;
+            font-family: "新細明體";
+            color: #f00;
+        }
+
+        #menu tr:nth-child(1) img {
+            width: 125px;
+            height: 20px;
+        }
+
+        #menu tr:nth-child(2) img {
+            width: 120px;
+            height: 120px;
+        }
+
+        #right {
+            width: calc(1024px - 150px);
+            height: 768px;
+            float: right;
+        }
+
+        marquee {
+            width: calc(1024px - 150px);
+            height: 50px;
+            /* background: lightcyan; */
+
+            display: block;
+            line-height: 50px;
+            font-size: 24px;
+            font-family: "標楷體";
+            font-weight: bold;
+            color: #f00;
+        }
+
+        iframe {
+            width: calc(1024px - 150px);
+            height: calc(768px - 50px);
+            /* background: papayawhip; */
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <audio src="./music/0501.mp3" autoplay></audio>
+
+    <div id="main">
+
+        <div id="menu">
+            <table>
+                <tr>
+                    <td><img src="./images/0508.gif" alt="書曼的旅遊相簿" title="書曼的旅遊相簿"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/0507.jpg" alt="書曼" title="書曼"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><img class="img" src="./images/0501b.gif" alt="金門逍遙遊" title="金門逍遙遊"></td>
+                </tr>
+                <tr>
+                    <td><img class="img" src="./images/0502b.gif" alt="卡蹓到馬祖" title="卡蹓到馬祖"></td>
+                </tr>
+                <tr>
+                    <td><img class="img" src="./images/0503b.gif" alt="踏浪澎湖行" title="踏浪澎湖行"></td>
+                </tr>
+                <tr>
+                    <td><img class="img" src="./images/0504b.gif" alt="綠島唱夜曲" title="綠島唱夜曲"></td>
+                </tr>
+                <tr>
+                    <a href="./album5/album5.html" target="iframe">
+                        <td><img class="img" src="./images/0505b.gif" alt="蘭嶼賞魚去" title="蘭嶼賞魚去"></td>
+                    </a>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        日期：2024/11/04<br>
+                        維護：15張宥青
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="./index.html">
+                            <img class="img" src="./images/0506b.gif" alt="回首頁" title="回首頁">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="right">
+            <marquee>歡迎來到書曼的旅遊相簿，本網站有我的旅遊影像紀錄介紹耶！</marquee>
+            <iframe src="./main.html" frameborder="0" name="iframe"></iframe>
+        </div>
+    </div>
+
+    <script src="./jquery-2.1.4.min.js"></script>
+
+    <script>
+        $('.img').each(function (index, img) {
+            $(img).hover(function () {
+                $(img).attr('src', `./images/050${index + 1}r.gif`)
+            }, function () {
+                $(img).attr('src', `./images/050${index + 1}b.gif`)
+            })
+        })
+    </script>
+</body>
+
+
+</html>
