@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https://jsonplaceholder.typicode.com/
+        // https://jsonplaceholder.typicode.com/posts
+        // JSON 是一種資料格式
+
+        // 1️⃣ xhr
+        const xhr = new XMLHttpRequest()
+        xhr.open('get', 'https://jsonplaceholder.typicode.com/posts')
+        // 收到回覆的處理
+        // xhr.addEventListener('load',()=>{})
+        xhr.onload = () => {
+            // console.log(xhr.responseText)
+            // xhr 拿到的是純文字
+            // 需要使用 JSON.parse() 方法
+            // 將這個 JSON 格式的文本轉換成 JavaScript 物件
+            const data = JSON.parse(xhr.responseText)
+            console.log(data[0])
+        }
+        // 錯誤的處理
+        xhr.onerror = (error) => {
+            console.log(error)
+        }
+        // 送出
+        xhr.send()
+
+    </script>
+</body>
+
+</html>

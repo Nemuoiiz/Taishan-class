@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 執行 try，若發生錯誤就會跳到 catch
+        // 錯誤不會直接在 console 出現
+        try {
+            alertt('123')
+            console.log(456)    // 出錯直接跳到 catch ，這行不會執行
+        } catch (error) {
+            // 錯誤物件
+            console.log(error)          // ReferenceError: alertt is not defi
+            // 錯誤名稱
+            console.log(error.name)     // ReferenceError
+            // 錯誤訊息
+            console.log(error.message)  // alertt is not defined
+        } finally {
+            // finally 為 try catch 執行完後才執行
+            // 跟直接寫程式在底下無差別，很少使用
+        }
+    </script>
+</body>
+
+</html>

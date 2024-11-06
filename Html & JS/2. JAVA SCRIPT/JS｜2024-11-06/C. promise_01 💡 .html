@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 〈Promise 是什麼？有什麼用途？〉：
+        // https://www.explainthis.io/zh-hant/swe/what-is-promise
+
+        // 🔻 promise 承諾
+        // 用於處理非同步、有延遲動作的問題
+        // 例如需要跟資料庫伺服器溝通時、跟後端要資料時
+        // 🔻 promise 有三種狀態：
+        // pedding 待辦、承諾尚未發生
+        // resolve 解決
+        // reject　拒絕
+
+        const pass = confirm('有沒有過丙級')
+
+        // step1️⃣: 宣告 promise 內容
+        // resolve 跟 reject 為 promise 的邏輯
+        // new Promise((resolve, reject))=>{}
+        // resolve = 成功 = 執行 .then()
+        // reject  = 失敗 = 執行 .catch()
+        const money = new Promise((resolve, reject) => {
+            if (pass) {
+                resolve('得到 5000')
+            } else {
+                // 有些較嚴格的 JS 語法規範會需要在 reject 中放 Error
+                reject(new Error('沒有 5000'))
+            }
+        })
+
+        // step2️⃣: 使用 promise
+        // resolve 會執行 .then()
+        // reject  會執行 .catch()
+        money
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(() => {
+                console.log('結束')
+            })
+    </script>
+</body>
+
+</html>

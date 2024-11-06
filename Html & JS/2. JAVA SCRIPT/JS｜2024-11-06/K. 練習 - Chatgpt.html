@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Table</title>
+    <style>
+        table,
+        td {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="eventTable">
+        <tr>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Content</th>
+            <th>Author</th>
+            <th>Published</th>
+        </tr>
+    </table>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.js'
+        integrity='sha512-luUnkeG+uabiT2pZdi5ME5uADvq+FpDs2fK5V0nVXrHCND9F077fKaE9W//oJvGnWSmwQmCau63A6s3um1NZmg=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        const get = async () => {
+            try {
+                const { data } = await axios.get('https://kktix.com/events.json');
+
+                // 假設回應結構包含 `entry` 屬性，它是一個事件的陣列
+                const events = data.entry || [];
+
+                // 取得表格元素
+                const table = document.getElementById('eventTable');
+
+                events.forEach(event => {
+                    // 建立新的表格列
+                    const row = document.createElement('tr');
+
+                    // 建立欄位資料並插入到列中
+                    const titleCell = document.createElement('td');
+                    titleCell.textContent = event.title || 'N/A';
+                    row.appendChild(titleCell);
+
+                    const summaryCell = document.createElement('td');
+                    summaryCell.textContent = event.summary || 'N/A';
+                    row.appendChild(summaryCell);
+
+                    const contentCell = document.createElement('td');
+                    contentCell.textContent = event.content || 'N/A';
+                    row.appendChild(contentCell);
+
+                    const authorCell = document.createElement('td');
+                    const authorLink = document.createElement('a');
+                    authorLink.href = event.author ? event.author.url || '#' : '#';
+                    authorLink.textContent = event.author ? event.author.name || 'N/A' : 'N/A';
+                    authorCell.appendChild(authorLink);
+                    row.appendChild(authorCell);
+
+                    const publishedCell = document.createElement('td');
+                    publishedCell.textContent = event.published || 'N/A';
+                    row.appendChild(publishedCell);
+
+                    // 將列插入表格
+                    table.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error('Error fetching events:', error);
+            }
+        };
+
+        get();
+
+    </script>
+</body>
+
+</html>

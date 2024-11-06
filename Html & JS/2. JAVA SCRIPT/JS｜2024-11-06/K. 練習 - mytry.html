@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table,
+        td {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Content</th>
+            <th>Author</th>
+            <th>Published</th>
+        </tr>
+
+    </table>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.js'
+        integrity='sha512-luUnkeG+uabiT2pZdi5ME5uADvq+FpDs2fK5V0nVXrHCND9F077fKaE9W//oJvGnWSmwQmCau63A6s3um1NZmg=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        // https://kktix.com/events.json
+        // 用表格把活動印出來，欄位: title、summary、content、author(a標籤)、published
+        // 限制 axios、async、await
+
+        const get = async () => {
+            try {
+                const { data } = await axios.get('https://kktix.com/events.json')
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        get()
+
+    </script>
+</body>
+
+</html>

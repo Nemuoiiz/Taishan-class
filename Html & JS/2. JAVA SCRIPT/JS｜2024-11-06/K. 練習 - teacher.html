@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table,
+        tr,
+        td {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table">
+        <tr>
+            <td>Title</td>
+            <td>Summary</td>
+            <td>Content</td>
+            <td>Author</td>
+            <td>Published</td>
+        </tr>
+    </table>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.js'
+        integrity='sha512-luUnkeG+uabiT2pZdi5ME5uADvq+FpDs2fK5V0nVXrHCND9F077fKaE9W//oJvGnWSmwQmCau63A6s3um1NZmg=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        // https://kktix.com/events.json
+        // 用表格把活動印出來，欄位: title、summary、content、author(a標籤)、published
+        // 限制 axios、async、await
+
+        // (async () => {
+        //     console.log(123)
+        //     // 立即執行 function
+        // })()
+
+        // 立即執行 function 的影響，需加上分號
+        const table = document.getElementById('table');
+
+        (async () => {
+
+            try {
+                // const response = await axios.get('https://kktix.com/events.json')
+                const { data } = await axios.get('https://kktix.com/events.json')
+                for (const event of data.entry) {
+                    // console.log(event.title)
+                    table.insertAdjacentHTML('beforeend', `
+                        <tr>
+                            <td>${event.title}</td>
+                            <td>${event.summary}</td>
+                            <td>${event.content}</td>
+                            <td>
+                                <a href="${event.author.uri}">
+                                ${event.author.name}
+                                </a>
+                            </td>
+                            <td>${event.published}</td>
+                        </tr>
+                    `)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        })()
+
+    </script>
+</body>
+
+</html>
