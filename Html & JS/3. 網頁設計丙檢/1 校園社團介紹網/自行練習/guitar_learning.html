@@ -9,41 +9,47 @@
     <style>
         body {
             background: url('./images/0101.jpg');
+            text-align: center;
         }
 
         p {
+            font-size: 18px;
             font-family: "標楷體";
             color: #0ff;
-            font-size: 18px;
-            text-align: center;
         }
 
         table {
             width: 100%;
-        }
-
-        table td {
-            width: 1px;
-            text-align: center;
-        }
-
-        .a {
-            width: 400px;
             margin: auto;
         }
 
-        .a td {
-            height: 40px;
+        td {
+            width: 1px;
+            /* border: 1px solid #000; */
         }
 
-        .a td:hover {
-            height: 40px;
-            background: #0ff;
+        .a {
+            margin: auto;
+            width: 400px;
+            border-collapse: collapse;
+        }
+
+        .a td {
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+
         }
 
         .a a {
+            height: 50px;
             display: block;
-            line-height: 40px;
+        }
+
+        .a a:hover {
+            background: palevioletred;
+            border-radius: 50px;
+            color: #fff;
         }
     </style>
 </head>

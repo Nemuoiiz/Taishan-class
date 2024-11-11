@@ -4,141 +4,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>國立科技高中－校園社團介紹網</title>
+    <title>國立科技高中─校園社團介紹網</title>
 
     <style>
-        /* 首頁 */
         #main {
             width: 1024px;
             height: 768px;
             margin: auto;
 
-            /* background: pink; */
+            /* background: #000; */
         }
 
-        /* 網站標題區 */
         #top {
             width: 1000px;
             height: 65px;
             margin: auto;
-            /* background: lightcoral; */
+            text-align: center;
+
+            /* background: #ddd; */
         }
 
-        #top img {
-            width: 994px;
-            height: 60px;
-        }
-
-        /* 左側 */
         #left {
+            float: left;
             width: 215px;
             height: calc(768px - 65px - 20px);
-            float: left;
             margin-left: 12px;
-
-            /* background: lemonchiffon; */
         }
 
-        /* 選單區 */
         #menu {
             width: 215px;
             height: calc(768px - 65px - 20px - 25px);
 
+            /* background: #aaa; */
+            text-align: center;
             font-family: "標楷體";
             font-weight: 500;
-
-            /* background: orange; */
-        }
-
-        /* 社團介紹 */
-        #menu div {
-            font-size: 24px;
-            text-decoration: 1px underline #333;
-            color: #f0f;
-            text-align: center;
         }
 
         #menu table {
-            width: 215px;
-            text-align: center;
+            width: 100%;
+            margin: auto;
+            font-size: 16px;
+            color: #000;
+            border-collapse: collapse;
+        }
+
+        #menu #h1 {
+            font-size: 24px;
+            text-decoration: underline #000 1px;
+            color: #f0f;
         }
 
         #menu td {
-            color: #000;
-            font-size: 16px;
-
-            height: 35px;
+            height: 40px;
             background: url('./images/menu1.png') no-repeat center;
-        }
-
-        #menu td a {
-            display: block;
-            line-height: 35px;
+            border-radius: 200px;
         }
 
         #menu td:hover {
-            height: 35px;
+            height: 40px;
             background: url('./images/menu2.png') no-repeat center;
+            border-radius: 200px;
         }
 
-        /* 日期更新區 */
+        #menu a {
+            display: block;
+        }
+
         #update {
             width: 215px;
             height: 25px;
-            line-height: 25px;
 
             font-family: "標楷體";
+            font-size: 16px;
             color: #000;
             text-align: center;
-            font-size: 16px;
-            /* background: #000; */
+            /* background: #ccc; */
+            line-height: 25px;
         }
 
-        /* 右側 */
         #right {
+            float: right;
             width: 770px;
             height: calc(768px - 65px - 20px);
-            float: right;
             margin-right: 12px;
 
-            /* background: lemonchiffon; */
         }
 
-        /* 跑馬燈廣告區 */
         marquee {
             width: 770px;
             height: 29px;
-            vertical-align: middle;
             line-height: 29px;
+            vertical-align: middle;
+            /* background: #999; */
 
             font-family: "標楷體";
-            color: #00f;
             font-size: 24px;
-            /* background: red; */
+            color: #00f;
         }
 
-        /* 網頁內容區 */
         iframe {
             width: 770px;
             height: calc(768px - 65px - 20px - 29px);
-            /* background: burlywood; */
+            background: #555;
         }
 
-        /* 頁尾版權區 */
         #footer {
             width: 1000px;
             height: 20px;
+            line-height: 20px;
             margin: auto;
+            /* background: #888; */
             clear: both;
 
             font-family: "標楷體";
             color: #000;
             text-align: center;
             font-size: 16px;
-            /* background: lightblue; */
         }
     </style>
-
 </head>
 
 <body>
@@ -152,7 +136,7 @@
 
         <div id="left">
             <div id="menu">
-                <div>社團介紹</div>
+                <div id="h1">社團介紹</div>
                 <table>
                     <tr>
                         <td>
@@ -178,7 +162,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="update">最近更新日期：2024/10/28</div>
+            <div id="update">最近更新日期：2024/11/11</div>
         </div>
 
         <div id="right">
@@ -186,7 +170,9 @@
             <iframe src="./main.html" frameborder="0" name="iframe"></iframe>
         </div>
 
-        <div id="footer">網頁設計及維護：15張宥青</div>
+        <div id="footer">
+            網頁設計及維護：15張宥青
+        </div>
 
     </div>
 </body>
