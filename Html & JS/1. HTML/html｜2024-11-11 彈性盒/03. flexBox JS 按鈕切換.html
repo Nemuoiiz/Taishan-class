@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox with JavaScript Toggle</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1,
+        h2,
+        p {
+            margin: 10px;
+        }
+
+        .row {
+            width: 900px;
+            height: 300px;
+            border: 1px solid #000;
+            margin-bottom: 2.5rem;
+            display: flex;
+        }
+
+        .col {
+            background: #ffa;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FlexBox 切換範例</h1>
+
+    <!-- 切換按鈕 -->
+    <h2>切換 flex-direction</h2>
+    <button onclick="setFlexDirection('row')">row</button>
+    <button onclick="setFlexDirection('row-reverse')">row-reverse</button>
+    <button onclick="setFlexDirection('column')">column</button>
+    <button onclick="setFlexDirection('column-reverse')">column-reverse</button>
+
+    <h2>切換 justify-content</h2>
+    <button onclick="setJustifyContent('flex-start')">flex-start</button>
+    <button onclick="setJustifyContent('flex-end')">flex-end</button>
+    <button onclick="setJustifyContent('center')">center</button>
+    <button onclick="setJustifyContent('space-between')">space-between</button>
+    <button onclick="setJustifyContent('space-around')">space-around</button>
+    <button onclick="setJustifyContent('space-evenly')">space-evenly</button>
+
+    <h2>切換 align-items</h2>
+    <button onclick="setAlignItems('flex-start')">flex-start</button>
+    <button onclick="setAlignItems('flex-end')">flex-end</button>
+    <button onclick="setAlignItems('center')">center</button>
+    <button onclick="setAlignItems('stretch')">stretch</button>
+    <button onclick="setAlignItems('baseline')">baseline</button>
+
+    <!-- 彈性容器 -->
+    <div class="row" id="flexContainer">
+        <div class="col">flex item 01</div>
+        <div class="col">flex item 02</div>
+        <div class="col">flex item 03</div>
+    </div>
+
+    <script>
+        // 設定 flex-direction
+        function setFlexDirection(direction) {
+            document.getElementById("flexContainer").style.flexDirection = direction;
+        }
+
+        // 設定 justify-content
+        function setJustifyContent(justify) {
+            document.getElementById("flexContainer").style.justifyContent = justify;
+        }
+
+        // 設定 align-items
+        function setAlignItems(align) {
+            document.getElementById("flexContainer").style.alignItems = align;
+        }
+    </script>
+</body>
+
+</html>

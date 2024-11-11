@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .card {
+            width: 300px;
+            background-color: peachpuff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-footer {
+            display: flex;
+        }
+
+        .card-footer button {
+            width: 100%;
+            /* flex-basis 預設為 auto */
+            flex-basis: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 彈性盒：父 -->
+    <div class="card">
+        <!-- 使用彈性盒後 -->
+        <!-- 彈性盒：子1 -->
+        <img src="https://picsum.photos/300/200/?random=10">
+        <!-- 彈性盒：子2 -->
+        <div class="card-body">
+            <h1 class="card-title">title</h1>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque totam dolorem libero
+                officia voluptatem expedita temporibus numquam aperiam, aliquid error.</p>
+        </div>
+        <!-- 彈性盒：子3 -->
+        <div class="card-footer">
+            <button>Click</button>
+        </div>
+    </div>
+</body>
+
+</html>

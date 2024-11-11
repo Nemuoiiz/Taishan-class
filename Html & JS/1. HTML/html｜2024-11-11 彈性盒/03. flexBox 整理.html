@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1,
+        a {
+            margin: 20px;
+        }
+
+        span {
+            color: lightcoral;
+            font-weight: bold;
+        }
+
+        a {
+            color: thistle;
+            font-size: 25px;
+            /* text-decoration: none; */
+            font-weight: bold;
+        }
+
+        pre {
+            font-size: 18px;
+        }
+
+        .g-title {
+            background: antiquewhite
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎮 GAME：<a href="https://flexboxfroggy.com/#zh-tw" target="_blank">青蛙彈性盒</a>
+        & <a href="http://www.flexboxdefense.com/" target="_blank">塔房彈性盒</a>
+        & <a href="https://codecombat.com/#" target="_blank">CodeCombat</a>
+    </h1>
+
+    <pre>
+    <div class="g-title">　💡 justify-content　將flex元素和主軸對齊。</div>
+    <span>flex-start   </span> : group items at the start of a container's main axis
+    <span>flex-end     </span> : group items at the end of the main axis
+    <span>center       </span> : group items in the center of the main axis
+    <span>space-between</span> : evenly distribute items along the main axis such that the first item aligns at the start and thefinal item aligns at the end
+    <span>space-around </span> : evenly distribute items along the main axis such that all items have equal space around them
+    
+    <div style="padding-top: 15px;height: 80px;line-height: 13.5px;" class="g-title">　💡 在次軸上對齊多個元素。<br>
+    align-items<br>
+    align-self</div>
+    <span>flex-start</span> : align item(s) across the start of a container's cross axis
+    <span>flex-end  </span> : align item(s) across the end of the cross axis
+    <span>center    </span> : align item(s) across the center of the cross axis
+    
+    <div class="g-title">　💡 flex-direction　定義主軸的方向。</div>
+    <span>row           </span> : lay out the main axis from left to right
+    <span>row-reverse   </span> : lay out the main axis from right to left
+    <span>column        </span> : lay out the main axis from top to bottom
+    <span>column-reverse</span> : lay out the main axis from bottom to top
+            
+    <div class="g-title">　💡 order　決定flex元素的順序</div>
+    <span># </span>: position an item relative to the other items in the container
+
+    <div class="g-title">　💡 flex-wrap　定義flex元素必須在單行或自動換行成多行。</div>
+    <span>nowrap</span>       : 不換行
+    <span>wrap</span>         : 換行
+    <span>wrap-reverse</span> : 換行且反轉
+</pre>
+
+</body>
+
+</html>
