@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 從最小尺寸做 */
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      box-sizing: border-box;
+    }
+
+    img {
+      max-width: 100%;
+      vertical-align: middle;
+    }
+
+    h3 {
+      margin: 0.5rem 0;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 1rem;
+      margin: auto;
+      /* background: deepskyblue; */
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .col {
+      width: 100%;
+      border: 1px solid #333;
+      padding: 1rem;
+      margin: 1.5% 0;
+    }
+
+    @media (min-width: 576px) {
+      .container {
+        width: 95%;
+      }
+
+      .col {
+        width: 48%;
+        margin: 1%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        width: 75%;
+      }
+
+      .col {
+        width: 31.333333%;
+      }
+    }
+  </style>
+</head>
+<!--
+    # 設計一個 576、992 以上，以及 575 以下，三種尺寸的媒體查詢
+
+    1. 建立畫面上的結構。
+    2. 在 575 以下，顯示一欄。（畫面一個接著一個，往下排列）
+    3. 在 576 以上，顯示兩欄。（畫面呈現 2 個、2 個、2 個，往下排列）
+    4. 在 992 以上，顯示三欄。（畫面呈現 3 個、3 個，往下排列）
+-->
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+      <div class="col">
+        <img src="https://picsum.photos/800/600/?random=10">
+        <h3>因此也就，留言板左。</h3>
+        <p>原理道理你知道精采眼中剛才不夠有一些道理，上午網遊明天推薦使用轉讓，學歷都沒考試寶貝引擎，小心走出。</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

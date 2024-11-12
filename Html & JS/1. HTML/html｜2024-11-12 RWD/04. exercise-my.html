@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* https://responsively.app/ */
+
+        /* 
+        1. 建立畫面上的結構。
+        2. 在 575 以下，顯示一欄（畫面一個接一個，往下排列）
+        3. 在 576 以上，顯示兩欄（畫面呈現 2個、2個、2個，往下排列）
+        4. 在 992 以上，顯示三欄（畫面呈現 3個、3個、3個，往下排列）
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+
+        .container {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            line-height: 1.5;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            width: 80%;
+            border: 1px solid #000;
+            margin: 0.3rem;
+            padding: 0.8rem;
+        }
+
+        .col img {
+            width: 100%;
+            height: auto;
+            /* 確保圖片自適應高度 */
+            display: block;
+            margin-bottom: 0.5rem;
+            /* 增加圖片與文字的間距 */
+        }
+
+        .col h3 {
+            margin: 0.5rem 0;
+        }
+
+        .col p {
+            margin: 0.5rem 0 0;
+        }
+
+        @media (min-width: 576px) {
+            .col {
+                width: 40%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .col {
+                width: 25%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=1">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=2">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=3">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=4">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=5">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=6">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=7">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=8">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/800/600/?random=9">
+                <h3>青青子衿悠悠我心</h3>
+                <p>說過制度風格大眾不會嚴重，驅動門口每個教學錯誤因而檢測取消共享版都有監督其他的，心情第三日子，有的。</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

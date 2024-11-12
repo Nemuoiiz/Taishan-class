@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 
+        🃏 大老二遊戲
+        1. (黑桃 ♠️) inline style：1,0,0,0
+        2. (愛心 ♥️) id 選擇器：0,1,0,0
+        3. (方塊 ♦️) class 選擇器、屬性選擇器 []、偽類：0,0,1,0
+        4. (梅花 ♣️) 標籤、偽元素：0,0,0,1
+
+        連接符號不算分數：0,0,0,0
+        例如以下
+        (後代)    空白
+        (子代)     >
+        (同層相鄰) +
+        (同層全體) ~
+        */
+
+        /* 🔻id + 標籤 => 0,1,0,1 */
+        #box1 p {
+            color: green;
+        }
+
+        /* 🔻class + 標籤 => 0,0,1,1 */
+        .box p {
+            color: red;
+        }
+
+        /* 🔻id + class + 標籤*2 => 0,1,1,2 */
+        #box2 .box h1+p {
+            /* 💡 !improtant 可以打破優先層級 */
+            color: palevioletred !important;
+        }
+
+        /*
+        🔻指向 a:hover 三種權重不同寫法：
+
+        1️⃣
+        #section01 .container .row .col .card a:hover
+        => 0,1,5,1
+
+        2️⃣
+        #section01 .card a:hover
+        => 0,1,2,1
+
+        3️⃣
+        .card a:hover
+        => 0,0,2,1
+        */
+
+        /*
+        🔻不同區塊卡片顏色設定：
+
+        第1️⃣個區塊 #section01
+        #section01 .card a:hover => 綠色
+
+        第2️⃣個區塊 #section02
+        #section02 .card a:hover => 紅色
+        */
+    </style>
+</head>
+
+<body>
+    <h1>選擇器權重計分</h1>
+    <div id="box1">
+        <div class="box">
+            <h1>標題</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat architecto dolores voluptatum, veritatis
+                eos, natus sit nam obcaecati fuga dicta harum facilis molestias sapiente minima iste quo fugiat, earum
+                consequuntur!</p>
+        </div>
+    </div>
+
+    <div id="box2">
+        <div class="box">
+            <h1>標題</h1>
+            <!-- 🔻inline => (1,0,0,0) -->
+            <p style="color: slateblue;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat architecto
+                dolores voluptatum, veritatis
+                eos, natus sit nam obcaecati fuga dicta harum facilis molestias sapiente minima iste quo fugiat, earum
+                consequuntur!</p>
+        </div>
+    </div>
+</body>
+
+</html>
