@@ -95,9 +95,13 @@
 
 
         // 方法 2️⃣
+        // $('.img').click(function () {
+        //     let small_pic = $(this).attr('src')
+        //     $('#big').attr('src', small_pic)
+        // })
+
         $('.img').click(function () {
-            let small_pic = $(this).attr('src')
-            $('#big').attr('src', small_pic)
+            $('#big').attr('src', $(this).attr('src'))
         })
 
     </script>
