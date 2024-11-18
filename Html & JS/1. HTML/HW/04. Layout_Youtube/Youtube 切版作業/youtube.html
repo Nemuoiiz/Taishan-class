@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" cvideontent="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 字體 -->
+    <!-- Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Fjalla One Static -->
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+    <!-- css頁面預設 -->
+    <link rel="stylesheet" hsref="./css/reset.css">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="./css/all.css">
+
+    <!-- style.css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 整個背景容器 */
+        #container {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 上方搜尋列 */
+        #up-bar {
+            width: 100%;
+            height: 12%;
+            background: oldlace;
+            text-align: center;
+
+            /* 讓 padding 不要影響 height */
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        #search {
+            /* 相對於父元素定位 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #search input {
+            width: 700px;
+            height: 45px;
+            border: 1px solid #aaa;
+            border-radius: 50px;
+            padding-left: 20px;
+            font-size: 18px;
+        }
+
+        /* 標籤列表 */
+        #tag-bar {
+            width: 100%;
+            height: 12%;
+            background: thistle;
+
+            position: fixed;
+            top: 12%;
+            left: 0%;
+
+        }
+
+        /* 側邊欄位 */
+        #side-bar {
+            width: 12%;
+            height: calc(100vh - 12%);
+            position: fixed;
+            left: 0px;
+            top: 12%;
+
+            background: mistyrose;
+            color: #000;
+            font-size: 14px;
+            z-index: 9999;
+        }
+
+        /* 影片區 */
+        #video {
+            width: 100%;
+            height: calc(100vh - 24%);
+
+            position: fixed;
+            top: 24%;
+            left: 12%;
+
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 整個區塊 -->
+    <div id="container">
+        <!-- 最上方：標題搜尋列 -->
+        <div id="up-bar">
+            <!-- 中間搜尋區 -->
+            <div id="search">
+                <input type="text" placeholder="搜尋">
+            </div>
+        </div>
+
+        <!-- 左側區塊 -->
+        <div id="side-bar">
+
+        </div>
+
+        <!-- 影片分類區 -->
+        <div id="tag-bar">
+
+        </div>
+
+        <!-- 影片區 -->
+        <div id="video">
+
+        </div>
+    </div>
+</body>
+
+</html>
