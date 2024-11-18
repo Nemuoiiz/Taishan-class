@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 使用 bootstrap 的 css -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+
+    <style>
+        .row {
+            background: #eee;
+            margin-bottom: 1rem;
+        }
+
+        .col {
+            height: 66.6px;
+        }
+
+        span {
+            background: rosybrown;
+            color: #fff;
+            border-radius: 50px;
+            height: 1rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .row>*:nth-child(1) {
+            background: var(--bs-yellow);
+        }
+
+        .row>*:nth-child(2) {
+            background: var(--bs-teal);
+        }
+
+        .row>*:nth-child(3) {
+            background: var(--bs-orange);
+        }
+
+        .row>*:nth-child(4) {
+            background: var(--bs-gray-500);
+        }
+
+        .row>*:nth-child(5) {
+            background: var(--bs-cyan);
+        }
+
+        .row>*:nth-child(6) {
+            background: var(--bs-blue);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>欄（columns）</h1>
+        <p>.row 是 flexbox，因此 .col 欄位是 flex-item，可以使用 bs 提供的彈性盒相關 class 來對齊。</p>
+        <br>
+        <h2>🍀次軸對齊</h2>
+        <br>
+        <h4>🌷 align-items-*</h4>
+        <br>
+        <div class="row align-items-start" style="height: 200px;">
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+        </div>
+        <div class="row align-items-center" style="height: 200px;">
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+        </div>
+        <div class="row align-items-end" style="height: 200px;">
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <h4>🌷 align-self-*</h4>
+        <br>
+        <div class="row" style="height: 200px;">
+            <div class="col align-self-start">col</div>
+            <div class="col align-self-center">col</div>
+            <div class="col align-self-end">col</div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <h2>🍀主軸對齊</h2>
+        <br>
+        <p>
+            🔻 不同斷點設定不同樣式（縮放視窗看看）
+        </p>
+        <div
+            class="row justify-content-start justify-content-md-center justify-content-lg-end justify-content-xl-between">
+            <div class="col-4">
+                One of two columns
+            </div>
+            <div class="col-4">
+                One of two columns
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <h2>🍀Column breaks</h2>
+        <br>
+        <div class="row">
+            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+
+            <!-- Force next columns to break to new line -->
+            <!-- 以 w-100 的 div 來強制切割開上下區塊 -->
+            <div class="w-100"></div>
+
+            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+        </div>
+
+        <br>
+
+        <p>
+            🍂 d-none　　：最小尺寸開始消失，可以四個欄位一起判斷<br>
+            🍂 d-md-block：md 尺寸開始出現，由於 div 出現會切開上下，上方、下方要分開判斷
+        </p>
+        <div class="row">
+            <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+            <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+
+            <!-- Force next columns to break to new line at md breakpoint and up -->
+            <div class="w-100 d-none d-md-block"></div>
+
+            <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+            <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <h2>🍀排序Order classes</h2>
+        <br>
+        <div class="row">
+            <!-- order 數字小到大 => 左到右 -->
+            <div class="col">1</div>
+            <div class="col order-3 order-lg-3">2</div>
+            <div class="col order-4 order-lg-2">3</div>
+            <div class="col order-1 order-lg-1">4</div>
+            <div class="col order-2 order-lg-4">5</div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <h2>🍀欄的推移</h2>
+        <br>
+        <p>🔻 offset-md-4 往左邊推四等分</p>
+        <div class="row">
+            <div class="col-md-4">.col-md-4</div>
+            <div class="col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
+        </div>
+        <p>🔻 兩個區塊接設定 offset-md-3 往左邊推三等分</p>
+        <div class="row">
+            <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+            <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+        </div>
+        <p>🔻 offset-md-3 往左邊推三等分，等於置中</p>
+        <div class="row">
+            <!-- offset-md-3 往左邊推三等分，等於置中 -->
+            <div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <span>
+            視窗小於 sm 時，吃掉的區塊為：.row>*{ width:100% } 之部分
+        </span>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-6">1</div>
+            <div class="col-sm-6">2</div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <h2>🍀用 margin 推移</h2>
+        <br>
+        <p>
+            🍂 ms-*：指 margin-left ，s 表示 start，在 BS4 margin-left 用 ml-* <br>
+            🍂 me-*：指 margin-right，e 表示 end，在 BS4 margin-left 用 mr-* <br>
+        </p>
+        <p>
+            🍃 .ms-auto ➠ margin-left: auto <br>
+            🍃 .me-auto ➠ margin-right: auto
+        </p>
+        <br>
+        <span>
+            語系不同，所以用 ms-*、me-* 來表示起始、結束的方向，阿語系是從右側為 start
+        </span>
+        <br><br>
+        <p>🔻ms-auto ➠ 推到左邊</p>
+        <div class="row">
+            <div class="col-md-4">.col-md-4</div>
+            <div class="col-md-4 ms-auto">.col-md-4 .ms-auto</div>
+        </div>
+        <p>🔻ms-md-auto ➠ md 尺寸時往左邊推移</p>
+        <div class="row">
+            <div class="col-md-3 ms-md-auto">.col-md-3 .ms-md-auto</div>
+            <div class="col-md-3 ms-md-auto">.col-md-3 .ms-md-auto</div>
+        </div>
+        <p>🔻me-auto ➠ 推到右邊</p>
+        <div class="row">
+            <div class="col-auto me-auto">.col-auto .me-auto</div>
+            <div class="col-auto">.col-auto</div>
+        </div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="container">
+        <h2>🍀獨立 Column class</h2>
+
+        <br>
+        <span>
+            沒有與 row 配合，col 可以只當作一般寬度使用
+        </span>
+        <br><br>
+
+        <div class="clearfix">
+            <img src="https://picsum.photos/300/200/?random=10" class="col-md-6 float-md-end mb-3 ms-md-3">
+            <p>
+                A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding
+                quite a few meaningless phrases here to demonstrate how the columns interact here with the floated
+                image.
+            </p>
+            <p>
+                As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look
+                with
+                some actual content in here, rather than just this boring placeholder text that goes on and on, but
+                actually
+                conveys no tangible information at. It simply takes up space and should not really be read.
+            </p>
+            <p>
+                And yet, here you are, still persevering in reading this placeholder text, hoping for some more
+                insights, or
+                some hidden easter egg of content. A joke, perhaps. Unfortunately, there's none of that here.
+            </p>
+        </div>
+    </div>
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

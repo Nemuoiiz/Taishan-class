@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 使用 bootstrap 的 css -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+
+    <style>
+        .row {
+            margin-bottom: 1rem;
+        }
+
+        .row>*:nth-child(odd) {
+            background: mistyrose;
+        }
+
+        .row>*:nth-child(even) {
+            background: thistle;
+        }
+
+        .row>* {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+    實際網站應用：
+    https://www.mi.com/tw/
+    https://tw.msi.com/
+    -->
+
+    <div class="container">
+
+        <h1>網格系統（Grid system）－最核心重要</h1>
+        <div class="row">
+            <!-- col 後面沒有加數字，意思為等寬 -->
+            <div class="col">col</div>
+            <div class="col">col</div>
+            <div class="col">col</div>
+        </div>
+
+
+        <br>
+        <hr><br>
+
+        <!-- 贅詞是在該尺寸後發生的事情 -->
+        <h1>.col 後面沒有數字，代表平均分配欄寬</h1>
+        <h4>在最小尺寸開始時，平均分配五欄寬度</h4>
+        <div class="row">
+            <div class="col">col</div>
+            <div class="col">col</div>
+            <div class="col">col</div>
+            <div class="col">col</div>
+            <div class="col">col</div>
+        </div>
+
+        <h4>在 md 尺寸開始，平均分配三欄寬度</h4>
+        <div class="row">
+            <div class="col-md">col-md</div>
+            <div class="col-md">col-md</div>
+            <div class="col-md">col-md</div>
+        </div>
+
+        <br>
+        <hr><br>
+
+        <h1>.col 後面加數字，代表 12 等分的幾等分，總和為 12</h1>
+        <!-- .col1～.col12 -->
+        <div class="row">
+            <!-- 三等分 -->
+            <div class="col">col</div>
+            <!-- 六等分 -->
+            <div class="col-6">col-6</div>
+            <!-- 三等分 -->
+            <div class="col">col</div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">1 of 3</div>
+            <div class="col-5">2 of 3 (wider)</div>
+            <div class="col-4">3 of 3</div>
+        </div>
+
+        <h1>超過 12 會換行</h1>
+        <div class="row">
+            <div class="col-lg-4">col-lg-4</div>
+            <div class="col-lg-5">col-lg-5</div>
+            <div class="col-lg-4">col-lg-4</div>
+        </div>
+
+        <br>
+        <hr><br>
+
+        <h1>🌰 例子1</h1>
+        <p>xs 1 欄，md 2 欄，lg 3 欄，xl 4 欄</p>
+        <div class="row">
+            <!-- col-12 可以省略 -->
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">col</div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">col</div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">col</div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">col</div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">col</div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">col</div>
+        </div>
+
+        <h1>🌰 例子2</h1>
+        <p>從 xs 到 sm 都會是六等分（兩欄），一直到 md 才會 4 等分（三欄）</p>
+        <div class="row">
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+        </div>
+
+        <h1>.col-auto 可變寬度內容（寬度會依據內容）</h1>
+        <!-- justify-content-md-center 水平置中 -->
+        <div class="row justify-content-md-center">
+            <div class="col-lg-2">col-lg-2</div>
+            <!-- lg 尺寸時，寬度為依照內容長度調整 -->
+            <div class="col-lg-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, provident?</div>
+            <div class="col-lg-2">col-lg-2</div>
+        </div>
+
+        <h1>混合匹配</h1>
+        <p>col 沒有時即占滿空間，md 時分別為 8/12 以及 4/12</p>
+        <div class="row">
+            <div class="col-md-8">.col-md-8</div>
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>列與欄</h1>
+        <p>row-cols 有支援 rwd 斷點。也有 row-cols-auto 指分配內容寬度</p>
+        <div class="row row-cols-2 row-cols-lg-3">
+            <div class="col">Column</div>
+            <div class="col">Column</div>
+            <div class="col">Column</div>
+            <div class="col">Column</div>
+            <div class="col">Column</div>
+            <div class="col">Column</div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h1>巢狀</h1>
+        <div class="row">
+            <!-- sm 以前沒有設定尺寸，因此視窗最小時為由上至下 -->
+            <!-- 第一層 3/12 -->
+            <div class="col-sm-3 bg-dark text-white">
+                Level 1: .col-sm-3
+            </div>
+            <!-- 第一層 9/12 -->
+            <div class="col-sm-9 bg-danger">
+                <!-- mb-0 => margin-bottom:0px -->
+                <div class="row mb-0">
+                    <!-- 第二層 8/12、大於 sm 時為 6/12 -->
+                    <div class="col-8 col-sm-6 mb-0">
+                        Level 2: .col-8 .col-sm-6
+                    </div>
+                    <!-- 第二層 4/12、大於 sm 時為 6/12 -->
+                    <div class="col-4 col-sm-6 mb-0">
+                        Level 2: .col-4 .col-sm-6
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
