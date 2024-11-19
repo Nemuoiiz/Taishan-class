@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <!-- 2. 再使用自己的樣式 -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎨 文字換行</h1>
+        <p>⚠️ 容器需要有寬度</p>
+        <div class="badge bg-primary text-wrap" style="width: 6rem">
+            This text should wrap.
+        </div>
+
+        <div class="badge bg-warning text-wrap" style="width: 6rem">
+            青青子衿，悠悠我心，但為君故，沉吟至今。
+        </div>
+
+        <br>
+        <hr><br>
+
+        <h1>🎨 防止換行</h1>
+        <div class="text-nowrap bg-info" style="width: 8rem;">
+            This text should overflow the parent.
+        </div>
+
+        <br>
+        <hr><br>
+
+        <h1>🎨 文字斷行</h1>
+        <p>避免過長的英文單字，造成排版上不換行的現象，例如：火山矽肺症的英文</p>
+        <p class="bg-orange w-25">Pneumonoultramicroscopicsilicovolcanoconiosis</p>
+        <p class="text-break bg-orange w-25">Pneumonoultramicroscopicsilicovolcanoconiosis</p>
+
+        <br>
+        <hr><br>
+
+        <h1>🎨 大小寫變換</h1>
+        <p class="text-lowercase">轉小寫　 　： Lowercased text.</p>
+        <p class="text-uppercase">轉大寫　 　： Uppercased text.</p>
+        <p class="text-capitalize">首字母大寫 ： CapiTaliZed text.</p>
+
+        <br>
+        <hr><br>
+
+        <h1>🎨 文字大小</h1><br>
+
+        <h3>🔻 .fs-*</h3>
+        <p class="fs-1">.fs-1 text</p>
+        <p class="fs-2">.fs-2 text</p>
+        <p class="fs-3">.fs-3 text</p>
+        <p class="fs-4">.fs-4 text</p>
+        <p class="fs-5">.fs-5 text</p>
+        <p class="fs-6">.fs-6 text</p>
+
+        <br>
+
+        <h3>🔻 .h*</h3>
+        <p class="h1">.fs-1 text</p>
+        <p class="h2">.fs-2 text</p>
+        <p class="h3">.fs-3 text</p>
+        <p class="h4">.fs-4 text</p>
+        <p class="h5">.fs-5 text</p>
+        <p class="h6">.fs-6 text</p>
+    </div>
+
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

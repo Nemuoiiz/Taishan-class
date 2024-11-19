@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <!-- 2. 再使用自己的樣式 -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        .container {
+            margin-bottom: 1rem;
+        }
+
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+        }
+
+        .row>div {
+            height: 150px;
+            border: 1px dashed #aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row>div~div {
+            border-left: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Border</h1>
+        <br>
+        <h2>🎨 增加</h2>
+        <p>
+            .boder-*：top、end、bottom、start
+        </p>
+        <div class="row">
+            <div class="col"><span class="border        border-danger"></span></div>
+            <div class="col"><span class="border-top    border-warning"></span></div>
+            <div class="col"><span class="border-end    border-success"></span></div>
+            <div class="col"><span class="border-bottom border-info"></span></div>
+            <div class="col"><span class="border-start  border-primary"></span></div>
+        </div>
+
+        <br>
+
+        <h2>🎨 減少</h2>
+        <p>
+            先使用 .border，<br>
+            再使用 .border-*：0、top-0、end-0、bottom-0、start-0
+        </p>
+        <div class="row">
+            <div class="col"><span class="border border-0        border-danger"></span></div>
+            <div class="col"><span class="border border-top-0    border-warning"></span></div>
+            <div class="col"><span class="border border-end-0    border-success"></span></div>
+            <div class="col"><span class="border border-bottom-0 border-info"></span></div>
+            <div class="col"><span class="border border-start-0  border-primary"></span></div>
+        </div>
+
+        <br>
+
+        <h2>🎨 邊框顏色</h2>
+        <p>.border-*：danger、warning、success、info、primary、secondary、dark、light</p>
+        <div class="row">
+            <div class="col"><span class="border border-danger"></span></div>
+            <div class="col"><span class="border border-warning"></span></div>
+            <div class="col"><span class="border border-success"></span></div>
+            <div class="col"><span class="border border-info"></span></div>
+            <div class="col"><span class="border border-primary"></span></div>
+            <div class="col"><span class="border border-secondary"></span></div>
+            <div class="col"><span class="border border-dark"></span></div>
+            <div class="col bg-dark"><span class="border border-light"></span></div>
+        </div>
+
+        <br>
+
+        <h2>🎨 框線寬度</h2>
+        <div class="row">
+            <div class="col"><span class="border border-1"></span></div>
+            <div class="col"><span class="border border-2"></span></div>
+            <div class="col"><span class="border border-3"></span></div>
+            <div class="col"><span class="border border-4"></span></div>
+            <div class="col"><span class="border border-5"></span></div>
+            <!-- 自定義 style.css -->
+            <div class="col"><span class="border border-10"></span></div>
+        </div>
+
+        <br>
+
+        <h2>🎨 Border-radius</h2>
+        <p>
+            rounded-circle 需要圖片本身為正方形才作用<br>
+            rounded-pill　 需要圖片本身為長型才作用
+        </p>
+        <div class="row">
+            <div class="col"><img class="rounded" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-top" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-end" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-bottom" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-start" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-circle" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-pill" src="https://picsum.photos/200/100/?random=10"></div>
+        </div>
+
+        <br>
+
+        <h2>🎨 Border-radius 尺寸</h2>
+        <div class="row">
+            <div class="col"><img class="rounded-0" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-1" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-2" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-3" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-4" src="https://picsum.photos/100/100/?random=10"></div>
+            <div class="col"><img class="rounded-5" src="https://picsum.photos/100/100/?random=10"></div>
+        </div>
+    </div>
+
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

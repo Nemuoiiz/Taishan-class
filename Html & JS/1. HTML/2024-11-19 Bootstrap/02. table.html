@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+
+    <style>
+        hr {
+            /* height: 30px; */
+            margin-top: 40px;
+            color: #000;
+        }
+
+        h1 {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🍀Table</h1>
+        <p>🔶 情境顏色可以對 table、tr、td 去使用<br>
+            Primary（靛色）、Secondary（深灰）、Success（綠色）、Danger（紅色）<br>
+            Warning（黃色）、Info（淡藍）、Light（淺灰）、Dark（黑色）
+        </p>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary">
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td class="table-secondary">Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>條紋行</h2>
+        <p>
+            .table-striped 條紋行格式<br>
+            .table-hover 滑入顏色變化<br>
+            .table-active 可突顯表格行或單獨的儲存格
+        </p>
+        <table class="table table-light table-striped table-hover">
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td class="table-active">🖤</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>帶框表格</h2>
+        <p>.table-bordered</p>
+        <table class="table table-bordered table-warning border-danger">
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>不帶框表格</h2>
+        <p>.table-borderless</p>
+        <table class="table table-borderless table-danger">
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>小表格</h2>
+        <p>
+            .table-sm 可將儲存格 padding 縮減一半來精簡<br>
+            ⚠️-sm 為表格尺寸，而非斷點
+        </p>
+        <table class="table table-info table-sm">
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>1234</td>
+                <td>1234</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h1>🍀響應式 table</h1>
+
+        <div class="table-responsive">
+            <table class="table table-light">
+                <tr>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                </tr>
+                <tr>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                </tr>
+                <tr>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                    <td>11111111</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="table-responsive-sm">
+            <table class="table table-secondary">
+                <tr>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                </tr>
+                <tr>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                </tr>
+                <tr>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                    <td>22222222</td>
+                </tr>
+            </table>
+        </div>
+        <p>
+            🔻 .table-responsive-sm 為例<br>
+            max-width: 575.98px　以下，會出現捲動軸，可以滑動以觀看內容<br>
+            max-width: 576px　 　以上，時捲動軸會消失<br>
+        </p>
+        <div class="table-responsive-md">
+            <table class="table table-dark">
+                <tr>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                </tr>
+                <tr>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                </tr>
+                <tr>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                    <td>33333333</td>
+                </tr>
+            </table>
+        </div>
+        <p>
+            🔻 .table-responsive-md 為例<br>
+            max-width: 767.98px　以下，會出現捲動軸，可以滑動以觀看內容<br>
+            max-width: 768px　 　以上，時捲動軸會消失
+        </p>
+    </div>
+
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+
+    <style>
+        hr {
+            height: 30px;
+            margin-top: 40px;
+            color: #000;
+        }
+    </style>
+</head>
+
+<!-- 可以更改 body 顏色的全域變數 -->
+
+<body style="--bs-body-color: #948282;">
+    <div class="container">
+        <!--
+        h1、.h1 的設定
+        🔹 h1, .h1 { font-size: calc(1.375rem + 1.5vw); }
+        🔹 @media (min-width: 1200px) { h1, .h1 {font-size: 2.5rem;} }
+        -->
+        <h1 class="display-1">Display 1</h1>
+        <h1 class="display-2">Display 2</h1>
+        <h1 class="display-3">Display 3</h1>
+        <h1 class="display-4">Display 4</h1>
+        <h1 class="display-5">Display 5</h1>
+        <h1 class="display-6">Display 6</h1>
+
+        <hr>
+
+        <h1>.img-fluid</h1>
+        <p>💡 響應式圖片<br>
+            圖片比父容器大的情況，max-width 才有作用，可以剛好放在容器寬度之中<br>
+            圖片比父容器小的情況，max-width 不會作用</p>
+        <h2>max-width 有作用</h2>
+        <div style="width: 500px; height: 300px; border: 1px solid #333;">
+            <img class="img-fluid" src="https://picsum.photos/800/200/?random=10">
+        </div>
+        <br>
+        <h2>max-width 無作用</h2>
+        <div style="width: 500px; height: 300px; border: 1px solid #333;">
+            <img class="img-fluid" src="https://picsum.photos/300/200/?random=10">
+        </div>
+
+        <hr>
+
+        <h1>.img-thumbnail</h1>
+        <p>可以使用 .img-thumbnail 讓圖片呈現圓角 1px 的邊框</p>
+        <img src="https://picsum.photos/400/400/?random=10" class="img-thumbnail">
+
+        <hr>
+
+        <h1>對齊圖片</h1>
+        <h2>浮動</h2>
+        <!-- 除了 clearfix 外，也可以加上 overflow-hidden 使用 BFC 的方式讓背景回來 -->
+        <div class="bg-primary clearfix">
+            <img class="float-start" src="https://picsum.photos/300/200/?random=10">
+            <img class="float-end" src="https://picsum.photos/300/200/?random=10">
+        </div>
+        <br>
+        <h2>圖片置中1</h2>
+        <p>轉型成 block，圖片有自己的寬度，可以使用 margin:auto 置中</p>
+        <!-- .rounded 圓角 -->
+        <!-- 圖片為 inline block 元素 -->
+        <img class="rounded-3 mx-auto d-block" src="https://picsum.photos/300/200/?random=10">
+
+        <h2>圖片置中2</h2>
+        <p>將圖片當作 inline，使用 .text-center</p>
+        <div class="text-center bg-danger">
+            <img class="rounded-3" src="https://picsum.photos/300/200/?random=10">
+        </div>
+        <p>🔺bootstrap 本身內建 img,svg { vertical-align: middle; } 來消除底部空白</p>
+
+        <h2>圖片置中3</h2>
+        <p>使用彈性盒 display: flex 置中</p>
+        <div class="d-flex justify-content-center">
+            <img class="rounded-3" src="https://picsum.photos/300/200/?random=10">
+        </div>
+    </div>
+
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>
