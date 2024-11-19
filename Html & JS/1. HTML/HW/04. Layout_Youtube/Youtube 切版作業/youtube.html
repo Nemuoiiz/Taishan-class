@@ -32,34 +32,46 @@
         #container {
             width: 100vw;
             height: 100vh;
+            font-size: 20px;
             overflow-x: hidden;
         }
 
-        /* 上方搜尋列 */
-        #up-bar {
-            width: 100%;
+
+        /* 上方標題列---------------------------------------------------- */
+        #up-bar table {
+            width: 100vw;
             height: 80px;
+            text-align: center;
             background: oldlace;
-            text-align: center;
-
-            /* 讓 padding 不要影響 height */
-            box-sizing: border-box;
-            position: fixed;
-            top: 0;
-            left: 0;
+            border-collapse: collapse;
         }
 
-        #search {
-            /* 相對於父元素定位 */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+        #up-bar td {
+            border: 1px solid red;
         }
 
-        #search input {
-            width: 700px;
+        #up-bar td:nth-child(1) {
+            width: 200px;
+            font-size: 22px;
+        }
+
+        #up-bar td:nth-child(1) a {
+            text-decoration: none;
+            color: #000;
+            font-family: "Fjalla One", sans-serif;
+            margin-left: 15px;
+        }
+
+        #tw-text {
+            font-family: "Noto Sans TC", sans-serif;
+            font-weight: 400;
+            font-size: 10px;
+            vertical-align: top;
+        }
+
+        /* 中間搜尋 */
+        #up-bar input {
+            width: 500px;
             height: 45px;
             border: 1px solid #aaa;
             border-radius: 50px;
@@ -67,7 +79,13 @@
             font-size: 18px;
         }
 
-        /* 標籤列表 */
+        /* 右側 */
+        #up-bar #profile {
+            width: 40px;
+            line-height: 80px;
+        }
+
+        /* 標籤列表---------------------------------------------------------------- */
         #tag-bar {
             width: 100%;
             height: 70px;
@@ -79,9 +97,9 @@
 
         }
 
-        /* 側邊欄位 */
+        /* 側邊欄位----------------------------------------------------------------- */
         #side-bar {
-            width: 150px;
+            width: 90px;
             height: calc(100vh - 80px);
             position: fixed;
             left: 0px;
@@ -93,14 +111,14 @@
             z-index: 9999;
         }
 
-        /* 影片區 */
+        /* 影片區-------------------------------------------------------------------- */
         #video {
-            width: calc(100vw - 150px);
+            width: calc(100vw - 90px);
             height: calc(100vh - 150px);
 
-            position: fixed;
+            position: absolute;
             top: 150px;
-            left: 150px;
+            left: 90px;
 
             background: #eee;
         }
@@ -110,11 +128,46 @@
 <body>
     <!-- 整個區塊 -->
     <div id="container">
+
         <!-- 最上方：標題搜尋列 -->
         <div id="up-bar">
+            <table>
+                <tr>
+                    <td>
+                        <i class="fa-solid fa-bars"></i>
+                        <a href="https://www.youtube.com/">
+                            <i class="fa-brands fa-youtube" style="color: red;"></i>
+                            <span>YouTube<sup id="tw-text">TW</sup></span>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="搜尋">
+                        <i id="search" class="fa-solid fa-magnifying-glass"></i>
+                        <i id="mic" class="fa-solid fa-microphone"></i>
+                    </td>
+                    <td>
+                        <img id="profile" src="./images/me.jpg">
+                    </td>
+                </tr>
+            </table>
+
+            <!-- 左側 -->
+            <!-- <div id="up-right">
+                <i class="fa-solid fa-bars"></i>
+                <a href="https://www.youtube.com/">
+                    <i class="fa-brands fa-youtube" style="color: red;"></i>
+                    <span>YouTube<sup class="tw-text">TW</sup></span>
+                </a>
+            </div> -->
+
             <!-- 中間搜尋區 -->
-            <div id="search">
+            <!-- <div id="search">
                 <input type="text" placeholder="搜尋">
+            </div> -->
+
+            <!-- 右側 -->
+            <div id="up-left">
+
             </div>
         </div>
 
