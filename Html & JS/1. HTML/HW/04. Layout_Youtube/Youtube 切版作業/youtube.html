@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <style>
+        /* focus */
         * {
             padding: 0;
             margin: 0;
@@ -37,7 +38,7 @@
         /* 上方搜尋列 */
         #up-bar {
             width: 100%;
-            height: 12%;
+            height: 80px;
             background: oldlace;
             text-align: center;
 
@@ -69,22 +70,22 @@
         /* 標籤列表 */
         #tag-bar {
             width: 100%;
-            height: 12%;
+            height: 70px;
             background: thistle;
 
             position: fixed;
-            top: 12%;
+            top: 80px;
             left: 0%;
 
         }
 
         /* 側邊欄位 */
         #side-bar {
-            width: 12%;
-            height: calc(100vh - 12%);
+            width: 150px;
+            height: calc(100vh - 80px);
             position: fixed;
             left: 0px;
-            top: 12%;
+            top: 80px;
 
             background: mistyrose;
             color: #000;
@@ -94,12 +95,12 @@
 
         /* 影片區 */
         #video {
-            width: 100%;
-            height: calc(100vh - 24%);
+            width: calc(100vw - 150px);
+            height: calc(100vh - 150px);
 
             position: fixed;
-            top: 24%;
-            left: 12%;
+            top: 150px;
+            left: 150px;
 
             background: #eee;
         }
