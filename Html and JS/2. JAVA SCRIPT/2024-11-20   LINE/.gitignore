@@ -1,0 +1,5 @@
+node_modules
+.env
+# 使用 dump/*.json 後
+# 需要在 dump 資料夾內新增 .gitkeep
+dump/*.json
