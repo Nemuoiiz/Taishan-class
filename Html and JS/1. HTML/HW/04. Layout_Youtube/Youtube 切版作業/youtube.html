@@ -33,26 +33,28 @@
             width: 100vw;
             height: 100vh;
             font-size: 20px;
-            overflow-x: hidden;
+            /* overflow-x: hidden; */
         }
 
 
         /* 上方標題列---------------------------------------------------- */
         #up-bar table {
+            table-layout: fixed;
             width: 100vw;
-            height: 80px;
+            height: 60px;
             text-align: center;
             background: oldlace;
             border-collapse: collapse;
+            color: #000;
         }
 
         #up-bar td {
             border: 1px solid red;
         }
 
+        /* 上方左側 */
         #up-bar td:nth-child(1) {
-            width: 200px;
-            font-size: 22px;
+            width: 220px;
         }
 
         #up-bar td:nth-child(1) a {
@@ -65,34 +67,46 @@
         #tw-text {
             font-family: "Noto Sans TC", sans-serif;
             font-weight: 400;
-            font-size: 10px;
+            font-size: 9px;
             vertical-align: top;
         }
 
-        /* 中間搜尋 */
+        /* 上方中間搜尋 */
         #up-bar input {
             width: 500px;
-            height: 45px;
+            height: 40px;
             border: 1px solid #aaa;
             border-radius: 50px;
             padding-left: 20px;
-            font-size: 18px;
+            font-size: 16px;
         }
 
-        /* 右側 */
+        /* 上方右側 */
+        #up-bar td:nth-child(3) {
+            width: 200px;
+            /* height: 70px; */
+            /* line-height: 70px; */
+            text-align: center;
+        }
+
+        #up-bar .right {
+            margin: 0 5px 0 20px;
+        }
+
         #up-bar #profile {
             width: 40px;
-            line-height: 80px;
+            vertical-align: middle;
+            border-radius: 50px;
         }
 
         /* 標籤列表---------------------------------------------------------------- */
         #tag-bar {
             width: 100%;
-            height: 70px;
+            height: 60px;
             background: thistle;
 
             position: fixed;
-            top: 80px;
+            top: 60px;
             left: 0%;
 
         }
@@ -100,10 +114,10 @@
         /* 側邊欄位----------------------------------------------------------------- */
         #side-bar {
             width: 90px;
-            height: calc(100vh - 80px);
+            height: calc(100vh - 60px);
             position: fixed;
             left: 0px;
-            top: 80px;
+            top: 60px;
 
             background: mistyrose;
             color: #000;
@@ -114,10 +128,10 @@
         /* 影片區-------------------------------------------------------------------- */
         #video {
             width: calc(100vw - 90px);
-            height: calc(100vh - 150px);
+            height: calc(100vh - 120px);
 
             position: absolute;
-            top: 150px;
+            top: 120px;
             left: 90px;
 
             background: #eee;
@@ -134,9 +148,9 @@
             <table>
                 <tr>
                     <td>
-                        <i class="fa-solid fa-bars"></i>
+                        <i id="hamburger" class="fa-solid fa-bars"></i>
                         <a href="https://www.youtube.com/">
-                            <i class="fa-brands fa-youtube" style="color: red;"></i>
+                            <i id="r-yt" class="fa-brands fa-youtube" style="color: red;"></i>
                             <span>YouTube<sup id="tw-text">TW</sup></span>
                         </a>
                     </td>
@@ -146,7 +160,9 @@
                         <i id="mic" class="fa-solid fa-microphone"></i>
                     </td>
                     <td>
-                        <img id="profile" src="./images/me.jpg">
+                        <i class="right fa-regular fa-square-plus"></i>
+                        <i class="right fa-regular fa-bell"></i>
+                        <img id="profile" class="right" src="./images/me.jpg">
                     </td>
                 </tr>
             </table>
