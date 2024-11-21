@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 遊戲區域 */
+        #game {
+            width: 500px;
+            height: 500px;
+            background: #000;
+            border: 1px solid #000;
+            position: relative;
+            overflow: hidden;
+            /* 圖片不能太大（超過 100 or 150 會不行） */
+            /* 圖片位址，滑鼠xy座標，auto */
+            cursor: url('./cursor.png') 50 50, auto;
+        }
+
+        #game img {
+            height: 100px;
+            position: absolute;
+            /* 設定無法選取反白 */
+            user-select: none;
+            /* 設定無法拖曳 */
+            -webkit-user-drag: none;
+        }
+
+
+        .target {
+            /* 使 blood 不要擋住 target */
+            z-index: 1;
+        }
+
+        .blood {
+            pointer-events: none;
+            /* 使 blood 不要擋住 target */
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="開始" id="btn-start">
+    <br>
+    <p>分數： <span id="text-score">0</span></p>
+    <p>剩餘： <span id="text-time">0</span></p>
+    <p>最高分玩家： <span id="text-highscore-player">-</span></p>
+    <p>最高分分數： <span id="text-highscore-score">-</span></p>
+
+    <div id="game"></div>
+
+    <!-- 特殊框 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        // 不成文的設定規定 => 不變動的 const 通常會設定為全大小
+        const GAMETIME = 30
+        // 分數
+        let score = 0
+        // 剩餘時間
+        let timeLeft = 0
+        // 計時器
+        let timer = 0
+
+        // 最高分
+        const highscore = {
+            name: '-',
+            score: 0
+        }
+
+        // 讀取 data 資料
+        // 玩家名字、最高分數紀錄
+        if (localStorage.fish) {
+            const data = JSON.parse(localStorage.fish)
+            highscore.name = data.name
+            highscore.score = data.score
+
+            $('#text-highscore-player').text(highscore.name)
+            $('#text-highscore-score').text(highscore.score)
+        }
+
+
+        $('#btn-start').click(function () {
+            // 🔻 this 會往外層找，指到開始按鈕
+            console.log(this)
+            // 按下開始後，停用開始按鈕
+            $(this).attr('disabled', true)
+            // 重設
+            score = 0
+            $('#text-score').text(score)
+            timeLeft = GAMETIME
+            $('#text-time').text(timeLeft)
+
+            // 🔻 setInterval 的 function 的 this 是 window
+            // 所以先把點擊事件的 this 放到變數裡面給後面使用
+            const _this = this
+
+            // 開始遊戲
+            timer = setInterval(function () {
+                // 倒數
+                timeLeft--
+                $('#text-time').text(timeLeft)
+
+                // 增加隨機性：隨機數字，隨機 >=5 且目標數量 <10，才出現
+                const random = Math.round(Math.random() * 10)
+                console.log(random)
+                if (random >= 5 && $('.target').length < 10) {
+                    // 隨機決定位置
+                    const top = Math.round(Math.random() * 100) + '%'
+                    const left = Math.round(Math.random() * 100) + '%'
+                    // 產生
+                    const target = $(`<img src="./kodai_sacabambaspis.png" class="target" style="top:${top};left:${left}">`)
+                    // 使 target 出現在 #game 遊戲區
+                    $('#game').append(target)
+                    // 🔸 製作一個 function 使 target 移動
+                    move(target)
+                }
+
+                // 時間到
+                if (timeLeft === 0) {
+                    clearInterval(timer)
+                    // 🔻 this 往外層找是 setInterval ，會指到 window，要注意
+                    console.log(_this)
+                    $(_this).attr('disabled', false)
+                    // 清空遊戲區
+                    $('#game').empty()
+
+                    if (score > highscore.score) {
+
+                        Swal.fire({
+                            title: '恭喜獲得最高分',
+                            text: '請輸入暱稱',
+                            input: 'text'
+                        }).then(result => {
+                            console.log(result)
+                            const name = result.value || 'あああ'
+                            highscore.name = name
+                            highscore.score = score
+
+                            $('#text-highscore-player').text(highscore.name)
+                            $('#text-highscore-score').text(highscore.score)
+
+                            // localStorage.setItem(資料名稱, 文字)
+                            // localStorage.資料名稱 = 文字
+                            // .stringify() 把 '陣列物件' 轉成 '文字'
+                            // .parse()     把 '文字'     轉成 '陣列物件'
+                            localStorage.fish = JSON.stringify(highscore)
+                        })
+                    } else {
+                        Swal.fire({
+                            title: '時間到',
+                            text: `分數: ${score}`
+                        })
+                    }
+                }
+            }, 1000)
+        })
+
+        // 點擊事件
+        // 點擊事件裡面不要包點擊事件，因此寫在外部
+        // .target 是後面才產出的，因此此處要使用 #game
+        $('#game').on('click', '.target', function () {
+            // 停止動畫
+            $(this).stop()
+            // 替換圖片
+            $(this).attr('src', './blood.png')
+            // 移除 class target，新增為 class blood
+            $(this).removeClass('target').addClass('blood')
+            // 分數新增
+            score++
+            // 更改目前分數
+            $('#text-score').text(score)
+        })
+
+        // 🔸 製作一個 function 使 target 移動
+        function move(target) {
+            // 隨機決定移動 target 位置
+            const top = Math.round(Math.random() * 100) + '%'
+            const left = Math.round(Math.random() * 100) + '%'
+            // 每兩秒移動位置
+            target.animate({ top, left }, 2000, function () {
+                move(target)
+            })
+        }
+    </script>
+</body>
+
+</html>
