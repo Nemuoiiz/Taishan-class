@@ -23,7 +23,7 @@
         }
 
         .container {
-            width: 100%;
+            width: 100vw;
             padding: 15px;
             margin: auto;
         }
@@ -60,9 +60,8 @@
 
 
 
-        @media (min-width:640px) {
+        @media (min-width: 576px) {
 
-            hr,
             #html p,
             #css p,
             #js p,
@@ -101,20 +100,20 @@
 
             #html {
                 position: absolute;
-                top: 12%;
-                left: 2%;
+                top: 140px;
+                left: 50px;
             }
 
             #css {
                 position: absolute;
-                top: 2%;
-                left: 20%;
+                top: 25px;
+                left: 350px;
             }
 
             #js {
                 position: absolute;
-                bottom: 25%;
-                left: 5%;
+                bottom: 240px;
+                left: 100px;
             }
 
             #jq {
@@ -141,6 +140,81 @@
                 bottom: 10%;
                 right: 15%;
             }
+
+            #h-html,
+            #h-css,
+            #h-js,
+            #h-jq,
+            #h-bs,
+            #h-sass,
+            #h-vue {
+                /* hr 寬度 */
+                height: 2px;
+                /* 移除邊框 */
+                border: none;
+                /* 設定顏色 */
+                background-color: #ccc;
+            }
+
+            #h-html {
+                /* hr 長度 */
+                width: 480px;
+                /* 修改旋轉角度 */
+                transform: rotate(12deg);
+                /* 位置 */
+                position: absolute;
+                top: 34%;
+                left: 15%;
+            }
+
+            #h-css {
+                width: 220px;
+                transform: rotate(32deg);
+                position: absolute;
+                top: 25%;
+                left: 31%;
+            }
+
+            #h-js {
+                width: 425px;
+                transform: rotate(348deg);
+                position: absolute;
+                bottom: 46%;
+                left: 18%;
+            }
+
+            #h-jq {
+                width: 230px;
+                transform: rotate(322deg);
+                position: absolute;
+                bottom: 36%;
+                left: 31%;
+            }
+
+            #h-bs {
+                width: 220px;
+                transform: rotate(330deg);
+                position: absolute;
+                top: 24%;
+                right: 31%;
+            }
+
+            #h-sass {
+                width: 400px;
+                transform: rotate(180deg);
+                position: absolute;
+                top: 40%;
+                right: 19%;
+            }
+
+
+            #h-vue {
+                width: 280px;
+                transform: rotate(33deg);
+                position: absolute;
+                bottom: 38%;
+                right: 27%;
+            }
         }
     </style>
 </head>
@@ -159,7 +233,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-html">
 
             <!-- HTML -->
             <div id="html" class="col">
@@ -171,7 +245,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-css">
 
             <!-- CSS -->
             <div id="css" class="col">
@@ -183,7 +257,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-js">
 
             <!-- JS -->
             <div id="js" class="col">
@@ -194,7 +268,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-jq">
 
             <!-- jQuery -->
             <div id="jq" class="col">
@@ -206,7 +280,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-bs">
 
             <!-- Bootstrap -->
             <div id="bs" class="col">
@@ -217,7 +291,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-sass">
 
             <!-- Sass -->
             <div id="sass" class="col">
@@ -230,7 +304,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr id="h-vue">
 
             <!-- Vue.js -->
             <div id="vue" class="col">

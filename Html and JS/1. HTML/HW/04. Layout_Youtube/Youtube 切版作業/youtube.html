@@ -37,33 +37,47 @@
         }
 
 
-        /* 上方標題列---------------------------------------------------- */
-        #up-bar table {
-            table-layout: fixed;
+        /* 🔶上方標題列---------------------------------------------------- */
+        #header {
             width: 100vw;
-            height: 60px;
-            text-align: center;
+            height: 70px;
+        }
+
+        #header table {
+            table-layout: fixed;
+            width: 100%;
+            height: 100%;
             background: oldlace;
             border-collapse: collapse;
             color: #000;
+            font-size: 26px;
+
+            z-index: 4;
         }
 
-        #up-bar td {
+        #header td {
             border: 1px solid red;
+            /* padding 算在寬度內 */
+            box-sizing: border-box;
         }
 
-        /* 上方左側 */
-        #up-bar td:nth-child(1) {
-            width: 220px;
+        /* 🔸上方左側 */
+        /* 左側全體 */
+        #header td:nth-child(1) {
+            width: 250px;
+            text-align: left;
+            padding-left: 30px;
         }
 
-        #up-bar td:nth-child(1) a {
+        /* 連結部分 */
+        #header td:nth-child(1) a {
             text-decoration: none;
             color: #000;
             font-family: "Fjalla One", sans-serif;
-            margin-left: 15px;
+            padding-left: 20px;
         }
 
+        /* TW 小字樣 */
         #tw-text {
             font-family: "Noto Sans TC", sans-serif;
             font-weight: 400;
@@ -71,29 +85,67 @@
             vertical-align: top;
         }
 
-        /* 上方中間搜尋 */
-        #up-bar input {
-            width: 500px;
-            height: 40px;
-            border: 1px solid #aaa;
-            border-radius: 50px;
-            padding-left: 20px;
-            font-size: 16px;
-        }
-
-        /* 上方右側 */
-        #up-bar td:nth-child(3) {
-            width: 200px;
-            /* height: 70px; */
-            /* line-height: 70px; */
+        /* 🔸上方中間搜尋 */
+        /* 中間全體 */
+        #header td:nth-child(2) {
+            width: auto;
             text-align: center;
         }
 
-        #up-bar .right {
+        #header #search-btn,
+        #header #mic {
+            height: 52px;
+            font-size: 25px;
+            border: 1px solid #aaa;
+            background: #eeeeee;
+            margin: 0px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        #header #search-btn:hover,
+        #header #mic:hover {
+            background: #dadada;
+        }
+
+        #header #search-btn {
+            width: 80px;
+            margin-left: -7px;
+            border-radius: 0px 50px 50px 0px;
+        }
+
+        #header #mic {
+            width: 52px;
+            margin-left: 20px;
+            border-radius: 50px;
+        }
+
+        #header input {
+            width: 500px;
+            height: 50px;
+            border: 1px solid #aaa;
+            border-radius: 50px 0px 0px 50px;
+            font-size: 16px;
+            /* 搜尋文字位置 */
+            padding-left: 25px;
+            margin: 0px;
+            vertical-align: middle;
+        }
+
+        /* 🔸上方右側 */
+        /* 右側全體 */
+        #header td:nth-child(3) {
+            width: 250px;
+            /* height: 70px; */
+            /* line-height: 70px; */
+            text-align: right;
+        }
+
+        #header .right {
             margin: 0 5px 0 20px;
         }
 
-        #up-bar #profile {
+        #header #profile {
             width: 40px;
             vertical-align: middle;
             border-radius: 50px;
@@ -106,9 +158,10 @@
             background: thistle;
 
             position: fixed;
-            top: 60px;
+            top: 70px;
             left: 0%;
 
+            z-index: 3;
         }
 
         /* 側邊欄位----------------------------------------------------------------- */
@@ -117,12 +170,12 @@
             height: calc(100vh - 60px);
             position: fixed;
             left: 0px;
-            top: 60px;
+            top: 70px;
 
             background: mistyrose;
             color: #000;
             font-size: 14px;
-            z-index: 9999;
+            z-index: 5;
         }
 
         /* 影片區-------------------------------------------------------------------- */
@@ -130,11 +183,14 @@
             width: calc(100vw - 90px);
             height: calc(100vh - 120px);
 
+
             position: absolute;
             top: 120px;
             left: 90px;
+            float: left;
 
             background: #eee;
+            z-index: 1;
         }
     </style>
 </head>
@@ -144,7 +200,7 @@
     <div id="container">
 
         <!-- 最上方：標題搜尋列 -->
-        <div id="up-bar">
+        <div id="header">
             <table>
                 <tr>
                     <td>
@@ -156,8 +212,8 @@
                     </td>
                     <td>
                         <input type="text" placeholder="搜尋">
-                        <i id="search" class="fa-solid fa-magnifying-glass"></i>
-                        <i id="mic" class="fa-solid fa-microphone"></i>
+                        <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button id="mic"><i class="fa-solid fa-microphone"></i></button>
                     </td>
                     <td>
                         <i class="right fa-regular fa-square-plus"></i>
