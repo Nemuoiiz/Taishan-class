@@ -36,8 +36,14 @@
             /* overflow-x: hidden; */
         }
 
+        table {
+            width: 100%;
+            height: 100%;
+            /* border-collapse: collapse; */
+        }
 
-        /* 🔶上方標題列---------------------------------------------------- */
+
+        /* 🔻上方標題列---------------------------------------------------- */
         #header {
             width: 100vw;
             height: 70px;
@@ -45,12 +51,10 @@
 
         #header table {
             table-layout: fixed;
-            width: 100%;
-            height: 100%;
             background: oldlace;
-            border-collapse: collapse;
             color: #000;
             font-size: 26px;
+            border-collapse: collapse;
 
             z-index: 4;
         }
@@ -77,11 +81,17 @@
             padding-left: 20px;
         }
 
+        /* YT 紅色 icon */
+        #red-yt {
+            font-size: 34px;
+        }
+
         /* TW 小字樣 */
         #tw-text {
             font-family: "Noto Sans TC", sans-serif;
             font-weight: 400;
-            font-size: 9px;
+            margin-left: 5px;
+            font-size: 12px;
             vertical-align: top;
         }
 
@@ -92,40 +102,41 @@
             text-align: center;
         }
 
-        #header #search-btn,
-        #header #mic {
-            height: 52px;
-            font-size: 25px;
-            border: 1px solid #aaa;
+        #header #btn-search,
+        #header #btn-mic {
+            height: 48px;
+            font-size: 24px;
+            border: 1px solid #ccc;
             background: #eeeeee;
             margin: 0px;
             vertical-align: middle;
             cursor: pointer;
         }
 
-        #header #search-btn:hover,
-        #header #mic:hover {
-            background: #dadada;
+        #header #btn-search:hover,
+        #header #btn-mic:hover {
+            background: #e7e7e7;
         }
 
-        #header #search-btn {
+        #header #btn-search {
             width: 80px;
             margin-left: -7px;
             border-radius: 0px 50px 50px 0px;
         }
 
-        #header #mic {
-            width: 52px;
-            margin-left: 20px;
+        #header #btn-mic {
+            width: 48px;
+            margin-left: 14px;
             border-radius: 50px;
+            border: none;
         }
 
         #header input {
-            width: 500px;
-            height: 50px;
-            border: 1px solid #aaa;
+            width: 650px;
+            height: 46px;
+            border: 1px solid #ccc;
             border-radius: 50px 0px 0px 50px;
-            font-size: 16px;
+            font-size: 20px;
             /* 搜尋文字位置 */
             padding-left: 25px;
             margin: 0px;
@@ -141,14 +152,76 @@
             text-align: right;
         }
 
-        #header .right {
-            margin: 0 5px 0 20px;
+        #header #btn-plus,
+        #header #btn-bell {
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+
+            background: none;
+            border: none;
+            border-radius: 50px;
+            vertical-align: middle;
+            margin: 0px 10px 0px 0px;
+        }
+
+        #header #btn-plus:hover,
+        #header #btn-bell:hover {
+            background: #e7e7e7;
+            cursor: pointer;
         }
 
         #header #profile {
             width: 40px;
             vertical-align: middle;
             border-radius: 50px;
+            margin: 0px 40px 0px 20px;
+            cursor: pointer;
+        }
+
+        /* 🔻側邊欄位----------------------------------------------------------------- */
+        #side-bar {
+            width: 90px;
+            height: calc(100vh - 60px);
+            position: fixed;
+            left: 0px;
+            top: 70px;
+
+            background: mistyrose;
+            color: #000;
+            font-size: 14px;
+            z-index: 5;
+        }
+
+        #side-bar table {
+            width: 100%;
+            height: 400px;
+            /* 子元素向上靠齊 */
+            vertical-align: top;
+            text-align: center;
+            border-spacing: 10px 2px;
+        }
+
+        #side-bar table td {
+            background: #eee;
+            border: 1px solid red;
+            border-radius: 10px;
+        }
+
+        #side-bar i {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        #side-bar a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        #side-bar p {
+            font-size: 14px;
+            font-family: " Noto Sans TC", sans-serif;
+
         }
 
         /* 標籤列表---------------------------------------------------------------- */
@@ -162,20 +235,6 @@
             left: 0%;
 
             z-index: 3;
-        }
-
-        /* 側邊欄位----------------------------------------------------------------- */
-        #side-bar {
-            width: 90px;
-            height: calc(100vh - 60px);
-            position: fixed;
-            left: 0px;
-            top: 70px;
-
-            background: mistyrose;
-            color: #000;
-            font-size: 14px;
-            z-index: 5;
         }
 
         /* 影片區-------------------------------------------------------------------- */
@@ -206,36 +265,22 @@
                     <td>
                         <i id="hamburger" class="fa-solid fa-bars"></i>
                         <a href="https://www.youtube.com/">
-                            <i id="r-yt" class="fa-brands fa-youtube" style="color: red;"></i>
+                            <i id="red-yt" class="fa-brands fa-youtube" style="color: red;"></i>
                             <span>YouTube<sup id="tw-text">TW</sup></span>
                         </a>
                     </td>
                     <td>
                         <input type="text" placeholder="搜尋">
-                        <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <button id="mic"><i class="fa-solid fa-microphone"></i></button>
+                        <button id="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button id="btn-mic"><i class="fa-solid fa-microphone"></i></button>
                     </td>
                     <td>
-                        <i class="right fa-regular fa-square-plus"></i>
-                        <i class="right fa-regular fa-bell"></i>
-                        <img id="profile" class="right" src="./images/me.jpg">
+                        <button id="btn-plus"><i class="fa-regular fa-square-plus"></i></button>
+                        <button id="btn-bell"><i class="fa-regular fa-bell"></i></button>
+                        <img id="profile" src="./images/me.jpg">
                     </td>
                 </tr>
             </table>
-
-            <!-- 左側 -->
-            <!-- <div id="up-right">
-                <i class="fa-solid fa-bars"></i>
-                <a href="https://www.youtube.com/">
-                    <i class="fa-brands fa-youtube" style="color: red;"></i>
-                    <span>YouTube<sup class="tw-text">TW</sup></span>
-                </a>
-            </div> -->
-
-            <!-- 中間搜尋區 -->
-            <!-- <div id="search">
-                <input type="text" placeholder="搜尋">
-            </div> -->
 
             <!-- 右側 -->
             <div id="up-left">
@@ -245,10 +290,51 @@
 
         <!-- 左側區塊 -->
         <div id="side-bar">
-
+            <table>
+                <tr>
+                    <td>
+                        <a href="https://www.youtube.com/">
+                            <div>
+                                <i class="fa-solid fa-house"></i>
+                                <p>首頁</p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.youtube.com/shorts">
+                            <div>
+                                <i class="fa-solid fa-bolt"></i>
+                                <p>Shorts</p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.youtube.com/feed/subscriptions">
+                            <div>
+                                <i class="fa-solid fa-laptop-medical"></i>
+                                <p>訂閱內容</p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.youtube.com/feed/you">
+                            <div>
+                                <i class="fa-regular fa-circle-user"></i>
+                                <p>個人中心</p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        <!-- 影片分類區 -->
+        <!-- 影片標籤分類區 -->
         <div id="tag-bar">
 
         </div>
