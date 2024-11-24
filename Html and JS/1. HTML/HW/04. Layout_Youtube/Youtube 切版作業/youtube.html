@@ -33,7 +33,6 @@
             width: 100vw;
             height: 100vh;
             font-size: 20px;
-            /* overflow-x: hidden; */
         }
 
         table {
@@ -45,22 +44,21 @@
 
         /* 🔻上方標題列---------------------------------------------------- */
         #header {
+            position: fixed;
             width: 100vw;
             height: 70px;
         }
 
         #header table {
             table-layout: fixed;
-            background: oldlace;
+            /* background: oldlace; */
             color: #000;
             font-size: 26px;
             border-collapse: collapse;
-
-            z-index: 4;
         }
 
         #header td {
-            border: 1px solid red;
+            /* border: 1px solid red; */
             /* padding 算在寬度內 */
             box-sizing: border-box;
         }
@@ -70,7 +68,31 @@
         #header td:nth-child(1) {
             width: 250px;
             text-align: left;
-            padding-left: 30px;
+            padding-left: 20px;
+        }
+
+        /* 可點擊漢堡按鈕 */
+        label {
+            text-align: center;
+            line-height: 20px;
+        }
+
+        #hamburger {
+            width: 25px;
+            height: 25px;
+            position: fixed;
+            top: 15px;
+            left: 20px;
+
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        #hamburger:hover {
+            background: #e7e7e7;
+            border-radius: 50%;
         }
 
         /* 連結部分 */
@@ -78,12 +100,20 @@
             text-decoration: none;
             color: #000;
             font-family: "Fjalla One", sans-serif;
-            padding-left: 20px;
+            padding-left: 60px;
         }
+
 
         /* YT 紅色 icon */
         #red-yt {
-            font-size: 34px;
+            vertical-align: middle;
+            font-size: 32px;
+        }
+
+        /* youtube 文字 */
+        #header span {
+            vertical-align: middle;
+            font-size: 25px;
         }
 
         /* TW 小字樣 */
@@ -118,21 +148,24 @@
             background: #e7e7e7;
         }
 
-        #header #btn-search {
-            width: 80px;
-            margin-left: -7px;
-            border-radius: 0px 50px 50px 0px;
-        }
 
         #header #btn-mic {
             width: 48px;
-            margin-left: 14px;
+            margin-left: 15px;
             border-radius: 50px;
             border: none;
         }
 
+        #header #btn-search {
+            width: 80px;
+            margin-left: -7px;
+            border-radius: 0px 50px 50px 0px;
+            border-left: none
+        }
+
+
         #header input {
-            width: 650px;
+            width: 550px;
             height: 46px;
             border: 1px solid #ccc;
             border-radius: 50px 0px 0px 50px;
@@ -141,14 +174,19 @@
             padding-left: 25px;
             margin: 0px;
             vertical-align: middle;
+
+        }
+
+        #header input:focus {
+            box-shadow: inset 0px 1px 3px #aaa;
+            border: 2px solid cornflowerblue !important;
+            outline: none;
         }
 
         /* 🔸上方右側 */
         /* 右側全體 */
         #header td:nth-child(3) {
             width: 250px;
-            /* height: 70px; */
-            /* line-height: 70px; */
             text-align: right;
         }
 
@@ -180,76 +218,357 @@
         }
 
         /* 🔻側邊欄位----------------------------------------------------------------- */
+
         #side-bar {
             width: 90px;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 70px);
             position: fixed;
-            left: 0px;
             top: 70px;
+            left: 0;
 
-            background: mistyrose;
+            background-color: #fff;
+            text-align: center;
             color: #000;
             font-size: 14px;
-            z-index: 5;
+
+            /* 預設顯示 side-bar */
+            display: block;
         }
 
         #side-bar table {
-            width: 100%;
-            height: 400px;
-            /* 子元素向上靠齊 */
-            vertical-align: top;
+            width: 90px;
+            height: 380px;
             text-align: center;
-            border-spacing: 5px 4px;
+            border-spacing: 5px 2px;
+
+            /* background: #999; */
         }
 
         #side-bar table td {
-            background: #eee;
-            border: 1px solid red;
+            background: #fff;
             border-radius: 15px;
+
+            /* border: 1px solid red; */
+        }
+
+        #side-bar a {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #000;
+            display: block;
+        }
+
+        #side-bar a:hover {
+            background: #eee;
         }
 
         #side-bar i {
             font-size: 25px;
-            margin-bottom: 10px;
+            padding-top: 25px;
+            display: block;
         }
 
-        #side-bar a {
+        #side-bar p {
+            font-size: 12px;
+            font-family: "Noto Sans TC", sans-serif;
+            padding-top: 5px;
+        }
+
+        /* 🔻右側區塊：標籤列 + 影片區------------------------------------------------ */
+        #right {
+            width: calc(100vw - 90px);
+            height: calc(100vh - 70px);
+            position: fixed;
+            top: 70px;
+            right: 0px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #right::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        /* 滾動條樣式 */
+        #right::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+
+        }
+
+        /* 🔻標籤列表---------------------------------------------------------------- */
+        #tag-bar {
+            width: 100%;
+            height: 70px;
+            /* background: thistle; */
+            box-sizing: border-box;
+            padding-left: 15px;
+            line-height: 70px;
+        }
+
+
+        #tag-bar li {
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            width: auto;
+
+            background: #eee;
+            padding: 0px 15px;
+            margin: 2px;
+            border-radius: 10px;
+            font-family: "微軟正黑體";
+            font-size: 17px;
+        }
+
+        #tag-bar li:nth-child(1) {
+            background: #000;
+            color: #fff;
+        }
+
+        #tag-bar li {
+            cursor: pointer;
+        }
+
+        #tag-bar li:not(:first-child):hover {
+            background-color: #e1e1e1;
+        }
+
+
+        /* 🔻影片區-------------------------------------------------------------------- */
+        #video {
+            width: calc(100vw - 90px);
+            height: auto;
+            /* background: #eee; */
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        #cards {
+            /* 消除 inline-block 的幽靈空白 */
+            font-size: 0;
+        }
+
+        #video .card {
+            width: 270px;
+            height: auto;
+            line-height: 0px;
+            display: inline-block;
+            margin: 15px;
+            /* background: red; */
+        }
+
+        /* 影片圖 */
+        #video .card .video {
+            width: 270px;
+            height: auto;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* 頻道圖 */
+        .channel {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            margin-right: 15px;
+        }
+
+        .card table {
+            width: 270px;
+            height: auto;
+            font-family: "微軟正黑體";
+            /* 恢復字體大小 */
+            font-size: 17px;
+            border-collapse: collapse;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .card td {
+            /* border: 1px solid #000; */
+            height: auto;
+            line-height: 1.5;
+        }
+
+        .card table td[rowspan="3"] {
+            vertical-align: top;
+        }
+
+        .card table td:nth-child(2) {
+            width: 190px;
+            vertical-align: middle;
+            /* 超過兩行後省略 */
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            border-spacing: 0px;
+            padding-bottom: 5px;
+        }
+
+        .card table td:nth-child(3) {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .card table tr:nth-child(2),
+        .card table tr:nth-child(3),
+        .card td a {
+            color: #666;
+            font-size: 14px;
+            height: 20px;
+        }
+
+        .card a {
             text-decoration: none;
             color: #000;
         }
 
-        #side-bar p {
-            font-size: 14px;
-            font-family: " Noto Sans TC", sans-serif;
 
-        }
+        /* 🔻點擊 hamburger 後顯示 toachbar ---------------------------------------- */
 
-        /* 標籤列表---------------------------------------------------------------- */
-        #tag-bar {
-            width: 100%;
-            height: 60px;
-            background: thistle;
-
+        /* 預設隱藏 toachbar */
+        .toachbar {
+            width: 300px;
+            height: calc(100vh - 70px);
             position: fixed;
             top: 70px;
-            left: 0%;
+            left: 0;
 
-            z-index: 3;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            background-color: #fff;
+
+            display: none;
+            /* display: block; */
+            z-index: 999;
+            overflow-y: auto;
         }
 
-        /* 影片區-------------------------------------------------------------------- */
-        #video {
-            width: calc(100vw - 90px);
-            height: calc(100vh - 120px);
+        /* 當 checkbox 被勾選時切換狀態 */
+        #toggle-menu:checked~#side-bar {
+            display: none;
+        }
 
+        #toggle-menu:checked~.toachbar {
+            display: block;
+        }
 
-            position: absolute;
-            top: 120px;
-            left: 90px;
-            float: left;
+        /* 隱藏的 checkbox */
+        #toggle-menu {
+            display: none;
+        }
 
+        /* 🔻toachbar 內容-----------------------------*/
+
+        .toachbar::-webkit-scrollbar {
+            width: 0;
+            /* 隱藏滾動條 */
+        }
+
+        /* 當 hover 時顯示滾動條 */
+        .toachbar::-webkit-scrollbar {
+            width: 10px;
+            /* 顯示滾動條的寬度 */
+        }
+
+        /* 滾動條樣式 */
+        .toachbar:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        /* 文字部分 */
+        .toachbar ul {
+            list-style-type: none;
+            font-size: 18px;
+            font-family: "微軟正黑體";
+
+            /* background: red; */
+        }
+
+        .toachbar li {
+            height: 45px;
+            line-height: 45px;
+            display: block;
+            border-radius: 10px;
+            margin-bottom: 2px;
+
+            /* background: pink; */
+
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-clamp: 1;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+
+        .toachbar li:hover {
             background: #eee;
-            z-index: 1;
+        }
+
+        .toachbar a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .toachbar img {
+            margin: 0 2rem -0.5rem 1rem;
+            max-width: 30px;
+            border-radius: 50%;
+        }
+
+        .toachbar li i {
+            /* 圖示與文字之間的間距 */
+            margin: 0 3rem 0 1.3rem;
+            font-size: 20px;
+            /* 調整 icon 大小 */
+            max-width: 10px;
+        }
+
+        /* 分隔線 */
+        .toachbar hr {
+            margin: 20px 0px;
+        }
+
+        /* 個人中心、訂閱內容、探索 */
+        .toachbar .title {
+            padding: 0 0 0 1rem;
+            font-size: 20px;
+        }
+
+        /* 個人中心 */
+        .toachbar #personal i {
+            margin: 0 0 0 0.5rem;
+
+        }
+
+        /* 個人中心 */
+        .toachbar #personal:hover {
+            background: #eee;
+        }
+
+        /* 訂閱內容、探索 */
+        .toachbar .title:hover {
+            background: #fff;
+        }
+
+        .note {
+            font-size: 16px;
+            color: #666;
+            font-family: "微軟正黑體";
+            padding-left: 20px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #999;
         }
     </style>
 </head>
@@ -263,7 +582,6 @@
             <table>
                 <tr>
                     <td>
-                        <i id="hamburger" class="fa-solid fa-bars"></i>
                         <a href="https://www.youtube.com/">
                             <i id="red-yt" class="fa-brands fa-youtube" style="color: red;"></i>
                             <span>YouTube<sup id="tw-text">TW</sup></span>
@@ -277,16 +595,19 @@
                     <td>
                         <button id="btn-plus"><i class="fa-regular fa-square-plus"></i></button>
                         <button id="btn-bell"><i class="fa-regular fa-bell"></i></button>
-                        <img id="profile" src="./images/me.jpg">
+                        <img id="profile" src="./images/channel/me.jpg">
                     </td>
                 </tr>
             </table>
-
-            <!-- 右側 -->
-            <div id="up-left">
-
-            </div>
         </div>
+
+        <!-- 隱藏的 checkbox -->
+        <input type="checkbox" id="toggle-menu" hidden>
+
+        <!-- 漢堡按鈕 -->
+        <label for="toggle-menu" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </label>
 
         <!-- 左側區塊 -->
         <div id="side-bar">
@@ -294,54 +615,798 @@
                 <tr>
                     <td>
                         <a href="https://www.youtube.com/">
-                            <div>
-                                <i class="fa-solid fa-house"></i>
-                                <p>首頁</p>
-                            </div>
+                            <i class="fa-solid fa-house"></i>
+                            <p>首頁</p>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a href="https://www.youtube.com/shorts">
-                            <div>
-                                <i class="fa-solid fa-bolt"></i>
-                                <p>Shorts</p>
-                            </div>
+                            <i class="fa-solid fa-bolt"></i>
+                            <p>Shorts</p>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a href="https://www.youtube.com/feed/subscriptions">
-                            <div>
-                                <i class="fa-solid fa-laptop-medical"></i>
-                                <p>訂閱內容</p>
-                            </div>
+                            <i class="fa-solid fa-laptop-medical"></i>
+                            <p>訂閱內容</p>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a href="https://www.youtube.com/feed/you">
-                            <div>
-                                <i class="fa-regular fa-circle-user"></i>
-                                <p>個人中心</p>
-                            </div>
+                            <i class="fa-regular fa-circle-user"></i>
+                            <p>個人中心</p>
                         </a>
                     </td>
                 </tr>
             </table>
         </div>
 
-        <!-- 影片標籤分類區 -->
-        <div id="tag-bar">
-
+        <!-- 點擊彈出欄位 -->
+        <div class="toachbar">
+            <ul>
+                <a href="https://www.youtube.com/" title="首頁">
+                    <li><i class="fa-solid fa-house"></i>首頁</li>
+                </a>
+                <a href="https://www.youtube.com/shorts" title="Shorts">
+                    <li><i class="fa-solid fa-bolt"></i>Shorts</li>
+                </a>
+                <a href="https://www.youtube.com/feed/subscriptions" title="訂閱內容">
+                    <li><i class="fa-solid fa-laptop-medical"></i>訂閱內容</li>
+                </a>
+            </ul>
+            <hr>
+            <ul>
+                <a href="https://www.youtube.com/feed/you" title="個人中心">
+                    <li id="personal" class="title">個人中心<i class="fa-solid fa-chevron-right"></i></li>
+                </a>
+                <a href="https://www.youtube.com/feed/history" title="觀看紀錄">
+                    <li><i class="fa-solid fa-clock-rotate-left"></i>觀看紀錄</li>
+                </a>
+                <a href="https://www.youtube.com/feed/playlists" title="播放清單">
+                    <li><i class="fa-solid fa-bars-staggered"></i>播放清單</li>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=WL" title="稍後觀看">
+                    <li><i class="fa-regular fa-clock"></i>稍後觀看</li>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=LL" title="喜歡的影片">
+                    <li><i class="fa-regular fa-thumbs-up"></i>喜歡的影片</li>
+                </a>
+            </ul>
+            <hr>
+            <ul>
+                <li class="title">訂閱內容</li>
+                <li>
+                    <a href="https://www.youtube.com/@FroggyChiu" title="呱吉">
+                        <img src="./images/channel/froggy.jpg" alt="呱吉">呱吉
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@andysiphone8plus" title="Andy's iPhone">
+                        <img src="./images/channel/Andy.jpg" alt="Andy's iPhone">Andy's iPhone
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@cailingliou" title="劉采翎">
+                        <img src="./images/channel/cailin.jpg" alt="劉采翎">劉采翎
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@guesswhopts" title="誰來晚餐 GuessWho">
+                        <img src="./images/channel/dinner.jpg" alt="誰來晚餐 GuessWho">誰來晚餐 GuessWho
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@thethemenightshow" title="公視主題之夜SHOW">
+                        <img src="./images/channel/show.jpg" alt="公視主題之夜SHOW">公視主題之夜SHOW
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <ul>
+                <li class="title">探索</li>
+                <a href="https://www.youtube.com/feed/trending" title="發燒影片">
+                    <li><i class="fa-solid fa-meteor"></i>發燒影片</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ" title="音樂">
+                    <li><i class="fa-solid fa-music"></i>音樂</li>
+                </a>
+                <a href="https://www.youtube.com/feed/storefront" title="電影">
+                    <li><i class="fa-solid fa-clapperboard"></i>電影</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UC4R8DWoMoI7CAwX8_LjQHig" title="直播">
+                    <li><i class="fa-solid fa-tower-broadcast"></i>直播</li>
+                </a>
+                <a href="https://www.youtube.com/gaming" title="遊戲">
+                    <li><i class="fa-solid fa-gamepad"></i>遊戲</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UCYfdidRxbB8Qhf0Nx7ioOYw" title="新聞">
+                    <li><i class="fa-solid fa-newspaper"></i>新聞</li>
+                </a>
+                <a href="https://www.youtube.com/channel/UCEgdi0XIXXZ-qJOFPf4JSKw" title="體育">
+                    <li><i class="fa-solid fa-trophy"></i>體育</li>
+                </a>
+                <a href="https://www.youtube.com/feed/courses_destination" title="課程">
+                    <li><i class="fa-solid fa-lightbulb"></i>課程</li>
+                </a>
+                <a href="https://www.youtube.com/podcasts" title="Podcast">
+                    <li><i class="fa-solid fa-podcast"></i>Podcast</li>
+                </a>
+            </ul>
+            <hr>
+            <ul>
+                <a href="https://www.youtube.com/account" title="設定">
+                    <li><i class="fa-solid fa-gear"></i>設定</li>
+                </a>
+                <a href="https://www.youtube.com/reporthistory" title="檢舉紀錄">
+                    <li><i class="fa-solid fa-flag"></i>檢舉紀錄</li>
+                </a>
+                <li><i class="fa-solid fa-circle-question"></i>說明</li>
+                <li><i class="fa-solid fa-house-circle-exclamation"></i>提供意見</li>
+            </ul>
+            <hr>
+            <div class="note">
+                <p>
+                    <span>簡介</span>
+                    <span>媒體</span>
+                    <span>著作權</span>
+                    <span>與我們聯絡</span>
+                </p>
+                <p>
+                    <span>創作者</span>
+                    <span>廣告</span>
+                    <span>開發人員</span>
+                </p>
+                <br>
+                <p>
+                    <span>條款</span>
+                    <span>隱私權</span>
+                    <span>政策與安全性</span>
+                </p>
+                <p>
+                    <span>YouTube 運作方式</span>
+                    <span>測試新功能</span>
+                </p>
+                <br>
+                <div class="copyright">&copy; 20241124　Diane Zhang</div>
+            </div>
         </div>
 
-        <!-- 影片區 -->
-        <div id="video">
+        <div id="right">
+            <!-- 影片標籤分類區 -->
+            <div id="tag-bar">
+                <ul>
+                    <li>全部</li>
+                    <li>音樂</li>
+                    <li>Podcast</li>
+                    <li>遊戲</li>
+                    <li>直播中</li>
+                    <li>合輯</li>
+                    <li>新聞</li>
+                    <li>動畫</li>
+                    <li>觀光</li>
+                    <li>視覺藝術</li>
+                    <li>烹飪</li>
+                    <li>最新上傳</li>
+                    <li>已觀看</li>
+                    <li>讓你耳目一新</li>
+                </ul>
+            </div>
 
+            <!-- 影片區 -->
+            <div id="video">
+                <div id="cards">
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=ot7uXNQskhs">
+                            <img class="video" src="./images/video/video (6).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@ConcernedApe">
+                                            <img class="channel" src="./images/channel/ConcernedApe.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Stardew Valley Trailer
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@ConcernedApe">
+                                            ConcernedApe
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：435萬次．8 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=kJy7LF789lo&t">
+                            <img class="video" src="./images/video/video (7).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@ConcernedApe">
+                                            <img class="channel" src="./images/channel/ConcernedApe.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        ConcernedApe's Haunted Chocolatier -- Early Gameplay
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@ConcernedApe">
+                                            ConcernedApe
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：384萬次．3 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=pbQQAwSQUX4">
+                            <img class="video" src="./images/video/video (15).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a
+                                            href="https://www.youtube.com/@%E3%82%81%E3%81%96%E3%81%BE%E3%81%97%E3%83%86%E3%83%AC%E3%83%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB">
+                                            <img class="channel" src="./images/channel/mezamashi.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        【公式】『ちいかわ』第1話「かためのプリン／ホットケーキ」
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="https://www.youtube.com/@%E3%82%81%E3%81%96%E3%81%BE%E3%81%97%E3%83%86%E3%83%AC%E3%83%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB">
+                                            めざましテレビチャンネル
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：1310萬次．2 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=_6PupA6-zak">
+                            <img class="video" src="./images/video/video (11).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@manimu_">
+                                            <img class="channel" src="./images/channel/manimu.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        其實超級有趣的克蘇魯神話TRPG
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@manimu_">
+                                            まにむ
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：357萬次．9 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=BQjU4O1-URM">
+                            <img class="video" src="./images/video/video (19).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a
+                                            href="https://www.youtube.com/@%E7%86%8A%E7%86%8A%E4%B8%8D%E6%83%B3%E7%9D%A1">
+                                            <img class="channel" src="./images/channel/bear.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        NANA 第1集
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="https://www.youtube.com/@%E7%86%8A%E7%86%8A%E4%B8%8D%E6%83%B3%E7%9D%A1">
+                                            熊熊不想睡
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：5.6萬次．5 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=s50vvwTystA">
+                            <img class="video" src="./images/video/video (20).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@leewalters">
+                                            <img class="channel" src="./images/channel/Lee Walters.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Cute Lamb Needs Attention
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@leewalters">
+                                            Lee Walters
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：5257 萬次．4 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=1c_2H_hZTlY">
+                            <img class="video" src="./images/video/video (1).jpg">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@MissmeMichelle">
+                                            <img class="channel" src="./images/channel/Michelle.jpg">
+                                        </a>
+                                    </td>
+                                    <td>Ulay,Oh! 凝視瑪莉那 中文</td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@MissmeMichelle">
+                                            米小姐MissmeMichelle
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：7.2萬次．9 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=6rb0BGIgPIA">
+                            <img class="video" src="./images/video/video (13).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@andysiphone8plus">
+                                            <img class="channel" src="./images/channel/Andy.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        幹這根本有病#17 愛與抖內
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@andysiphone8plus">
+                                            Andy's iPhone
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：4.9萬次．1 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=djTDw_gYqI4">
+                            <img class="video" src="./images/video/video (18).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@FroggyChiu">
+                                            <img class="channel" src="./images/channel/froggy.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        【呱吉】新資料夾(201)：️Are you 受到委屈？
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@FroggyChiu">
+                                            呱吉
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：1.8萬次．1 個月前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=h8Z8hO1X7ME">
+                            <img class="video" src="./images/video/video (9).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@nsfwstudio">
+                                            <img class="channel" src="./images/channel/NSFW.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        【LiFe】來自松山邱先生對老婆的真情告白
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@nsfwstudio">
+                                            上班不要看 NSFW
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：128萬次．5 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=Aq_gsctWHtQ">
+                            <img class="video" src="./images/video/video (14).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@SEOULMUSIC">
+                                            <img class="channel" src="./images/channel/SEOUL MUSIC.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        [MV] 검정치마(The Black Skirts) - 'EVERYTHING'
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@SEOULMUSIC">
+                                            SEOUL MUSIC / 서울뮤직
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：3105萬次．8 年前 </td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=Sy_08-HcR3Y">
+                            <img class="video" src="./images/video/video (16).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@highnote">
+                                            <img class="channel" src="./images/channel/high_note.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        丸の内サディスティック - 椎名林檎（フル）
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@highnote">
+                                            high_note Music Lounge
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：2544萬次．7 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=lXKDu6cdXLI">
+                            <img class="video" src="./images/video/video (17).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@raykang1832">
+                                            <img class="channel" src="./images/channel/RayKang.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        刑者（EP試聽）
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@raykang1832">
+                                            RayKang何瑞康
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：136萬次．8 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=aCZYuw3fW_g">
+                            <img class="video" src="./images/video/video (10).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/channel/UCQTdf4jdjapvmS9Pn-nB0JQ">
+                                            <img class="channel" src="./images/channel/LÜCY.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        LÜCY-EYE(S) (Official Music Video)
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/channel/UCQTdf4jdjapvmS9Pn-nB0JQ">
+                                            LÜCY
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：129萬次．2 年前 </td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=6NsBztSGbOw">
+                            <img class="video" src="./images/video/video (8).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/channel/UC9rPALOT-ZVc7VEXATYSNCA">
+                                            <img class="channel" src="./images/channel/TOOBOE.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        痛いの痛いの飛んでいけ / TOOBOE
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/channel/UC9rPALOT-ZVc7VEXATYSNCA">
+                                            john / TOOBOE
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：1677萬次．5 個月前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=WzBnD_AOmJI">
+                            <img class="video" src="./images/video/video (2).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@jessetang1113">
+                                            <img class="channel" src="./images/channel/starYang.jpg">
+                                        </a>
+                                    </td>
+                                    <td>【唐陽雞酒屋】感情不順都是肝的問題？ft.簡少年</td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@jessetang1113">
+                                            唐綺陽官方專屬頻道
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：73萬次．7 個月前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=4zk61tptt0o">
+                            <img class="video" src="./images/video/video (4).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@Psyman%E5%A1%9E%E9%96%80">
+                                            <img class="channel" src="./images/channel/Psyman.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        通靈之戰S15(上)｜巫師？法師？通靈人到底有沒有辦法偵破案件呢？這絕對是Psyman有史以來看過最神奇的俄羅斯實境秀｜PSYMAN塞門｜任性系列之一
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@Psyman%E5%A1%9E%E9%96%80">
+                                            Psyman 塞門
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：222萬次．4 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=4zk61tptt0o">
+                            <img class="video" src="./images/video/video (3).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@Psyman%E5%A1%9E%E9%96%80">
+                                            <img class="channel" src="./images/channel/Psyman.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        通靈之戰S15(下)｜通靈之戰史上最強通靈女王！解開本季九成謎團！一個罐子就能破除世代魔咒！用眼神就能看透一切的混沌之靈！｜PSYMAN塞門｜任性系列之一
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@Psyman%E5%A1%9E%E9%96%80">
+                                            Psyman 塞門
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：318萬次．4 年前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://youtu.be/tJpR0Ur20as">
+                            <img class="video" src="./images/video/video (5).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@chuchushoeTW">
+                                            <img class="channel" src="./images/channel/chu.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        後宮甄嬛傳到底好看在哪？第一次看甄嬛秒入戲！華妃真的太可怕了！！｜直男看甄嬛 ep.1~3
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@chuchushoeTW">
+                                            啾啾鞋
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：65 萬次．7 個月前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.youtube.com/watch?v=R6T_xLzY7y4">
+                            <img class="video" src="./images/video/video (12).webp">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <a href="https://www.youtube.com/@VideolandJapan">
+                                            <img class="channel" src="./images/channel/japan.jpg">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        【跟拍到你家】想和老公離婚的年輕太太｜緯來日本台
+                                    </td>
+                                    <td rowspan="3">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/@VideolandJapan">
+                                            緯來日本台
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>觀看次數：20萬次．3 週前</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:focus 範例</title>
+    <style>
+        /* 隱藏內容的初始樣式 */
+        .hidden-content {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 當 input 獲得焦點時顯示後續的元素 */
+        input:focus+.hidden-content {
+            display: block;
+        }
+
+        /* 輸入框樣式 */
+        input {
+            width: 200px;
+            height: 40px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>:focus 顯示隱藏內容</h1>
+    <p>點擊輸入框後，額外內容會顯示：</p>
+    <input type="text" placeholder="點擊我">
+    <div class="hidden-content">這是隱藏的內容，現在顯示了！</div>
+</body>
+
+</html>
