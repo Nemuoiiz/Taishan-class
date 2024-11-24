@@ -418,10 +418,16 @@ label {
     padding: 10px 15px;
     background-color: #fff;
 
-    display: none;
-    /* display: block; */
+    /* 初始隱藏 */
+    visibility: hidden;
+    /* 初始透明 */
+    /* opacity: 0; */
     z-index: 999;
     overflow-y: auto;
+    /* 初始位置在螢幕外面 */
+    left: -300px;
+    /* 增加過渡效果 */
+    transition: left 0.3s ease, visibility 0s 1s;
 }
 
 /* 當 checkbox 被勾選時切換狀態 */
@@ -430,13 +436,21 @@ label {
 }
 
 #toggle-menu:checked~.toachbar {
-    display: block;
+    /* 顯示 */
+    visibility: visible;
+    /* 使元素可見 */
+    opacity: 1;
+    /* 滑入的終點 */
+    left: 0;
+    /* 過渡效果 */
+    transition: left 1s ease, opacity 1s ease;
 }
 
 /* 隱藏的 checkbox */
 #toggle-menu {
     display: none;
 }
+
 
 /* 🔻toachbar 內容----------------------------------------------------------------------------------------*/
 
