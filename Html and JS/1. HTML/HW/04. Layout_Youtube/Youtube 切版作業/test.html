@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Bar</title>
+    <style>
+        /* Reset 基本樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* #side-bar 基本樣式 */
+        #side-bar {
+            width: 90px;
+            height: calc(100vh - 70px);
+            /* 確保適應畫面高度 */
+            position: fixed;
+            background: mistyrose;
+            color: #000;
+            font-size: 14px;
+        }
+
+        #side-bar table {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            border-spacing: 5px 4px;
+            /* 表格單元間距 */
+        }
+
+        #side-bar table td {
+            padding: 0;
+            margin: 0;
+            border: 1px solid red;
+            /* 示意用邊框 */
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            /* 使內部元素可以絕對定位 */
+        }
+
+        #side-bar a {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            /* 移除下劃線 */
+            color: #000;
+            background: #aaa;
+            /* 背景色 */
+            border-radius: 15px;
+            /* 保持圓角 */
+            position: absolute;
+            /* 絕對定位 */
+            top: 0;
+            left: 0;
+        }
+
+        #side-bar i,
+        #side-bar p {
+            position: absolute;
+            /* 絕對定位 */
+            top: 50%;
+            /* 垂直居中 */
+            left: 50%;
+            /* 水平居中 */
+            transform: translate(-50%, -50%);
+            /* 完全居中 */
+        }
+
+        #side-bar i {
+            font-size: 25px;
+            margin-bottom: 5px;
+            /* 圖標與文字間距 */
+        }
+
+        #side-bar p {
+            font-size: 14px;
+            font-family: "Noto Sans TC", sans-serif;
+            /* 字體設定 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左側區塊 -->
+    <div id="side-bar">
+        <table>
+            <tr>
+                <td>
+                    <a href="https://www.youtube.com/">
+                        <i class="fa-solid fa-house"></i>
+                        <p>首頁</p>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.youtube.com/shorts">
+                        <i class="fa-solid fa-bolt"></i>
+                        <p>Shorts</p>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.youtube.com/feed/subscriptions">
+                        <i class="fa-solid fa-laptop-medical"></i>
+                        <p>訂閱內容</p>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.youtube.com/feed/you">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <p>個人中心</p>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
