@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>塔羅牌抽卡遊戲</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        #drawCard {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>塔羅牌抽卡遊戲</h1>
+        <button id="drawCard">抽一張牌</button>
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 塔羅牌名稱陣列
+            const tarotCards = [
+                "愚人 (The Fool)",
+                "魔術師 (The Magician)",
+                "女祭司 (The High Priestess)",
+                "皇后 (The Empress)",
+                "皇帝 (The Emperor)",
+                "教皇 (The Hierophant)",
+                "戀人 (The Lovers)",
+                "戰車 (The Chariot)",
+                "力量 (Strength)",
+                "隱者 (The Hermit)",
+                "命運之輪 (Wheel of Fortune)",
+                "正義 (Justice)",
+                "吊人 (The Hanged Man)",
+                "死亡 (Death)",
+                "節制 (Temperance)",
+                "惡魔 (The Devil)",
+                "高塔 (The Tower)",
+                "星星 (The Star)",
+                "月亮 (The Moon)",
+                "太陽 (The Sun)",
+                "審判 (Judgment)",
+                "世界 (The World)"
+            ];
+
+            // 按鈕點擊事件
+            $("#drawCard").click(function () {
+                // 隨機選擇一張牌
+                const randomIndex = Math.floor(Math.random() * tarotCards.length);
+                const selectedCard = tarotCards[randomIndex];
+
+                // 顯示抽卡結果
+                $("#result").html(`你抽到的牌是：<strong>${selectedCard}</strong>`);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

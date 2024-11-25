@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>橫向平移塔羅牌洗牌</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .deck {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            /* 隱藏超出邊界的部分 */
+        }
+
+        .card {
+            position: relative;
+            width: 120px;
+            height: 180px;
+            background: #f0d9b5;
+            border: 2px solid #333;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            transform-origin: center center;
+            transition: transform 1s ease, left 1s ease;
+            /* 平移時的過渡效果 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="deck">
+        <!-- 塔羅牌 -->
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+    </div>
+    <button id="shuffleButton">開始洗牌</button>
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const deck = document.querySelector(".deck");
+            const shuffleButton = document.getElementById("shuffleButton");
+
+            // 按鈕點擊觸發洗牌
+            shuffleButton.addEventListener("click", () => {
+                const cards = Array.from(deck.children);
+
+                // 1. 隨機平移每張卡片
+                cards.forEach((card) => {
+                    const randomOffset = Math.random() * 300 - 150; // 平移範圍：-150px 到 150px
+                    card.style.transform = `translateX(${randomOffset}px)`;
+                });
+
+                // 2. 洗牌結束後重置平移，並重新排序卡片
+                setTimeout(() => {
+                    // 重置平移
+                    cards.forEach((card) => {
+                        card.style.transform = "translateX(0)";
+                    });
+
+                    // 隨機打亂卡片順序
+                    shuffleArray(cards);
+
+                    // 將打亂後的卡片重新附加到 deck
+                    cards.forEach((card) => {
+                        deck.appendChild(card);
+                    });
+                }, 1500); // 與動畫時間一致
+            });
+
+            // 隨機打亂陣列的函數 (Fisher-Yates 演算法)
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>橫向塔羅牌洗牌</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .deck {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            position: absolute;
+            width: 120px;
+            height: 180px;
+            background: #f0d9b5;
+            border: 2px solid #333;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            transform-origin: center center;
+        }
+
+        /* 每張卡片的初始堆疊位置 */
+        .card:nth-child(1) {
+            z-index: 6;
+        }
+
+        .card:nth-child(2) {
+            z-index: 5;
+        }
+
+        .card:nth-child(3) {
+            z-index: 4;
+        }
+
+        .card:nth-child(4) {
+            z-index: 3;
+        }
+
+        .card:nth-child(5) {
+            z-index: 2;
+        }
+
+        .card:nth-child(6) {
+            z-index: 1;
+        }
+
+        /* 洗牌動畫 */
+        .shuffling .card:nth-child(1) {
+            animation: shuffle-horizontal 2s infinite;
+            animation-delay: 0s;
+        }
+
+        .shuffling .card:nth-child(2) {
+            animation: shuffle-horizontal 2s infinite;
+            animation-delay: 0.2s;
+        }
+
+        .shuffling .card:nth-child(3) {
+            animation: shuffle-horizontal 2s infinite;
+            animation-delay: 0.4s;
+        }
+
+        .shuffling .card:nth-child(4) {
+            animation: shuffle-horizontal 2s infinite;
+            animation-delay: 0.6s;
+        }
+
+        .shuffling .card:nth-child(5) {
+            animation: shuffle-horizontal 2s infinite;
+            animation-delay: 0.8s;
+        }
+
+        .shuffling .card:nth-child(6) {
+            animation: shuffle-horizontal 2s infinite;
+            animation-delay: 1s;
+        }
+
+        /* 橫向洗牌動畫 */
+        @keyframes shuffle-horizontal {
+            0% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateX(-30px) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateX(30px) rotate(5deg);
+            }
+
+            75% {
+                transform: translateX(-15px) rotate(-3deg);
+            }
+
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="deck">
+        <!-- 塔羅牌 -->
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+    </div>
+    <button id="shuffleButton">開始洗牌</button>
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const deck = document.querySelector(".deck");
+            const shuffleButton = document.getElementById("shuffleButton");
+
+            // 按鈕點擊觸發洗牌
+            shuffleButton.addEventListener("click", () => {
+                // 添加 "shuffling" class 啟動動畫
+                deck.classList.add("shuffling");
+
+                // 在 3 秒後移除 class，讓動畫結束
+                setTimeout(() => {
+                    deck.classList.remove("shuffling");
+                }, 3000); // 持續時間和動畫時間一致
+            });
+        });
+    </script>
+</body>
+
+</html>
