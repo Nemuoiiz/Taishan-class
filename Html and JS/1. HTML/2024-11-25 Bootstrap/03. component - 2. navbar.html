@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+
+    <!-- bootstrap icons：　https://icons.getbootstrap.com/#install (Icon font 最常使用)-->
+    <!--
+        上方輸入：
+        >cdnjs:search for libraries
+        bootstrap icons
+        1.11.3
+        bootstrap-icons.css
+    -->
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.css' />
+
+</head>
+
+<body>
+    <!-- https://demo.templatemonster.com/demo/73860.html 模板 -->
+
+    <!-- 彈性盒 -->
+    <!-- py-4 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-4">
+        <!-- 彈性項目 -->
+        <!-- container-fluid 改為 container -->
+        <div class="container">
+            <a class="navbar-brand" href="#"><img
+                    src="https://livedemo00.template-help.com/wt_prod-10492/theme/images/logo-default-280x92.png"
+                    width="150px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NEMUI">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- 彈性盒 -->
+            <!-- 🔻 .bg-info 測範圍 -->
+            <div id="NEMUI" class="collapse navbar-collapse">
+                <!-- 彈性項目 -->
+                <!--
+                me-auto => margin-end 　　　　為 auto，水平向右對齊)
+                mx-auto => margin-left/right 皆 auto，水平居中對齊) -->
+                <!-- 🔻 .bg-warning 測範圍 -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <!-- me-5 -->
+                    <li class="nav-item me-5">
+                        <a class="nav-link active" href="#">HOME</a>
+                    </li>
+                    <!-- me-5 -->
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#">PAGES</a>
+                    </li>
+                    <!-- me-5 -->
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#">BLOG</a>
+                    </li>
+                    <!-- me-5 -->
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#">GALLERY</a>
+                    </li>
+                    <!-- me-5 -->
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#">ELEMENTS</a>
+                    </li>
+                    <!-- me-5 -->
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#">SHOP</a>
+                    </li>
+                </ul>
+                <!-- 彈性項目 -->
+                <!-- 🔻 .bg-danger 測範圍 -->
+                <form class="d-flex">
+                    <!-- me-3、bs-4 -->
+                    <i class="bi me-3 fs-4 bi-search"></i>
+                    <i class="bi me-3 fs-4 bi-cart3"></i>
+                    <i class="bi me-3 fs-4 bi-list-nested"></i>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

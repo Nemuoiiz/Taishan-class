@@ -165,6 +165,151 @@
             <div class="col bg-danger p-0">Flex item</div>
         </div>
 
+        <h3>在 flex item 上使用 margin</h3>
+        <p>在第一個 div 做 me-auto</p>
+        <!-- e => end (ver.5) = right (ver.4) -->
+        <div class="d-flex mb-3">
+            <div class="p-2 me-auto">me-auto</div>
+            <div class="p-2">Flex item</div>
+            <div class="p-2">Flex item</div>
+        </div>
+
+        <p>在第三個 div 做 ms-auto</p>
+        <!-- s => start (ver.5) = left (ver.4) -->
+        <div class="d-flex mb-3">
+            <div class="p-2">Flex item</div>
+            <div class="p-2">Flex item</div>
+            <div class="p-2 ms-auto">ms-auto</div>
+        </div>
+
+        <p>在三個 div 都做 m-auto</p>
+        <div class="d-flex mb-3">
+            <div class="p-2 m-auto">m-auto</div>
+            <div class="p-2 m-auto">m-auto</div>
+            <div class="p-2 m-auto">m-auto</div>
+        </div>
+
+        <h3>搭配 align-items</h3>
+        <!-- b => bottom -->
+        <div class="d-flex flex-column align-items-start">
+            <div class="p-2 mb-auto">Flex item</div>
+            <div class="p-2">Flex item</div>
+            <div class="p-2">Flex item</div>
+        </div>
+
+        <div class="d-flex flex-column justify-content-end align-items-start">
+            <!-- t => top -->
+            <div class="p-2">Flex item</div>
+            <div class="p-2">Flex item</div>
+            <div class="p-2 mt-auto">Flex item</div>
+        </div>
+
+        <p>彈性盒的預設狀態會拉長</p>
+        <div class="d-flex">
+            <div class="p-2">Flex item</div>
+            <div class="p-2">Flex item</div>
+            <div class="p-2">Flex item</div>
+        </div>
+
+
+        <h3>Wrap 換行</h3>
+        <p>使用 flex-wrap</p>
+        <!--
+            groe   0
+            shrink 1 => 防止爆版
+            basis  auto 
+        -->
+        <div class="d-flex flex-wrap">
+            <div class="w-25">Flex item 01</div>
+            <div class="w-25">Flex item 02</div>
+            <div class="w-25">Flex item 03</div>
+            <div class="w-25">Flex item 04</div>
+            <div class="w-25">Flex item 05</div>
+            <div class="w-25">Flex item 06</div>
+        </div>
+
+        <p>使用 flex-wrap-reverse</p>
+        <div class="d-flex flex-wrap-reverse">
+            <div class="w-25">Flex item 01</div>
+            <div class="w-25">Flex item 02</div>
+            <div class="w-25">Flex item 03</div>
+            <div class="w-25">Flex item 04</div>
+            <div class="w-25">Flex item 05</div>
+            <div class="w-25">Flex item 06</div>
+        </div>
+
+        <h3>對齊內容 align-content</h3>
+        <p>align-content 一定要 flex-wrap（換行）才有作用</p>
+        <p>align-content-center</p>
+        <div class="d-flex flex-wrap align-content-center">
+            <div class="w-25">item01</div>
+            <div class="w-25">item02</div>
+            <div class="w-25">item03</div>
+            <div class="w-25">item04</div>
+            <div class="w-25">item05</div>
+            <div class="w-25">item06</div>
+        </div>
+
+        <p>align-content-between</p>
+        <div class="d-flex flex-wrap align-content-between">
+            <div class="w-25">item01</div>
+            <div class="w-25">item02</div>
+            <div class="w-25">item03</div>
+            <div class="w-25">item04</div>
+            <div class="w-25">item05</div>
+            <div class="w-25">item06</div>
+        </div>
+
+        <p>align-content-around</p>
+        <div class="d-flex flex-wrap align-content-around">
+            <div class="w-25">item01</div>
+            <div class="w-25">item02</div>
+            <div class="w-25">item03</div>
+            <div class="w-25">item04</div>
+            <div class="w-25">item05</div>
+            <div class="w-25">item06</div>
+        </div>
+
+        <p>align-content-stretch</p>
+        <div class="d-flex flex-wrap align-content-stretch">
+            <div class="w-25">item01</div>
+            <div class="w-25">item02</div>
+            <div class="w-25">item03</div>
+            <div class="w-25">item04</div>
+            <div class="w-25">item05</div>
+            <div class="w-25">item06</div>
+        </div>
+
+        <h3>Media object</h3>
+        <!-- 還原設定，拿掉高度 -->
+        <div class="d-flex h-autos">
+            <!-- 還原設定，背景色拿掉 -->
+            <div class="flex-shrink-0 bg-transparent">
+                <img src="https://picsum.photos/150/150/?random=10">
+            </div>
+            <!-- 還原設定，被景色拿掉、文字黑色 -->
+            <div class="flex-grow-1 ms-3 bg-transparent text-dark">
+                This is some content from a media component. You can replace this with any content and adjust it as
+                needed.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto consequatur excepturi ullam,
+                inventore nihil autem repellendus a nostrum accusantium doloribus facere eum natus, vero debitis
+                dolorum! Nemo tempore rem autem.
+            </div>
+        </div>
+
+        <p>加上 align-items-center</p>
+        <div class="d-flex h-autos align-items-center">
+            <div class="flex-shrink-0 bg-transparent">
+                <img src="https://picsum.photos/150/150/?random=10">
+            </div>
+            <div class="flex-grow-1 ms-3 bg-transparent text-dark">
+                This is some content from a media component. You can replace this with any content and adjust it as
+                needed.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto consequatur excepturi ullam,
+                inventore nihil autem repellendus a nostrum accusantium doloribus facere eum natus, vero debitis
+                dolorum! Nemo tempore rem autem.
+            </div>
+        </div>
 
         <br><br><br>
     </div>

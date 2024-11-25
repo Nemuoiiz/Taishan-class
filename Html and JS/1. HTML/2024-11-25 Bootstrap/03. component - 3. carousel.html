@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <!-- 2. 再使用自己的樣式 -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Carousel 輪播 (包含字幕) -->
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/components/carousel/#with-captions -->
+
+
+    <!--
+        data-bs-ride="carousel"  =>  啟動輪播功能
+        data-bs-interval="5000"  =>  設定輪播間隔時間，單位為毫秒（滑鼠移上去時不會換）
+        .carousel-fade           =>  讓輪播的切換效果變成淡入淡出
+        .carousel-dark           =>  深色模式，讓文字變成黑色
+    -->
+    <!-- 🔻 id 與指示器、上一張、下一張按鈕有關係，要一起改 -->
+    <div id="NEMUI" class="carousel slide carousel-fade carousel-dark " data-bs-ride="carousel" data-bs-interval="3000">
+
+        <!-- indicators 指示器，選擇鈕 -->
+        <div class="carousel-indicators">
+            <!-- active 是最開始，只能有一張 -->
+            <button type="button" data-bs-target="#NEMUI" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#NEMUI" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#NEMUI" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#NEMUI" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#NEMUI" data-bs-slide-to="4"></button>
+        </div>
+
+        <!-- 輪播圖內容全部，一個 carousel-item 為輪播單位，第一個開始的要設定 .active -->
+        <div class="carousel-inner">
+            <!-- 第一張圖 -->
+            <!-- active 是最開始，只能有一張 -->
+            <div class="carousel-item active">
+                <img src="https://picsum.photos/1920/600/?random=1" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <!-- 第二張圖 -->
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/600/?random=2" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <!-- 第三張圖 -->
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/600/?random=3" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+            <!-- 第四張圖 -->
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/600/?random=4" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+            <!-- 第五張圖 -->
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/600/?random=5" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🕹️ -->
+        <!-- 上一張按鈕 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#NEMUI" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <!-- 下一張按鈕 -->
+        <button class="carousel-control-next" type="button" data-bs-target="#NEMUI" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

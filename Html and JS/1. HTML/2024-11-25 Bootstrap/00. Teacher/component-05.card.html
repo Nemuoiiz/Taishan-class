@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1.使用 bootstrap 的 css -->
+  <link rel="stylesheet" href="./css/bootstrap5.3.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="container mb-5">
+    <h1>卡片</h1>
+    <p>卡片是 flexbox、垂直流向(flex-direction: column)，具有相對定位</p>
+    <div class="row">
+      <div class="col">
+        <h2>.rounded-0 沒有圓角</h2>
+        <div class="card rounded-0 shadow-lg">
+          <img src="https://picsum.photos/800/600/?random=1" class="card-img-top rounded-0">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h2>.card-img-top 有圓角</h2>
+        <div class="card">
+          <div class="card-header">
+            <img src="https://picsum.photos/800/600/?random=1" class="card-img-top">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h2>.card 有相對定位</h2>
+        <div class="card">
+          <img src="https://picsum.photos/800/600/?random=1" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">子元素可以使用絕對定位而不會脫離</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <button type="button" class="btn-close position-absolute top-0 end-0 bg-white" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>可以與其他可能的元件組合使用</h1>
+    <h2>與 list-group 搭配使用</h2>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            Featured
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="https://picsum.photos/800/600/?random=1" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>圖片 overlay</h1>
+    <div class="row bg-dark">
+      <div class="col-sm-6 bg-info">
+        <div class="card bg-dark text-white h-100">
+          <img src="https://picsum.photos/1920/1080/?random=1" class="card-img h-100 w-100 object-fit-cover">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptatum! Voluptas deleniti hic dicta beatae optio, totam, sequi sit minus eius, non officiis praesentium in nisi rem! Veritatis in necessitatibus nihil dolores repellat magnam provident earum eum. Reiciendis ut tempora provident. Sint nisi non reiciendis alias asperiores fugiat iure quis quam ipsum ducimus, quas in dolorem earum molestiae. Ullam in, cumque, ducimus quisquam quidem ut quaerat vel quam vero labore perferendis, amet soluta dolorem animi enim. Porro perspiciatis exercitationem dolores ducimus eius molestiae, tempora repellendus. Consectetur sed repellendus iusto! Vero dolore reprehenderit culpa, vel rerum molestiae incidunt eum ad possimus quibusdam aspernatur saepe corporis quisquam voluptatum a aperiam beatae eos eaque dolor. Provident, eveniet. Minima praesentium non ea, aut ipsa iure libero provident consequuntur! Quam nemo provident soluta eveniet commodi odit labore id? Dolor nihil aliquam maiores quas possimus ipsum vero quae perspiciatis delectus recusandae, voluptate
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card bg-dark text-white h-100">
+          <div class="card-body" style="background: url('https://picsum.photos/1920/1080/?random=1') no-repeat center/cover;">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptatum! Voluptas deleniti hic dicta beatae optio, totam, sequi sit minus eius, non officiis praesentium in nisi rem! Veritatis in necessitatibus nihil dolores repellat magnam provident earum eum. Reiciendis ut tempora provident. Sint nisi
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptatum! Voluptas deleniti hic dicta beatae optio, totam, sequi sit minus eius, non officiis praesentium in nisi rem! Veritatis in necessitatibus nihil dolores repellat magnam provident earum eum. Reiciendis ut tempora provident. Sint nisi
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptatum! Voluptas deleniti hic dicta beatae optio, totam, sequi sit minus eius, non officiis praesentium in nisi rem! Veritatis in necessitatibus nihil dolores repellat magnam provident earum eum. Reiciendis ut tempora provident. Sint nisi
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptatum! Voluptas deleniti hic dicta beatae optio, totam, sequi sit minus eius, non officiis praesentium in nisi rem! Veritatis in necessitatibus nihil dolores repellat magnam provident earum eum. Reiciendis ut tempora provident. Sint nisi
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>水平卡片</h1>
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://picsum.photos/300/300/?random=1" class="w-100">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 2.使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+  <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>
