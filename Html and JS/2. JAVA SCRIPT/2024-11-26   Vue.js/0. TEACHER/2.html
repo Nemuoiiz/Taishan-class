@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .text-red {
+      color: red;
+    }
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 綁定標籤屬性 -->
+    <img v-bind:src="image" height="50">
+    <img :src="image" height="50">
+    <a :href="link.url">{{ link.text }}</a>
+    <!-- 綁定 style -->
+    <p :style="textStyle">畢業承認將軍信心貸款如何也許初音降價活動壓縮孤獨，法院幾天犯罪祝福，並不是報名產業很熱目光以及，理。</p>
+    <p :style="{ color: textColor, textAlign }">青草湖居然主機不想上路一臉，評論欄目暫無都有進入初步現有執行課堂，權益淡淡用戶名動力行業，情人是怎。</p>
+    <!-- 綁定 class -->
+    <p :class="textClassObject">不是這種十大群眾出去應該招商請在現代環節情節仍然，相互培訓名稱很容易男性生成軟體學會綜合，從而相機。</p>
+    <p :class="textClassArray">出去推廣目前變得看過出現在仍然信號做出完全味道快捷比賽因而，立即推薦使用供應商往往表示金屬，網域名。</p>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data () {
+        return {
+          image: 'https://github.com/vuejs.png',
+          link: {
+            url: 'https://x.com',
+            text: 'Twitter'
+          },
+          textStyle: {
+            color: 'lightblue',
+            textAlign: 'center',
+            'background-color': 'gray'
+          },
+          textColor: 'pink',
+          textAlign: 'right',
+          textClassObject: {
+            'text-red': true,
+            'text-center': false
+          },
+          textClassArray: ['text-center']
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

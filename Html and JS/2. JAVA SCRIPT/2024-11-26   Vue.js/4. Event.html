@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- ❇️綁定事件 -->
+
+        <!--🔻 v-on:click 點擊事件 -->
+        <input type="button" value="notify" v-on:click="notify"><br>
+        <!--✅ @click 為 v-on:click 簡寫 -->
+        <input type="button" value="notify" @click="notify">
+
+        <hr>
+        <!-- 收不到事件 event -->
+        <input type="button" value="notify2" @click="notify2('aaa')">
+
+        <hr>
+        <!-- 使用 $event 才能收到事件 event -->
+        <input type="button" value="notify3" @click="notify3('bbb', $event)">
+
+        <hr>
+
+        <!--
+            事件有 '修飾符' (modifier) 可以用 
+            .prevent
+            .stop
+        -->
+        <input type="text" v-model="input" @keydown.enter="add">
+        <ul>
+            <li v-for="item in list">{{ item }}</li>
+        </ul>
+
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    input: '',
+                    list: []
+                }
+            },
+            // 跟 data 同一層級
+            // 裡面放會用到的 function
+            methods: {
+                notify(event) {
+                    console.log(event)
+                    alert(123)
+                },
+                notify2(text) {
+                    alert(text)
+                },
+                notify3(text, event) {
+                    console.log(event)
+                    alert(text)
+                },
+                add() {
+                    // ✅ 如果要在 methods 存取 data 的話
+                    // 需要用 this (所以不可以用箭頭語法)
+                    if (this.input.length === 0) return
+
+                    this.list.push(this.input)
+                    this.notify2(this.input)
+                    this.input = ''
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

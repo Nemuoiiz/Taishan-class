@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input {
+            margin: 10px 0px 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 🔻 示範 computed 跟 method 差異的點擊按鈕 -->
+        <!-- 
+        差別在於執行時機不同，點擊後程式渲染頁面
+        只有 method 會重複執行 function
+        而 computed 只有在使用資料時才會執行，較節省處理效能
+        -->
+        <input type="button" :value="number" @click="number++"><br>
+
+        姓：<input type="text" v-model="lastName"><br>
+        名：<input type="text" v-model="firstName"><br>
+
+        <!-- 最簡單寫法 -->
+        <!-- {{ lastName + firstName }} -->
+
+        <!--🔻 computed 寫法 (推薦✅) -->
+        {{ fullName }} <br>
+        <!--🔻 method 寫法 (呼叫要加小括號，每次渲染頁面都會執行一次、不推薦) -->
+        {{ fullNameMethod() }}
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                // computed 是資料友值，一定要 return
+                return {
+                    firstName: '',
+                    lastName: '',
+                    number: 0
+                }
+            },
+            // ✅ computed 是根據現有的資料去動態產生資料
+            // 值會在相依變數修改時動態更新
+            computed: {
+                fullName() {
+                    console.log('computed')
+                    return this.lastName + this.firstName
+                }
+            },
+            methods: {
+                fullNameMethod() {
+                    console.log('method')
+                    return this.lastName + this.firstName
+                }
+            },
+            //  watch 在選項式時比較簡單，組合式時會較複雜
+            watch: {
+                // newValue 修改後的
+                // oldValue 修改前的 (可能會有娶不到值的問題)
+                firstName(newValue, oldValue) {
+                    // 抓取看看 '名' 欄位 (F12 check)
+                    console.log('firstName', newValue, oldValue)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

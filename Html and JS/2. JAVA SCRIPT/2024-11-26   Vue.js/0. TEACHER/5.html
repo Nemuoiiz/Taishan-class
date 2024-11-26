@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="button" :value="number" @click="number++">
+    <br>
+    姓：<input type="text" v-model="lastName">
+    <br>
+    名：<input type="text" v-model="firstName">
+    <br>
+    {{ fullName }}
+    <br>
+    {{ fullNameMethod() }}
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data () {
+        return {
+          firstName: '',
+          lastName: '',
+          number: 0
+        }
+      },
+      computed: {
+        fullName () {
+          console.log('computed')
+          return this.lastName + this.firstName
+        }
+      },
+      methods: {
+        fullNameMethod () {
+          console.log('method')
+          return this.lastName + this.firstName
+        }
+      },
+      watch: {
+        firstName (newValue, oldValue) {
+          console.log('firstName', newValue, oldValue)
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

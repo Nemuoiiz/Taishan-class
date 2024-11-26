@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input,
+        select {
+            margin: 10px 5px;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- ❇️ 表單 (form) 綁定 -->
+
+        <!-- 🔻 v-model 綁定使用者輸入的值 ✅ -->
+        <input type="text" v-model="form.text"><br>
+
+        <!-- 修飾符 (modifier) -->
+        <!-- .trim  => 自動移除'前後'空白 -->
+        <!-- .lazy  => 在 change 時才更新 -->
+        <input type="text" v-model.trim.lazy="form.text"><br>
+
+        <!-- 打字時輸入框下面會同步出現內容 -->
+        <p>{{ form.text }}</p>
+
+        <hr>
+
+        <!--🔻
+            radio、checkbox 都用 v-model 分組 ✅
+            v-model => 使用者輸入、選擇的值
+            value   => 欄位本身       的值
+        -->
+        <!-- 要注意 value 沒有冒號 : (v-blid 簡寫)  => 型態都會是文字 -->
+        <!-- value 都是文字(黃色) -->
+        <input type="radio" v-model="form.radio1" value="1">
+        <input type="radio" v-model="form.radio1" value="2">
+        <input type="radio" v-model="form.radio1" value="3">
+        <input type="radio" v-model="form.radio1" value="true">
+        <input type="radio" v-model="form.radio1" value="false">
+        <input type="radio" v-model="form.radio1" value="abc">
+        <br>
+        <!-- 前五個 value 是數字(粉色)，第六個 value 是文字(黃色) -->
+        <input type="radio" v-model="form.radio2" :value="1">
+        <input type="radio" v-model="form.radio2" :value="2">
+        <input type="radio" v-model="form.radio2" :value="3">
+        <input type="radio" v-model="form.radio2" :value="true">
+        <input type="radio" v-model="form.radio2" :value="false">
+        <input type="radio" v-model="form.radio2" :value="'abc'">
+
+        <hr>
+
+        <!--🔻一次迴圈多個標籤 -->
+        <!-- <div v-for="(option, i) in checkboxOptions">  => <div> 可能會影響排版 -->
+
+        <!-- 使用 template 不會渲染任何標籤 -->
+        <!-- 陣列跑迴圈 -->
+        <template v-for="(option, i) in checkboxOptions">
+            <!-- 顯示 option -->
+            <!-- <pre>{{ option }}</pre> -->
+
+            <!-- 🔠 文字說明 -->
+            <label :for="'check' + i">{{ option.label }}</label>
+
+            <!-- ☑️ 打勾欄 -->
+            <input type="checkbox" :id="'check' + i" :value="option.value" v-model="form.checkbox">
+        </template>
+
+        <hr>
+
+        <select v-model="form.select">
+            <!-- v-for 跑迴圈把東西印出來 -->
+            <option v-for="option in selectOptions" :value="option.value">{{ option.label }}</option>
+        </select>
+
+
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    form: {
+                        text: '',
+                        radio1: undefined,
+                        radio2: undefined,
+                        checkbox: [],
+                        select: ''
+                    },
+                    // 陣列
+                    checkboxOptions: [
+                        { value: '50', label: '50嵐' },
+                        { value: 'kbk', label: '可不可' },
+                    ],
+                    selectOptions: [
+                        { value: 'v', label: 'Vue' },
+                        { value: 'a', label: 'Angular' },
+                        { value: 'r', label: 'React' },
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

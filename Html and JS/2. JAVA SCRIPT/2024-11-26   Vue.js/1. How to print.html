@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Vue 為動態綁定 -->
+
+        <!--🔻 {{}}、v-text 用文字顯示資料 ---------------------->
+
+        <!-- 第1️⃣種寫法 -->
+        <!-- {{}}   => 可以做簡單基礎運算、加減乘除，使用彈性比較大 ✅ -->
+        <!-- 第2️⃣種寫法 -->
+        <!-- v-text => Vue.js 的 html 屬性(innerText 的概念)
+            使用時標籤內不能打東西，使用彈性小 -->
+        <h1>{{ text+'123456' }}</h1>
+        <h1 v-text="text">1232321532</h1>
+
+        <hr>
+
+        <!--🔻 v-html 顯示 HTML --------------------------------->
+        <div>{{ image }}</div>
+        <div v-text="image"></div>
+        <div v-html="image"></div>
+
+        <hr>
+
+        <!--🔻 v-if、v-else-if、v-else 判斷式，符合才會出現在 DOM ✅ -->
+        <!-- 記得雙引號裡面是 JS 的範圍，文字的話記得加 '' -->
+        <p v-if="number === 100">number === 100</p>
+        <p v-else-if="number > 100">number &gt; 100</p>
+        <p v-else>number &lt; 100</p>
+
+        <!--🔻 v-show 判斷式，不符合時 display:none (F12可見) -->
+        <p v-show="number === 100">number === 100 (v-show)</p>
+
+        <hr>
+
+        <!--🔻 v-for 迴圈 ✅-->
+        <!-- 放在哪裡，哪裡就跑迴圈 -->
+        <ul>
+            <!--1️⃣ v-for="值 in 陣列" -->
+            <li v-for="value in phones">{{ value }}</li>
+        </ul>
+        <ul>
+            <!--2️⃣ v-for="(值, 索引) in 陣列" -->
+            <li v-for="(value, index) in phones">{{ index + 1 }}：{{ value }}</li>
+        </ul>
+
+        <hr>
+
+        <!-- 
+            💡 v-if、v-for 不能同時在一個標籤上！
+            程式會不知道應該符合條件再跑迴圈，還是跑迴圈後有符合條件再顯示
+            因此同時想使用 v-if、v-for 時
+            必須用 <template> 標籤包起來輔助
+            (但 template 不是 html 內建標籤，因此看不見)
+        -->
+
+        <!--🔻 template 標籤 ✅-->
+        <!-- 欲用 v-if、v-for、元件 的三種情況才能使用 template -->
+        <ul>
+            <template v-for="(value,index) in phones">
+                <li v-if="index > 0">{{ value }}</li>
+            </template>
+        </ul>
+        <ul>
+            <template v-if="number > 100">
+                <li v-for="(value, index) in phones">{{ value }}</li>
+            </template>
+        </ul>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        // 網頁寫 Vue.js 的起手式 => 掛到指定的 div
+        // 代表只有 #app 裡可以用 Vue 的語法
+        Vue.createApp({
+            // 資料一定要寫成 function
+            data() {
+                return {
+                    text: 'abc',
+                    image: `<img src="https://picsum.photos/id/684/300/200/">`,
+                    number: 101,
+                    phones: ['Nothing', 'iPhone', 'Google']
+                }
+            }
+        }).mount('#app')
+
+        // 第二種寫法
+        // const { createApp } = Vue
+    </script>
+</body>
+
+</html>

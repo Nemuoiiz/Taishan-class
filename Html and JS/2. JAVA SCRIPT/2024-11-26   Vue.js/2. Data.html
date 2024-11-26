@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .text-red {
+            color: red;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 💡注意：綁定屬性 class、style、form、input 的方法都不太一樣 -->
+
+    <div id="app">
+        <!-- ❇️ 資料 (data) 屬性綁定 -->
+
+
+        <!--🔻 綁定標籤屬性✅ -->
+        <!-- v-blid:src  (簡寫為 :src) -->
+
+        <!-- 圖片 -->
+        <img v-bind:src="image" height="50">
+        <img :src="image" height="50">
+
+        <!-- 連結 -->
+        <a :href="link.url">{{ link.text }}</a>
+
+        <!--🔻 綁定 style✅ -->
+        <!-- :style="物件" => 綁定的必須是個大括號的物件 -->
+        <!-- 一次綁定 ↓ -->
+        <p :style="textStyle">影片男生級別，以後參考明白太陽，你好社會主義外資我是毫不犯罪團體部門風景檢測高考民眾，為什麼吃飯仍。</p>
+        <!-- 分開綁定 ↓ -->
+        <!-- textAlign:textAlign 當值是變數，變數又剛好跟 Key 一樣時可以省略 -->
+        <p :style="{color:textColor, textAlign}">不需要表情歷史本科公共好多傳來奧客醫院委員會不良，聲音要在哪裡以上也會，關西誘惑存款，討論區一身快。</p>
+
+
+        <!--🔻 綁定 class -->
+        <!-- 綁定物件 -->
+        <p :class="textClassObject">調節一是每天宣佈以便合適想想原始碼特殊級別求助分析回來就不，諾基亞重新態度溫柔汽車好激動反對龍岡貨。</p>
+        <!-- 綁定陣列 -->
+        <p :class="textClassArray">精選隨時最多描述機器通用交通知名說過才能最新和平運作次數更為，第一灌水之後工商人事註冊，上傳給我黑。</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    image: 'https://github.com/vuejs.png',
+                    link: {
+                        url: 'https://x.com',
+                        text: 'Twitter'
+                    },
+                    textStyle: {
+                        color: 'lightblue',
+                        textAlign: 'center',
+                        'background-color': 'gray'
+                    },
+                    textColor: 'pink',
+                    textAlign: 'right',
+
+                    // 物件
+                    textClassObject: {
+                        // 布林值
+                        'text-red': true,
+                        'text-center': false
+                    },
+                    // 陣列
+                    textClassArray: ['text-center']
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- ref (模板引用) : https://reurl.cc/L50xE7 -->
+        <!-- 給標籤一個 ref 屬性 -->
+        <h1 id="title" ref="titleRef">青青子衿悠悠我心但為君故沉吟至今。</h1>
+        <input type="button" value="取文字" @click="getText">
+        <input type="button" ref="btn" :value="number" @click="plus">
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    number: 0
+                }
+            },
+            methods: {
+                getText() {
+                    // 🔻 原本 js 寫法 (用 id)
+                    const h1 = document.getElementById('title')
+                    console.log(h1.innerText)
+                    // 🔻 Vue.js 提供的寫法 (用 ref)
+                    //          this.$refs.標籤ref.innerText
+                    console.log(this.$refs.titleRef.innerText)
+                },
+                // 🔻 使用 async await 來處理非同步執行
+                async plus() {
+                    this.number++
+                    // 資料更新後不會立刻重新渲染 html，所以還是舊的
+                    console.log(this.$refs.btn.value)   // 比點擊鈕少一次
+
+                    // 🔻 使用 .$nextTick 等待一下一次渲染
+                    await this.$nextTick()
+                    // 才會是新的
+                    console.log(this.$refs.btn.value)   // 與點擊鈕同步
+                }
+            },
+            // 🌱了解生命週期：https://reurl.cc/Q57kQO
+            // Vue 的 JS 和 HTML 都初始化時，可以取到 HTML
+            mounted() {
+                console.log(this.$refs.titleRef)
+            },
+            // Vue 的 JS 初始化時，HTML 還沒渲染，所以不能取到 HTML
+            created() {
+                console.log(this.$refs.titleRef)
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

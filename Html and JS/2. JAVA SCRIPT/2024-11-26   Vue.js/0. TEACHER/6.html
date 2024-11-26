@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1 id="title" ref="titleref">星座創建輸入忍不住發展感覺到眼裡，不代。</h1>
+    <input type="button" value="取文字" @click="getText">
+    <input type="button" ref="btn" :value="number" @click="plus">
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data () {
+        return {
+          number: 0
+        }
+      },
+      methods: {
+        getText () {
+          const h1 = document.getElementById('title')
+          console.log(h1.innerText)
+          // this.$refs.標籤ref
+          console.log(this.$refs.titleref.innerText)
+        },
+        async plus () {
+          this.number++
+          // 資料更新後不會立刻重新渲染 HTML，所以還是舊的
+          console.log(this.$refs.btn.value)
+          // 等待一下一次渲染
+          await this.$nextTick()
+          // 才會是新的
+          console.log(this.$refs.btn.value)
+        }
+      },
+      // Vue 的 JS 和 HTML 都初始化時，可以取到 HTML
+      mounted () {
+        console.log(this.$refs.titleref)
+      },
+      // Vue 的 JS 初始化時，HTML 還沒渲染，所以不能取到 HTML
+      created () {
+        console.log(this.$refs.titleref)
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
