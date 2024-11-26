@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消除小遊戲</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #game-area {
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;
+            margin: 0 auto;
+            border: 2px solid #333;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .image {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        #holder {
+            margin-top: 20px;
+            border: 2px solid #333;
+            padding: 10px;
+            width: 300px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            min-height: 80px;
+        }
+
+        .holder-img {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>三消小遊戲</h1>
+    <div id="game-area">
+        <!-- 隨機生成的圖片 -->
+        <img src="https://via.placeholder.com/60/FF0000" class="image" data-type="red">
+        <img src="https://via.placeholder.com/60/00FF00" class="image" data-type="green">
+        <img src="https://via.placeholder.com/60/0000FF" class="image" data-type="blue">
+        <img src="https://via.placeholder.com/60/FF0000" class="image" data-type="red">
+        <img src="https://via.placeholder.com/60/00FF00" class="image" data-type="green">
+        <img src="https://via.placeholder.com/60/0000FF" class="image" data-type="blue">
+    </div>
+    <div id="holder">
+        <!-- 持有條 -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            const holder = $("#holder");
+            const maxHolderSize = 5;
+
+            // 點擊圖片時的邏輯
+            $(".image").on("click", function () {
+                if (holder.children().length >= maxHolderSize) {
+                    alert("持有條已滿！");
+                    return;
+                }
+
+                // 複製選中的圖片並加到持有條
+                const imgType = $(this).data("type");
+                const newImg = $(this).clone().removeClass("image").addClass("holder-img");
+                holder.append(newImg);
+
+                // 檢查是否有三個相同的圖片
+                const sameTypeImages = holder.children(`[data-type="${imgType}"]`);
+                if (sameTypeImages.length >= 3) {
+                    sameTypeImages.remove(); // 消除圖片
+                    alert("三個相同圖片已消除！");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
