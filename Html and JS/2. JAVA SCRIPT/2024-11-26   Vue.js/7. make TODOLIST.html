@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <!--
+        form 自帶 Enter 新增
+        可以免去多寫一個 @keydown.enter 的事件 
+        -->
+
+        <!-- 當 submit 時執行 .prevent(阻擋預設跳頁)
+        到一個叫 addItem 的 function ⤵️-->
+        <form @submit.prevent="addItem">
+            <input type="text" v-model="input" :style="{ border: inputBorder }">　
+            <!-- 有 submit 按 Enter 即可送出表單 -->
+            <input type="submit" value="新增">
+        </form>
+
+        <hr>
+
+        <!-- 事項過濾搜尋用的 input ⤵️ -->
+        <input type="text" v-model="search">
+
+        <ul>
+            <li v-for="item in filteredItems">
+                <!-- 測試 -->
+                <!-- {{ item.text }} -->
+
+                <!-- 方法(1) -->
+                <!-- 綁定 :checked、點擊 (@input) 時， item.done 倒過來 false => true -->
+                <!-- <input type="checkbox" :checked="item.done" @input="item.done"=!item.done> -->
+
+                <!-- 方法(2) 較簡短 -->
+                <input type="checkbox" v-model="item.done">
+
+                <!-- 已完成使用刪除線標籤 -->
+                <del v-if="item.done">{{ item.text }}</del>
+                <!-- 未完成就只顯示文字 -->
+                <span v-else>{{ item.text }}</span>　
+
+                <!-- 刪除按鈕 -->
+                <input type="button" value="x" @click="delItem(item.id)">
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    // 儲存待辦事項的陣列
+                    items: [],
+                    // 輸入框的文字
+                    input: '',
+                    // 每個待辦事項的唯一 id (指到名為 delItem 的 function)
+                    // 避免過濾後的 id 索引改變，而錯刪為過濾前的 id
+                    id: 1,
+                    // 搜尋框的文字
+                    search: '',
+                }
+            },
+            computed: {
+                inputBorder() {
+                    if (this.input.length === 0) {
+                        // 無輸入時，無邊框
+                        return ''
+                    } else if (this.input.length < 3) {
+                        // 不足三個字 => 紅色框
+                        return '5px solid red'
+                    } else {
+                        // 三個字以上 => 綠色框
+                        return '5px solid green'
+                    }
+                },
+                // 過濾後的陣列
+                filteredItems() {
+                    return this.items.filter(item => {
+                        // 若使用一般 function => this 會找到外面 function 的 this
+                        // 因此此處使用箭頭 function => 會指到 data 的 search
+                        return item.text.includes(this.search)
+                    })
+                }
+            },
+            methods: {
+                addItem() {
+                    if (this.input.length < 3) return
+
+                    this.items.push({
+                        // 新增的文字
+                        text: this.input,
+                        // 預設未完成
+                        done: false,
+                        // 會指到 data 的 id
+                        // 自動生成唯一 id
+                        id: this.id++
+                    })
+
+                    // 清空輸入框
+                    this.input = ''
+                },
+                delItem(id) {
+                    // 找到對應 id 的索引
+                    const i = this.items.findIndex(item => {
+                        return item.id === id
+                    })
+                    // 從陣列中移除該項目
+                    // 從索引 i 的位置開始，刪掉 1 個項目
+                    this.items.splice(i, 1)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

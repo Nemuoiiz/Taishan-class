@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent="addItem">
+      <input type="text" v-model="input" :style="{ border: inputBorder }">
+      <input type="submit" value="新增">
+    </form>
+    <hr>
+    <input type="text" v-model="search">
+    <ul>
+      <li v-for="item in filteredItems">
+        <!-- <input type="checkbox" :checked="item.done" @input="item.done = !item.done"> -->
+        <input type="checkbox" v-model="item.done">
+        <del v-if="item.done">{{ item.text }}</del>
+        <span v-else>{{ item.text }}</span>
+        <input type="button" value="x" @click="delItem(item.id)">
+      </li>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data () {
+        return {
+          items: [],
+          input: '',
+          id: 1,
+          search: ''
+        }
+      },
+      computed: {
+        inputBorder () {
+          if (this.input.length === 0) {
+            return ''
+          } else if (this.input.length < 3) {
+            return '5px solid red'
+          } else {
+            return '5px solid green'
+          }
+        },
+        filteredItems () {
+          return this.items.filter(item => {
+            return item.text.includes(this.search)
+          })
+        }
+      },
+      methods: {
+        addItem () {
+          if (this.input.length < 3)  return
+
+          this.items.push({
+            text: this.input,
+            done: false,
+            id: this.id++
+          })
+
+          this.input = ''
+        },
+        delItem (id) {
+          const i = this.items.findIndex(item => {
+            return item.id === id
+          })
+          this.items.splice(i, 1)
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
