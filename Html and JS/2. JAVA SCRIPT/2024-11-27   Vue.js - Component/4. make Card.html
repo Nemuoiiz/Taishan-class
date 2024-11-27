@@ -21,6 +21,8 @@
         <div>
             <img :src="image" width="100">
             <p>{{ text }}</p>
+            <!--　如果 g 為 true，則顯示 "收回讚"
+                　如果 g 為 false，則顯示 "讚"　　-->
             <input type="button" :value="g ? '收回讚' : '讚'" @click="g = !g">
         </div>
     </script>
@@ -56,9 +58,12 @@
                 // 按讚反應
                 setup(props, { emit }) {
                     const g = computed({
+                        // get 讀取父層傳入的 good 值
                         get() {
                             return props.good
                         },
+                        // set：當按鈕點擊後修改 g 時
+                        // 透過 emit 發送 update:good 事件，通知父層更新 good 值
                         set(value) {
                             emit('update:good', value)
                         }
