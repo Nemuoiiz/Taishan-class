@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css'
+        integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
+        crossorigin='anonymous' />
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <!--
+                    🔻 用標籤屬性把資料傳入元件 props
+                    price="1000" => 文字
+                    price=1000   => 數字
+                    sell         => 布林值 (布林值有寫就是 true，沒寫就是 false)
+                    -->
+                    <Card :price="1000" sell image="https://github.com/vuejs.png" title="Vue" text="Vue.js"></Card>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <!-- 漲價按鈕 -->
+                <input type="button" value="漲價" class="btn btn-primary" @click="changePrice">
+
+                <div class="col-3" v-for="product in products">
+                    <!-- <Card :price="product.price" :sell="product.sell" :image="product.image" :title="product.title"
+                    :text="product.text"></Card> -->
+                    <!-- 🔺  product 物件的屬性名稱與子組件 props 名稱一致時可簡寫 🔻 -->
+                    <Card v-bind="product"></Card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- 🔁 指向 id 名為 card 的模板 (切記不能用 src) -->
+    <script type="text/x-template" id="card">
+
+        <div class="card">
+            <!-- 製作一個 card 元件的 html -->
+            <img :src="image" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ title }}</h5>
+                <h6 class="card-subtitle text-body-secondary">{{ price }}</h6>
+                <h6 v-if="!sell" class="text-danger">已下架</h6>
+                <p class="card-text">{{ text }}</p>
+                <input type="button" class="btn btn-primary" value="詳細" @click="info">
+            </div>
+
+        </div>
+        
+    </script>
+
+    <script>
+        // toRef、toRefs => 為維持響應性而新增
+        const { createApp, reactive, toRef, toRefs } = Vue
+
+        createApp({
+            setup() {
+                const products = reactive([
+                    { price: 1000, sell: true, image: 'https://github.com/twbs.png', title: 'Bootstrap', text: 'bsbs' },
+                    { price: 2000, sell: false, image: 'https://github.com/wdaweb.png', title: 'Wdaweb', text: 'wdawda' }
+                ])
+
+                // 漲價
+                const changePrice = () => {
+                    for (const product of products) {
+                        product.price *= 2
+                    }
+                }
+
+                // 🔻 記得 return
+                return { products, changePrice }
+            }
+        })
+            .component('Card', {
+                setup(props) {
+                    // 🔻直接解構 props 會失去響應性
+                    const { price } = props
+                    // 🔻解構 props 維持響應性，可再加上下面兩行
+                    const { price: priceRefs } = toRefs(props)      // 方法1️⃣
+                    const priceRef = toRef(props, 'price')          // 方法2️⃣
+
+                    const info = () => {
+                        console.log('props.price', props.price)
+                        console.log('price', price)                 // 失去響應性，'詳細按鈕'價格不正確
+
+                        console.log('priceRefs', priceRefs.value)   // 維持響應性
+                        console.log('priceRef', priceRef.value)     // 維持響應性
+                    }
+
+                    return { info }
+                },
+                // methods: {
+                //     info() {
+                //         // 選項式用 this.prop 名稱
+                //         console.log(this.price)
+                //     }
+                // },
+
+                // 🔁 指向 id 名為 card 的模板
+                template: '#card',
+
+                // ✅ props 很重要一定要懂，才看得懂別人元件有哪些
+                // 🔻 props 定義元件接收哪些資料
+                // 偷懶的寫法 => 使用 [] 將元件資料都包起來
+                // props: ['image', 'title', 'text', 'sell', 'price']
+                // 正常的寫法
+                props: {
+                    // 指定資料的型態
+                    // 不符合不會掛掉，但會收到警告 (資料型態不符合)
+                    price: Number,
+                    sell: Boolean,
+                    image: {
+                        type: String
+                    },
+                    text: {
+                        // 指定資料型態，且一定要給資料
+                        type: String,                   // 資料型態
+                        required: true,                 // 設定為必填
+                    },
+                    title: {
+                        // 指定資料型態、預設值、驗證
+                        type: String,                   // 資料型態
+                        default() {                     // 預設值
+                            return '商品標題'
+                        },
+                        validator(value) {              // 驗證
+                            return value.length >= 3
+                        }
+                    }
+                }
+            })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

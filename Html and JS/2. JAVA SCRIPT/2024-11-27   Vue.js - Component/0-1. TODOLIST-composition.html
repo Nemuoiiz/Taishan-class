@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 🔻組合式語法 -->
+    <div id="app">
+        <!-- html 部分與選項式相同 -->
+        <form @submit.prevent="addItem">
+            <input type="text" v-model="input" :style="{ border: inputBorder }">　
+            <input type="submit" value="新增">
+        </form>
+
+        <hr>
+
+        <input type="text" v-model="search">
+        <ul>
+            <li v-for="item in filteredItems">
+                <input type="checkbox" v-model="item.done">
+                <del v-if="item.done">{{ item.text }}</del>
+                <span v-else>{{item.text}}</span>　
+                <input type="button" value="x" @click="delItem(item.id)">
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        // JavaScript 中的解構賦值語法
+        // 用於從 Vue.js 中提取 ref、reactive、computed 等函式
+        // onMounted 則是 Vue 3 中組合式 API 提供的生命週期函數
+        const { ref, reactive, computed, watch, onMounted } = Vue
+
+        Vue.createApp({
+            // 🔻 組合語法使用 setup
+            setup() {
+                // 先區分 ref or reactive
+                //1️⃣ ref: 所有資料型態都能使用，使用時加 .value，不會深層監聽物件陣列
+                const input = ref('')
+                const search = ref('')
+                //2️⃣ reactive: 只有陣列物件可以用，不用加 .value，可以深層監聽物件陣列
+                const items = reactive([])
+                // 若上方 html 不會用到 => 就不需要響應式
+                let id = 1
+
+                // 宣布一個變數(inputBorder) = computed
+                const inputBorder = computed(() => {
+                    if (input.value.length === 0) {
+                        return ''
+                    } else if (input.value.length < 3) {
+                        return '5px solid red'
+                    } else {
+                        return '5px solid green'
+                    }
+                })
+
+                const addItem = () => {
+                    if (input.value.length < 3) return
+
+                    items.push({
+                        text: input.value,
+                        done: false,
+                        id: id++
+                    })
+                    input.value = ''
+                }
+
+                const filteredItems = computed(() => {
+                    return items.filter(item => {
+                        return item.text.includes(search.value)
+                    })
+                })
+
+                const delItem = (id) => {
+                    const i = items.findIndex(item => {
+                        return item.id === id
+                    })
+                    items.splice(i, 1)
+                }
+
+                // watch、onMounted 不需要 return
+                // 偵測變更
+                watch(items, () => {
+                    localStorage.vueList = JSON.stringify(items)
+                })
+
+                // onMounted 是 Vue 3 中組合式 API 提供的生命週期函數
+                // 會在組件的 DOM 已完成初始渲染後執行
+                // 適合用於需要操作 DOM 或執行只需在組件載入時運行的程式碼，例如 API 請求、事件監聽器的綁定或初始化資料
+                onMounted(() => {
+                    // 讀取 localStorage.vueList 的文字解析成 JSON
+                    const json = JSON.parse(localStorage.vueList || '[]')
+                    console.log(json)
+
+                    // 從陣列第 0 個開始、刪除 0 項、...加入解析完的東西 (上列的 json)
+                    items.splice(0, 0, ...json)
+
+                    // items[items.length - 1] 取得陣列中的最後一個項目。
+                    // items[items.length - 1].id 取得最後一個項目的 ID。
+                    // + 1 表示將 id 設定為最後一個項目的 ID 加 1，確保新加入的項目有唯一的 ID。
+                    if (items.length > 0) {
+                        id = items[items.length - 1].id + 1
+                    }
+                })
+
+                // 🔻容易忘記，記得要把 html 會用到的 return 出去
+                return {
+                    input, search, inputBorder, addItem, filteredItems, delItem
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

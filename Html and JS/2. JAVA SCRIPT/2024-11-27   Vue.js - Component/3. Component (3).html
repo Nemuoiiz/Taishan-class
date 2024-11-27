@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 🔶---------------------------------------------------- -->
+    <div id="app">
+        <!--
+        🔻 @apple="number=$event" => 監聽事件
+        當偵測到'apple'事件發生時，事件物件會是元件帶出來的資料 -->
+        <Plus :data="number" @apple="number=$event"></Plus>
+
+        <!-- 在 node.js 可以這樣寫，js 裡面不行⤵️ -->
+        <!-- <PlusPlus v-model:data="number"></PlusPlus> -->
+        <!-- v-model 雙向綁定⤵️ -->
+        <Plus-plus v-model:data="number"></Plus-plus>
+    </div>
+
+
+    <!-- 🔶---------------------------------------------------- -->
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- .component('Plus', {}) -->
+    <script type="text/x-template" id="plus">
+        <input type="button" :value="data" @click="plus">
+    </script>
+
+    <!-- .component('PlusPlus', {}) -->
+    <script type="text/x-template" id="plusplus">
+        <input type="button" :value="d" @click="d += 100">
+    </script>
+
+    <!-- 🔶---------------------------------------------------- -->
+    <script>
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const number = ref(100)
+                return { number }
+            }
+        })
+            .component('Plus', {
+                template: '#plus',
+                // 🔻 外部傳進來的資料
+                props: ['data'],
+                // 選項式寫法 (不用記，以後都用 setup)
+                // methods: {
+                //     plus() {
+                //         this.$emit('apple', this.data + 100)
+                //     }
+                // },
+
+                // ctx 全稱為「context」，是 setup 函數中包含多個工具和屬性的物件
+                // 它包含以下常見內容：
+                // attrs：父層傳入的非 props 屬性。
+                // slots：插槽內容。
+                // emit：用於觸發事件。
+                // expose：用來暴露內部方法或屬性給外部。
+
+                // setup(props, ctx) {
+                setup(props, { emit }) {
+                    const plus = () => {
+                        // 🔻 props 唯獨，不能直接修改
+                        // props.data += 100
+                        // console.log(ctx)
+
+                        // 🔻 emit => 事件發射 (觸發一個字定的事件，把資料傳出去，告訴外層修改資料)
+                        emit('apple', props.data + 100)
+                    }
+                    return { plus }
+                }
+            })
+            .component('PlusPlus', {
+                template: '#plusplus',
+                props: ['data'],
+                setup(props, { emit }) {
+                    const d = computed({
+                        // 資料如何產生
+                        get() {
+                            return props.data
+                        },
+                        // 修改值的時候怎麼處理
+                        set(value) {
+                            // 配合 v-model 使用的固定格式
+                            // emit(update:prop名, 修改的值)⤵️
+                            emit('update:date', value)
+                        }
+                    })
+                    return { d }
+                }
+            })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

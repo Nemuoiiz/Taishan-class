@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 id="title" ref="titleref">青青子衿悠悠我心但為君故沉吟至今。</h1>
+        <input type="button" ref="btnref" :value="number" @click="plus">
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { ref, onMounted, nextTick } = Vue
+
+        Vue.createApp({
+            setup() {
+                // 建立一個同名的 ref 才能取到元素
+                // 預設值通常是 null
+                const titleref = ref(null)
+                const btnref = ref(null)
+
+                const number = ref(0)
+                const plus = async () => {
+                    number.value++
+                    console.log('before', btnref.value.value)
+                    await nextTick()
+                    console.log('after', btnref.value.value)
+                }
+
+                // onMounted 之後值會變成指定的元素 ( ref(null) 就會有值了 )
+                onMounted(() => {
+                    console.log(titleref.value.innText)
+                })
+
+                return { titleref, btnref, number, plus }
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
