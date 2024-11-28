@@ -10,123 +10,173 @@
         請下載壓縮檔，依據圖片外觀，
         使用彈性盒(FlexBox) 排版出「指定版型」與「棋盤」。
         */
+
         body {
-            margin: auto;
+            margin: 0;
+            height: 100vh;
             font-family: "標楷體";
-        }
-
-
-
-        .checkerboard {
-            width: 800px;
-            height: 800px;
-            border: 1px solid #000;
 
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column
+
+            position: relative;
+        }
+
+        .checkerboard {
+            display: flex;
+            flex-direction: column;
+            /* 棋盤寬度 */
+            width: 480px;
+            /* 棋盤高度 + 楚河漢界高度 */
+            height: 530px;
+            /* 棋盤外框 */
+            border: 1px solid black;
+
+            box-sizing: border-box;
+            padding: 30px;
+
         }
 
         .black,
         .red {
-            width: 700px;
-            height: 300px;
-
-            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            /* 滿高 */
+            height: 100%;
+            border: 1px solid black;
         }
 
+        /* 楚河漢界 */
         .river {
-            width: 700px;
-            height: 100px;
-            border: 1px solid #000;
+            /* 上下不要框，左右有框就好 */
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            font-size: 25px;
+            line-height: 2;
+
+            display: flex;
+            justify-content: space-evenly;
+
+
+        }
+
+        .row {
+            display: flex;
+            /* 平分高度 */
+            flex: 1;
+        }
+
+        .col {
+            /* 平分寬度 */
+            flex: 1;
+
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .row:last-child .col {
+            border-bottom: none;
+        }
+
+        .col:last-child {
+            border-right: none;
+        }
+
+        .slogan {
+            /* 文字垂直排列 */
+            writing-mode: vertical-rl;
+            font-size: 25px;
+        }
+
+        #left {
+            order: -1
+        }
+
+        /* --------------------------- */
+
+
+
+        #black_army {
+            width: 480px;
+            height: 265px;
+            position: absolute;
+            top: 32px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #red_army {
+            width: 480px;
+            height: 265px;
+            position: absolute;
+            bottom: 32px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+
+        #black_army .main_row,
+        #black_army .second_row,
+        #black_army .empty_row,
+        #black_army .third_row {
+            /* height: 55.8px; */
+            height: auto;
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
+            justify-self: auto;
             align-items: center;
-            font-size: 50px;
+            align-content: space-around;
+        }
+
+        #red_army .main_row,
+        #red_army .second_row,
+        #red_army .empty_row,
+        #red_army .third_row {
+            /* height: 55.8px; */
+            display: flex;
+        }
+
+        #black_army .main_row {
+            justify-content: space-evenly;
+            /* padding: 10px; */
+        }
+
+        #red_army .main_row {
+            justify-content: space-evenly;
+            ;
+        }
+
+        .second_row {
+            justify-content: space-between;
+            /* padding: 0 1px; */
+        }
+
+        .third_row {
+            justify-content: space-between;
+            /* padding: 0 10px; */
+        }
+
+        .chess {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            border-radius: 50px;
+            background: #fff;
+            text-align: center;
+            line-height: 40px;
+            font-size: 24px;
         }
     </style>
 </head>
 
 <body>
     <div id="land">
-        <!-- 黑軍 -->
-        <div id="black_army">
-            <div class="main_row">
-                <div class="chess">車</div>
-                <div class="chess">馬</div>
-                <div class="chess">象</div>
-                <div class="chess">士</div>
-                <div class="chess">將</div>
-                <div class="chess">士</div>
-                <div class="chess">象</div>
-                <div class="chess">馬</div>
-                <div class="chess">車</div>
-            </div>
-            <div class="empty_row"></div>
-            <div class="second_row">
-                <div class="empty_chess"></div>
-                <div class="chess">包</div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="chess">包</div>
-                <div class="empty_chess"></div>
-            </div>
-            <div class="third_row">
-                <div class="chess">卒</div>
-                <div class="empty_chess"></div>
-                <div class="chess">卒</div>
-                <div class="empty_chess"></div>
-                <div class="chess">卒</div>
-                <div class="empty_chess"></div>
-                <div class="chess">卒</div>
-                <div class="empty_chess"></div>
-                <div class="chess">卒</div>
-            </div>
-            <div class="empty_row"></div>
-        </div>
-        <!-- 紅軍 -->
-        <div id="red_army">
-            <div class="empty_row"></div>
-            <div class="third_row">
-                <div class="chess">兵</div>
-                <div class="empty_chess"></div>
-                <div class="chess">兵</div>
-                <div class="empty_chess"></div>
-                <div class="chess">兵</div>
-                <div class="empty_chess"></div>
-                <div class="chess">兵</div>
-                <div class="empty_chess"></div>
-                <div class="chess">兵</div>
-            </div>
-            <div class="second_row">
-                <div class="empty_chess"></div>
-                <div class="chess">炮</div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="empty_chess"></div>
-                <div class="chess">炮</div>
-                <div class="empty_chess"></div>
-            </div>
-            <div class="empty_row"></div>
-            <div class="main_row">
-                <div class="chess">俥</div>
-                <div class="chess">傌</div>
-                <div class="chess">相</div>
-                <div class="chess">仕</div>
-                <div class="chess">帥</div>
-                <div class="chess">仕</div>
-                <div class="chess">相</div>
-                <div class="chess">傌</div>
-                <div class="chess">俥</div>
-            </div>
-        </div>
+
         <!-- 棋盤 -->
         <div class="checkerboard">
             <div class="black">
@@ -220,13 +270,97 @@
                 </div>
             </div>
         </div>
+
+        <!-- 黑軍 -->
+        <div id="black_army">
+            <div class="main_row">
+                <div class="chess">車</div>
+                <div class="chess">馬</div>
+                <div class="chess">象</div>
+                <div class="chess">士</div>
+                <div class="chess">將</div>
+                <div class="chess">士</div>
+                <div class="chess">象</div>
+                <div class="chess">馬</div>
+                <div class="chess">車</div>
+            </div>
+            <div class="empty_row"></div>
+            <div class="second_row">
+                <div class="empty_chess"></div>
+                <div class="chess">包</div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="chess">包</div>
+                <div class="empty_chess"></div>
+            </div>
+            <div class="third_row">
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+            </div>
+            <div class="empty_row"></div>
+        </div>
+
+        <!-- 紅軍 -->
+        <div id="red_army">
+            <div class="empty_row"></div>
+            <div class="third_row">
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+            </div>
+            <div class="second_row">
+                <div class="empty_chess"></div>
+                <div class="chess">炮</div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="chess">炮</div>
+                <div class="empty_chess"></div>
+            </div>
+            <div class="empty_row"></div>
+            <div class="main_row">
+                <div class="chess">俥</div>
+                <div class="chess">傌</div>
+                <div class="chess">相</div>
+                <div class="chess">仕</div>
+                <div class="chess">帥</div>
+                <div class="chess">仕</div>
+                <div class="chess">相</div>
+                <div class="chess">傌</div>
+                <div class="chess">俥</div>
+            </div>
+        </div>
+
+
     </div>
 
+
     <!-- 側邊文字 -->
-    <div class="slogan">
-        <p>棋盤裡，車無輪，馬無韁，叫聲將軍提防提防</p>
+    <div class="slogan" id="right">
         <p>圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</p>
     </div>
+    <div class="slogan" id="left">
+        <p>棋盤裡，車無輪，馬無韁，叫聲將軍提防提防</p>
+    </div>
+
 </body>
 
 </html>
