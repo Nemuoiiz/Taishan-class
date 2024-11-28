@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        請下載壓縮檔，依據圖片外觀，
+        使用彈性盒(FlexBox) 排版出「指定版型」與「棋盤」。
+        */
+        body {
+            margin: auto;
+            font-family: "標楷體";
+        }
+
+
+
+        .checkerboard {
+            width: 800px;
+            height: 800px;
+            border: 1px solid #000;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column
+        }
+
+        .black,
+        .red {
+            width: 700px;
+            height: 300px;
+
+            border: 1px solid #000;
+        }
+
+        .river {
+            width: 700px;
+            height: 100px;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="land">
+        <!-- 黑軍 -->
+        <div id="black_army">
+            <div class="main_row">
+                <div class="chess">車</div>
+                <div class="chess">馬</div>
+                <div class="chess">象</div>
+                <div class="chess">士</div>
+                <div class="chess">將</div>
+                <div class="chess">士</div>
+                <div class="chess">象</div>
+                <div class="chess">馬</div>
+                <div class="chess">車</div>
+            </div>
+            <div class="empty_row"></div>
+            <div class="second_row">
+                <div class="empty_chess"></div>
+                <div class="chess">包</div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="chess">包</div>
+                <div class="empty_chess"></div>
+            </div>
+            <div class="third_row">
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+                <div class="empty_chess"></div>
+                <div class="chess">卒</div>
+            </div>
+            <div class="empty_row"></div>
+        </div>
+        <!-- 紅軍 -->
+        <div id="red_army">
+            <div class="empty_row"></div>
+            <div class="third_row">
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+                <div class="empty_chess"></div>
+                <div class="chess">兵</div>
+            </div>
+            <div class="second_row">
+                <div class="empty_chess"></div>
+                <div class="chess">炮</div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="empty_chess"></div>
+                <div class="chess">炮</div>
+                <div class="empty_chess"></div>
+            </div>
+            <div class="empty_row"></div>
+            <div class="main_row">
+                <div class="chess">俥</div>
+                <div class="chess">傌</div>
+                <div class="chess">相</div>
+                <div class="chess">仕</div>
+                <div class="chess">帥</div>
+                <div class="chess">仕</div>
+                <div class="chess">相</div>
+                <div class="chess">傌</div>
+                <div class="chess">俥</div>
+            </div>
+        </div>
+        <!-- 棋盤 -->
+        <div class="checkerboard">
+            <div class="black">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <div class="river">
+                <div class="chuhe">楚河</div>
+                <div class="hanjie">漢界</div>
+            </div>
+
+            <div class="red">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 側邊文字 -->
+    <div class="slogan">
+        <p>棋盤裡，車無輪，馬無韁，叫聲將軍提防提防</p>
+        <p>圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</p>
+    </div>
+</body>
+
+</html>
