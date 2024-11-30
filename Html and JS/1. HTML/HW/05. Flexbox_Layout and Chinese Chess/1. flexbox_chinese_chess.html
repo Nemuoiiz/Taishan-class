@@ -11,7 +11,6 @@
         使用彈性盒(FlexBox) 排版出「指定版型」與「棋盤」。
         */
 
-
         body {
             margin: 0px;
             height: 100vh;
@@ -35,11 +34,8 @@
         .checkerboard {
             display: flex;
             flex-direction: column;
-            /* 棋盤寬度 */
             width: 100%;
-            /* 棋盤高度 + 楚河漢界高度 */
             height: 100%;
-            /* 棋盤外框 */
             outline: 2px solid black;
 
             /* box-sizing: border-box; */
@@ -50,14 +46,12 @@
         .red {
             display: flex;
             flex-direction: column;
-            /* 滿高 */
             height: 100%;
             outline: 1px solid black;
         }
 
         /* 楚河漢界 */
         .river {
-            /* 上下不要框，左右有框就好 */
             outline: 1px solid black;
             font-size: 32px;
             line-height: 1.6;
@@ -85,97 +79,79 @@
             font-size: 25px;
         }
 
+        /* slogan*2 + 棋盤*1 => 三個排序 */
         #left {
             order: -1
         }
 
         /* --------------------------- */
 
-
-
-        #black_army {
-            width: 500px;
-            height: 270px;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            /* background: rgba(0, 0, 0, 0.3); */
-        }
-
+        #black_army,
         #red_army {
             width: 500px;
             height: 270px;
             position: absolute;
-            bottom: 0px;
             left: 0px;
+            /* background: rgba(0, 0, 0, 0.5); */
+        }
+
+        #black_army {
+            top: 0px;
+        }
+
+        #red_army {
+            bottom: 0px;
             color: red;
-            /* background: rgba(0, 0, 0, 0.6); */
         }
 
-        #black_army .main_row,
-        #black_army .second_row,
-        #black_army .empty_row,
-        #black_army .third_row {
-            height: 54px;
-            display: flex;
-            /* outline: 1px solid lime; */
-        }
-
-        #red_army .main_row,
-        #red_army .second_row,
-        #red_army .empty_row,
-        #red_army .third_row {
+        .main_row,
+        .second_row,
+        .empty_row,
+        .third_row {
             height: 54px;
             display: flex;
             /* outline: 1px solid red; */
         }
 
+        /* 第一列棋子 */
         .main_row {
             justify-content: space-around;
+            box-sizing: border-box;
         }
 
         #black_army .main_row {
             padding: 2px 8px 0px 8px;
-            box-sizing: border-box;
         }
 
         #red_army .main_row {
             padding: 0px 8px 0px 8px;
-            box-sizing: border-box;
         }
 
-
-        .second_row {
+        /* 二、三列棋子 */
+        .second_row,
+        .third_row {
             justify-content: space-between;
+            box-sizing: border-box;
         }
 
         #black_army .second_row {
             padding: 0px 17px;
-            box-sizing: border-box;
         }
 
         #red_army .second_row {
             padding: 2px 22px;
-            box-sizing: border-box;
-        }
-
-
-        .third_row {
-            justify-content: space-between;
         }
 
         #black_army .third_row {
             padding: 0px 8px;
-            box-sizing: border-box;
         }
 
         #red_army .third_row {
             padding: 4px 14px 0px 14px;
-            box-sizing: border-box;
         }
 
 
-        /* 圓形棋子 */
+        /* 圓形棋子 -----------------------*/
         .main_row .chess,
         .second_row .chess,
         .third_row .chess {
@@ -194,14 +170,25 @@
             margin: 12px 7px;
         }
 
-        /* 交叉線--------------------------- */
+        /* 交叉線 --------------------------- */
         #black_army::after,
-        #black_army::before {
+        #black_army::before,
+        #red_army::after,
+        #red_army::before {
             content: "";
             outline: 1px solid #000;
             width: 129px;
             position: absolute;
-            top: 95px;
+        }
+
+        #black_army::after,
+        #black_army::before {
+            top: 94px;
+        }
+
+        #red_army::after,
+        #red_army::before {
+            bottom: 94px;
         }
 
         #black_army::before {
@@ -214,14 +201,6 @@
             transform: rotate(135deg);
         }
 
-        #red_army::after,
-        #red_army::before {
-            content: "";
-            outline: 1px solid #000;
-            width: 129px;
-            position: absolute;
-            bottom: 94px;
-        }
 
         #red_army::before {
             left: 178px;
@@ -238,7 +217,7 @@
 <body>
     <div id="land">
 
-        <!-- 棋盤 -->
+        <!-- 棋盤♟️ -->
         <div class="checkerboard">
             <div class="black">
                 <div class="row">
@@ -332,7 +311,7 @@
             </div>
         </div>
 
-        <!-- 黑軍 -->
+        <!-- 黑軍⚫ -->
         <div id="black_army">
             <div class="main_row">
                 <div class="chess">車</div>
@@ -371,7 +350,7 @@
             <div class="empty_row"></div>
         </div>
 
-        <!-- 紅軍 -->
+        <!-- 紅軍🔴 -->
         <div id="red_army">
             <div class="empty_row"></div>
             <div class="third_row">
@@ -410,7 +389,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- 側邊文字 -->
     <div class="slogan" id="right">
