@@ -15,7 +15,7 @@
 
         * {
             margin: 0;
-            font-family: 'Trebuchet', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'Trebuchet', 'Lucida Sans Unicode', Arial, sans-serif;
             box-sizing: border-box;
         }
 
@@ -23,7 +23,7 @@
             width: 100%;
             height: auto;
 
-            background: cadetblue;
+            /* background: bisque */
         }
 
         /* 導覽列--------------------------------------- */
@@ -83,7 +83,7 @@
             align-items: center;
             justify-content: space-between;
 
-            background: lightpink;
+            /* background: lightpink; */
             margin-bottom: 50px;
         }
 
@@ -149,7 +149,7 @@
             flex-direction: row;
             justify-content: space-between;
 
-            background: #ddd;
+            /* background: #fff; */
         }
 
         .card {
@@ -165,16 +165,28 @@
 
         .c-head {
             font-size: 30px;
+            padding: 10px 20px;
+        }
+
+        .c-body {
+            padding: 10px 20px 20px 20px;
         }
 
         .c-footer {
             width: 100%;
-            height: 100%;
+            height: 60px;
             display: flex;
             align-items: center;
-            background: #aaa;
+            background: #ddd;
+            border-top: 1px solid #888;
         }
 
+        .c-footer button {
+            margin: 0px;
+            width: 110px;
+            height: 35px;
+            margin-left: 10px;
+        }
 
         /* 頁尾--------------------------------- */
         .footer {
@@ -238,7 +250,9 @@
                     <div class="c-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex
                         numquam,
                         maxime minus quam molestias corporis quod, ea minima accusamus.</div>
-                    <button class="c-footer">More Info</button>
+                    <div class="c-footer">
+                        <button>More Info</button>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="c-head">Card Two</div>
@@ -247,14 +261,18 @@
                         dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates
                         quos
                         eligendi labore.</div>
-                    <button class="c-footer">More Info</button>
+                    <div class="c-footer">
+                        <button>More Info</button>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="c-head">Card Three</div>
                     <div class="c-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex
                         numquam,
                         maxime minus quam molestias corporis quod, ea minima accusamus.</div>
-                    <button class="c-footer">More Info</button>
+                    <div class="c-footer">
+                        <button>More Info</button>
+                    </div>
                 </div>
             </div>
         </div>
