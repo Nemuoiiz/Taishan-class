@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+</head>
+
+<body>
+    <div class="container-fluid px-0 mx-0">
+
+        <!-- 導覽列 -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark bg-opacity-75 fixed-top px-3">
+            <!-- brand -->
+            <a class="navbar-brand" href="#">泰山咖啡莊園</a>
+            <!-- button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Nemui">
+                <!-- 漢堡 icon -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- nav-list -->
+            <div id="Nemui" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">菜單點餐</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">周邊景點</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">莊園位置</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">聯絡我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">咖啡故事</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 輪播圖 -->
+        <div id="Nemui-photo" class="carousel slide mt-5" data-bs-ride="carousel">
+            <!-- 下方顯示當前輪播條 -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#Nemui-photo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#Nemui-photo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#Nemui-photo" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- 輪播圖片 -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://picsum.photos/1920/1080/?random=1" class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block"></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/1920/1080/?random=2" class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block"></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/1920/1080/?random=3" class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block"></div>
+                </div>
+            </div>
+
+            <!-- 左右兩側切換按鈕 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#Nemui-photo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#Nemui-photo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>
