@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="addItem">
+            <input type="text" v-model="input" :style="{ border: inputBorder }">
+            <input type="submit" value="新增">
+        </form>
+        <hr>
+        <input type="button" value="全部標記為已完成" @click="markAllDone">
+        <input type="button" value="全部標記為未完成" @click="markAllUndone"><br>
+        <input type="button" value="顯示全部" @click="setFilter('all')">
+        <input type="button" value="顯示已完成" @click="setFilter('done')">
+        <input type="button" value="顯示未完成" @click="setFilter('undone')"><br>
+        <input type="button" value="清除全部" @click="clearAll">
+        <input type="button" value="清除已完成" @click="clearDone">
+        <input type="button" value="清除未完成" @click="clearUndone">
+        <hr>
+        <p>目前篩選：{{ filter }}，總數：{{ filteredItems.length }}</p>
+        <ul>
+            <li v-for="item in filteredItems" :key="item.id">
+                <input type="checkbox" v-model="item.done">
+                <del v-if="item.done">{{ item.text }}</del>
+                <span v-else @dblclick="editItem(item)">{{ item.text }}</span>
+                <input v-if="item.editing" type="text" v-model="item.editText" @keydown.enter="saveEdit(item)"
+                    @keydown.esc="cancelEdit(item)" @blur="cancelEdit(item)">
+                <input type="button" value="x" @click="delItem(item.id)">
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { ref, reactive, computed, watch, onMounted } = Vue;
+
+        Vue.createApp({
+            setup() {
+                const input = ref('')
+                const filter = ref('all')
+                const items = reactive([])
+                let id = 1
+
+                const inputBorder = computed(() => {
+                    if (input.value.length === 0) return '4px solid black'
+                    return input.value.length < 3 ? '4px solid red' : '4px solid blue'
+                })
+
+                const filteredItems = computed(() => {
+                    if (filter.value === 'done') return items.filter(item => item.done)
+                    if (filter.value === 'undone') return items.filter(item => !item.done)
+                    return items
+                })
+
+                const addItem = () => {
+                    if (input.value.length < 3) return
+                    items.push({ id: id++, text: input.value, done: false, editing: false, editText: '' })
+                    input.value = ''
+                }
+
+                const delItem = (id) => {
+                    const index = items.findIndex(item => item.id === id)
+                    if (index > -1) items.splice(index, 1)
+                }
+
+                const markAllDone = () => items.forEach(item => item.done = true)
+                const markAllUndone = () => items.forEach(item => item.done = false)
+
+                const clearAll = () => items.splice(0, items.length)
+                const clearDone = () => items.splice(0, items.length, ...items.filter(item => !item.done))
+                const clearUndone = () => items.splice(0, items.length, ...items.filter(item => item.done))
+
+                const setFilter = (type) => filter.value = type
+
+                const editItem = (item) => {
+                    item.editing = true
+                    item.editText = item.text
+                }
+
+                const saveEdit = (item) => {
+                    item.text = item.editText
+                    item.editing = false
+                }
+
+                const cancelEdit = (item) => {
+                    item.editing = false
+                }
+
+                watch(items, () => {
+                    localStorage.vueList = JSON.stringify(items)
+                })
+
+                onMounted(() => {
+                    const savedItems = JSON.parse(localStorage.vueList || '[]')
+                    items.splice(0, 0, ...savedItems)
+                    if (items.length) id = items[items.length - 1].id + 1
+                })
+
+                return {
+                    input, inputBorder, filter, filteredItems, addItem, delItem,
+                    markAllDone, markAllUndone, clearAll, clearDone, clearUndone,
+                    setFilter, editItem, saveEdit, cancelEdit
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
