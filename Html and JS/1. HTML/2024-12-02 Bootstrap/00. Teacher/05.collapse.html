@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1.使用 bootstrap 的 css -->
+  <link rel="stylesheet" href="./css/bootstrap5.3.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <p>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#kaifu">
+      Link with href
+    </a>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#kaifu">
+      Button with data-bs-target
+    </button>
+  </p>
+  <div id="kaifu" class="collapse">
+    <div class="card card-body">
+      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium unde deserunt repellendus amet mollitia sequi aliquid a minus impedit itaque quisquam porro, quas, autem molestias dolorum nihil sunt officiis eligendi est nemo, animi magnam veniam ea fugiat. Quo, hic ex. Et nesciunt, in deleniti dolor accusamus earum similique, at corrupti placeat error ad optio praesentium, cupiditate dolorem. Ipsum quidem minus iusto! Vitae quos facilis exercitationem, deleniti odio necessitatibus cupiditate quod, dolorum officia numquam nihil facere recusandae ducimus? Assumenda unde rerum modi temporibus aut. Dolores ducimus possimus dignissimos debitis commodi, consequuntur, rem repudiandae illum aliquid expedita ratione pariatur neque, sequi nostrum dolore. Eos nostrum repellat laboriosam, nam voluptatem dignissimos enim iusto deleniti beatae est. Dolores unde quibusdam a excepturi neque voluptates accusantium harum ad nemo sed consectetur deleniti magni nisi suscipit delectus, iusto sapiente, fugiat corrupti doloribus pariatur beatae? Iure sequi error quod dolore, modi voluptate animi sint, ad praesentium suscipit doloremque laborum. Quae dicta officia suscipit quis molestias quidem quas debitis nisi in quo, quia totam numquam autem atque consequuntur dolor laudantium, obcaecati officiis incidunt, asperiores commodi veritatis illum sapiente labore. Esse doloremque quisquam quia aut vero itaque libero minus, magnam quam corrupti excepturi beatae laudantium eius provident fuga magni laborum voluptates voluptatem culpa sint deleniti expedita commodi repellat. Recusandae magni rem voluptatum ipsa, quis repellendus tempora sit, eveniet veniam, voluptas id tenetur excepturi facilis obcaecati? Placeat id autem nesciunt odit natus blanditiis consectetur iste architecto. Dolores doloremque iusto reiciendis cupiditate veritatis quasi ea dolor ipsam perspiciatis, molestiae asperiores, sequi sunt suscipit ducimus necessitatibus reprehenderit? Eos, facere voluptate labore quae asperiores veniam esse nihil. Error illo nesciunt recusandae praesentium soluta sed deleniti qui, maiores ipsa id quasi laudantium neque temporibus! Maiores amet saepe est, inventore deserunt, reiciendis doloremque ullam eveniet nihil dolor id sint laudantium eos exercitationem incidunt iure. Alias!
+    </div>
+  </div>
+
+  <hr>
+
+  <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#kaifu02">
+      Toggle width collapse
+    </button>
+  </p>
+  <div style="min-height: 120px;">
+    <div id="kaifu02" class="collapse collapse-horizontal">
+      <div class="card card-body" style="width: 50vw;">
+        This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+      </div>
+    </div>
+  </div>
+  <!-- 2.使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+  <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

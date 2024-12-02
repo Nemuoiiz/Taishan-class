@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+
+    <style>
+        .text-truncate-2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/helpers/text-truncation/ -->
+
+    <div class="container">
+        <h1>文字截斷</h1>
+        <h2 class="mt-5">1️⃣ bootstrap 提供單行截斷</h2>
+        <div class="row mt-3">
+            <div class="col-2 text-truncate bg-warning text-white">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit delectus ipsa aperiam?
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4 text-truncate bg-warning text-white">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit delectus ipsa aperiam?
+            </div>
+        </div>
+
+        <br>
+        <hr>
+
+        <h2 class="mt-5">2️⃣ bootsrap 沒有提供，自定義多行文字截斷</h2>
+        <!-- .text-truncate-2 定義於 <style> -->
+        <div class="text-truncate-2 mt-3">
+            <div class="bg-secondary text-light" style="width: 200px;">
+                去年顯卡小遊戲重點回家來說下了推坑王年輕人原來為了，接到姓名會有便利商店主動，明確現實你沒有安裝同樣版權所有出台，主機太陽數碼效率貿易繼續寬頻，放下農民承認明白無線主流請在困難批評處於孤獨體會，相對海外父親庫存大陸休息政策法人區域幾天，培養中心反覆好像，進一步母親當然管理系統，理論如同完美哈哈無疑讀者種類人間自動一天，上路當初登陸萬元要在領域版權所有前後那位該公司容易為什麼，配件和諧據說代理研發拍攝說完，組成其它獨特循環高校是在信心時刻有些出現在是他查看，還會他是美女貸款上漲微軟筆記本就在，一切都才能我家之下，今後人生尤其生態特徵自由人家福建可惜樓上現象抽菸區，金錢傢俱夏天不要每次戀愛及時過。
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

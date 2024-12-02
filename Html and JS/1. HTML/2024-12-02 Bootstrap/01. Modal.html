@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+
+    <style>
+        button {
+            margin-bottom: 10px;
+        }
+
+        /* 淡入淡出 */
+        .fade {
+            /* transition-duration: 0.3s; */
+            transition: opacity 0.3s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/components/modal/ -->
+    <br>
+    <div class="container">
+        <h1>互動視窗（Modal）</h1>
+        <!-- toggle 為觸發功用的名稱 => 此處指向 modal -->
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#Nemui">
+            1️⃣ 使用 button 觸發 modal 視窗
+        </button>
+        <br>
+        <a href="#Nemui" class="btn btn-warning" data-bs-toggle="modal">
+            2️⃣ 使用 a 觸發 modal 視窗
+        </a>
+
+        <!-- 🔻 Modal 主體 -->
+        <!-- 使用 Vue.js 時，Modal 主體要放在 id="app" 之中 -->
+        <!-- 🔹 data-bs-backdrop="static" => 可鎖定背景，點擊灰色背景時不會自動關閉 modal -->
+        <!-- 🔹 .fade => 淡入淡出效果 -->
+        <div id="Nemui" class="modal fade" data-bs-backdrop="static">
+            <!-- 🔹 .modal-dialog-centered   => 垂直置中 -->
+            <!-- 🔹 .modal-*                 => 改變 modal 視窗寬度 (sm:300px、none:500px、lg:800px、xl:1140px)-->
+            <!-- 🔹 .modal-dialog-scrollable => 視窗捲動軸會出現 -->
+            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 🔻搭配網格 -->
+                        <div class="row">
+                            <div class="col">
+                                意義幫我高達全球郵箱皮膚開發者大會不能下載正式，會有自己，授權方式更多客服天堂和他新技術很大職責上升肯定躺在有可能心靈，美女一聲新聞，工作面議球員列表自行心情觀看二人怎麼樣，妻子稱為休息婦女女朋友曝。
+                            </div>
+                            <div class="col">
+                                意義幫我高達全球郵箱皮膚開發者大會不能下載正式，會有自己，授權方式更多客服天堂和他新技術很大職責上升肯定躺在有可能心靈，美女一聲新聞，工作面議球員列表自行心情觀看二人怎麼樣，妻子稱為休息婦女女朋友曝。
+                            </div>
+                            <div class="col">
+                                意義幫我高達全球郵箱皮膚開發者大會不能下載正式，會有自己，授權方式更多客服天堂和他新技術很大職責上升肯定躺在有可能心靈，美女一聲新聞，工作面議球員列表自行心情觀看二人怎麼樣，妻子稱為休息婦女女朋友曝。
+                            </div>
+                        </div>
+                        <!-- 🔻文字過多時搭配捲動軸 (.modal-dialog-scrollable)-->
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore praesentium placeat
+                            provident
+                            quasi ullam quod, ut dolorum, exercitationem magni tempora eum assumenda dolor libero harum
+                            ipsam consequuntur maxime dicta impedit minus porro esse eveniet? Quam adipisci praesentium
+                            est
+                            quod doloribus repellendus quas reprehenderit. Architecto assumenda nihil voluptatum
+                            deserunt
+                            corporis provident fugiat incidunt dicta minima voluptatem maxime officia itaque vel
+                            doloribus
+                            quae quod laudantium quam reiciendis, vitae odit? Commodi minus at molestias labore
+                            laboriosam
+                            sint quas, nulla blanditiis laudantium, consequatur ullam quasi pariatur enim iste.
+                            Veritatis
+                            provident ea rerum, tenetur nulla deserunt consequuntur quia laboriosam labore mollitia
+                            voluptatum magnam praesentium velit fuga voluptates odio inventore sed eligendi id debitis
+                            repellat, delectus quod? Itaque eveniet mollitia possimus animi in dolores quibusdam
+                            exercitationem deserunt ad consequuntur quidem excepturi maxime quaerat fugiat ipsum
+                            inventore
+                            eaque laboriosam nihil reiciendis ullam, expedita vel. Ratione iusto sequi expedita enim
+                            illo,
+                            iste fugiat culpa placeat ducimus odit nulla illum harum eum magnam explicabo provident aut
+                            deleniti cumque facilis voluptatem quod corrupti? Cum consequatur tempora magni voluptas
+                            suscipit velit a aut doloremque reiciendis voluptates? Laboriosam vero eveniet corporis
+                            voluptatem at recusandae ratione explicabo nemo, aut delectus repudiandae suscipit totam
+                            eligendi est iure perferendis alias eum officiis assumenda sapiente, tempora perspiciatis
+                            excepturi provident? Dolore ad laboriosam dolor voluptatibus doloremque nemo aspernatur, at
+                            omnis facere. Suscipit quibusdam ex at temporibus aspernatur illum cum voluptatibus in quam.
+                            Cumque iste dicta, quibusdam maxime accusantium expedita nulla facere odio reiciendis ipsum
+                            doloremque explicabo rem omnis iure laudantium nobis voluptatum illo alias ducimus quo
+                            laboriosam placeat nihil eius! Earum perferendis aliquam quaerat tenetur numquam dolores
+                            exercitationem officia debitis! Corporis obcaecati, magni laborum in eligendi optio tempora
+                            fuga
+                            reprehenderit repellat quas, saepe maiores delectus eius velit pariatur atque consectetur
+                            architecto quasi esse! Exercitationem ab quam ratione debitis qui sit officia obcaecati
+                            fugit
+                            animi quidem. Obcaecati dignissimos labore optio officiis corrupti aliquid eveniet suscipit
+                            velit. Consequatur temporibus iure dolorum impedit quae nobis suscipit sint ab earum a
+                            necessitatibus culpa eveniet libero similique ipsa dicta, accusamus error veniam repellendus
+                            nulla beatae, ipsum sapiente illum! Voluptates deleniti non corporis ab veritatis fuga,
+                            laborum
+                            ipsa, nobis a ratione totam ullam, enim vitae corrupti tempora molestiae doloremque itaque
+                            minus
+                            perspiciatis aut aspernatur blanditiis eveniet dignissimos? Provident nulla voluptatum
+                            libero
+                            molestias consectetur hic autem eveniet neque modi ex atque quos quibusdam totam ullam
+                            deleniti
+                            dolore temporibus sint a laborum consequuntur, voluptatibus amet. Aperiam, magnam nulla id
+                            possimus voluptate rem voluptatibus tempore laudantium laborum perspiciatis, exercitationem
+                            impedit repudiandae ea pariatur! Aspernatur dolore magni atque eligendi quibusdam?
+                            Reprehenderit
+                            explicabo quos pariatur in velit sed necessitatibus vero facilis sapiente vitae, distinctio
+                            a
+                            sit, ea, minus error neque molestias debitis. Facilis illo laudantium consectetur, quam in
+                            labore sapiente tenetur eos deserunt expedita voluptatem harum reprehenderit ratione odio
+                            dolorum at accusantium. Adipisci nesciunt esse debitis cumque ipsum, et officiis recusandae
+                            magni suscipit quam accusantium eius amet inventore, facere hic voluptatum quaerat commodi
+                            perferendis ullam porro delectus alias. Earum dolorem autem quos nihil aliquam ipsa nemo
+                            non,
+                            quibusdam blanditiis iure ullam animi porro quas eius magnam a ipsum aspernatur laboriosam
+                            voluptatibus similique! Repellendus, fuga velit et reprehenderit delectus tenetur ratione.
+                            Quae
+                            nisi quaerat excepturi cum corrupti totam dolore omnis, non modi vero. Consequatur quaerat
+                            placeat pariatur consectetur unde explicabo tenetur beatae voluptatem! Ut sapiente, eveniet
+                            sed
+                            tempora facere quaerat vero hic illo unde illum doloribus maxime ullam reprehenderit minus
+                            accusamus labore earum ad voluptas error deserunt accusantium, suscipit nostrum officia
+                            architecto. Debitis, harum quasi expedita earum nobis deserunt, voluptatem iste facilis ex,
+                            neque obcaecati voluptates rerum porro ratione. Animi a ducimus facere quis deserunt, optio
+                            totam provident distinctio eum similique at quibusdam vero laudantium ab libero quae aliquid
+                            voluptate recusandae quas. Rem ea aliquam, natus accusantium nisi dolorem obcaecati
+                            doloribus,
+                            quos cum temporibus laborum animi ab alias earum voluptatum impedit culpa minus? Quo
+                            suscipit
+                            dolores voluptas, rerum odio incidunt architecto quibusdam alias ipsa laudantium sequi
+                            temporibus, ullam totam doloribus. Maiores sit accusantium cumque neque id eius
+                            voluptatibus.
+                            Eum commodi labore perferendis pariatur, perspiciatis saepe provident est ut modi veritatis
+                            dolor velit itaque accusamus suscipit cupiditate nostrum sapiente. Nemo eaque, cupiditate
+                            rem
+                            quidem maiores quibusdam dolore, explicabo aliquid, culpa quos perferendis officia.
+                            Consequuntur
+                            rem at repellendus, quibusdam incidunt, quas dolores blanditiis tempora quasi saepe enim
+                            pariatur dolor iste fugit hic magnam illum nesciunt, dolore veniam. Maiores at impedit
+                            molestias
+                            possimus, amet assumenda minima. Ut illo facere nam odit incidunt debitis in, sequi iste
+                            quis
+                            molestias expedita praesentium? Accusamus sed quis ipsa. Soluta, enim nesciunt, consequatur
+                            iste
+                            obcaecati exercitationem incidunt hic id temporibus asperiores dolorum nihil cum autem
+                            commodi
+                            illo tenetur quibusdam praesentium. Ipsam recusandae, doloremque veniam facilis illo earum
+                            quos
+                            ad eius laborum, quis ratione. Excepturi fugit commodi cumque ea, id voluptates libero unde,
+                            assumenda eos quos, quod laborum voluptatum numquam corrupti! Temporibus, ut unde? Quas,
+                            facere
+                            delectus, nobis sunt perspiciatis ab nostrum sed, eum quod cumque totam praesentium?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

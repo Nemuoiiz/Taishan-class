@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+
+</head>
+
+<body>
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/components/collapse/ -->
+
+    <p>
+        <!-- 使用 link -->
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#Nemui">
+            Link with href
+        </a>
+        <!-- 使用 button -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#Nemui">
+            Button with data-bs-target
+        </button>
+    </p>
+    <!-- show 可以預設維持展開 -->
+    <div id="Nemui" class="collapse show">
+        <div class="card card-body">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam doloribus eius magni ad tempore eaque harum
+            ipsa obcaecati quidem, deleniti natus deserunt iusto ullam consequatur voluptatum quasi, officiis
+            consequuntur! Dolor reprehenderit ullam atque aliquid nam cumque corporis, magni ipsum facilis illum!
+            Pariatur facilis eaque obcaecati earum quo quidem dignissimos, modi officiis deleniti, adipisci commodi
+            accusantium nulla odit cumque cupiditate id dolores deserunt voluptatibus fuga perferendis. Quidem vitae,
+            repellendus sed saepe nobis delectus dicta libero dignissimos quas nihil mollitia ex minus officiis
+            assumenda officia quo neque labore aperiam asperiores provident tempora accusantium rerum animi commodi!
+            Sunt adipisci aliquam hic eos, praesentium reprehenderit tenetur aperiam exercitationem cupiditate rerum? In
+            iusto fuga eveniet. Dolor ea ducimus ex officiis eum quibusdam perferendis. Laborum commodi non ex veniam
+            accusamus vitae tempora maiores sequi esse, temporibus sint, rem laudantium ad labore, cumque mollitia.
+            Praesentium accusamus hic aperiam amet, nobis voluptatum temporibus officiis ipsa, assumenda sed nulla iure
+            provident quas voluptates. Repudiandae necessitatibus doloremque tenetur ratione. Eaque fugiat accusantium
+            quaerat non nihil, impedit omnis distinctio natus tenetur beatae asperiores esse quae quia maiores minima
+            consequuntur in iusto molestiae, velit soluta. Quos, repellat saepe. Temporibus, consequatur totam sapiente,
+            aliquam corporis iure accusantium sed id eius rerum unde atque necessitatibus animi? Sint officia architecto
+            ducimus doloremque aut obcaecati! Velit labore, illum obcaecati porro neque facere adipisci sapiente magnam
+            quam iste iure reiciendis sit accusamus quis, quod molestiae tempora quidem possimus, ut voluptatum natus.
+            Exercitationem omnis debitis reprehenderit molestiae maxime quam obcaecati officiis cumque, blanditiis eius
+            laudantium corporis odio et sapiente eaque natus nisi. Beatae vel dolor nihil alias odit illo nisi
+            consectetur suscipit, accusamus cupiditate rerum sunt eius reprehenderit saepe placeat sint? A dolorum
+            placeat consequuntur corrupti voluptas ex similique, corporis itaque sed quos necessitatibus odio iste ea
+            velit, at dignissimos quisquam neque molestiae! Enim blanditiis tempore ea voluptate ducimus amet temporibus
+            magnam quia culpa nesciunt nostrum id aut sunt illo cupiditate laboriosam consequatur labore error atque
+            sequi animi quibusdam tenetur, fugiat est. Voluptates dolorum debitis vel et, placeat deserunt ut in nisi
+            dolor perspiciatis illo quas. Dolor maiores quisquam eligendi eos suscipit itaque neque eum repudiandae,
+            provident deleniti! Earum quisquam cum omnis dicta adipisci. Nostrum corporis autem distinctio eos,
+            quisquam, voluptate minus quasi dignissimos, neque voluptatem voluptas aliquid cumque. Iusto, harum
+            accusantium. Minima placeat blanditiis earum magni sed laboriosam inventore facilis vel iusto, repellat
+            itaque eius laudantium, eaque cum ducimus. Aspernatur, blanditiis reiciendis quaerat tempore eaque ut
+            possimus quam. Facilis libero delectus odio nisi doloremque? Minima quas expedita earum adipisci explicabo
+            deserunt odit, reiciendis vitae magnam, impedit blanditiis doloribus at, ad necessitatibus facere facilis
+            quos sint. Deleniti accusamus dolorem accusantium rerum ab? Cumque corporis quasi quaerat quod consequuntur
+            nesciunt tempore, rerum repudiandae veritatis ex reprehenderit eius suscipit, soluta iste rem! Ipsam
+            quibusdam reprehenderit commodi ducimus alias fuga dolores rerum. Aut iure aliquid ratione nemo expedita
+            ipsa facere illo facilis non modi commodi minima, voluptatem quam consequatur necessitatibus delectus
+            laborum nesciunt deserunt sed sunt rerum reiciendis nulla doloribus nobis. Veritatis amet illum eius
+            provident incidunt enim voluptatem doloremque? Suscipit?
+        </div>
+    </div>
+
+    <hr>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#Nemui02">
+            Toggle width collapse
+        </button>
+    </p>
+    <div style="min-height: 120px;">
+        <div id="Nemui02" class="collapse collapse-horizontal">
+            <!-- width 可以設 px、vw，不可以設 % -->
+            <div class="card card-body" style="width: 50vw;">
+                This is some placeholder content for a horizontal collapse. It's hidden by default and shown when
+                triggered.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

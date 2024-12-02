@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+
+    <style>
+        hr {
+            margin: 30px 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/components/navs-tabs/ -->
+
+    <div class="container">
+        <h1>導覽與頁籤</h1>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>1️⃣ 用列表 ul 與 li 設計的導覽</h2>
+                <!-- 命名模式 : 元件名稱 nav -->
+                <!-- nav 本身就是 flexbox -->
+                <ul class="nav">
+                    <!-- 命名模式 : 元件 nav 內的項目 item -->
+                    <li class="nav-item">
+                        <!-- 命名模式 : 元件 nav 內的連結 link -->
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <div class="col-12">
+                <h2>2️⃣ 使用 nav 設計導覽</h2>
+                <nav class="nav">
+                    <a class="nav-link active" href="#">Active</a>
+                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link disabled">Disabled</a>
+                </nav>
+            </div>
+
+            <hr>
+
+            <div class="col-12">
+                <h2>3️⃣ nav 本身就是彈性盒，彈性盒的屬性都可以使用，且不需要加 d-flex</h2>
+                <p>.nav .justify-content-center .bg-warning</p>
+                <nav class="nav justify-content-center bg-warning">
+                    <a class="nav-link active" href="#">Active</a>
+                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link disabled">Disabled</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <h3>分頁標籤</h3>
+                <p>加上 .nav-tabs</p>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <h3>膠囊狀標籤</h3>
+                <p>加上 .nav-pills</p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="container">
+        <p>💡 標籤內加上 tabindex="#" ➠ 可以使用 tab 跳至該項目（設為 -1 則會略過）</p>
+    </div>
+    <hr>
+
+    <div class="container">
+        <h2>🔻 填充和對齊</h2><br>
+        <h3>1️⃣ .nav-fill．欄位無等寬</h3>
+        <p>每個項目左右的空間都會分配一樣，但每個欄寬不會是均寬（根據內容長度有所不同，例如第二個）</p>
+        <div class="row">
+            <div class="col-12 mt-5">
+                <!-- .nav-fill -->
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">來看看字數太多會發生什麼事情呀（膠囊式）</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 mt-5">
+                <ul class="nav nav-tabs nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">來看看字數太多會發生什麼事情呀（分頁式）</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="mt-5">2️⃣ .nav-justified．欄位等寬</h3>
+            <div class="col-12 mt-5">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="nav-item">
+                        <a class="nav-link active " href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">來看看字數太多會發生什麼事情呀！會依照等寬的形式換行唷</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 mt-5">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">來看看字數太多會發生什麼事情呀！會依照等寬的形式換行唷</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <h2>🔻JavaScript 行為</h2>
+        <p class="mt-5">data-bs-target="#home" --> id="home"</p>
+        <p>data-bs-target="#profile" --> id="profile"</p>
+        <p>data-bs-target="#contact" --> id="contact"</p>
+        <ul class="nav nav-tabs mt-5">
+            <!-- 分頁式按鈕 -->
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#home" type="button">Home</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile"
+                    type="button">Profile</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact" type="button">Contact</button>
+            </li>
+        </ul>
+        <!-- 按鈕對應的內容 -->
+        <div class="tab-content">
+            <div class="tab-pane fade" id="home">
+                好好有時比賽兩年之處命令算是應用植物新技術品牌書庫壓力，青草湖崇拜是個欣賞，使用提升需要有一些選項男女密碼自動專業專家日子原本超市，如有模型促進，私人語文進度工程收集選單可能會，都能我對是由一場目前企業臺灣民眾引導左右演員營養首頁，上帝而來怎麼辦信用營銷專用規格，您是再度相同工藝電子郵件，預覽打算臨時語言夢想，方案健康之前一級發生，詳細訊息個人，都不不要標籤中壢沒想到我還皇帝製品科技有限公司，龍。
+            </div>
+            <div class="tab-pane fade show active" id="profile">
+                好好有時比賽兩年之處命令算是應用植物新技術品牌書庫壓力，青草湖崇拜是個欣賞，使用提升需要有一些選項男女密碼自動專業專家日子原本超市，如有模型促進，私人語文進度工程收集選單可能會，都能我對是由一場目前企業臺灣民眾引導左右演員營養首頁，上帝而來怎麼辦信用營銷專用規格，您是再度相同工藝電子郵件，預覽打算臨時語言夢想，方案健康之前一級發生，詳細訊息個人，都不不要標籤中壢沒想到我還皇帝製品科技有限公司，龍。
+            </div>
+            <div class="tab-pane fade" id="contact">
+                好好有時比賽兩年之處命令算是應用植物新技術品牌書庫壓力，青草湖崇拜是個欣賞，使用提升需要有一些選項男女密碼自動專業專家日子原本超市，如有模型促進，私人語文進度工程收集選單可能會，都能我對是由一場目前企業臺灣民眾引導左右演員營養首頁，上帝而來怎麼辦信用營銷專用規格，您是再度相同工藝電子郵件，預覽打算臨時語言夢想，方案健康之前一級發生，詳細訊息個人，都不不要標籤中壢沒想到我還皇帝製品科技有限公司，龍。
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>

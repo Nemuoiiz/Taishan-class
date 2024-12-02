@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 1. 先引進 bootstrap 樣式 -->
+    <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/components/progress/ -->
+
+    <div class="container">
+        <h2>進度條</h2><br>
+        <h4>包含數字</h4>
+        <div class="progress mb-3">
+            <div class="progress-bar" role="progressbar" style="width: 25%;">25%</div>
+        </div>
+        <h4>加上寬度</h4>
+        <div class="progress mb-3" style="height: 100px;">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%"></div>
+        </div>
+        <h4>調色</h4>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"></div>
+        </div>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%"></div>
+        </div>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%"></div>
+        </div>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%"></div>
+        </div>
+
+        <h4>動態條文</h4>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%">
+            </div>
+        </div>
+
+        <h4>多個進度條</h4>
+        <div class="progress mb-3">
+            <div class="progress-bar" role="progressbar" style="width: 15%"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 30%"></div>
+            <div class="progress-bar bg-info" role="progressbar" style="width: 20%"></div>
+        </div>
+    </div>
+    <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
+    <script src="./js/bootstrap.bundle5.3.js"></script>
+</body>
+
+</html>
