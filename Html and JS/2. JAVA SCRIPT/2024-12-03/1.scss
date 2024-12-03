@@ -1,0 +1,33 @@
+$primary: blue;
+$secondary: lightblue;
+$warning: yellow;
+$danger: red;
+
+body {
+    color: $primary;
+
+}
+
+h1 {
+    color: $primary;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary;
+
+    #title {
+        color: $secondary;
+
+        // & => 代表上層 (#title)
+        &:hover {
+            color: $danger;
+        }
+
+        &>.logo {
+            width: 50px;
+        }
+    }
+}

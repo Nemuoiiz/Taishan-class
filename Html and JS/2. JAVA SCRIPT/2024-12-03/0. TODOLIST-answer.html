@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--🔻製作進階待辦清單，必須要有下列功能：
+        01. 新增功能，兩個字以上才能新增
+        02. 小於兩個字時輸入欄位邊框是紅色，成功時是藍色，空白時是黑色
+        03. 每個項目有 checkbox 可以打勾標記已完成或未完成，完成的項目文字必須要有刪除線
+        04. 可以個別刪除清單項目
+        05.可以將清單資料保存到 localStorage
+        06.可以點兩下清單項目開啟編輯欄位
+        07.在編輯欄位按 ENTER 可以儲存編輯
+        08.在編輯欄位可以按 ESC 鍵可以取消編輯
+        09.可以點按鈕過濾顯示全部項目、已完成項目、未完成項目
+        10.可以顯示目前過濾的方式及過濾後的項目總數
+        11.可以點按鈕一次刪除全部項目、已完成項目、未完成項目
+        12.可以點按鈕將所有項目標記為已完成
+        13.可以點按鈕將所有項目標記為未完成
+        14.請使用 Composition API
+
+        💡 提示：
+        點兩下的事件為 @dblclick
+        按 ESC 鍵的，事件為 @keydown.esc
+        過濾可以使用 computed 搭配 .filter()
+    -->
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="addItem">
+            <!-- v-model 綁定輸入框 -->
+            <input type="text" v-model="input" :style="{ border: inputBorder }">
+            <input type="submit" value="新增">
+        </form>
+
+        <hr>
+
+        <input type="button" value="全部已完成" @click="markItems(true)">
+        <input type="button" value="全部未完成" @click="markItems(false)">
+        <br>
+        <input type="button" value="顯示全部" @click="filter = '全部'">
+        <input type="button" value="顯示已完成" @click="filter = '已完成'">
+        <input type="button" value="顯示未完成" @click="filter = '未完成'">
+        <br>
+        <input type="button" value="清除全部" @click="clearItems('全部')">
+        <input type="button" value="清除已完成" @click="clearItems('已完成')">
+        <input type="button" value="清除未完成" @click="clearItems('未完成')">
+
+        <hr>
+
+        <p>目前顯示：{{ filter }}，共 {{ filteredItems.length }} 個</p>
+
+        <ul>
+            <!--🔻 :key="item.id" 為每個項目提供唯一的 id 作為標識
+                使過濾前過濾後的 item id 不變化 -->
+            <li v-for="item in filteredItems" :key="item.id">
+                <input type="button" value="x" @click="delItem(item.id)">　
+                <input type="checkbox" v-model="item.done">
+                <input type="text" v-if="item.edit" v-model="item.input" @keydown.enter="editItem(item)"
+                    @keydown.esc="cancelEditItem(item)">
+
+                <span v-else @dblclick="item.edit = true">
+                    <del v-if="item.done">{{ item.name }}</del>
+                    <span v-else>{{ item.name }}</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+    <script>
+        const { createApp, ref, reactive, computed, watch, onMounted } = Vue
+
+        createApp({
+            setup() {
+                const input = ref('')
+                const items = reactive([])
+                // 看目前過濾的是誰
+                const filter = ref('全部')
+                let id = 1
+
+                // 框線顏色認證
+                const inputBorder = computed(() => {
+                    if (input.value.length === 0) {
+                        return '3px solid black'
+                    } else if (input.value.length < 2) {
+                        return '3px solid red'
+                    } else {
+                        return '3px solid blue'
+                    }
+                })
+
+                // 新增項目
+                const addItem = () => {
+                    if (input.value.length < 2) return
+
+                    items.push({
+                        id: id++,
+                        name: input.value,
+                        done: false,
+                        edit: false,
+                        input: input.value
+                    })
+                    input.value = ''
+                }
+
+                // 過濾已完成、過濾未完成
+                const filteredItems = computed(() => {
+                    return items.filter(item => {
+                        if (filter.value === '全部') return true
+                        // else if (filter.value === '已完成') return item.done === true
+                        else if (filter.value === '已完成') return item.done
+                        // else return item.done === false
+                        // !item.done => 未完成
+                        else return !item.done
+                    })
+                })
+
+                // 標記已完成、標記未完成
+                const markItems = (value) => {
+                    for (const item of items) {
+                        item.done = value
+                    }
+                }
+
+                // 清除已完成、清除未完成
+                const clearItems = (value) => {
+                    const data = items.filter(item => {
+                        if (value === '全部') return false
+                        else if (value === '已完成') return !item.done
+                        else return item.done
+                    })
+                    items.splice(0, items.length, ...data)
+                }
+
+                // 編輯功能
+                const editItem = (item) => {
+                    if (item.input.length < 2) return
+                    item.name = item.input
+                    item.edit = false
+                }
+
+                // 按 esc 取消編輯
+                const cancelEditItem = (item) => {
+                    item.input = item.name
+                    item.edit = false
+                }
+
+                // 刪除項目
+                const delItem = (id) => {
+                    const i = items.findIndex(item => item.id === id)
+                    items.splice(i, 1)
+                }
+
+                // 待辦清單項目保存到 LocalStorage
+                // items（待辦清單的資料）發生變化時（例如新增、刪除或修改項目），會觸發回調函式
+                watch(items, () => {
+                    // 回調函式將 items 的資料轉換為 JSON 字串，並儲存在 localStorage.vueListNew 中
+                    localStorage.vueListNew = JSON.stringify(items)
+                })
+
+                // 頁面加載時還原資料
+                onMounted(() => {
+                    // localStorage.vueListNew 是保存的資料
+                    // 如果存在，就將其解析成 JavaScript 陣列，否則使用空陣列
+                    const json = JSON.parse(localStorage.vueListNew || '[]')
+                    // 將解析出的資料插入到 items 中，還原之前的清單內容
+                    items.splice(0, 0, ...json)
+
+                    if (items.length > 0)
+                        // 設定 id 為最後一個項目的 ID 加 1，確保新增項目的 ID 不會重複
+                        id = items[items.length - 1].id + 1
+                })
+
+                return {
+                    input, items, filter, id, inputBorder,
+                    addItem, filteredItems, markItems, clearItems,
+                    editItem, cancelEditItem, delItem
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>
