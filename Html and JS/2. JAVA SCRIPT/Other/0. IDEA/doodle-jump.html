@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #game-container {
+            width: 400px;
+            height: 600px;
+            border: 2px solid black;
+            overflow: hidden;
+            position: relative;
+            background: #add8e6;
+        }
+
+        #player {
+            width: 30px;
+            height: 30px;
+            background: #ff0000;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            left: 185px;
+        }
+
+        .platform {
+            position: absolute;
+            background: #00ff00;
+            width: 80px;
+            height: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="player"></div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        $(document).ready(function () {
+            const $gameContainer = $("#game-container");
+            const $player = $("#player");
+
+            const gameWidth = $gameContainer.width();
+            const gameHeight = $gameContainer.height();
+
+            const platforms = []; // 平台陣列
+            const platformCount = 5; // 初始平台數量
+            let playerY = 10;
+            let velocityY = 0;
+            let gravity = 0.5;
+
+            // 初始化平台
+            function createPlatform(x, y) {
+                const $platform = $("<div></div>").addClass("platform").css({
+                    left: `${x}px`,
+                    bottom: `${y}px`,
+                });
+                $gameContainer.append($platform);
+
+                // 添加到陣列中
+                platforms.push({
+                    x: x,
+                    y: y,
+                    width: 80,
+                    height: 10,
+                    element: $platform,
+                });
+            }
+
+            // 隨機生成平台
+            function generateInitialPlatforms() {
+                for (let i = 0; i < platformCount; i++) {
+                    const x = Math.random() * (gameWidth - 80); // 隨機水平位置
+                    const y = i * (gameHeight / platformCount); // 均勻分布的垂直位置
+                    createPlatform(x, y);
+                }
+            }
+
+            // 平台更新邏輯
+            function updatePlatforms() {
+                platforms.forEach((platform, index) => {
+                    // 平台下降
+                    platform.y -= 2; // 平台移動速度
+
+                    // 更新 DOM
+                    platform.element.css("bottom", `${platform.y}px`);
+
+                    // 移除超出畫面底部的平台
+                    if (platform.y < -10) {
+                        platform.element.remove(); // 從 DOM 中移除
+                        platforms.splice(index, 1); // 從陣列中移除
+
+                        // 添加新平台到頂部
+                        const x = Math.random() * (gameWidth - 80);
+                        const y = gameHeight;
+                        createPlatform(x, y);
+                    }
+                });
+            }
+
+            // 碰撞檢測
+            function checkCollision() {
+                platforms.forEach((platform) => {
+                    const playerX = parseFloat($player.css("left"));
+                    const playerY = parseFloat($player.css("bottom"));
+
+                    if (
+                        playerX < platform.x + platform.width &&
+                        playerX + 30 > platform.x && // 角色寬度
+                        playerY >= platform.y && // 角色在平台上方
+                        playerY <= platform.y + platform.height // 角色接觸平台
+                    ) {
+                        velocityY = -10; // 角色跳躍
+                    }
+                });
+            }
+
+            // 遊戲循環
+            function gameLoop() {
+                velocityY += gravity;
+                playerY += velocityY;
+
+                if (playerY < 0) {
+                    alert("Game Over!");
+                    return;
+                }
+
+                $player.css("bottom", `${playerY}px`);
+
+                updatePlatforms(); // 更新平台位置
+                checkCollision();  // 檢查碰撞
+
+                requestAnimationFrame(gameLoop);
+            }
+
+            // 初始化
+            generateInitialPlatforms();
+            gameLoop();
+        });
+
+
+
+
+        $(document).ready(function () {
+            const $player = $("#player");
+            const $gameContainer = $("#game-container");
+
+            let playerX = 185; // 初始水平位置
+            let playerY = 10;  // 初始垂直位置
+            let velocityY = 0; // 垂直速度
+            let gravity = 0.5; // 重力
+            let isJumping = false;
+
+            // 控制角色移動
+            $(document).on("keydown", function (e) {
+                if (e.key === "ArrowLeft") {
+                    playerX -= 10;
+                } else if (e.key === "ArrowRight") {
+                    playerX += 10;
+                }
+                $player.css("left", playerX + "px");
+            });
+
+            // 遊戲循環
+            function gameLoop() {
+                // 重力影響
+                velocityY += gravity;
+                playerY += velocityY;
+
+                // 碰撞檢測 (簡化範例)
+                if (playerY > 600) {
+                    alert("Game Over!");
+                    playerY = 10; // 重置
+                }
+
+                // 更新角色位置
+                $player.css("bottom", playerY + "px");
+
+                requestAnimationFrame(gameLoop);
+            }
+
+            gameLoop(); // 啟動遊戲
+        });
+
+    </script>
+</body>
+
+</html>
