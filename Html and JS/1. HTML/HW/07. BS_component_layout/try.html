@@ -8,37 +8,79 @@
 
     <!-- 1. 先引進 bootstrap 樣式 -->
     <link rel="stylesheet" href="./css/bootstrap5.3.css">
+    <style>
+        @media (min-width: 768px) {
+            .vh-md-100 {
+                height: 100vh !important;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="card" style="width: 18rem;">
-            <img src="https://picsum.photos/300/200/?random=10" class="card-img-top">
+    <!-- 三張卡片 -->
+    <div class="cards w-100 d-flex flex-column flex-md-row justify-content-evenly align-items-center p-md-5 min-vh-100">
+        <div class="card w-100 w-md-25 mt-4 mx-3">
+            <img class="card-img-top" src="https://picsum.photos/320/200/?random=1">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <h5 class="card-title py-1">青青子衿悠悠我心</h5>
+                <p class="card-text">訊息按照一番幻想處理器打了這個需求遺憾那裡激情便是歡迎精采，西部交換婚姻請在作者並非成立他的每月嘿。</p>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img src="https://picsum.photos/300/200/?random=10" class="card-img-top">
+
+        <div class="card w-100 w-md-25 mt-4 mx-3">
+            <img class="card-img-top" src="https://picsum.photos/320/200/?random=2">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <h5 class="card-title py-1">青青子衿悠悠我心</h5>
+                <p class="card-text">訊息按照一番幻想處理器打了這個需求遺憾那裡激情便是歡迎精采，西部交換婚姻請在作者並非成立他的每月嘿。</p>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img src="https://picsum.photos/300/200/?random=10" class="card-img-top">
+
+        <div class="card w-100 w-md-25 mt-4 mx-3">
+            <img class="card-img-top" src="https://picsum.photos/320/200/?random=3">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <h5 class="card-title py-1">青青子衿悠悠我心</h5>
+                <p class="card-text">訊息按照一番幻想處理器打了這個需求遺憾那裡激情便是歡迎精采，西部交換婚姻請在作者並非成立他的每月嘿。</p>
             </div>
         </div>
     </div>
+
+    <!-- 交叉圖片 -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6 p-0">
+                <img class="img-fluid" src="https://picsum.photos/1600/1200/?random=1">
+            </div>
+            <div
+                class="col-12 col-md-6 bg-secondary bg-opacity-10 text-dark d-flex flex-column justify-content-center min-vh-100 min-vh-md-0">
+                <div class="p-5 lead text-center">
+                    <h1>Coffee Shop</h1>
+                    <p class="py-3">
+                        不是互動日報，版權所有未知阿。推動研究所都沒常常有很多起來猶豫建材我們笑道提升關鍵字，一身遊戲生物權益集體你的法國物理障礙對付軟體，一副認證你想註冊適合，研究產品你的某些大眾請點擊，解壓信號視頻有一定問題財經論文，例如那種有着秘密幹部上市就能您可以你想如果你，眼中好像使用幫你當初市委舉報義務人群考生畢業生執法那樣篇文章，一場老。
+                    </p>
+                    <a href="#" class="btn btn-success">VIEW COLLECTION</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 p-0 order-sm-1">
+                <img class="img-fluid" src="https://picsum.photos/1600/1200/?random=2">
+            </div>
+            <div
+                class="col-12 col-md-6 bg-secondary bg-opacity-10 text-dark d-flex align-items-center min-vh-100 min-vh-md-0">
+                <div class="p-5 lead text-center">
+                    <h1>Coffee Shop</h1>
+                    <p class="py-3">
+                        不是互動日報，版權所有未知阿。推動研究所都沒常常有很多起來猶豫建材我們笑道提升關鍵字，一身遊戲生物權益集體你的法國物理障礙對付軟體，一副認證你想註冊適合，研究產品你的某些大眾請點擊，解壓信號視頻有一定問題財經論文，例如那種有着秘密幹部上市就能您可以你想如果你，眼中好像使用幫你當初市委舉報義務人群考生畢業生執法那樣篇文章，一場老。
+                    </p>
+                    <a href="#" class="btn btn-success">VIEW COLLECTION</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
     <script src="./js/bootstrap.bundle5.3.js"></script>
