@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進位時鐘</title>
+    <style>
+        canvas {
+            background: #000;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="clockCanvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('clockCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 繪製單一圓點
+        function drawCircle(x, y, isWhite) {
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, Math.PI * 2);
+            ctx.fillStyle = isWhite ? '#FFF' : '#333';
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // 繪製進位圓點欄位
+        function drawColumn(x, value, base) {
+            for (let i = 0; i < 4; i++) {
+                const bit = (value >> i) & 1; // 取出每一位元
+                drawCircle(x, 100 + i * 50, bit === 1);
+            }
+        }
+
+        // 更新時鐘
+        function updateClock() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const now = new Date();
+
+            // 時、分、秒的值
+            const hours = now.getHours() % 12; // 12小時制
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // 繪製 AM/PM
+            drawCircle(50, 50, now.getHours() < 12); // AM
+            drawCircle(50, 100, now.getHours() >= 12); // PM
+
+            // 繪製小時、分鐘、秒鐘
+            drawColumn(150, hours, 4);     // 小時 (四進位)
+            drawColumn(250, minutes, 6);  // 分鐘 (六進位)
+            drawColumn(350, seconds, 6);  // 秒鐘 (六進位)
+
+            requestAnimationFrame(updateClock); // 遞迴刷新
+        }
+
+        updateClock(); // 啟動時鐘
+    </script>
+</body>
+
+</html>
