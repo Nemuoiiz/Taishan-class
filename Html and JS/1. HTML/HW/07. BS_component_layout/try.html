@@ -8,79 +8,159 @@
 
     <!-- 1. 先引進 bootstrap 樣式 -->
     <link rel="stylesheet" href="./css/bootstrap5.3.css">
+
     <style>
-        @media (min-width: 768px) {
-            .vh-md-100 {
-                height: 100vh !important;
-            }
+        .input-group,
+        .input-group-text,
+        .input-group .form-control {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .input-group .form-check-label,
+        .input-group .form-check-input {
+            margin-right: 0.5rem;
+        }
+
+        textarea,
+        select {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        label {
+            white-space: nowrap;
+        }
+
+        p {
+            word-wrap: break-word;
+        }
+
+        .form-select,
+        .form-control {
+            width: 100%;
         }
     </style>
 
 </head>
 
 <body>
+    <div class="container-fluid px-0 mx-0">
 
-    <!-- 三張卡片 -->
-    <div class="cards w-100 d-flex flex-column flex-md-row justify-content-evenly align-items-center p-md-5 min-vh-100">
-        <div class="card w-100 w-md-25 mt-4 mx-3">
-            <img class="card-img-top" src="https://picsum.photos/320/200/?random=1">
-            <div class="card-body">
-                <h5 class="card-title py-1">青青子衿悠悠我心</h5>
-                <p class="card-text">訊息按照一番幻想處理器打了這個需求遺憾那裡激情便是歡迎精采，西部交換婚姻請在作者並非成立他的每月嘿。</p>
-            </div>
-        </div>
 
-        <div class="card w-100 w-md-25 mt-4 mx-3">
-            <img class="card-img-top" src="https://picsum.photos/320/200/?random=2">
-            <div class="card-body">
-                <h5 class="card-title py-1">青青子衿悠悠我心</h5>
-                <p class="card-text">訊息按照一番幻想處理器打了這個需求遺憾那裡激情便是歡迎精采，西部交換婚姻請在作者並非成立他的每月嘿。</p>
-            </div>
-        </div>
+        <!-- 地圖 -->
+        <section id="map" class="vh-100">
+            <iframe class="w-100 h-100 align-middle"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.742473819851!2d121.4213609565561!3d25.042812192784357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7bec9ad74b1%3A0xa639904a89f26435!2z5Yue5YuV6YOo5Yue5YuV5Yqb55m85bGV572y5YyX5Z-65a6c6Iqx6YeR6aas5YiG572y5rOw5bGx6IG35qWt6KiT57e05aC0!5e0!3m2!1szh-TW!2stw!4v1733119780246!5m2!1szh-TW!2stw"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
 
-        <div class="card w-100 w-md-25 mt-4 mx-3">
-            <img class="card-img-top" src="https://picsum.photos/320/200/?random=3">
-            <div class="card-body">
-                <h5 class="card-title py-1">青青子衿悠悠我心</h5>
-                <p class="card-text">訊息按照一番幻想處理器打了這個需求遺憾那裡激情便是歡迎精采，西部交換婚姻請在作者並非成立他的每月嘿。</p>
+        <!-- 表單 -->
+        <section
+            class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center bg-secondary bg-opacity-10">
+            <div class="text-center">
+                <h3 class="my-3">聯絡我們</h3>
+                <h5>泰山咖啡莊園，傳承熱情 coding 精神</h5>
+                <p>任何服務問題或建議，歡迎您透過客服表單告知我們，謝謝！</p>
             </div>
-        </div>
-    </div>
 
-    <!-- 交叉圖片 -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-6 p-0">
-                <img class="img-fluid" src="https://picsum.photos/1600/1200/?random=1">
-            </div>
-            <div
-                class="col-12 col-md-6 bg-secondary bg-opacity-10 text-dark d-flex flex-column justify-content-center min-vh-100 min-vh-md-0">
-                <div class="p-5 lead text-center">
-                    <h1>Coffee Shop</h1>
-                    <p class="py-3">
-                        不是互動日報，版權所有未知阿。推動研究所都沒常常有很多起來猶豫建材我們笑道提升關鍵字，一身遊戲生物權益集體你的法國物理障礙對付軟體，一副認證你想註冊適合，研究產品你的某些大眾請點擊，解壓信號視頻有一定問題財經論文，例如那種有着秘密幹部上市就能您可以你想如果你，眼中好像使用幫你當初市委舉報義務人群考生畢業生執法那樣篇文章，一場老。
+            <form class="row w-100 w-sm-100 w-md-75 g-0 gx-2 d-flex flex-wrap align-items-center mb-3">
+
+                <div class="col-12 col-md-6 mb-2">
+                    <label for="formName" class="form-label">姓名</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="formName">
+                        <div class="input-group-text bg-secondary bg-opacity-10 flex-wrap">
+                            <label class="form-check-label me-1 text-dark" for="sir">先生</label>
+                            <input class="form-check-input me-3 my-0" type="radio" name="genderRadio" id="sir"
+                                value="先生">
+                            <label class="form-check-label me-1 text-dark" for="mrs">女士</label>
+                            <input class="form-check-input my-0" type="radio" name="genderRadio" id="mrs" value="女士">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 mb-2">
+                    <label for="formphone" class="form-label">電話</label>
+                    <input type="text" class="form-control" id="formphone">
+                </div>
+
+                <div class="col-12 col-md-6 mb-2">
+                    <label for="forEmail" class="form-label">電子信箱</label>
+                    <input type="text" class="form-control" id="forEmail">
+                </div>
+
+                <div class="col-12 col-md-6 mb-2">
+                    <label for="forQstyle" class="form-label">問題類型</label>
+                    <select class="form-select">
+                        <option selected>餐飲建議</option>
+                        <option value="1">人員服務</option>
+                        <option value="2">環境空間</option>
+                        <option value="3">活動體驗</option>
+                    </select>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label for="for-comment" class="form-label">意見需求</label>
+                    <textarea class="form-control mb-3" id="for-comment" rows="5"></textarea>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="news">
+                        <label class="form-check-label" for="news">
+                            訂閱泰山莊園最新資訊
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn w-auto bg-secondary text-light">送出</button>
+                </div>
+            </form>
+        </section>
+
+
+        <div id="footer"
+            class="w-100 h-auto bg-black py-5 d-flex flex-column justify-content-center align-items-center text-light">
+            <div class="w-75 h-100 py-2 d-flex flex-row justify-content-between">
+                <img class="rounded-circle" src="https://picsum.photos/150/150/?random=1">
+
+                <div>
+                    <p class="fw-bold">Address</p>
+                    <p>1234 Street Name<br>
+                        City, AA 99999
                     </p>
-                    <a href="#" class="btn btn-success">VIEW COLLECTION</a>
+                </div>
+
+                <div>
+                    <p class="fw-bold">Links</p>
+                    <p>Website builder<br>
+                        Download for Windows<br>
+                        Download for Mac</p>
+                </div>
+
+                <div>
+                    <p class="fw-bold">Contacts</p>
+                    <p>Email: support@mobirise.com<br>
+                        Phone: +1 (0) 000 0000 001<br>
+                        Fax: +1 (0) 000 0000 002</p>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6 p-0 order-sm-1">
-                <img class="img-fluid" src="https://picsum.photos/1600/1200/?random=2">
-            </div>
-            <div
-                class="col-12 col-md-6 bg-secondary bg-opacity-10 text-dark d-flex align-items-center min-vh-100 min-vh-md-0">
-                <div class="p-5 lead text-center">
-                    <h1>Coffee Shop</h1>
-                    <p class="py-3">
-                        不是互動日報，版權所有未知阿。推動研究所都沒常常有很多起來猶豫建材我們笑道提升關鍵字，一身遊戲生物權益集體你的法國物理障礙對付軟體，一副認證你想註冊適合，研究產品你的某些大眾請點擊，解壓信號視頻有一定問題財經論文，例如那種有着秘密幹部上市就能您可以你想如果你，眼中好像使用幫你當初市委舉報義務人群考生畢業生執法那樣篇文章，一場老。
-                    </p>
-                    <a href="#" class="btn btn-success">VIEW COLLECTION</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
+            <div class="col-12 text-center pt-5">
+                © Copyright 2024 Daine Zhang - All Rights Reserved
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- 2. 使用 bootstrap 的 js，可以讓我們使用元件進行互動 -->
     <script src="./js/bootstrap.bundle5.3.js"></script>
