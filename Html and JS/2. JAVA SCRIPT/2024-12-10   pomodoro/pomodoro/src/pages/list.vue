@@ -2,6 +2,16 @@
   <v-container>
     <v-row>
       <v-col cols="12">
+        <h1 class="text-center">進行中項目</h1>
+      </v-col>
+      <v-col cols="12">
+          <tr v-if="current.length === 0">
+              <td colspan="2">沒有項目</td>
+          </tr>
+          <tr><td>{{ current }}</td></tr>
+      </v-col>
+
+      <v-col cols="12">
         <h1 class="text-center">未完成</h1>
       </v-col>
       <v-col cols="12">
@@ -26,7 +36,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item,i) in items" :key="item.id">
+            <tr v-if="items.length === 0">
+              <td colspan="2">沒有項目</td>
+            </tr>
+            <tr v-for="(item, i) in items" :key="item.id">
               <td>
                 <!--要使用 v-show 而非 v-if
                     v-if   為符合條件才顯示，index 順序會跑掉
@@ -55,6 +68,30 @@
           </tbody>
         </v-table>
       </v-col>
+      <v-col cols="12">
+        <h1 class="text-center">已完成</h1>
+      </v-col>
+      <v-col cols="12">
+        <v-table>
+          <thead>
+            <tr>
+              <th>事項</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-if="finishedItems.length === 0">
+              <td colspan="2">沒有項目</td>
+            </tr>
+            <tr v-for="item in finishedItems" :key="item.id">
+              <td>{{ item.text }}</td>
+              <td>
+                <v-btn icon="mdi-delete" @click="delFinishedItem(item.id)"></v-btn>
+              </td>
+            </tr>
+          </tbody>
+        </v-table>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -65,8 +102,8 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue'
 
 const list = useListStore()
-const { addItem, editItem, delItem, cancelEditItem, confirmEditItem } = list
-const { items } = storeToRefs(list)
+const { addItem, editItem, delItem, cancelEditItem, confirmEditItem, delFinishedItem } = list
+const { items, finishedItems,current } = storeToRefs(list)
 
 const input = ref('')
 const inputTextField = ref(null)

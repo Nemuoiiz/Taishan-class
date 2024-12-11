@@ -91,4 +91,9 @@ path
     &.active
       // v-bind 把 CSS 的值和 Vue 的變數綁定
       fill: v-bind(color)
+
+.digit
+    height:200px
+    width: 140px
+    margin: 1px
 </style>

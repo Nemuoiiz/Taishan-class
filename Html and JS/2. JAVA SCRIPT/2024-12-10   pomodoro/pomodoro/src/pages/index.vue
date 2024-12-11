@@ -20,10 +20,10 @@
         <!-- 狀態沒有在倒數時可以按 -->
         <v-btn
         icon="mdi-pause"
-        :disabled="status !== STATUS.COUNTING"></v-btn>
+        :disabled="status !== STATUS.COUNTING" @click="pauseTimer"></v-btn>
         <v-btn
         icon="mdi-skip-next"
-        :disabled="current.length === 0"></v-btn>
+        :disabled="current.length === 0" @click="finishTimer"></v-btn>
       </v-col>
 
     </v-row>
@@ -32,10 +32,15 @@
 
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed} from 'vue'
 import { useListStore } from '@/stores/list'
 import { useSettingsStore } from '@/stores/settings'
 import { storeToRefs } from 'pinia'
+
+// 判斷換頁時元件有無銷毀
+// onUnmounted(() => {
+//   console.log('onUnmounted')
+// })
 
 const STATUS = {
   STOP: 0,
@@ -49,6 +54,7 @@ const { current, items, timeleft } = storeToRefs(list)
 const { setCurrentItem, countdown, setFinishItem } = list
 
 const settings = useSettingsStore()
+const { selectedFile } = storeToRefs(settings)
 
 const currentText = computed(() => {
   if (current.value.length > 0) {
@@ -68,9 +74,10 @@ const startTimer = () => {
 
   status.value = STATUS.COUNTING
 
+  // setInterval 生命週期 unmouted (換頁後) 還是會繼續跑
   timer = setInterval(() => {
     countdown()
-    if (timeleft.value === 0) {
+    if (timeleft.value < 0) {
       finishTimer()
     }
   }, 1000)
@@ -79,7 +86,24 @@ const startTimer = () => {
 const finishTimer = () => {
   clearInterval(timer)
   status.value = STATUS.STOP
+
+  // 結束倒數時播放鈴聲
+  const audio = new Audio()
+  audio.src = selectedFile.value
+  audio.play()
+
   setFinishItem()
+
+  // 事項大於 0 時重新啟動計時
+  if (items.value.length > 0) {
+    startTimer()
+  }
+}
+
+// 時間暫停
+const pauseTimer = () => {
+  clearInterval(timer)
+  status.value = STATUS.PAUSE
 }
 
 const currentTime = computed(() => {
@@ -95,5 +119,4 @@ const currentTime = computed(() => {
 <route lang="yaml">
 meta:
   title: 倒數
-
 </route>

@@ -8,4 +8,17 @@ export const useSettingsStore = defineStore('settings', {
     ],
     selected: 1,
   }),
+  getters: {
+    // 確定選擇的數字和鈴聲的 id 符合
+    selectedFile() {
+      const i = this.alarms.findIndex((alarm) => alarm.id === this.selected)
+      return this.alarms[i].file
+    },
+  },
+  persist: {
+    // 自訂存進 localstorage 時的 key
+    key: 'pomodoro-setting',
+    // 只需要保存 selected
+    pick:['selected']
+  }
 })
