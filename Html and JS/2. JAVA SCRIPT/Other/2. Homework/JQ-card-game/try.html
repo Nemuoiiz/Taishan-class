@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>塔羅牌抽取</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .card {
+            margin: 10px;
+        }
+
+        .reversed {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>塔羅牌三張抽取</h1>
+    <button onclick="drawCards()">抽取牌組</button>
+    <div id="result"></div>
+
+    <script>
+        // 定義78張塔羅牌
+        const tarotDeck = [
+            "愚人", "魔術師", "女祭司", "皇后", "皇帝", "教皇", "戀人", "戰車", "力量", "隱者", "命運之輪",
+            "正義", "吊人", "死神", "節制", "惡魔", "塔", "星星", "月亮", "太陽", "審判", "世界",
+            ...Array.from({ length: 56 }, (_, i) => `小牌${i + 1}`)
+        ];
+
+        // 抽取塔羅牌
+        function drawCards() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // 清空結果
+
+            // 洗牌
+            const shuffledDeck = tarotDeck
+                .map(card => ({ card, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ card }) => card);
+
+            // 抽取三張牌
+            const selectedCards = shuffledDeck.slice(0, 3);
+            const positions = ["過去", "現在", "未來"];
+
+            selectedCards.forEach((card, index) => {
+                // 決定正位或逆位
+                const isReversed = Math.random() > 0.5;
+                const displayText = `${positions[index]}: ${card} ${isReversed ? '(逆位)' : '(正位)'}`;
+
+                // 顯示結果
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card';
+                if (isReversed) {
+                    cardDiv.classList.add('reversed');
+                }
+                cardDiv.textContent = displayText;
+                resultDiv.appendChild(cardDiv);
+            });
+        }
+    </script>
+</body>
+
+</html>
