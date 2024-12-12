@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 單張卡牌 */
+        .card {
+            width: 185px;
+            height: 230px;
+            position: relative;
+            margin: 10px;
+            float: left;
+            /* 設定內層元素 (子元素) 在 3D 空間內 */
+            transform-style: preserve-3d;
+
+            /* 翻牌的轉場秒數 */
+            transition: transform 1s;
+        }
+
+        /* 卡牌正面 */
+        .card-front {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            background-image: url('./img/01.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            /* 要不要隱藏背面 */
+            backface-visibility: hidden;
+        }
+
+        /* 卡牌背面 */
+        .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            background-image: url('./img/backB.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            /* 要不要隱藏背面 */
+            backface-visibility: hidden;
+            /* 把隱藏的背面朝上，有圖案的牌背朝下 */
+            transform: rotateY(180deg);
+        }
+
+        .card-close {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="card">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+    </div> -->
+
+    <div id="game"></div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        // 產生 20 張卡片（每張圖片有兩張牌）
+        const totalPairs = 10; // 共有 10 對
+        const cardNumbers = [];
+
+        // 生成每個數字兩次，放入 cardNumbers 陣列
+        for (let i = 0; i < totalPairs; i++) {
+            cardNumbers.push(i, i); // 每個數字加入兩次
+        }
+
+        // 將 cardNumbers 陣列隨機打亂
+        cardNumbers.sort(() => Math.random() - 0.5);
+
+        // 依據打亂後的數字生成卡片
+        for (let i = 0; i < cardNumbers.length; i++) {
+            const number = cardNumbers[i]; // 取得數字
+            const card = $(
+                `<div class="card card-close">
+            <div class="card-front"></div>
+            <div class="card-back"></div>
+        </div>`
+            );
+
+            // 設置卡片的背景圖片
+            card.find('.card-front').css('background-image', `url(./img/0${number}.png)`);
+
+            // 把卡片數字儲存起來，後面可用於辨識是否為同張卡片
+            card.attr('data-number', number);
+
+            // 將卡片加入遊戲區域
+            $('#game').append(card);
+        }
+
+
+        // 打亂卡牌順序，打亂 20 次
+        for (let i = 0; i < 20; i++) {
+            // 0~19 隨機取一張
+            const randA = Math.round(Math.random() * 19)
+            // 0~19 隨機取第二張
+            const randB = Math.round(Math.random() * 19)
+            // 第一張放到第二張後面
+            $('.card').eq(randA).insertAfter($('.card').eq(randB))
+        }
+
+        // 點牌翻開卡牌
+        $('.card').click(function () {
+            // 翻牌的判斷條件
+            if (
+                // .card 沒有 .card-close 代表被翻開
+                // 已翻開的數量兩張內
+                $('.card:not(.card-close)').length < 2 &&
+                // 這張牌還沒被翻開
+                $(this).hasClass('card-close') &&
+                // 這張牌還沒成功配對
+                !$(this).hasClass('card-ok')
+            ) {
+                $(this).removeClass('card-close')
+            }
+            // 如果已經翻開兩張了
+            if ($('.card:not(.card-close)').length === 2) {
+                // 兩張都一樣
+                if (
+                    $('.card:not(.card-close)').eq(0).attr('data-number') ===
+                    $('.card:not(.card-close)').eq(1).attr('data-number')
+                ) {
+                    // 標記已配對
+                    $('.card:not(.card-close)').addClass('card-ok')
+                    $('.card:not(.card-close)').fadeTo(1000, 0)
+                }
+
+                // 等一秒動畫結束
+                setTimeout(function () {
+                    // 不管有沒有配對成功都翻回背面
+                    $('.card:not(.card-close)').addClass('card-close')
+                    // 已配對數量 = 卡片數量，過關
+                    if ($('.card-ok').length == $('.card').length) {
+                        alert('過關')
+                    }
+                }, 1000);
+            }
+        })
+    </script>
+</body>
+
+</html>
