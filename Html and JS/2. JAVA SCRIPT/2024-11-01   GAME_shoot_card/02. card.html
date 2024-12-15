@@ -107,6 +107,10 @@
 
         // 點牌翻開卡牌
         $('.card').click(function () {
+
+            if ($('.card:not(.card-close)').length > 1) {
+                return
+            }
             // 翻牌的判斷條件
             if (
                 // .card 沒有 .card-close 代表被翻開
@@ -128,7 +132,9 @@
                 ) {
                     // 標記已配對
                     $('.card:not(.card-close)').addClass('card-ok')
-                    $('.card:not(.card-close)').fadeTo(1000, 0)
+                    $('.card:not(.card-close)').delay(500).fadeTo(500, 0)
+                } else {
+
                 }
 
                 // 等一秒動畫結束
