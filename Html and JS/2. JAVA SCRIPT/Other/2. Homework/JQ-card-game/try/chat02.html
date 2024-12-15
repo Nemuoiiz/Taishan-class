@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記憶塔羅</title>
+
+    <!-- 字體 -->
+    <!-- Kiwi Maru (中文) -->
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Noto+Sans+TC&family=Yatra+One&display=swap"
+        rel="stylesheet">
+    <!-- Kaisei Decol -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Kiwi+Maru&family=Noto+Sans+TC&family=Yatra+One&display=swap"
+        rel="stylesheet">
+    <!-- Yatra One (英文) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&family=Yatra+One&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Kaisei Decol", serif, Arial, sans-serif;
+            text-align: center;
+        }
+
+        #home {
+            background: url('./img/bg.png');
+            background-size: 100% 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: row;
+        }
+
+        #home img {
+            width: 400px;
+            position: absolute;
+            top: auto;
+            left: 0px;
+
+        }
+
+        #title {
+            font-size: 50px;
+            color: #fdf1f0;
+        }
+
+        #home button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            background-color: #915cc6;
+            color: white;
+            border-radius: 5px;
+            font-family: "Kiwi Maru";
+        }
+
+        #container {
+            display: none;
+        }
+
+        .card {
+            width: 100px;
+            height: 200px;
+            position: relative;
+            margin: 10px;
+            float: left;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card-front,
+        .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        .card-close {
+            transform: rotateY(180deg);
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="home">
+        <img src="./img/bg.gif">
+        <div>
+            <div id="title">塔羅小屋</div>
+            <button id="startGame">記憶遊戲</button>
+            <button id="divination">占卜</button>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="game" class="card-container"></div>
+    </div>
+
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        $(document).ready(function () {
+            const totalPairs = 10;
+
+            // Start button functionality
+            $('#startGame').click(function () {
+                $('#home').hide();
+                $('#container').show();
+                initializeGame();
+            });
+
+            function initializeGame() {
+                const cardNumbers = Array.from({ length: totalPairs }, (_, i) => [i, i]).flat();
+
+                // Shuffle the card numbers
+                cardNumbers.sort(() => Math.random() - 0.5);
+
+                // Generate cards
+                cardNumbers.forEach(number => {
+                    const card = $(
+                        `<div class="card card-close" data-number="${number}">
+                            <div class="card-front" style="background-image: url('./img/0${number}.png');"></div>
+                            <div class="card-back" style="background-image: url('./img/backB.png');"></div>
+                        </div>`
+                    );
+                    $('#game').append(card);
+                });
+
+                // Card click logic
+                let flippedCards = [];
+
+                $('.card').click(function () {
+                    if ($(this).hasClass('card-close') && flippedCards.length < 2 && !$(this).hasClass('card-ok')) {
+                        $(this).removeClass('card-close');
+                        flippedCards.push($(this));
+
+                        if (flippedCards.length === 2) {
+                            const [firstCard, secondCard] = flippedCards;
+
+                            if (firstCard.data('number') === secondCard.data('number')) {
+                                flippedCards.forEach(card => {
+                                    card.addClass('card-ok').fadeTo(1000, 0);
+                                });
+                            }
+
+                            setTimeout(() => {
+                                flippedCards.forEach(card => card.addClass('card-close'));
+                                flippedCards = [];
+
+                                if ($('.card-ok').length === $('.card').length) {
+                                    alert('Congratulations, you won!');
+                                }
+                            }, 1000);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

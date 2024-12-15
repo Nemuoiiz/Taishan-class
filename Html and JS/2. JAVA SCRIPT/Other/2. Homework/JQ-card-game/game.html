@@ -4,21 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Tarocchi 記憶遊戲</title>
     <style>
-        /* 單張卡牌 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #1C234E;
+        }
+
+        /* 整個網頁畫面 */
+        #container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container .frame {
+            width: 1000px;
+            height: auto;
+        }
+
+        #game-zone {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* background: red; */
+
+        }
+
+        /* 遊戲區 */
+        #game {
+            width: 900px;
+            height: 100%;
+            margin: auto;
+
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* 單張卡片 */
         .card {
-            width: 185px;
-            height: 230px;
+            width: 70px;
+            height: 120px;
             position: relative;
             margin: 10px;
             float: left;
-            /* 設定內層元素 (子元素) 在 3D 空間內 */
             transform-style: preserve-3d;
-
-            /* 翻牌的轉場秒數 */
-            transition: transform 1s;
+            transition: transform 0.7s;
         }
 
         /* 卡牌正面 */
@@ -60,51 +102,37 @@
 </head>
 
 <body>
-
-    <!-- <div class="card">
-        <div class="card-front"></div>
-        <div class="card-back"></div>
-    </div> -->
-
-    <div id="game"></div>
+    <div id="container">
+        <img class="frame" src="./img/try.png">
+        <div id="game-zone">
+            <div id="game"></div>
+        </div>
+    </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
         integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
         crossorigin='anonymous'></script>
 
     <script>
-        // 產生 20 張卡片（每張圖片有兩張牌）
-        const totalPairs = 10; // 共有 10 對
-        const cardNumbers = [];
-
-        // 生成每個數字兩次，放入 cardNumbers 陣列
-        for (let i = 0; i < totalPairs; i++) {
-            cardNumbers.push(i, i); // 每個數字加入兩次
-        }
-
-        // 將 cardNumbers 陣列隨機打亂
-        cardNumbers.sort(() => Math.random() - 0.5);
-
-        // 依據打亂後的數字生成卡片
-        for (let i = 0; i < cardNumbers.length; i++) {
-            const number = cardNumbers[i]; // 取得數字
-            const card = $(
-                `<div class="card card-close">
+        // 產生 20 張卡片
+        for (let i = 0; i < 20; i++) {
+            const card = $(`
+        <div class="card card-close">
             <div class="card-front"></div>
             <div class="card-back"></div>
-        </div>`
-            );
+        </div>
+    `);
+            // 將卡牌替換成 2 組 1 ~ 10 的紅心牌
+            const number = i % 10
+            card.find('.card-front').css('background-image', `url(./img/0${number}.png)`)
+            // 🔗資料屬性：https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/data-*
+            // data-* 為'資料屬性'，可以把資料存在 html 標籤內
+            // data-number => html 屬性名稱
+            // number      => 屬性的值
+            card.attr('data-number', number)    // 把卡片數字儲存起來，後面可用於辨識是否為同張卡片
 
-            // 設置卡片的背景圖片
-            card.find('.card-front').css('background-image', `url(./img/0${number}.png)`);
-
-            // 把卡片數字儲存起來，後面可用於辨識是否為同張卡片
-            card.attr('data-number', number);
-
-            // 將卡片加入遊戲區域
-            $('#game').append(card);
+            $('#game').append(card)     // 在內部最後面插入元素
         }
-
 
         // 打亂卡牌順序，打亂 20 次
         for (let i = 0; i < 20; i++) {
@@ -118,6 +146,10 @@
 
         // 點牌翻開卡牌
         $('.card').click(function () {
+
+            if ($('.card:not(.card-close)').length > 1) {
+                return
+            }
             // 翻牌的判斷條件
             if (
                 // .card 沒有 .card-close 代表被翻開
@@ -139,7 +171,9 @@
                 ) {
                     // 標記已配對
                     $('.card:not(.card-close)').addClass('card-ok')
-                    $('.card:not(.card-close)').fadeTo(1000, 0)
+                    $('.card:not(.card-close)').delay(500).fadeTo(500, 0)
+                } else {
+
                 }
 
                 // 等一秒動畫結束

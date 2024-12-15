@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 整個網頁畫面 */
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* 遊戲區 */
+        #game {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* 單張卡片 */
+        .card {
+            width: 80px;
+            height: 160px;
+            position: relative;
+            margin: 10px;
+            float: left;
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+        }
+
+        /* 卡牌正面 */
+        .card-front {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            background-image: url('./img/01.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            /* 要不要隱藏背面 */
+            backface-visibility: hidden;
+        }
+
+        /* 卡牌背面 */
+        .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            background-image: url('./img/backB.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            /* 要不要隱藏背面 */
+            backface-visibility: hidden;
+            /* 把隱藏的背面朝上，有圖案的牌背朝下 */
+            transform: rotateY(180deg);
+        }
+
+        .card-close {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="game"></div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+
+    <script>
+        $(document).ready(function () {
+            const totalPairs = 10;
+            const cardNumbers = Array.from({ length: totalPairs }, (_, i) => [i, i]).flat();
+
+            // Shuffle the card numbers
+            cardNumbers.sort(() => Math.random() - 0.5);
+
+            // Generate cards
+            cardNumbers.forEach(number => {
+                const card = $(
+                    `<div class="card card-close" data-number="${number}">
+                        <div class="card-front" style="background-image: url('./img/0${number}.png');"></div>
+                        <div class="card-back" style="background-image: url('./img/backB.png');"></div>
+                    </div>`
+                );
+                $('#game').append(card);
+            });
+
+            // Card click logic
+            let flippedCards = [];
+
+            $('.card').click(function () {
+                if ($(this).hasClass('card-close') && flippedCards.length < 2 && !$(this).hasClass('card-ok')) {
+                    $(this).removeClass('card-close');
+                    flippedCards.push($(this));
+
+                    if (flippedCards.length === 2) {
+                        const [firstCard, secondCard] = flippedCards;
+
+                        if (firstCard.data('number') === secondCard.data('number')) {
+                            flippedCards.forEach(card => {
+                                card.addClass('card-ok').fadeTo(1000, 0);
+                            });
+                        }
+
+                        setTimeout(() => {
+                            flippedCards.forEach(card => card.addClass('card-close'));
+                            flippedCards = [];
+
+                            if ($('.card-ok').length === $('.card').length) {
+                                alert('Congratulations, you won!');
+                            }
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

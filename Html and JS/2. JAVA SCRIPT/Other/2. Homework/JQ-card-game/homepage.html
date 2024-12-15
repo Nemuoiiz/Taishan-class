@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarocchi</title>
+
+    <!-- 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One&family=Kosugi+Maru&family=Neonderthaw&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background: #1C234E;
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container .hand {
+            width: 400px;
+            position: absolute;
+            top: 100px;
+            left: 205px;
+
+            z-index: -1;
+        }
+
+        #container .frame {
+            width: 1000px;
+            height: auto;
+            margin: 1px;
+        }
+
+        #right {
+            width: 420px;
+            position: absolute;
+            top: 80px;
+            right: 255px;
+            /* background: #000; */
+        }
+
+        #title {
+            text-align: center;
+            font-size: 90px;
+            font-family: "Neonderthaw", cursive;
+            color: #E5CDD5;
+        }
+
+        #info {
+            line-height: 1.8;
+            font-family: "Klee One", cursive;
+            color: aliceblue;
+            text-align: left;
+        }
+
+        /* 按鈕區 */
+        #btns {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            /* background: #000; */
+        }
+
+        #container .btn {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            margin: 20px;
+            font-size: 1.2em;
+            font-family: "Kosugi Maru", sans-serif;
+        }
+
+        #container a {
+            background: linear-gradient(to right, #FEC6C6, #94CEE8);
+            cursor: pointer;
+            border-radius: 10px;
+            display: block;
+            text-decoration: none;
+            color: #1C234E;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        #container a:hover {
+            background: linear-gradient(to right, #FD9991, #7958D1);
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <img class="hand" src="./img/bg.gif">
+        <img class="frame" src="./img/try.png">
+        <div id="right">
+            <div id="title">Tarocchi</div>
+            <div id="info">
+                塔羅牌由 78 張卡片組成，包括 22 張大阿爾克那與 56 張小阿爾克那，每張牌皆具特定象徵意義。
+                作為一種占卜與心理探索工具，透過排列與解讀塔羅牌，可以幫助使用者分析現狀、發掘內心想法及尋求方向。
+                塔羅牌目的並非預測未來，而是提供發想與反思，適用於人際關係、生活抉擇與自我成長等領域。
+            </div>
+            <div style="height: 70px;"></div>
+            <div id="btns">
+                <div class="btn">
+                    <a href="./game.html">
+                        記憶遊戲
+                    </a>
+                </div>
+                <div class="btn">
+                    <a href="./divine.html">
+                        簡易占卜
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
