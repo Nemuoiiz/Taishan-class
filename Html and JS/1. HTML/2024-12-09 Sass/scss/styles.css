@@ -1,0 +1,460 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "微軟正黑體";
+}
+
+.container {
+  width: 75%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 20px 0 20px;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+section {
+  margin-bottom: 2rem !important;
+}
+
+/* 多行註解是可以編譯出去的 */
+/* 原生變數可以被編譯出去 */
+:root {
+  --primary: #0d6efd;
+  --secondary: #6c757d;
+  --success: #198754;
+  --info: #0dcaf0;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #212529;
+}
+
+/* SCSS 的變數，無法被編譯出去 */
+.foo {
+  width: 100px;
+  color: red;
+}
+
+h1 {
+  line-height: 1;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(197, 202, 170)), color-stop(25%, rgb(215, 231, 172)), color-stop(75%, rgb(250, 231, 171)));
+  background: linear-gradient(0deg, rgb(197, 202, 170) 0%, rgb(215, 231, 172) 25%, rgb(250, 231, 171) 75%);
+  color: #fff;
+  border: 5px solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  /* 編譯後自動加上前綴詞 -webkit */
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+  color: #6c757d;
+}
+
+/* 流程控制 */
+.mybox {
+  width: 150px;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: thistle;
+  font-style: italic;
+  color: white !important;
+  font-weight: bolder;
+  font-size: 50px;
+  /* 使用 not 去反運算式結果 */
+  border: 10px dashed aquamarine;
+  /* 內建函式 if()，類似三元運算式，因為是函式，因此 if 沒有@ */
+  outline: 10px solid lightpink;
+}
+
+/* 包含 end，跑 1、2、3 */
+.through-1 {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background: #aaa;
+}
+
+.through-2 {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background: #aaa;
+}
+
+.through-3 {
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  background: #aaa;
+}
+
+/* 不包含 end，跑 1、2 */
+.to-1 {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background: #aaa;
+}
+
+.to-2 {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background: #aaa;
+}
+
+#section05 ul.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+#section05 ul.menu li {
+  width: 100px;
+  text-align: center;
+}
+#section05 ul.menu li a {
+  color: white;
+  text-decoration: none;
+  background: black;
+  padding: 0.5rem;
+  display: block;
+}
+#section05 ul.menu li a:hover {
+  color: wheat;
+  background: salmon;
+}
+#section05 ul.menu li + li {
+  border-left: 1px solid #fff;
+}
+
+#exercise .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#exercise .col {
+  width: 31.333333%;
+  margin: 1%;
+  border: 1px solid #333;
+  background: #fff;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+#exercise .col:hover {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+#exercise .col img {
+  width: 100%;
+}
+#exercise a {
+  text-decoration: none;
+  color: black;
+}
+#exercise a:hover {
+  text-decoration: underline;
+  color: green;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.box3, .box2, .box1 {
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.box1 {
+  background: red;
+}
+
+.box2 {
+  background: green;
+}
+
+.box3 {
+  background: blue;
+}
+
+/* 計算 */
+.box4 {
+  background: #000;
+  /* 加法 */
+  width: 100px;
+  width: 100px;
+  height: 100px;
+  /* 減法 */
+  width: 50px;
+  width: 50px;
+  height: 50px;
+  /* 乘法 */
+  width: 100px;
+  height: 100px;
+  /* 除法 */
+  width: 50px;
+  height: 50px;
+  /* 若分子、分母都有單位，單位會被消除 */
+  line-height: 1;
+  /* 取餘數 */
+  margin-top: 20px;
+}
+
+/* 函式 */
+.funcbox {
+  width: 100px;
+  height: 100px;
+  color: white;
+  background: thistle;
+  font-size: 40px;
+  width: 200px;
+  height: 100px;
+  height: 200px;
+}
+
+.rem {
+  font-size: 1rem;
+  padding: 3rem;
+}
+
+#section08 p {
+  font-size: 20px;
+  line-height: 45px;
+  line-height: 30px;
+}
+
+/* Mixins(混入) */
+/* 使用 @include 引入 mixin */
+.mixinTry123 {
+  width: 100px;
+  height: 100px;
+  background: #333;
+}
+
+.boxflex {
+  width: 100px;
+  height: 100px;
+  border: 5px solid #333;
+  outline: 10px dashed pink;
+}
+
+.btn {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  line-height: 1.5;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.btn-dark {
+  background: #000;
+}
+.btn-dark:hover {
+  background-color: gray;
+}
+
+.btn-primary {
+  background: #0d6efd;
+}
+.btn-primary:hover {
+  background-color: #0143a3;
+}
+
+.btn-success {
+  background: #198754;
+}
+.btn-success:hover {
+  background-color: #09311e;
+}
+
+.btn-danger {
+  background: #dc3545;
+}
+.btn-danger:hover {
+  background-color: #921925;
+}
+
+/* 使用 @mixin + @content 來設計 RWD */
+#section10 .container {
+  width: 100%;
+}
+#section10 .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+#section10 .col {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #333;
+}
+#section10 .col + .col {
+  margin-top: 20px;
+}
+@media (min-width: 576px) {
+  #section10 .container {
+    width: 75%;
+  }
+  #section10 .col {
+    width: 50%;
+  }
+  #section10 .col + .col {
+    margin-top: 0;
+  }
+}
+@media (min-width: 768px) {
+  #section10 .col {
+    width: 33.333333%;
+  }
+}
+@media (min-width: 992px) {
+  #section10 .col {
+    width: 25%;
+  }
+}
+@media (min-width: 1200px) {
+  #section10 .col {
+    width: 20%;
+  }
+}
+@media (min-width: 1400px) {
+  #section10 .col {
+    width: 10%;
+  }
+}
+
+/* list (列表) 像 JS 的陣列，索引從 1 開始，不是 0 */
+/* 用 nth(list, index) 取 item 值 */
+.list {
+  width: 100px;
+  width: 200px;
+  width: 300px;
+  border: 1px solid red;
+  border: 1px solid blue;
+  border: 1px solid green;
+  border: 1px solid yellow;
+}
+
+/* 使用 index(list, value) 來取得索引 (index) */
+.index {
+  width: 1;
+  width: 2;
+  width: 3;
+  z-index: 1;
+  z-index: 2;
+  z-index: 3;
+}
+
+/* 用 length($list) 取 list 的長度 */
+.length {
+  z-index: 3;
+}
+
+/* 搭配 @for 使用迴圈去做動作 */
+/* # {} 插值語法 (模板字串)，類似 JS 的 ${} 或是 vue 的 {{ }} */
+.bg-red {
+  background-color: red;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+/* 搭配 @each 去做動作 */
+.each-bg-red {
+  background-color: red;
+}
+
+.each-bg-green {
+  background-color: green;
+}
+
+.each-bg-blue {
+  background-color: blue;
+}
+
+/* 使用 join($list, $list) 合併兩個陣列 */
+.join {
+  z-index: 1, 2, 3, 8, 9, 10;
+}
+
+/* map (物件) */
+/* map 寫完記得結尾加上 ; 分號 */
+/*  $key   自定義命名稱
+    $value 實際綁定的 value
+    可用靈活性高，改動時只需要更動實際的 value 值 */
+.bg-primary {
+  background-color: red;
+}
+
+/*  $key   自定義命名稱
+    $value 實際綁定的 value
+    可用靈活性高，改動時只需要更動實際的 value 值 */
+.bg-secondary {
+  background-color: green;
+}
+
+/*  $key   自定義命名稱
+    $value 實際綁定的 value
+    可用靈活性高，改動時只需要更動實際的 value 值 */
+.bg-warning {
+  background-color: blue;
+}
+
+/* 使用 map-get 取雙層物件的值 */
+/*  $key   => 第一層物件 $map2 裡的 default、box1、box2
+    $value => 第二層物件       裡的 width、height 值 */
+.btn-default {
+  width: 100px;
+  height: 100px;
+}
+
+.btn-box1 {
+  width: 200px;
+  height: 200px;
+}
+
+.btn-box2 {
+  width: 300px;
+  height: 300px;
+}

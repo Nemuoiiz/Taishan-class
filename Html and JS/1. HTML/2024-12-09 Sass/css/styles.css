@@ -238,7 +238,7 @@ h1 {
   height: 100px;
   color: white;
   background: thistle;
-  font-size: 60px;
+  font-size: 40px;
   width: 200px;
   height: 100px;
   height: 200px;
@@ -357,4 +357,104 @@ h1 {
   #section10 .col {
     width: 10%;
   }
+}
+
+/* list (列表) 像 JS 的陣列，索引從 1 開始，不是 0 */
+/* 用 nth(list, index) 取 item 值 */
+.list {
+  width: 100px;
+  width: 200px;
+  width: 300px;
+  border: 1px solid red;
+  border: 1px solid blue;
+  border: 1px solid green;
+  border: 1px solid yellow;
+}
+
+/* 使用 index(list, value) 來取得索引 (index) */
+.index {
+  width: 1;
+  width: 2;
+  width: 3;
+  z-index: 1;
+  z-index: 2;
+  z-index: 3;
+}
+
+/* 用 length($list) 取 list 的長度 */
+.length {
+  z-index: 3;
+}
+
+/* 搭配 @for 使用迴圈去做動作 */
+/* # {} 插值語法 (模板字串)，類似 JS 的 ${} 或是 vue 的 {{ }} */
+.bg-red {
+  background-color: red;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+/* 搭配 @each 去做動作 */
+.each-bg-red {
+  background-color: red;
+}
+
+.each-bg-green {
+  background-color: green;
+}
+
+.each-bg-blue {
+  background-color: blue;
+}
+
+/* 使用 join($list, $list) 合併兩個陣列 */
+.join {
+  z-index: 1, 2, 3, 8, 9, 10;
+}
+
+/* map (物件) */
+/* map 寫完記得結尾加上 ; 分號 */
+/*  $key   自定義命名稱
+    $value 實際綁定的 value
+    可用靈活性高，改動時只需要更動實際的 value 值 */
+.bg-primary {
+  background-color: red;
+}
+
+/*  $key   自定義命名稱
+    $value 實際綁定的 value
+    可用靈活性高，改動時只需要更動實際的 value 值 */
+.bg-secondary {
+  background-color: green;
+}
+
+/*  $key   自定義命名稱
+    $value 實際綁定的 value
+    可用靈活性高，改動時只需要更動實際的 value 值 */
+.bg-warning {
+  background-color: blue;
+}
+
+/* 使用 map-get 取雙層物件的值 */
+/*  $key   => 第一層物件 $map2 裡的 default、box1、box2
+    $value => 第二層物件       裡的 width、height 值 */
+.btn-default {
+  width: 100px;
+  height: 100px;
+}
+
+.btn-box1 {
+  width: 200px;
+  height: 200px;
+}
+
+.btn-box2 {
+  width: 300px;
+  height: 300px;
 }

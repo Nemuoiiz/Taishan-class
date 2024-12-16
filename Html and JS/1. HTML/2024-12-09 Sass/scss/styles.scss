@@ -570,3 +570,113 @@ $breakpoint-xxl:1400px;
 	@include xxl {
 	}
 }
+
+/* list (列表) 像 JS 的陣列，索引從 1 開始，不是 0 */
+// 可以用逗號、空格去分隔表示，裡面的每個元素稱作 item
+$width_list: 100px, 200px, 300px;
+$margin_list: 10px 20px 30px 40px;
+$bgColor_list:red,green,blue;
+$zindex_list: 1 2 3 4;
+$border_list:
+    1px solid red,
+    1px solid blue,
+    1px solid green,
+    1px solid yellow;
+
+/* 用 nth(list, index) 取 item 值 */
+.list{
+    width: nth($width_list, 1);
+    width: nth($width_list, 2);
+    width: nth($width_list, 3);
+    border: nth($border_list, 1);
+    border: nth($border_list, 2);
+    border: nth($border_list, 3);
+    border: nth($border_list, 4);
+}
+
+/* 使用 index(list, value) 來取得索引 (index) */
+.index{
+    width: index($width_list, 100px);
+    width: index($width_list, 200px);
+    width: index($width_list, 300px);
+    z-index:index($bgColor_list, red);
+    z-index:index($bgColor_list, green);
+    z-index:index($bgColor_list, blue);
+}
+
+/* 用 length($list) 取 list 的長度 */
+.length{
+    z-index: length($bgColor_list);
+}
+
+/* 搭配 @for 使用迴圈去做動作 */
+/* # {} 插值語法 (模板字串)，類似 JS 的 ${} 或是 vue 的 {{ }} */
+@for $i from 1 through length($bgColor_list){
+    // .bg-(class) { background-color:(value) }
+    .bg-#{nth($bgColor_list, $i)}{
+        background-color: nth($bgColor_list, $i);
+    }
+}
+
+/* 搭配 @each 去做動作 */
+@each $value in $bgColor_list{
+    .each-bg-#{$value}{
+        background-color: $value;
+    }
+}
+
+// 製作兩個 list 陣列
+$list1: 1, 2, 3;
+$list2: 8, 9, 10;
+
+/* 使用 join($list, $list) 合併兩個陣列 */
+.join{
+    z-index: join($list1, $list2);
+}
+
+
+/* map (物件) */
+/* map 寫完記得結尾加上 ; 分號 */
+
+$map1:(
+    primary:red,
+    secondary:green,
+    warning:blue,
+);
+
+@each $key, $value in $map1{
+    /*  $key   自定義命名稱
+        $value 實際綁定的 value
+        可用靈活性高，改動時只需要更動實際的 value 值 */
+    .bg-#{$key}{
+        background-color: $value;
+    }
+}
+
+// 物件包物件 (雙層物件)
+$map2:(
+    default:(
+        width: 100px,
+        height: 100px
+    ),
+    box1:(
+        width: 200px,
+        height: 200px
+    ),
+    box2:(
+        width: 300px,
+        height: 300px
+    ),
+);
+
+/* 使用 map-get 取雙層物件的值 */
+/*  $key   => 第一層物件 $map2 裡的 default、box1、box2
+    $value => 第二層物件       裡的 width、height 值 */
+@each $key, $value in $map2{
+    $width:map-get($value, width);
+    $height:map-get($value, height);
+    .btn-#{$key}{
+        width:$width;
+        height: $height;
+    }
+}
