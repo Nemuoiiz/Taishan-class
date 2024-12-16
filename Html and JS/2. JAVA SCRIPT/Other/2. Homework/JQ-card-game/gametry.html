@@ -156,6 +156,7 @@
         let gameStart = false;
         let startTime;
         let timerInterval;
+        let countdownInterval;
 
         function shuffleCards() {
             for (let i = 0; i < 20; i++) {
@@ -165,10 +166,20 @@
             }
         }
 
+        function resetGame() {
+            clearInterval(timerInterval);
+            clearInterval(countdownInterval);
+            $('#timer').text('Ready to start');
+            gameStart = false;
+            $('.card').removeClass('card-ok').removeClass('card-close').css('opacity', 1);
+            $('.card').addClass('card-close');
+            shuffleCards();
+        }
+
         function startCountdown() {
             let countdown = 5;
             $('#timer').text(`countdown : ${countdown}`);
-            const countdownInterval = setInterval(() => {
+            countdownInterval = setInterval(() => {
                 countdown--;
                 $('#timer').text(`countdown : ${countdown}`);
 
@@ -205,8 +216,14 @@
             shuffleCards();
 
             $('#startGame').click(function () {
-                $('.card').removeClass('card-close'); // 翻到正面
-                startCountdown();
+                if (!gameStart && $(this).text() === '開始遊戲') {
+                    $('.card').removeClass('card-close'); // 翻到正面
+                    startCountdown();
+                    $(this).text('重來一次');
+                } else {
+                    resetGame();
+                    $(this).text('開始遊戲');
+                }
             });
 
             // 卡牌點擊事件
@@ -234,6 +251,8 @@
                             clearInterval(timerInterval);
                             const elapsed = Math.floor((new Date() - startTime) / 1000);
                             alert(`過關！遊玩時間: ${elapsed} 秒`);
+                            resetGame();
+                            $('#startGame').text('開始遊戲');
                         }
                     }, 1000);
                 }
