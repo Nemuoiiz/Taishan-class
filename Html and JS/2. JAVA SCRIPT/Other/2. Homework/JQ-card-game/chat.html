@@ -4,100 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarocchi</title>
-
-    <!-- 字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=Klee+One&family=Kosugi+Maru&family=Neonderthaw&display=swap"
-        rel="stylesheet">
+    <title>Document</title>
 
     <style>
         * {
-            padding: 0px;
-            margin: 0px;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         body {
             background: #1C234E;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* 避免因縮放出現滾動條 */
         }
 
         #container {
             width: 100vw;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
             position: relative;
-            /* 新增這一行 */
-
         }
 
+        /* 背景圖 bg.gif */
         #container .hand {
-            width: 30%;
             position: absolute;
-            top: 20%;
-            left: 12.5%;
-
-            z-index: -1;
-        }
-
-        #container .frame {
-            width: 80%;
+            width: 60vw;
+            /* 以視窗寬度為基準 */
+            max-width: 700px;
+            /* 最大寬度限制 */
             height: auto;
-            margin: 1px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* 中心對齊 */
+            z-index: -1;
+            /* 確保在最底層 */
         }
 
+        /* 前景圖片 try.png */
+        #container .frame {
+            position: absolute;
+            width: 40vw;
+            max-width: 500px;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            /* 高於背景圖 */
+        }
+
+        /* 右側內容 */
         #right {
             width: 30%;
             position: absolute;
-            top: 20%;
-            right: 20%;
-            /* background: #000; */
+            top: 10%;
+            /* 根據視窗高度調整位置 */
+            right: 5%;
         }
 
         #title {
             text-align: center;
-            font-size: 10rem;
+            font-size: 3rem;
+            /* 調整字體大小響應式 */
             font-family: "Neonderthaw", cursive;
             color: #E5CDD5;
         }
 
         #info {
-            line-height: 1.5;
+            line-height: 1.8;
             font-size: 1.2rem;
             font-family: "Klee One", cursive;
             color: aliceblue;
             text-align: left;
         }
 
-        /* 按鈕區 */
+        /* 按鈕區域 */
         #btns {
             position: absolute;
-            bottom: 15%;
-            right: 25%;
-
+            bottom: 10%;
+            /* 與底部保持一定距離 */
+            right: 5%;
             display: flex;
-            justify-content: center;
-            text-align: center;
-            /* background: #000; */
+            gap: 20px;
+            /* 按鈕間距 */
         }
 
         #container .btn {
             width: 150px;
             height: 50px;
-            line-height: 50px;
-            margin: 20px;
-            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
             font-family: "Kosugi Maru", sans-serif;
         }
 
         #container a {
+            width: 100%;
+            height: 100%;
             background: linear-gradient(to right, #FEC6C6, #94CEE8);
-            cursor: pointer;
             border-radius: 10px;
-            display: block;
             text-decoration: none;
             color: #1C234E;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: background 0.5s ease, color 0.5s ease;
         }
 
@@ -105,8 +123,6 @@
             background: linear-gradient(to right, #FD9991, #7958D1);
             color: aliceblue;
         }
-
-        /* ---------------- */
     </style>
 </head>
 
