@@ -126,6 +126,11 @@
             background: linear-gradient(to right, #FEC6C6, #94CEE8);
             color: #1C234E;
         }
+
+        #startGame.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
     </style>
 </head>
 
@@ -187,8 +192,17 @@
             $('#timer').text(`Timer : ${elapsed} `);
         }
 
-        $(document).ready(function () {
-            // 初始化卡片
+        function resetGame() {
+            clearInterval(timerInterval);
+            $('#game').empty();
+            initializeCards();
+            shuffleCards();
+            $('#startGame').removeClass('disabled');
+            $('#timer').text('Ready to start');
+            gameStart = false;
+        }
+
+        function initializeCards() {
             for (let i = 0; i < 20; i++) {
                 const card = $(
                     `<div class="card card-close">
@@ -201,16 +215,21 @@
                 card.attr('data-number', number);
                 $('#game').append(card);
             }
+        }
 
+        $(document).ready(function () {
+            // 初始化卡片
+            initializeCards();
             shuffleCards();
 
             $('#startGame').click(function () {
+                $(this).addClass('disabled'); // 禁用按鈕
                 $('.card').removeClass('card-close'); // 翻到正面
                 startCountdown();
             });
 
             // 卡牌點擊事件
-            $('.card').click(function () {
+            $(document).on('click', '.card', function () {
                 if (!gameStart || $('.card:not(.card-close)').length > 1) {
                     return;
                 }
@@ -234,6 +253,7 @@
                             clearInterval(timerInterval);
                             const elapsed = Math.floor((new Date() - startTime) / 1000);
                             alert(`過關！遊玩時間: ${elapsed} 秒`);
+                            resetGame();
                         }
                     }, 1000);
                 }

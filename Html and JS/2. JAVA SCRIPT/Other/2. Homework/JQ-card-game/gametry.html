@@ -203,9 +203,9 @@
             for (let i = 0; i < 20; i++) {
                 const card = $(
                     `<div class="card card-close">
-                        <div class="card-front"></div>
-                        <div class="card-back"></div>
-                    </div>`
+                    <div class="card-front"></div>
+                    <div class="card-back"></div>
+                </div>`
                 );
                 const number = i % 10;
                 card.find('.card-front').css('background-image', `url(./img/0${number}.png)`);
@@ -216,13 +216,14 @@
             shuffleCards();
 
             $('#startGame').click(function () {
-                if (!gameStart && $(this).text() === '開始遊戲') {
+                if (!gameStart) {
+                    resetGame(); // 清理現有狀態
+                    $(this).text('重來一次'); // 更新按鈕文字
                     $('.card').removeClass('card-close'); // 翻到正面
-                    startCountdown();
-                    $(this).text('重來一次');
+                    startCountdown(); // 開始倒數
                 } else {
-                    resetGame();
-                    $(this).text('開始遊戲');
+                    resetGame(); // 重置遊戲狀態
+                    $(this).text('開始遊戲'); // 恢復按鈕文字
                 }
             });
 
@@ -259,6 +260,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
