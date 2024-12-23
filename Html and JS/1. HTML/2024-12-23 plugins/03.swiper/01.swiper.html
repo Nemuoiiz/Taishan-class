@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css' />
+    <!-- 1️⃣ swiper 的 css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <title>Document</title>
+
+    <style>
+        /* 設定輪播的寬、高 */
+        #nemui {
+            height: 350px;
+        }
+
+
+        /* 🔻 renderBullet 圓形數字切換---------------------------------- */
+        .swiper-pagination-bullet {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 1.3rem;
+            background: rgb(209, 201, 201);
+            color: #ffffff;
+            opacity: 1;
+        }
+
+        /* active 選擇到該按鈕時的狀態 */
+        .swiper-pagination-bullet-active {
+            color: #fff;
+            background: rgb(252, 153, 161);
+        }
+
+        /* 🔻 type: "fraction" 數字進度條 ----------------------------------------------- */
+        #nemui .swiper-pagination-fraction {
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 0 0 1px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 1);
+        }
+
+        /* 永遠都要注意圖片與容器尺寸是否一致 */
+        #nemui .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔻 swiper -->
+    <!-- https://swiperjs.com/ -->
+
+    <div class="container">
+        <h1>Swiper 設定</h1>
+        <!-- swiper 結構 -->
+        <div id="nemui" class="swiper">
+            <!-- 輪播單位 -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=4">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=5">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=6">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=7">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/1920/1080/?random=8">
+                </div>
+            </div>
+            <!-- 分頁 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 上一張、下一張 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 捲動條 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+
+    <!-- bootstrap -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
+    <!-- 2️⃣ swiper 的主程式 -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+    <script>
+        // 可以參考：https://swiperjs.com/demos
+
+        // 初始化 swiper 與設定
+        // new Swiper(選擇 DOM 元素, 物件參數)
+        // new => 實力化物件
+        const swiper = new Swiper('#nemui', {
+
+            // 🔻 輪播方向，設定輪播方向，vertical 垂直，horizontal 水平
+            // direction: "vertical",
+            // 🔻 輪播單位間的距離
+            // spaceBetween: 30,
+            // 🔻 一次顯示幾張
+            slidesPerView: 1,
+            // 🔻 循環輪播
+            loop: true,
+            // 🔻 自動輪播
+            autoplay: {
+                delay: 2500,                    // 幾秒後下一張
+                // disableOnInteraction: false,    // 使用者點擊後是否停止自動輪播
+            },
+            // 🔻 滑鼠滾輪
+            mousewheel: true,
+
+            // 🔻 設定響應式斷點
+            breakpoints: {
+                576: {
+                    slidesPerView: 2,
+                    // spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    // spaceBetween: 30,
+                },
+                992: {
+                    slidesPerView: 4,
+                    // spaceBetween: 40,
+                },
+                1200: {
+                    slidesPerView: 5,
+                    // spaceBetween: 50,
+                }
+            },
+
+            // 啟用上一頁、下一頁功能
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            // 啟用分頁指示器
+            pagination: {
+                el: ".swiper-pagination",
+                // 🔻分頁點大小變幻的動態按鈕
+                // dynamicBullets: true,
+                // 🔻上方藍色進度條
+                // type: "progressbar",
+                // 🔻數字進度條
+                // type: "fraction",
+                // 🔻圓形數字切換
+                clickable: true,    // 可以點選
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '">' + (index + 1) + "</span>";
+                },
+            },
+        });
+    </script>
+
+</body>
+
+</html>

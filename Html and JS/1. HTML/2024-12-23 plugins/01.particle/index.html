@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css' />
+
+    <style>
+        body {
+            background: azure;
+        }
+
+        /* 小心動畫有時會蓋住操作介面、按鈕，讓它們沒有辦法動作 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            /* z-index: 9999; */
+            z-index: -1;
+            /* 對動畫 DOM 設定 pointer-events:none，可以穿透過去，點擊下方的介面 */
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔻particles -->
+    <!-- https://vincentgarreau.com/particles.js -->
+
+
+    <!-- 3️⃣ 設定要動畫的 dom 元素 -->
+    <!-- id="particles" => https://github.com/VincentGarreau/particles.js/ 設定 -->
+    <div id="particles-js"></div>
+    <!-- https://bootstrap5.hexschool.com/docs/5.1/layout/z-index/ -->
+    <!-- fixed-top => z-index 會是 1030，產生層級關係 -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- 1️⃣ 引入主程式 -->
+    <script src="./js/particles.min.js"></script>
+    <!-- 2️⃣ 引入設定檔 -->
+    <script src="./js/particles_app.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.js'></script>
+
+</body>
+
+</html>
