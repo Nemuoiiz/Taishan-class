@@ -1,0 +1,253 @@
+{
+	"editor.lineHeight": 26,
+	"editor.formatOnSave": true,
+	"editor.formatOnType": true,
+	"editor.fontFamily": "'Fira Code', 'Cascadia Code',Consolas,monospace",
+	"editor.fontLigatures": true,
+	"files.trimTrailingWhitespace": true, // 去除行尾空格
+	"editor.tabSize": 2,
+	"editor.mouseWheelZoom": true, // 滑鼠+滾輪 可以放大程式碼視窗
+	"editor.linkedEditing": true, // 顯示 snippet 建議
+	"editor.autoClosingBrackets": "always",
+	"editor.wordWrapColumn": 170,
+	"editor.wordWrap": "wordWrapColumn",
+	"html.format.wrapLineLength": 0,
+	"html.format.wrapAttributes": "aligned-multiple",
+	"editor.stickyScroll.enabled": false,
+	"editor.minimap.enabled": false,
+	// "editor.rulers": [157],
+	"editor.foldingImportsByDefault": false,
+	"files.trimFinalNewlines": true,
+	"workbench.tree.indent": 15,
+	"workbench.editor.tabSizing": "shrink",
+	"window.zoomLevel": 1,
+	// 終端機 --------------------------------------------------------------------------------------------
+	"terminal.integrated.defaultProfile.windows": "Command Prompt",
+	"terminal.integrated.cursorBlinking": true,
+	"terminal.integrated.cursorStyle": "underline",
+	"terminal.integrated.mouseWheelZoom": true,
+	"terminal.integrated.fontSize": 18,
+	// "terminal.integrated.profiles.windows": {
+	// 	"PowerShell": {
+	// 		"source": "PowerShell",
+	// 		"icon": "terminal-powershell"
+	// 	},
+	// 	"Command Prompt": {
+	// 		"path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
+	// 		"args": [],
+	// 		"icon": "terminal-cmd"
+	// 	},
+	// 	"Git Bash": {
+	// 		"path": "K:\\portable\\Git\\bin\\bash.exe",
+	// 		"args": ["--login", "-i"]
+	// 	}
+	// },
+	// 格式化 -------------------------------------------------------------------------------------------
+	"prettier.semi": false, // 是否要在每一列的結尾加上分號。
+	"prettier.printWidth": 160, // html 屬性想折行可以註解起來
+	"prettier.useTabs": true,
+	"prettier.singleQuote": true, // 使用單引號
+	"prettier.trailingComma": "none", // 省略尾巴逗號
+	"prettier.singleAttributePerLine": false, // 在 HTML、JSX、Vue 和 Angular 中強制每行使用單個屬性。
+	"prettier.jsxSingleQuote": true, // jsx 使用單引號
+	"prettier.endOfLine": "auto",
+	"editor.defaultFormatter": "esbenp.prettier-vscode", // 設置各種文件排版所使用的格式器
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[java]": {
+		"editor.defaultFormatter": "redhat.java"
+	},
+	"[python]": {
+		"editor.defaultFormatter": "eeyore.yapf"
+	},
+	"[cpp]": {
+		"editor.defaultFormatter": "seaube.clangformat"
+	},
+	"[django-html]": {
+		"editor.defaultFormatter": "junstyle.vscode-django-support"
+	},
+	// 檔案關聯 -------------------------------------------------------------------------------------------
+	// 可以讓 vscode 認識檔案的類型，並且使用對應的語言模式
+	// 高亮、自動完成、格式化、linting、debugging
+	"files.associations": {
+		"*.html": "html",
+		"**/templates/**/*.html": "django-html",
+		"*.tpl": "django-html",
+		"*.css": "css",
+		"*.js": "javascript",
+		"*.md": "markdown",
+		"*.vue": "vue",
+		"*.py": "python",
+		"*.cpp": "cpp",
+		"*.java": "java"
+	},
+	"editor.unicodeHighlight.allowedLocales": {
+		"zh-hans": true
+	},
+	"editor.unicodeHighlight.allowedCharacters": {
+		" ": true,
+		"：": true,
+		"！": true
+	},
+	"editor.unicodeHighlight.ambiguousCharacters": false,
+	// Python yapf 格式化 --------------------------------------------------------------------------------
+	"yapf.args": [
+		"--style",
+		"{based_on_style: google, INDENT_WIDTH: 2, COLUMN_LIMIT: 100, COALESCE_BRACKETS: true, DEDENT_CLOSING_BRACKETS: true, SPACES_AROUND_DEFAULT_OR_NAMED_ASSIGN: true, SPACES_AROUND_DICT_DELIMITERS: true, SPACES_AROUND_LIST_DELIMITERS: true, SPACES_AROUND_TUPLE_DELIMITERS: true, SPACES_AROUND_LIST_DELIMITERS: true, SPACES_AROUND_SUBSCRIPT_COLON: true, SPLIT_ALL_TOP_LEVEL_COMMA_SEPARATED_VALUES: true, SPLIT_BEFORE_CLOSING_BRACKET: true, SPLIT_BEFORE_DICT_SET_GENERATOR: true, SPLIT_BEFORE_DOT: true, SPLIT_COMPLEX_COMPREHENSION: true}"
+	],
+
+	// ESLint 自動修正 -----------------------------------------------------------------------------------
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.workingDirectories": [
+		{
+			"mode": "auto"
+		}
+	],
+	// Emmet --------------------------------------------------------------------------------------------
+	"emmet.includeLanguages": {
+		"markdown": "html",
+		"html": "html",
+		"css": "css",
+		"javascript": "html",
+		"scss": "scss",
+		"vue": "html",
+		"vue-html": "html",
+		"php": "html",
+		"postcss": "css",
+		"django-html": "html",
+		"jsx": "jsx",
+		"tsx": "tsx"
+	},
+	"emmet.variables": {
+		"lang": "zh-TW"
+	},
+	// 顏色 -------------------------------------------------------------------------------------------
+	"editor.semanticTokenColorCustomizations": {
+		"[Monokaifu Theme]": {
+			"enabled": true
+		}
+	},
+	// 註解顏色
+	"editor.tokenColorCustomizations": {
+		"[Monokaifu Theme]": {
+			"comments": {
+				"fontStyle": "italic",
+				"foreground": "#6a9955"
+			}
+		}
+	},
+	// commentTranslate --------------------------------------------------------------------------------
+	"commentTranslate.targetLanguage": "zh-TW",
+	"commentTranslate.multiLineMerge": true,
+	// Live Sass Compiler -------------------------------------------------------------------------------
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "expanded",
+			"extensionName": ".css",
+			"savePath": "~/../css"
+		},
+		{
+			"format": "compressed",
+			"extensionName": ".min.css",
+			"savePath": "~/../dist"
+		}
+	],
+	"liveSassCompile.settings.excludeList": ["/**/node_modules/**", "/.vscode/**"],
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"],
+	//  Trailing Spaces  --------------------------------------------------------------------------------
+	"trailing-spaces.backgroundColor": "rgba(255, 50, 0,0.1)",
+	"trailing-spaces.borderColor": "rgba(255,255,255,0)",
+	"security.workspace.trust.untrustedFiles": "open",
+	"files.eol": "\n",
+	"[shellscript]": {
+		"files.eol": "\n"
+	},
+	// markdown 複製貼上圖片 --------------------------------------------------------------------------------
+	"markdown.copyFiles.destination": {
+		"**/*": "images/"
+	},
+	// 套件 vscode-imgur --------------------------------------------------------------------------------
+	// 申請完 id，註冊一個 https://api.imgur.com/oauth2/addclient，複製圖片，到 md 檔 ctrl+alt+v 貼上
+	"vscode-imgur.client_id": "b1212ddc8e1c519",
+	"vscode-imgur.client_secret": "d5f1976b3f632131831caa4234e766cad8e2aec4",
+	"vscode-imgur.preferUserUpload": true,
+	// Java --------------------------------------------------------------------------------------------
+	"redhat.telemetry.enabled": true,
+	"java.debug.settings.hotCodeReplace": "auto",
+	"java.saveActions.organizeImports": true,
+	"java.configuration.runtimes": [
+		{
+			"name": "JavaSE-17",
+			"path": "C:\\Program Files\\Java\\jdk-17",
+			"default": true
+		}
+	],
+	"java.project.sourcePaths": ["src"], // 來源在哪裡
+	"java.project.outputPath": "bin", // 編譯後的 class 放到哪裡
+	"java.project.referencedLibraries": [
+		// .jar 將多個 class 檔壓縮打包，也就是 java 的類別庫
+		"lib/**/*.jar"
+	],
+	// C/C++ --------------------------------------------------------------------------------------------
+	"cmake.configureOnOpen": true,
+	"cmake.showOptionsMovedNotification": false,
+	"C_Cpp.default.compilerPath": "F:\\MinGW\\bin\\gcc.exe",
+	"clangFormat.executable.default": "F:\\LLVM\\bin\\clang-format.exe",
+	// php ---------------------------------------------------------------------------------------------
+	"intelephense.format.braces": "k&r",
+	"php.validate.executablePath": "F:\\xampp\\php\\php.exe",
+	"[php]": {
+		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+	},
+	// LeetCode --------------------------------------------------------------------------------------------
+	"leetcode.defaultLanguage": "python",
+	"leetcode.endpoint": "leetcode-cn",
+	"leetcode.hint.configWebviewMarkdown": false,
+	"leetcode.hint.commentDescription": false,
+	"leetcode.workspaceFolder": "d:\\09.git\\Leetcode",
+	// Live Server -----------------------------------------------------------------------------------------
+	"liveServer.settings.donotShowInfoMsg": true,
+	"liveServer.settings.donotVerifyTags": true,
+	// Copilot ---------------------------------------------------------------------------------------------
+	"github.copilot.enable": {
+		"*": true,
+		"markdown": true,
+		"plaintext": true,
+		"html": true,
+		"css": true,
+		"scss": true,
+		"javascript": true,
+		"typescript": true,
+		"php": true,
+		"java": true,
+		"vue": true,
+		"sql": true,
+		"cpp": true,
+		"python": true,
+		"scminput": true
+	},
+	// git ---------------------------------------------------------------------------------------------
+	"git.openRepositoryInParentFolders": "never",
+	"git.enableSmartCommit": true, // 自動提交，不需要 git add .
+	// 其他 ---------------------------------------------------------------------------------------------
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"vue.inlayHints.optionsWrapper": false,
+	"workbench.iconTheme": "material-icon-theme",
+	"markdown-preview-enhanced.plantumlJarPath": "K:\\plantuml-mit-1.2024.4.jar",
+	"python.analysis.extraPaths": ["./src", "./libs"],
+	// Code Runner -----------------------------------------------------------------------------------------
+	"code-runner.runInTerminal": true,
+	"code-runner.executorMap": {
+		"java": "cd $dir && javac -encoding utf-8 $fileName && java $fileNameWithoutExt",
+		// "python": "C:\\Python\\python.exe"
+		"python": "F:\\Python\\python.exe"
+	},
+	"github.copilot.editor.enableAutoCompletions": false,
+	"cmake.pinnedCommands": ["workbench.action.tasks.configureTaskRunner", "workbench.action.tasks.runTask"],
+	"workbench.colorTheme": "Monokaifu Theme",
+	"vue.server.hybridMode": false
+}
