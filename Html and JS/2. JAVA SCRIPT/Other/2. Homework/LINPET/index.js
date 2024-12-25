@@ -33,7 +33,7 @@ bot.on('message', async (event) => {
       })
     } else if (userMessage === '查詢貓' || userMessage === '查詢狗') {
       const animalType = userMessage === '查詢貓' ? '貓' : '狗'
-      const shelters = ['63', '62'] // 新竹市 & 新竹縣的 shelter_pkid
+      const shelters = ['48', '49', '50', '51', '53', '55', '56', '58', '59', '61', '62', '63', '78', '92'] // shelter_pkid
       const data = await fetchData(animalType, shelters)
 
       if (data.length > 0) {

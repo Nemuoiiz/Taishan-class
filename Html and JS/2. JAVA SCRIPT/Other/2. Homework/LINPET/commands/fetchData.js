@@ -10,7 +10,7 @@ export default async function fetchData (animalType, shelterIds) {
         (item) =>
           item.animal_kind === animalType && shelterIds.includes(item.animal_shelter_pkid.toString())
       )
-      .slice(0, 5) // 只取前五筆資料
+      .slice(0, 10) // 只取前五筆資料
   } catch (error) {
     console.error('API 錯誤：', error)
     return []
