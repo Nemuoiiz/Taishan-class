@@ -16,6 +16,7 @@
             width: 100vw;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -83,31 +84,39 @@
             <div id="minute"></div>
             <div id="second"></div>
         </div>
-        <p id="text">00:00:00</p>
+        <div id="text">00:00:00</div>
     </div>
     <script>
-        const elHour = document.getElementById('hour')
-        const elMinute = document.getElementById('minute')
-        const elSecond = document.getElementById('second')
-        const elText = document.getElementById('text')
+        const elHour = document.getElementById('hour');
+        const elMinute = document.getElementById('minute');
+        const elSecond = document.getElementById('second');
+        const elText = document.getElementById('text');
 
         const clock = () => {
-            const date = new Date()
-            const h = date.getHours()
-            const m = date.getMinutes()
-            const s = date.getSeconds()
-            elHour.style.transform = `rotate(${h * 30 + (m / 59 * 30) + 90}deg)`;
-            elMinute.style.transform = `rotate(${m * 6 + 90}deg)`;
-            elSecond.style.transform = `rotate(${s * 6 + 90}deg)`;
+            const date = new Date();
+            const h = date.getHours();
+            const m = date.getMinutes();
+            const s = date.getSeconds();
+            const ms = date.getMilliseconds(); // 獲取當前毫秒數
 
-            // 數字轉文字才能 padStart 補數
-            elText.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
-        }
+            // 時針移動（每小時30度，並根據分鐘細調）
+            elHour.style.transform = `rotate(${h * 30 + (m / 60 * 30) + 90}deg)`;
 
-        // 防止延遲
-        setInterval(clock, 1000)
-        clock()
+            // 分針移動（每分鐘6度，並根據秒數細調）
+            elMinute.style.transform = `rotate(${m * 6 + (s / 60 * 6) + (ms / 60000 * 6) + 90}deg)`;
+
+            // 秒針移動（每秒6度，並根據毫秒細調）
+            elSecond.style.transform = `rotate(${s * 6 + (ms / 1000 * 6) + 90}deg)`;
+
+            // 時間數字顯示（補零格式化）
+            elText.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        };
+
+        // 高頻更新，確保秒針和分針平滑移動（約60fps）
+        setInterval(clock, 16);
+        clock();
     </script>
+
 </body>
 
 </html>
