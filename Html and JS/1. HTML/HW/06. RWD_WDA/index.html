@@ -59,8 +59,17 @@
             margin: 1rem 0;
         }
 
+        @media (min-width: 768px) {
 
-        @media (min-width: 576px) {
+            #h-html,
+            #h-css,
+            #h-js,
+            #h-jq,
+            #h-bs,
+            #h-sass,
+            #h-vue {
+                display: none;
+            }
 
             #html p,
             #css p,
@@ -86,15 +95,15 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-            } */
+                } */
 
 
             img {
-                width: 70%;
+                width: 50%;
             }
 
             #wda img {
-                width: 100%;
+                width: 60%;
             }
 
             #wda {
@@ -147,6 +156,10 @@
                 bottom: 100px;
                 right: 250px;
             }
+        }
+
+        @media (min-width: 1200px) {
+
 
             #h-html,
             #h-css,
@@ -155,6 +168,8 @@
             #h-bs,
             #h-sass,
             #h-vue {
+                transition: 1s;
+                display: block;
                 /* hr 寬度 */
                 height: 2px;
                 /* 移除邊框 */
