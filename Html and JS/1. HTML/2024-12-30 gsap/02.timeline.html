@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css' />
+    <title>GSAP</title>
+
+    <style>
+        body {
+            padding: 50px 0;
+        }
+
+        .box1,
+        .box2,
+        .box3,
+        .box4,
+        .box5,
+        .box6,
+        .box7,
+        .box8,
+        .box9,
+        .box10,
+        .box11,
+        .box12,
+        .box13,
+        .box14,
+        .box15,
+        .box16,
+        .box17,
+        .box18,
+        .box19,
+        .box20,
+        .box21,
+        .box22,
+        .box23,
+        .box24,
+        .box25,
+        .box26,
+        .box27 {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            background: rgb(175, 216, 213);
+        }
+
+        hr {
+            margin: 50px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>💠 timeline - 時間軸</h2>
+        <ul>
+            <li>timeline 是一種用來組織動畫的方式，它是 tween 或其他 timeline 的容器，也就是說可以管理動畫排序的工具。</li>
+            <li>timeline 也有自己的 vars 物件可以設定，有些屬性與 tween 相同。</li>
+            <li>timeline 可以使用 tween 的方法，也有自己獨特的方法。</li>
+        </ul>
+
+        <hr>
+
+        <h3>1️⃣ tween 與 timeline 差異</h3>
+        <h4>使用 tween 製作佇列動畫</h4>
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <h4>使用 timeline 製作佇列動畫</h4>
+        <div class="box4"></div>
+        <div class="box5"></div>
+        <div class="box6"></div>
+
+        <hr>
+
+        <h4>2️⃣ defaults 設定</h4>
+        <p>補間動畫屬性相同時，會有重複不必要的程式碼</p>
+        <div class="box7"></div>
+        <div class="box8"></div>
+        <div class="box9"></div>
+        <p>使用 defaults，提取相同的程式出去，讓程式更簡潔</p>
+        <div class="box10"></div>
+        <div class="box11"></div>
+        <div class="box12"></div>
+
+        <hr>
+
+        <h4>3️⃣ timeline 的 vars 物件設定</h4>
+        <p>vars 可以設定一些與補間動畫相同的屬性</p>
+        <div class="box13"></div>
+        <div class="box14"></div>
+        <div class="box15"></div>
+
+        <hr>
+
+        <h4>4️⃣ timeline 的方法</h4>
+        <div class="box16"></div>
+        <div class="box17"></div>
+        <div class="box18"></div>
+
+        <button id="play">播放</button>
+        <button id="pause">暫停</button>
+        <button id="resume">恢復</button>
+
+        <hr>
+
+        <h4>5️⃣ timeline 的位置 (position)</h4>
+        <p>使用第三參數設定</p>
+        <div class="box19"></div>
+        <div class="box20"></div>
+        <div class="box21"></div>
+        <div class="box22"></div>
+        <div class="box23"></div>
+        <div class="box24"></div>
+
+        <button id="play2">播放</button>
+    </div>
+
+
+    <!-- jquery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <!-- bootstrap -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
+    <!-- 引入 GSAP -->
+    <script src="./gsap/gsap.js"></script>
+
+    <script>
+        // 可以用 delay 完成佇列動畫，侷限性：修改一個其他也要連帶調整
+        gsap.to('.box1', { x: 500, duration: 1 })
+        gsap.to('.box2', { x: 500, duration: 1, delay: 1 })
+        gsap.to('.box3', { x: 500, duration: 1, delay: 2 })
+
+        // 建立時間軸的容器，用來放置其他 tween 或 timeline
+        // 不需要考慮整體 delay 的調動，可以很彈性的安排動畫出場的順序
+        const tl1 = gsap.timeline()
+        tl1
+            .to('.box4', { x: 500, duration: 1 })
+            .to('.box5', { x: 500, duration: 1, delay: 3 })
+            .to('.box6', { x: 500, duration: 1, delay: 5 })
+
+
+        const tl2 = gsap.timeline()
+        tl2
+            .to('.box7', { x: 500, duration: 1, ease: 'back' })
+            .to('.box8', { x: 750, duration: 1, ease: 'back' })
+            .to('.box9', { x: 1000, duration: 1, ease: 'back' })
+
+        const tl3 = gsap.timeline({
+            defaults: {
+                duration: 1,
+                ease: 'back',
+            }
+        })
+        tl3
+            .to('.box10', { x: 500 })
+            .to('.box11', { x: 750 })
+            .to('.box12', { x: 1000, duration: 5 })   // .box12 的 duration 覆蓋 defaults 設定
+
+
+        const tl4 = gsap.timeline({
+            defaults: {
+                duration: 1,
+                ease: 'back',
+            },
+            // 指整條時間軸的屬性設定
+            repeat: 1,
+            // yoyo: true,
+            paused: false,
+            repeatRefresh: true,
+            // 時間軸事件函式
+            onStart: function (p1, p2) {
+                console.log(p1, p2)
+            },
+            onStartParams: ['時間軸開始播放', 'Nemui'],
+            onUpdate(p1, p2) {
+                console.log(this.progress())
+            },
+            // onComplete(p1, p2, p3) {
+            //      console.log(p1, p2, p3)
+            // } 
+            onComplete(...p1) {
+                console.log(p1)
+            },
+            onCompleteParams: ['時間軸撥放結束', 'hello', 'word']
+        })
+
+        tl4
+            .to('.box13', { x: '+=100' })
+            .to('.box14', { x: '+=150' })
+            .to('.box15', { x: '+=200' })
+
+
+        const tl5 = gsap.timeline({
+            defaults: { duration: 3 },
+            paused: true,
+        })
+
+        tl5
+            .to('.box16', { x: 100 })
+            .to('.box17', { x: 200 })
+            .to('.box18', { x: 300 })
+
+        $('#play').click(() => { tl5.play() })
+        $('#pause').click(() => { tl5.pause() })
+        $('#resume').click(() => { tl5.resume() })
+
+        const tl6 = gsap.timeline({
+            paused: true,
+        })
+
+        // 🔗：https://gsap.com/docs/v3/GSAP/Timeline/#position-parameter-interactive-demo
+        // 01. 插入絕對位置，直接將 tween 放到時間軸秒數的位置
+        // ex: .box21 放到時間軸 6 秒的位置
+        tl6
+            .to('.box19', { x: 500, duration: 1 })
+            .to('.box20', { x: 500, duration: 1 })
+            .to('.box21', { x: 500, duration: 1 }, 6)
+            .to('.box22', { x: 500, duration: 1 }, 2)
+            .to('.box23', { x: 500, duration: 1 }, 10)
+            .to('.box24', { x: 500, duration: 1 }, 15)
+
+        $('#play2').click(function () {
+            tl6.play()
+        })
+
+    </script>
+</body>
+
+</html>

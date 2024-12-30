@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css' />
+    <title>GSAP</title>
+
+    <style>
+        body {
+            padding: 20px 0;
+        }
+
+        .box1 {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            background: #000;
+        }
+
+        button {
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            margin-top: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>tween 的方法</h3>
+        <p>
+            操控 tween 動畫時，使用<b class="bg-danger text-white"> tween 的方法</b>來控制或修改動畫。
+            參考：<a href="https://greensock.com/docs/v3/GSAP/Tween"
+                target="_blank">https://greensock.com/docs/v3/GSAP/Tween</a>
+        </p>
+        <div style="background-color:#eee;">
+            <div class="box1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h4>控制動畫的方法</h4>
+                <button id="play">play 正向播放</button>
+                <button id="reverse">reverse 反向播放</button>
+                <button id="pause">pause 暫停播放</button>
+                <button id="resume">resume 恢復播放</button>
+                <button id="restart">restart 重新播放</button>
+                <button id="seek">seek 跳至某個時間點</button>
+
+                <h4>延遲、重複方法</h4>
+                <button id="delay">delay</button>
+                <button id="repeat">repeat(1)</button>
+                <button id="repeatDelay">repeatDelay</button>
+
+                <h4>進度相關方法</h4>
+                <button id="progress">progress 與 totalProgress</button>
+                <button id="time">time 與 totalTime</button>
+                <button id="duration">duration 與 totalDuration</button>
+                <button id="timeScale">timeScale</button>
+
+                <h4>其他方法</h4>
+                <button id="targets">targets 與 then</button>
+                <button id="iteration">iteration</button>
+            </div>
+            <div class="col">
+                <h4>狀態</h4>
+                <p id="paused-text">paused 狀態（動畫目前是否暫停）：</p>
+                <p id="reversed-text">reversed 狀態（動畫是否反向進行）：</p>
+                <p id="isActive-text">isActive 狀態（動畫是否進行中）：</p>
+
+                <hr>
+
+                <h4>進度</h4>
+                <p id="progress-text">progress：</p>
+                <p id="totalProgress-text">totalProgress：</p>
+                <p id="time-text">time：</p>
+                <p id="totalTime-text">totalTime：</p>
+                <p id="duration-text">duration：</p>
+                <p id="totalDuration-text">totalDuration：</p>
+
+                <hr>
+
+                <h4>其他</h4>
+                <p id="iteration-text">iteration：</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jquery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <!-- bootstrap -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
+    <!-- 引入 GSAP -->
+    <script src="./gsap/gsap.js"></script>
+
+    <script>
+        const tweenText = {
+            paused: 'paused 狀態（動畫是否暫停播放）',
+            reversed: 'reversed 狀態（動畫是否反向播放）',
+            isActive: 'isActive 狀態（動畫是否進行中）',
+        }
+
+        // = 為賦值，指變數指向後面的資料類型 (記憶體位置)
+        const tween = gsap.to('.box1', {
+            x: $('.container').width() - $('.box1').width(),
+            duration: 5,
+            paused: true,
+            reversed: false,
+            // delay: 2,
+            ease: 'none',
+            // 在更新時操作
+            onUpdate() {
+                // 狀態
+                $('#paused-text').text(`${tweenText.paused}:${this.paused()}`)
+                $('#reversed-text').text(`${tweenText.reversed}:${this.reversed()}`)
+                $('#isActive-text').text(`${tweenText.isActive}:${this.isActive()}`)
+
+                // 進度 (toFixed => 小數後一位)
+                $('#progress-text').text(`progress：${this.progress().toFixed(1)}`)
+                $('#totalProgress-text').text(`totalProgress：${this.totalProgress().toFixed(1)}`)
+
+                // time 與 totalTime
+                $('#time-text').text(`time：${this.time().toFixed(1)}`)
+                $('#totalTime-text').text(`totalTime：${this.totalTime().toFixed(1)}`)
+
+                // duration 與 totalDuration
+                $('#duration-text').text(`duration：${this.duration().toFixed(1)}`)
+                $('#totalDuration-text').text(`totalDuration：${this.totalDuration().toFixed(1)}`)
+            },
+
+            onStart() {
+                // 狀態
+                $('#iteration-text').text(`iteration：播放第 ${this.iteration()} 次`)
+            },
+
+            onRepeat() {
+                // 狀態
+                $('#iteration-text').text(`iteration：播放第 ${this.iteration()} 次`)
+            },
+        })
+
+        // 🔻 控制動畫的方法 -------------------------------------------------------------
+
+        // 1️⃣ 正向播放
+        $('#play').on('click', function () {
+            tween.play()    // 當下時間開始正向播放
+            // tween.play(3)   // tween.play(秒數) 可以從指定秒數正向播放
+        })
+
+        // 2️⃣ 反向播放
+        $('#reverse').on('click', function () {
+            tween.reverse()
+            // $('#reversed-text').text(`${tweenText.reversed}:${tween.reversed()}`)
+        })
+
+        // 3️⃣ 暫停播放
+        $('#pause').on('click', function () {
+            tween.pause()
+            // 點擊當下抓取 paused 的狀態
+            $('#paused-text').text(`${tweenText.paused}:${tween.paused()}`)
+            $('#reversed-text').text(`${tweenText.reversed}:${tween.reversed()}`)
+            $('#isActive-text').text(`${tweenText.isActive}:${tween.isActive()}`)
+        })
+
+        // 4️⃣ 恢復播放
+        $('#resume').on('click', function () {
+            tween.resume()
+        })
+
+        // 5️⃣ 重新播放
+        $('#restart').on('click', function () {
+            tween.restart()         // 預設 false，重播時會直接重新播放，不考慮 delay
+            tween.restart(true)     // 設定 true，重播時會將 delay 延遲時間考慮進去
+        })
+
+        // 6️⃣ 跳至某個時間點
+        $('#seek').on('click', function () {
+            tween.seek(3)           // 純粹跳到某個時間點，除非播放頭 (playhead) 已經開始播放，否則不會進行播放
+        })
+
+        // 🔻 延遲、重複方法 --------------------------------------------------------------
+
+        // 1️⃣ 延遲時間
+        $('#delay').on('click', function () {
+            tween.play().delay(3)           // 用 function 設定初始播放 (播第一次) 的延遲時間，須寫在 play 的後面
+            console.log(tween.delay())      // getter，去得到 delay 的秒數
+            console.log(tween)
+        })
+
+        // 2️⃣ 重複播放
+        $('#repeat').on('click', function () {
+            // 重播是在初始播放後的次數，repeat(1) 會播 2 次，1 次是初始播放，再來才是重複播放
+            tween.repeat(1).play()          // 設定重複次數，repeat 跟 play 放前或後沒有影響
+            console.log(tween.repeat())     // getter 取出重複次數
+            console.log(tween)
+            tween.repeat(-1).play()         // -1，循環播放
+        })
+
+        // 3️⃣ 重複播放的延遲時間
+        $('#repeatDelay').on('click', function () {
+            tween.repeatDelay(2)                // 設定播放時的延遲時間，每次重覆播放都會先延遲 2 秒
+            tween.repeat(2).play()              // 重複播放的次數
+            console.log(tween.repeatDelay())    // getter 取出重複次數
+        })
+
+        // 🔻 進度相關方法 --------------------------------------------------------------
+
+        // 1️⃣ progress 與 totalProgress
+        $('#progress').on('click', function () {
+            // tween.progress(0.5) // 0.000000...~ 1.000000，跳到 0.5 進度一半的位置
+            // tween.totalProgress(0.5)
+
+            // 包含初始播放 1 次 + repeat 1 次，progress 會跑 2 次，totalProgress 只會跑一次 (過程包含 repeatDelay 時間)
+            tween.repeat(1)
+            tween.repeatDelay(5)
+            tween.play()
+
+            // 取值 getter
+            let progressValue = tween.progress()
+            let totalProgressValue = tween.totalProgress()
+            console.log('progressValue：', progressValue, 'totalProgressValue：', totalProgressValue)
+        })
+
+        // 2️⃣ time 與 totalTime
+        $('#time').on('click', function () {
+            // time 每次播放動畫時耗費的時間，以 duration 為主
+            // totalTime 動畫全部總花費的時間，包刮 repeatDelay
+            // 以下跑兩次動畫，因為 duration 是 5 秒，所以 time 每次都是花費 5 秒
+            // totalTime 總花費時間 = 播了兩次動畫的時間 (10秒) + repeatDelay 1次時間 (5秒)
+            tween.repeat(1)
+            tween.repeatDelay(5)
+            tween.play()
+        })
+
+        // 3️⃣ duration 與 totalDuration
+        $('#duration').on('click', function () {
+            tween.duration(3)
+            tween.repeat(2)
+            tween.repeatDelay(2)
+            tween.play()
+
+            // duration 初始播放、repeat 撥放動畫持續時間的依據，範例 duration 3 秒
+            // totalDuration 是 repeatDelay、repeat 次數的加總
+            // totalDuration = duration + repeat(次數) * (duration + repeatDelays)
+            // 3 + 2 * (3 + 2) = 13
+        })
+
+        // 🔻 其他方法 --------------------------------------------------------------
+
+        // 1️⃣ targets 與 then
+        $('#targets').on('click', function () {
+            // tween.targets() 參與動畫的元素
+            console.log(tween.targets())
+            tween.play()
+
+            tween
+                .then(function (tween) {
+                    $(tween.targets()).css({ background: 'blue' })
+                    return tween
+                })
+                .then(function (tween) {
+                    setTimeout(() => {
+                        gsap.to('.box1', {
+                            backgroundColor: 'red',
+                            rotation: 360,
+                        })
+                    }, 1000)
+                })
+        })
+
+        // iteration 抓取弟幾次播放
+        $('#iteration').on('click', function () {
+            console.log(tween.iteration())  // getter 沒有設定，抓取第幾次
+            tween.play()
+            tween.repeat(2)
+            tween.iteration(2).play()   // setter 設定從第二次開始播放
+            // console.log(tween.iteration())
+        })
+    </script>
+</body>
+
+</html>
