@@ -20,6 +20,11 @@
             font-family: "Laila", serif;
         }
 
+        :root {
+            --center-dot-color: #a1bc45;
+        }
+
+
         body {
             background: url('./image/green.jpg');
             background-size: cover;
@@ -88,7 +93,7 @@
             width: 12px;
             border-radius: 50%;
             z-index: 100;
-            background: #a1bc45;
+            background: var(--center-dot-color);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -346,6 +351,13 @@
             "#111717", // Black background -> White text
         ];
 
+        const centerDotColors = [
+            "#a1bc45", // Green
+            "#3e6584", // Blue
+            "#b83427", // Red
+            "#111717", // Black
+        ];
+
         // 綁定點擊事件切換背景圖片、文字、數字和指針顏色
         colorEl.forEach((el, index) => {
             el.addEventListener("click", () => {
@@ -361,11 +373,15 @@
                     numEl.style.color = clockNumberColors[index];
                 });
 
+
                 // 修改時鐘指針顏色
                 const clockHands = document.querySelectorAll(".hand");
                 clockHands.forEach((handEl) => {
                     handEl.style.backgroundColor = handColors[index];
                 });
+
+                // 修改中心圓點顏色
+                document.documentElement.style.setProperty('--center-dot-color', centerDotColors[index]);
 
                 // 如果需要同步改變特定區塊的文字顏色
                 const allTextElements = document.querySelectorAll(".container, .date, .time, .ampm");

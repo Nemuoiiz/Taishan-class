@@ -46,6 +46,12 @@
             flex-wrap: wrap;
         }
 
+        #rule {
+            color: white;
+            font-family: "Kosugi Maru", sans-serif;
+            font-size: 25px;
+        }
+
         #btns {
             position: absolute;
             bottom: 10%;
@@ -92,7 +98,23 @@
 <body>
     <div id="container">
         <img class="frame" src="./img/try.png">
-        <div id="game"></div>
+        <div id="game">
+            <div id="rule">
+                抽牌規則：<br>
+                <br>
+                (1) 同一問題短時間不可重複占卜，提問方向請盡量明確。<br>
+                <br>
+                (2) 請於安靜的環境進行占卜，並保持平和心態。<br>
+                <br>
+                (3) 占卜是反映當前能量和趨勢，不等預言未來。<br>
+                <br>
+                (4) 問題不可攸關生命安全、重大疾病、法律糾紛、金融投資等敏感問題。<br>
+                <br>
+                (5) 占卜結果是參考工具，並非絕對。<br>
+                深入理解牌面象徵意義，結合自身情況獲得洞察。<br>
+                最終未來由個人選擇和行動決定。
+            </div>
+        </div>
         <div id="btns">
             <div class="btn-1">
                 <a id="startGame" href="javascript:void(0);">
