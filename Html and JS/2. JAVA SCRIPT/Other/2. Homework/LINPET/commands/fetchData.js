@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default async function fetchData (animalType, shelterIds) {
   try {
-    const response = await axios.get(process.env.API_URL)
+    const response = await axios.get('https://data.moa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
     const allData = response.data
     // 過濾條件：動物種類 & 收容所
     return allData

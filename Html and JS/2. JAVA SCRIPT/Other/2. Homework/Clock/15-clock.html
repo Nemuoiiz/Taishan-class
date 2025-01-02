@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Laila:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* font-family: "Expletus Sans", serif; */
+            font-family: "Laila", serif;
+        }
+
+        :root {
+            --center-dot-color: #a1bc45;
+        }
+
+
+        body {
+            background: url('./image/green.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            height: 100vh;
+        }
+
+        .container {
+            /* 半透明白色背景 */
+            background-color: rgba(255, 250, 235, 0.6);
+            /* 模糊效果 */
+            backdrop-filter: blur(1px);
+
+            width: 200px;
+            height: 250px;
+            border-radius: 30px;
+            margin-left: 1000px;
+        }
+
+        /* Analog Clock */
+
+        .analog {
+            position: relative;
+            top: -30%;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            /* 半透明白色背景 */
+            background-color: rgba(255, 250, 235, 1);
+            /* 模糊效果 */
+            backdrop-filter: blur(10px);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3), -1px -1px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .analog p {
+            position: absolute;
+            inset: 8px;
+            text-align: center;
+            transform: rotate(calc(var(--i) * (360deg / 12)));
+        }
+
+        .analog p span {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 500;
+            color: #a1bc45;
+            transform: rotate(calc(var(--i) * (-360deg / 12)));
+        }
+
+        .hands {
+            height: 10px;
+            width: 10px;
+        }
+
+        .hands::before {
+            content: "";
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            z-index: 100;
+            background: var(--center-dot-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hand {
+            right: 50%;
+            height: 6px;
+            background: #a1bc45;
+            position: absolute;
+            top: 50%;
+            border-radius: 6px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+
+        .hand.hour-hand {
+            width: 20%;
+            height: 4px;
+            z-index: 1;
+        }
+
+        .hand.minute-hand {
+            width: 30%;
+            height: 2.5px;
+            z-index: 2;
+        }
+
+        .hand.second-hand {
+            width: 36%;
+            height: 1.5px;
+            background: #a1bc45;
+        }
+
+        /* date */
+
+        .date {
+            font-size: 15px;
+            text-align: center;
+            margin-top: -50px;
+            margin-bottom: 15px;
+            color: #a1bc45;
+            font-weight: 500;
+        }
+
+        /* Digital Clock */
+
+        .digital {
+            margin-top: 10px;
+            color: #a1bc45;
+            background-color: rgba(255, 250, 235);
+
+            height: 50px;
+            width: 90%;
+            margin: auto;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .time {
+            font-size: 20px;
+            width: 80%;
+        }
+
+        .ampm {
+            width: 20%;
+            margin-left: -30px;
+            margin-right: -10px;
+        }
+
+        /* Colors */
+        .colors {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* background-color: white; */
+            background-color: rgba(255, 250, 235, 0.6);
+            padding: 10px;
+            border-radius: 50px;
+
+            margin-left: 1000px;
+        }
+
+        .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .redC {
+            background-color: #b83427;
+        }
+
+        .greenC {
+            background-color: #a1bc45;
+        }
+
+        .blueC {
+            background-color: #3e6584;
+        }
+
+        .blackC {
+            background-color: #111717;
+        }
+
+        .redC:hover,
+        .greenC:hover,
+        .blueC:hover,
+        .blackC:hover {
+            transition: 0.6s;
+        }
+
+        .redC:hover {
+            box-shadow: 0px 0px 10px 6px rgba(255, 137, 137, 0.6);
+        }
+
+        .greenC:hover {
+            box-shadow: 0px 0px 10px 6px rgba(162, 218, 116, 0.6);
+        }
+
+        .blueC:hover {
+            box-shadow: 0px 0px 10px 6px rgba(27, 147, 239, 0.6);
+        }
+
+        .blackC:hover {
+            box-shadow: 0px 0px 10px 6px rgba(121, 121, 121, 0.6);
+        }
+
+
+        /* 音樂 */
+
+        .music-player h2 {
+            font-family: "Zen Maru Gothic", serif;
+            letter-spacing: 3px;
+            color: #a1bc45;
+            font-size: 20px;
+        }
+
+        .music-player {
+            position: absolute;
+            margin-right: 1000px;
+
+            text-align: center;
+            background: rgba(255, 250, 235, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-player button {
+            background-color: #a1bc45;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px 10px 0px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="music-player">
+        <h2>音樂播放器</h2>
+        <audio id="audio" src="./music/Howl's Moving Castle [OST - Theme Song].mp3"></audio>
+        <button id="playPauseButton">▶</button>
+    </div>
+
+    <div class="container">
+
+        <div class="analog">
+            <p style="--i: 1"><span>1</span></p>
+            <p style="--i: 2"><span>2</span></p>
+            <p style="--i: 3"><span>3</span></p>
+            <p style="--i: 4"><span>4</span></p>
+            <p style="--i: 5"><span>5</span></p>
+            <p style="--i: 6"><span>6</span></p>
+            <p style="--i: 7"><span>7</span></p>
+            <p style="--i: 8"><span>8</span></p>
+            <p style="--i: 9"><span>9</span></p>
+            <p style="--i: 10"><span>10</span></p>
+            <p style="--i: 11"><span>11</span></p>
+            <p style="--i: 12"><span>12</span></p>
+
+            <div class="hands">
+                <span class="hand hour-hand"></span>
+                <span class="hand minute-hand"></span>
+                <span class="hand second-hand"></span>
+            </div>
+        </div>
+
+        <div class="date"></div>
+
+        <div class="digital">
+            <div class="time"></div>
+            <div class="ampm"></div>
+        </div>
+
+    </div>
+
+    <div class="colors">
+        <div class="color greenC"></div>
+        <div class="color blueC"></div>
+        <div class="color redC"></div>
+        <div class="color blackC"></div>
+    </div>
+
+    <script>
+        // Analog Clock Time Update
+        const secondHandEl = document.querySelector('.second-hand');
+        const minuteHandEl = document.querySelector('.minute-hand');
+        const hourHandEl = document.querySelector('.hour-hand');
+
+        function getTimeForAnalog() {
+            const date = new Date();
+
+            const seconds = date.getSeconds();
+            const secsToDegrees = 6 * seconds + 90;
+
+            const mins = date.getMinutes();
+            const minsToDegrees = mins * 6 + 90;
+
+            const hour = date.getHours();
+            const hourToDegrees = 30 * hour + mins / 2 + 90;
+
+            secondHandEl.style.transform = `rotate(${secsToDegrees}deg)`;
+            minuteHandEl.style.transform = `rotate(${minsToDegrees}deg)`;
+            hourHandEl.style.transform = `rotate(${hourToDegrees}deg)`;
+        }
+
+        setInterval(getTimeForAnalog, 1000);
+        getTimeForAnalog();
+
+        // Date Update
+        const dateEl = document.querySelector(".date");
+
+        function getDate() {
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            const date = new Date();
+            const fullDate = `${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+            dateEl.innerHTML = fullDate;
+        }
+
+        getDate();
+
+        // Digital Clock Time Update
+        const timeEl = document.querySelector(".time");
+        const ampmEl = document.querySelector(".ampm");
+
+        function getTimeForDigital() {
+            const date = new Date();
+
+            const seconds = date.getSeconds();
+            const mins = date.getMinutes();
+            const hour = date.getHours();
+
+            const h = hour > 12 ? ((hour - 12) > 9 ? (hour - 12) : `0${hour - 12}`) : (hour > 9 ? hour : `0${hour}`);
+            const m = mins > 9 ? mins : `0${mins}`;
+            const s = seconds > 9 ? seconds : `0${seconds}`;
+
+            const AmPm = hour > 11 ? "PM" : "AM";
+            const fullTime = `${h} : ${m} : ${s}`;
+
+            timeEl.innerHTML = fullTime;
+            ampmEl.innerHTML = AmPm;
+        }
+
+        setInterval(getTimeForDigital, 1000);
+        getTimeForDigital();
+
+        // Theme Colors
+        const colorEl = document.querySelectorAll(".color");
+        const rootEl = document.querySelector(":root");
+
+        const backgrounds = [
+            "url('./image/green.jpg')",
+            "url('./image/blue.jpg')",
+            "url('./image/red.jpg')",
+            "url('./image/black.jpg')",
+        ];
+
+        const textColors = ["#a1bc45", "#3e6584", "#b83427", "#111717"];
+        const clockNumberColors = ["#a1bc45", "#3e6584", "#b83427", "#111717"];
+        const handColors = ["#a1bc45", "#3e6584", "#b83427", "#111717"];
+        const centerDotColors = ["#a1bc45", "#3e6584", "#b83427", "#111717"];
+
+        colorEl.forEach((el, index) => {
+            el.addEventListener("click", () => {
+                document.body.style.backgroundImage = backgrounds[index];
+                document.body.style.color = textColors[index];
+
+                const clockNumbers = document.querySelectorAll(".analog p span");
+                clockNumbers.forEach((numEl) => {
+                    numEl.style.color = clockNumberColors[index];
+                });
+
+                const clockHands = document.querySelectorAll(".hand");
+                clockHands.forEach((handEl) => {
+                    handEl.style.backgroundColor = handColors[index];
+                });
+
+                document.documentElement.style.setProperty('--center-dot-color', centerDotColors[index]);
+
+                const allTextElements = document.querySelectorAll(".container, .date, .time, .ampm");
+                allTextElements.forEach((textEl) => {
+                    textEl.style.color = textColors[index];
+                });
+            });
+        });
+
+        // Music Player
+        const audio = document.getElementById('audio');
+        const playPauseButton = document.getElementById('playPauseButton');
+
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = '⏸';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = '▶';
+            }
+        });
+
+        const buttonColors = ["#a1bc45", "#3e6584", "#b83427", "#111717"];
+        const buttonTextColors = ["white", "white", "white", "white"];
+
+        colorEl.forEach((el, index) => {
+            el.addEventListener("click", () => {
+                playPauseButton.style.backgroundColor = buttonColors[index];
+                playPauseButton.style.color = buttonTextColors[index];
+
+                const musicPlayerTitle = document.querySelector('.music-player h2');
+                musicPlayerTitle.style.color = buttonColors[index];
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

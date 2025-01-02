@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Laila:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Laila", serif;
+        }
+
+        :root {
+            --center-dot-color: #a1bc45;
+        }
+
+        body {
+            background: url('./image/green.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 250, 235, 0.6);
+            backdrop-filter: blur(1px);
+            width: 200px;
+            height: 250px;
+            border-radius: 30px;
+            margin-left: 1000px;
+        }
+
+        .analog {
+            position: relative;
+            top: -30%;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background-color: rgba(255, 250, 235, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3), -1px -1px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .analog p {
+            position: absolute;
+            inset: 8px;
+            text-align: center;
+            transform: rotate(calc(var(--i) * (360deg / 12)));
+        }
+
+        .analog p span {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 500;
+            color: #a1bc45;
+            transform: rotate(calc(var(--i) * (-360deg / 12)));
+        }
+
+        .hands {
+            height: 10px;
+            width: 10px;
+        }
+
+        .hands::before {
+            content: "";
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            z-index: 100;
+            background: var(--center-dot-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hand {
+            right: 50%;
+            height: 6px;
+            background: #a1bc45;
+            position: absolute;
+            top: 50%;
+            border-radius: 6px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+
+        .hand.hour-hand {
+            width: 20%;
+            height: 4px;
+            z-index: 1;
+        }
+
+        .hand.minute-hand {
+            width: 30%;
+            height: 2.5px;
+            z-index: 2;
+        }
+
+        .hand.second-hand {
+            width: 36%;
+            height: 1.5px;
+        }
+
+        .date {
+            font-size: 15px;
+            text-align: center;
+            margin: -50px 0 15px;
+            color: #a1bc45;
+            font-weight: 500;
+        }
+
+        .digital {
+            margin-top: 10px;
+            color: #a1bc45;
+            background-color: rgba(255, 250, 235);
+            height: 50px;
+            width: 90%;
+            margin: auto;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .time {
+            font-size: 20px;
+            width: 80%;
+        }
+
+        .ampm {
+            width: 20%;
+            margin: 0 -10px 0 -30px;
+        }
+
+        .colors {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 250, 235, 0.6);
+            padding: 10px;
+            border-radius: 50px;
+            margin-left: 1000px;
+        }
+
+        .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .redC {
+            background-color: #b83427;
+        }
+
+        .greenC {
+            background-color: #a1bc45;
+        }
+
+        .blueC {
+            background-color: #3e6584;
+        }
+
+        .blackC {
+            background-color: #111717;
+        }
+
+        .color:hover {
+            transition: 0.6s;
+        }
+
+        .redC:hover {
+            box-shadow: 0 0 10px 6px rgba(255, 137, 137, 0.6);
+        }
+
+        .greenC:hover {
+            box-shadow: 0 0 10px 6px rgba(162, 218, 116, 0.6);
+        }
+
+        .blueC:hover {
+            box-shadow: 0 0 10px 6px rgba(27, 147, 239, 0.6);
+        }
+
+        .blackC:hover {
+            box-shadow: 0 0 10px 6px rgba(121, 121, 121, 0.6);
+        }
+
+        .music-player {
+            position: absolute;
+            margin-right: 1000px;
+            text-align: center;
+            background: rgba(255, 250, 235, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-player h2 {
+            font-family: "Zen Maru Gothic", serif;
+            letter-spacing: 3px;
+            color: #a1bc45;
+            font-size: 20px;
+        }
+
+        .music-player button {
+            background-color: #a1bc45;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="music-player">
+        <h2>音樂播放器</h2>
+        <audio id="audio" src="./music/Howl's Moving Castle [OST - Theme Song].mp3"></audio>
+        <button id="playPauseButton">▶</button>
+    </div>
+
+    <div class="container">
+        <div class="analog">
+            <p style="--i: 1"><span>1</span></p>
+            <p style="--i: 2"><span>2</span></p>
+            <p style="--i: 3"><span>3</span></p>
+            <p style="--i: 4"><span>4</span></p>
+            <p style="--i: 5"><span>5</span></p>
+            <p style="--i: 6"><span>6</span></p>
+            <p style="--i: 7"><span>7</span></p>
+            <p style="--i: 8"><span>8</span></p>
+            <p style="--i: 9"><span>9</span></p>
+            <p style="--i: 10"><span>10</span></p>
+            <p style="--i: 11"><span>11</span></p>
+            <p style="--i: 12"><span>12</span></p>
+
+            <div class="hands">
+                <span class="hand hour-hand"></span>
+                <span class="hand minute-hand"></span>
+                <span class="hand second-hand"></span>
+            </div>
+        </div>
+
+        <div class="date"></div>
+
+        <div class="digital">
+            <div class="time"></div>
+            <div class="ampm"></div>
+        </div>
+    </div>
+
+    <div class="colors">
+        <div class="color greenC"></div>
+        <div class="color blueC"></div>
+        <div class="color redC"></div>
+        <div class="color blackC"></div>
+    </div>
+
+    <script>
+        const secondHandEl = document.querySelector('.second-hand');
+        const minuteHandEl = document.querySelector('.minute-hand');
+        const hourHandEl = document.querySelector('.hour-hand');
+        const dateEl = document.querySelector(".date");
+        const timeEl = document.querySelector(".time");
+        const ampmEl = document.querySelector(".ampm");
+        const colorEl = document.querySelectorAll(".color");
+        const rootEl = document.querySelector(":root");
+        const audio = document.getElementById('audio');
+        const playPauseButton = document.getElementById('playPauseButton');
+
+        // Update Clock
+        function updateClock() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            const secondDegrees = ((seconds / 60) * 360) + 90;
+            const minuteDegrees = ((minutes / 60) * 360) + 90;
+            const hourDegrees = ((hours % 12) / 12 * 360) + 90;
+
+            secondHandEl.style.transform = `rotate(${secondDegrees}deg)`;
+            minuteHandEl.style.transform = `rotate(${minuteDegrees}deg)`;
+            hourHandEl.style.transform = `rotate(${hourDegrees}deg)`;
+
+            const formattedDate = now.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
+            dateEl.textContent = formattedDate;
+
+            const formattedTime = now.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            const [time, ampm] = formattedTime.split(' ');
+
+            timeEl.textContent = time;
+            ampmEl.textContent = ampm;
+        }
+
+        setInterval(updateClock, 1000);
+
+        // Music Player Controls
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = '⏸';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = '▶';
+            }
+        });
+
+        // Change Theme Colors
+        colorEl.forEach(color => {
+            color.addEventListener('click', () => {
+                const newColor = getComputedStyle(color).backgroundColor;
+                rootEl.style.setProperty('--center-dot-color', newColor);
+                document.body.style.backgroundColor = newColor;
+            });
+        });
+
+        updateClock();
+    </script>
+</body>
+
+</html>
