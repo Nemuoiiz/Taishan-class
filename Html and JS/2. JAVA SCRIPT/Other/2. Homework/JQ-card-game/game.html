@@ -39,11 +39,12 @@
             margin: auto;
             position: absolute;
             top: 13%;
-            left: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
+            left: 50%;
+            transform: translateX(-50%);
+            /* 使用 transform 來確保水平置中 */
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-gap: 5px;
         }
 
         .card {

@@ -7,6 +7,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Klee+One&family=Kosugi+Maru&family=Neonderthaw&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@700&family=Klee+One&display=swap"
+        rel="stylesheet">
 
     <title>Tarocchi 記憶遊戲</title>
     <style>
@@ -48,8 +50,14 @@
 
         #rule {
             color: white;
-            font-family: "Kosugi Maru", sans-serif;
-            font-size: 25px;
+            font-family: "Klee One", serif;
+            font-size: 20px;
+            line-height: 2;
+        }
+
+        #shuffle {
+            width: 300px;
+            display: none;
         }
 
         #btns {
@@ -62,7 +70,7 @@
         }
 
         #container .btn-1 {
-            width: 160px
+            width: 160px;
         }
 
         #container .btn-2 {
@@ -92,6 +100,20 @@
             color: #1C234E;
             background: linear-gradient(to right, #FEC6C6, #94CEE8);
         }
+
+        #tarot-cards {
+            display: none;
+            font-family: "Kaisei Opti", serif;
+            font-size: 32px;
+            font-weight: 700;
+            /* 漸層顏色 */
+            background-image: linear-gradient(to right, #94CEE8, #FEC6C6);
+            background-clip: text;
+            /* 使漸層只顯示在文字上 */
+            -webkit-background-clip: text;
+            /* 設為透明，顯示背景 */
+            color: transparent;
+        }
     </style>
 </head>
 
@@ -100,19 +122,19 @@
         <img class="frame" src="./img/try.png">
         <div id="game">
             <div id="rule">
-                抽牌規則：<br>
-                <br>
-                (1) 同一問題短時間不可重複占卜，提問方向請盡量明確。<br>
-                <br>
-                (2) 請於安靜的環境進行占卜，並保持平和心態。<br>
-                <br>
-                (3) 占卜是反映當前能量和趨勢，不等預言未來。<br>
-                <br>
-                (4) 問題不可攸關生命安全、重大疾病、法律糾紛、金融投資等敏感問題。<br>
-                <br>
-                (5) 占卜結果是參考工具，並非絕對。<br>
-                深入理解牌面象徵意義，結合自身情況獲得洞察。<br>
-                最終未來由個人選擇和行動決定。
+                <div style="font-size: 25px;">【 抽牌須知 】</div>
+                ✦ 同一問題短時間不可重複占卜，提問方向請盡量明確。<br>
+                ✦ 請於安靜的環境進行占卜，並保持平和心態。<br>
+                ✦ 占卜是反映當前能量和趨勢，而非預言未來。<br>
+                ✦ 問題不可攸關生命安全、重大疾病、法律糾紛、金融投資等敏感問題。<br>
+                ✦ 占卜結果是參考工具，並非絕對。<br>
+                ✦ 最終未來是由個人選擇和行動決定。
+            </div>
+            <img id="shuffle" src="./img/shuffle.gif">
+            <div id="tarot-cards">
+                <div id="card-1"></div>
+                <div id="card-2"></div>
+                <div id="card-3"></div>
             </div>
         </div>
         <div id="btns">
@@ -133,6 +155,99 @@
         integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
         crossorigin='anonymous'></script>
 
+    <script>
+        // 定義四個花色
+        const suits = ["權杖", "聖杯", "寶劍", "錢幣"];
+        const suitsEnglish = ["Wands", "Cups", "Swords", "Pentacles"];
+
+        // 定義牌組（數字1-10，侍者，騎士，皇后，國王）
+        const ranks = [
+            "一", "二", "三", "四", "五", "六", "七", "八", "九", "十",
+            "侍者", "騎士", "皇后", "國王"
+        ];
+        const ranksEnglish = [
+            "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+            "Page", "Knight", "Queen", "King"
+        ];
+
+        // 生成塔羅牌資料
+        const tarotCards = [];
+
+        // 使用兩個迴圈自動生成每一張牌（中英文）
+        suits.forEach((suit, index) => {
+            ranks.forEach((rank, rankIndex) => {
+                tarotCards.push(`${suit}${rank} (${suitsEnglish[index]} ${ranksEnglish[rankIndex]})`);
+            });
+        });
+
+        // 塔羅牌資料中加上大牌
+        const majorArcana = [
+            "愚者 (The Fool)", "魔術師 (The Magician)", "女祭司 (The High Priestess)",
+            "女皇 (The Empress)", "皇帝 (The Emperor)", "教皇 (The Hierophant)",
+            "戀人 (The Lovers)", "戰車 (The Chariot)", "力量 (Strength)",
+            "隱者 (The Hermit)", "命運之輪 (Wheel of Fortune)", "正義 (Justice)",
+            "吊人 (The Hanged Man)", "死亡 (Death)", "節制 (Temperance)", "惡魔 (The Devil)",
+            "塔 (The Tower)", "星星 (The Star)", "月亮 (The Moon)", "太陽 (The Sun)",
+            "審判 (Judgment)", "世界 (The World)"
+        ];
+
+        // 把大牌加入牌組
+        tarotCards.push(...majorArcana);
+
+        // 建立塔羅牌牌堆，並加入正位與逆位版本
+        const tarotDeck = [];
+
+        // 遍歷塔羅牌資料，並為每張牌加上正位與逆位版本
+        tarotCards.forEach(card => {
+            tarotDeck.push({ name: card, type: "正位" });
+            tarotDeck.push({ name: card, type: "逆位" });
+        });
+
+        // 隨機抽取3張塔羅牌
+        function getRandomCards() {
+            let shuffledDeck = tarotDeck.sort(() => 0.5 - Math.random());
+            return shuffledDeck.slice(0, 3);
+        }
+
+        // 顯示塔羅牌資訊
+        function displayTarotCards(cards) {
+            const card1 = cards[0];
+            const card2 = cards[1];
+            const card3 = cards[2];
+            document.getElementById('card-1').textContent = `過去： ${card1.name} (${card1.type})`;
+            document.getElementById('card-2').textContent = `現在： ${card2.name} (${card2.type})`;
+            document.getElementById('card-3').textContent = `未來： ${card3.name} (${card3.type})`;
+            document.getElementById('tarot-cards').style.display = 'block';
+        }
+
+        // 按下開始遊戲按鈕後的動作
+        $('#startGame').click(function () {
+            // 檢查 #tarot-cards 是否已顯示
+            if ($('#tarot-cards').is(':visible')) {
+                // 如果已經顯示塔羅牌，先隱藏塔羅牌的文字，然後顯示規則區塊
+                $('#tarot-cards').fadeOut(500, function () {
+                    // 500 毫秒後，#tarot-cards 完全消失，顯示規則區塊
+                    $('#rule').fadeIn(500);
+                });
+            } else {
+                // 否則，顯示洗牌動畫並顯示塔羅牌
+                $('#rule').fadeOut(500, function () {
+                    // 500 毫秒後，#rule 完全消失，顯示洗牌動畫
+                    $('#shuffle').fadeIn(500);
+
+                    // 顯示洗牌動畫 3 秒鐘
+                    setTimeout(function () {
+                        $('#shuffle').fadeOut(500, function () {
+                            // 洗牌動畫完全消失後顯示塔羅牌
+                            // 隨機抽取3張塔羅牌
+                            const cards = getRandomCards();
+                            displayTarotCards(cards); // 顯示塔羅牌
+                        });
+                    }, 3000); // 等待 3 秒後執行
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
