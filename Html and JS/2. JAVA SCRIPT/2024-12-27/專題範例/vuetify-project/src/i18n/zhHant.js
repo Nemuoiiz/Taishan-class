@@ -1,4 +1,25 @@
+import { zhHant } from 'vuetify/locale'
+
 export default {
+  $vuetify: zhHant,
+  nav: {
+    register: '註冊',
+    login: '登入'
+  },
+  register: {
+    submit: '建立帳號',
+    success: '註冊成功'
+  },
+  login: {
+    submit: '登入',
+    success: '登入成功'
+  },
+  user: {
+    account: '帳號',
+    email: '信箱',
+    password: '密碼',
+    passwordConfirm: '確認密碼'
+  },
   api: {
     userAccountRequired: '使用者帳號必填',
     userAccountTooShort: '使用者帳號太短',
@@ -9,6 +30,7 @@ export default {
     userPasswordTooShort: '使用者密碼太短',
     userPasswordTooLong: '使用者密碼太長',
     userPasswordIncorrect: '密碼錯誤',
+    userPasswordNotMatch: '密碼不符',
     userEmailRequired: '使用者信箱必填',
     userEmailInvalid: '使用者信箱格式不符',
     userCartProductRequired: '購物車商品必填',
@@ -26,5 +48,7 @@ export default {
     productSellRequired: '商品上下架必填',
     requestFormatError: '請求格式錯誤',
     serverError: '伺服器錯誤',
+    unknownError: '未知錯誤'
   },
 }
+

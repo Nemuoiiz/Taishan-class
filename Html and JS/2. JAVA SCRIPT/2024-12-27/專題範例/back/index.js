@@ -3,6 +3,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
 import routerUser from './routers/user.js'
+import cors from 'cors'
 import './passport.js'
 
 mongoose
@@ -16,6 +17,8 @@ mongoose
   })
 
 const app = express()
+
+app.use(cors())
 
 app.use(express.json())
 app.use((error, req, res, next) => {
