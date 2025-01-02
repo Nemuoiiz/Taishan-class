@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css' />
+    <title>Document</title>
+
+    <style>
+        section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section:nth-child(odd) {
+            background-color: #f8d7da;
+        }
+
+        section:nth-child(even) {
+            background-color: #cce5ff;
+        }
+
+        #date {
+            height: 5rem;
+            font-size: 5rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section></section>
+    <section id="section01">
+        <div id="date"></div>
+    </section>
+    <section></section>
+
+
+    <!-- jquery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <!-- bootstrap -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
+    <!-- 1. 引入 GSAP -->
+    <!-- <script src="./gsap/gsap.js"></script> -->
+    <script src="./gsap/gsap_old.js"></script>
+    <!-- 2. 引入 plugin 支援套件 ScrollTrigger -->
+    <!-- <script src="./gsap/ScrollTrigger.js"></script> -->
+    <script src="./gsap/ScrollTrigger_old.js"></script>
+
+    <script>
+        // 註冊
+        gsap.registerPlugin(ScrollTrigger)
+
+        const date = {
+            year: new Date().getFullYear(),     // 直接取得年份數值
+            month: new Date().getMonth() + 1,   // 從 0 開始所以要加 1
+            day: new Date().getDate(),          // 返回 1～31
+        }
+
+        gsap.from(date, {
+            scrollTrigger: {
+                // 元素目標
+                trigger: '#section01',
+                // 參照線
+                start: '300px center',
+                end: 'bottom center',
+                // 移開後 reset 動畫
+                toggleActions: 'play none none reset',
+
+                onEnter() {
+                    $('#date').show()
+                },
+                onLeaveBack() {
+                    $('#date').hide()
+                },
+                markers: true,
+            },
+            onUpdate() {
+                // 將資料顯示在畫面上
+                $('#date').text(`${date.year.toFixed(0)} / ${date.month.toFixed(0)} / ${date.day.toFixed(0)}`)
+            },
+            // 操作屬性從 0 開始
+            year: 0,
+            month: 0,
+            date: 0,
+            // 動畫長度
+            duration: 1,
+        })
+
+        console.log(date)
+    </script>
+</body>
+
+</html>

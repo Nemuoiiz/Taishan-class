@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css' />
+    <title>GSAP</title>
+
+    <style>
+        section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        section:nth-child(odd) {
+            background: antiquewhite;
+        }
+
+        section:nth-child(even) {
+            background: linen;
+            justify-content: center;
+        }
+
+        section h2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            color: white;
+            font-size: 2rem;
+            background: thistle;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+        }
+
+        .active {
+            background: tomato;
+        }
+
+        .hello {
+            background: orange;
+        }
+
+        .main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .follower {
+            background: orange;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <section></section>
+
+    <section id="section01">
+        <h2>1. 設定 trigger、start 與 end</h2>
+        <div class="box a1">a1</div>
+    </section>
+
+    <section></section>
+
+    <section id="section02">
+        <h2>2. 設定 toggleActions</h2>
+        <div class="box b1">b1</div>
+        <div class="box b2 mt-5">b2</div>
+        <div class="box b2 mt-5">b2</div>
+    </section>
+
+    <section></section>
+
+    <section id="section03">
+        <h2>3. 設定 scrub</h2>
+        <div class="box c1">c1</div>
+    </section>
+
+    <section></section>
+
+    <section id="section04">
+        <h2>4. 跟隨</h2>
+        <div class="box main">main</div>
+        <div class="box follower">follower</div>
+    </section>
+
+    <section></section>
+
+    <section id="section05">
+        <h2>5. timeline 與 scrollTrigger</h2>
+        <div class="box d1">d1</div>
+    </section>
+
+    <section></section>
+
+
+    <!-- jquery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <!-- bootstrap -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
+
+    <!-- 1. 引入 GSAP -->
+    <!-- <script src="./gsap/gsap.js"></script> -->
+    <script src="./gsap/gsap_old.js"></script>
+
+    <!-- 2. 引入 plugin 支援套件 ScrollTrigger -->
+    <!-- <script src="./gsap/ScrollTrigger.js"></script> -->
+    <script src="./gsap/ScrollTrigger_old.js"></script>
+
+    <script>
+        // 🔗：https://gsap.com/docs/v3/Plugins/ScrollTrigger
+
+        // 3. 註冊套件
+        gsap.registerPlugin(ScrollTrigger)
+
+
+        // 1️⃣ 設定 trigger、start 與 end --------------------------------------
+
+        const tween1 = gsap.to('.a1', {
+            scrollTrigger: {
+                trigger: '.a1',         // 觸發對象
+                /*
+                    🔻start 與 end 設定
+                    雙數值
+                    1. 第一數值為 trigger(元素) 的位置，第二數值為滾動軸的位置
+                    2. 值可為 top、center、bottom、px、%、相對位置(+=100、-=100)、函式返回值
+
+                    觸發時機
+                    1. 當滾動軸 scroller-start 與 trigger 的 start 相交時 (綠碰綠)，動畫開始
+                    2. 當滾動軸 scroller-end   與 trigger 的 end 相交時 (紅碰紅)，動畫結束
+                */
+                start: 'top center',    // '元素 捲動軸'
+                end: 'bottom top',      // '元素 捲動軸'
+
+                // 百分比
+                start: 'top 50%',
+                end: 'bottom 50%',
+
+                // 相對位置， +=100 現在的位置往下移動 100
+                start: '+=100 50%',
+                end: 'bottom 50%',
+
+                // 函式返回值
+                start: 'center center',
+                end: () => `+=${$('.a1').height()}`,
+
+                // markers: true,          // 打開紅色綠色偵測位置的線
+            },
+
+            x: '85vw',
+            duration: 3,
+            ease: 'none',
+        })
+
+
+        // 2️⃣ 設定 toggleActions --------------------------------------
+
+        const tween2 = gsap.to('.b1', {
+            scrollTrigger: {
+                trigger: '.b1',
+                start: 'top center',
+                end: 'bottom 20%',
+                // 🔻toggleActions
+                // 預設 play none none none
+                /*
+                    onEnter：第一個參數指 scroller-start 與 trigger 的 start 相交時，(捲動軸往下綠碰綠) 觸發動畫動作
+                    onLeave：第二個參數指 scroller-end 與 trigger 的 end 相交時，(捲動軸往下紅碰紅) 觸發動畫動作
+                    onEnterBack：第三個參數指 sroller-end 返回、觸發 trigger-end 時 (捲動軸往上紅碰紅) 觸發動畫動作
+                    onLeaveBack：第四個參數指 sroller-end 返回、觸發 trigger-end 時 (捲動軸往上綠碰綠) 觸發動畫動作
+
+                    動作的值可以為：
+                    play、pause、resume、reverse、restart、reset、complete、none
+                */
+                toggleActions: 'play pause resume restart',
+
+                // 觸發動畫時加上 class
+                // toggleClass: 'active',
+
+                // 對多個元素加上 class
+                toggleClass: {
+                    targets: ['.b1', '.b2'],
+                    className: 'active',
+                },
+                onEnterBack() {
+                    $('.b2').addClass('hello')
+                },
+                onLeaveBack() {
+                    $('.b2').removeClass('hello')
+                },
+
+                // markers: true,
+            },
+            x: '85vw',
+            duration: 3,
+            ease: 'none',
+        })
+
+
+        // 3️⃣ 設定 scrub -------------------------------------------
+
+        const tween3 = gsap.to('.c1', {
+            scrollTrigger: {
+                trigger: '.c1',
+                start: 'top 60%',
+                end: 'bottom 40%',
+                // markers: true,
+
+                /* 
+                    🔻scrub
+                    會在 ScrollTrigger 處於活動狀態時
+                    (當 scroller-start 與 start 相交時，以及當 scroller-end 與 end 相交之間距離範圍內)
+                    動畫進度會連結到滾動條的進度，
+                    在這範圍內滾動條上下移動，可以向滑塊控制元素動畫的定度
+                */
+                scrub: true,
+                scrub: 3,   // 值設定 3，會在 3 秒後跟上滾動軸的進度
+            },
+            x: '85vw',
+            // duration: 3,    // 搭配 scrub 時，補間動畫(tween)的 duration 沒有作用
+            backgroundColor: 'red',
+            rotation: 3600,
+            ease: 'none',
+        })
+
+        // 4️⃣ 跟隨 -------------------------------------------
+
+        gsap.to('.main', {
+            scrollTrigger: {
+                trigger: '.main',
+                start: 'top 80%',
+                end: 'top 20%',
+                scrub: true,
+                markers: true,
+            },
+            x: '85vw',
+            rotation: 720,
+        })
+
+        gsap.to('.follower', {
+            scrollTrigger: {
+                trigger: '.main',
+                start: 'top 80%',
+                end: 'top 20%',
+                scrub: 3,
+                // markers: true,
+            },
+            x: '85vw',
+            rotation: 720,
+        })
+
+        // 5️⃣ timeline 與 scrollTrigger -------------------------------------------
+        // 當時間軸設定 ScrollTrigger 時，可以控制整個時間軸的進度
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.d1',
+                start: 'center 80%',
+                end: 'center 20%',
+                scrub: 1,
+                markers: true,
+            }
+        })
+
+        /*
+            當 timeline 與 scrollTrigger 綁在一起時，
+            時間軸裡面的補間動畫 duration 會與 scrollerTrigger 的捲動軸範圍成比例
+            例如以下 duration 總共是 3，每一組補間動畫都會佔 1/3 的捲動範圍
+            1、1、1 進度會被分成 33.3% 33.3% 33.3%
+            1、2、3 進度會被分成 1/6、2/6、3/6 
+        */
+        tl
+            .to('.d1', {
+                x: '85vw',
+                duration: 1
+            })
+            .to('.d1', {
+                rotation: 360,
+                background: 'red',
+                duration: 2,
+            })
+            .to('.d1', {
+                x: 0,
+                background: 'blue',
+                duration: 3,
+            })
+
+    </script>
+</body>
+
+</html>
