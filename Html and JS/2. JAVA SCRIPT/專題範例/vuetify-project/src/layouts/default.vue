@@ -1,27 +1,23 @@
 <template>
   <v-app-bar>
     <v-container class="d-flex align-center">
-      <!-- :active="false" 關閉連結 -->
       <v-btn to="/" :active="false">購物網站</v-btn>
-      <v-spacer/>
-      <!-- v-for、v-if 不能同時出現，因此使用 template 包住 -->
+      <v-spacer />
       <template v-for="nav of navs" :key="nav.to">
         <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">{{ nav.text }}</v-btn>
       </template>
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
     </v-container>
   </v-app-bar>
-  <!-- 補 v-main、router-view 才看的到頁面內容 -->
   <v-main>
     <router-view></router-view>
   </v-main>
 </template>
 
 <script setup>
-// 導覽列文字是動態的，因此需使用 computed
-import { useUserStore } from "@/stores/user";
-import { computed } from "vue"
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useUserStore } from '@/stores/user'
 import { useAxios } from '@/composables/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
 
@@ -33,13 +29,12 @@ const createSnackbar = useSnackbar()
 // 導覽列項目
 const navs = computed(() => {
   return [
-    // 使用 text: t() 去接 zhHant.js 的 export default 內容
     { to: '/register', text: t('nav.register'), icon: 'mdi-account-plus', show: !user.isLoggedIn },
     { to: '/login', text: t('nav.login'), icon: 'mdi-account-arrow-left', show: !user.isLoggedIn },
     { to: '/cart', text: t('nav.cart'), icon: 'mdi-cart', show: user.isLoggedIn },
     { to: '/orders', text: t('nav.orders'), icon: 'mdi-format-list-bulleted', show: user.isLoggedIn },
     { to: '/admin', text: t('nav.admin'), icon: 'mdi-cog', show: user.isLoggedIn && user.isAdmin },
-    ]
+  ]
 })
 
 const logout = async () => {

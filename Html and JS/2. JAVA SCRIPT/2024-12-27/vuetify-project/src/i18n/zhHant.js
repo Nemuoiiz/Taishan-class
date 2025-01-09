@@ -4,7 +4,14 @@ export default {
   $vuetify: zhHant,
   nav: {
     register: '註冊',
-    login:'登入',
+    login: '登入',
+    cart: '購物車',
+    orders: '訂單',
+    admin: '管理',
+    logout: '登出',
+    adminProducts: '商品管理',
+    adminOrders: '訂單管理',
+    home: '首頁'
   },
   register: {
     submit: '建立帳號',
@@ -13,6 +20,9 @@ export default {
   login: {
     submit: '登入',
     success: '登入成功'
+  },
+  logout: {
+    success: '登出成功',
   },
   user: {
     account: '帳號',
@@ -45,12 +55,16 @@ export default {
     userNotFound: '查無使用者', // *2
     userPasswordIncorrect: '使用者密碼錯誤',
 
+    // 🔻middlewares > auth.js
+    userPermissionDenied:'使用者權限不足',
+
     // register.vue
     userPasswordNotMatch: '使用者密碼不符',
 
     // 🔹 passport.js
     // 🔹 auth.js
     userTokenInvalid: '使用者驗證錯誤',
+    userTokenExpired: '登入過期',
 
     // 🔻product.js
     productNameRequired: '商品名稱必填',
@@ -67,6 +81,12 @@ export default {
       game: '遊戲',
       music: '音樂',
     },
+    // 🔻controllers > product.js (getId)
+    productIdInvalid: '商品 ID 錯誤',
+    productNotFound: '查無商品',
+
+    // 🔻middlewares > upload.js
+    uploadFailed: '上傳失敗',
 
     // 🔻controllers > user.js
     userAccountDuplicate: '使用者帳號重複',
