@@ -140,3 +140,8 @@
   }
 })
 </script>
+
+<route lang="yaml">
+  meta:
+    title: 'nav.register'
+  </route>

@@ -11,6 +11,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 import { useAxios } from '@/composables/axios'
 import { useUserStore } from '@/stores/user'
+import i18n from '@/i18n'
 
 
 const router = createRouter({
@@ -19,6 +20,7 @@ const router = createRouter({
 })
 
 // 進入頁面前執行，使用 jwt 取得 token
+// 第一次進頁面前拉使用者資料
 router.beforeEach(async (to, from, next) => {
   const { apiAuth } = useAxios()
   const user = useUserStore()
@@ -33,8 +35,29 @@ router.beforeEach(async (to, from, next) => {
       user.logout()
     }
   }
-  // 繼續導航
-  next()
+
+  // 路由守衛
+  // 已經登入就丟回首頁
+  if (user.isLoggedIn && ['/login', '/register'].includes(to.path)) {
+    next('/')
+    // 檢查目標路由是否需要登入，但用戶尚未登入
+  } else if (to.meta.login && !user.isLoggedIn) {
+    // 將未登入的用戶導向登入頁
+    next('/login')
+    // 檢查目標路由是否需要管理員權限，但用戶不是管理員時
+  } else if (to.meta.admin && !user.isAdmin) {
+    // 將沒有管理員權限的用戶導向首頁
+    next('/')
+  } else {
+    // 繼續導航
+    next()
+  }
+})
+
+// 在每次路由導航完成後，動態設定頁面的標題
+// https://github.com/intlify/vue-i18n/discussions/613 (寫法)
+router.afterEach((to) => {
+  document.title = i18n.global.t(to.meta.title) + ' | 購物網站'
 })
 
 // Workaround for https://github.com/vitejs/vite/issues/11804

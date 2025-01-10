@@ -97,6 +97,7 @@ export const edit = async (req, res) => {
     if (!validator.isMongoId(req.params.id)) throw new Error('ID')
 
     req.body.image = req.file?.path
+
     const result = await Product.findByIdAndUpdate(req.params.id, req.body, {
       runValidators: true,
       new: true,

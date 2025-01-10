@@ -30,6 +30,40 @@ export default {
     password:'密碼',
     passwordConfirm: '確認密碼',
   },
+  admin: {
+    index:'選擇管理項目',
+  },
+  adminProduct: {
+    new: '新增商品',
+    edit: '編輯商品',
+    cancel: '取消',
+    submit: '確認',
+    newSuccess: '新增成功',
+    editSuccess: '編輯成功',
+  },
+  product: {
+    image: '圖片',
+    name: '名稱',
+    description: '說明',
+    price: '價格',
+    category: '分類',
+    sell: '販售狀態',
+    createdAt: '新增時間',
+    updatedAt: '更新時間',
+    onSell: '上架',
+    notOnSell:'下架'
+  },
+  productCategory: {
+    food: '食品',
+    drink: '飲料',
+    music: '音樂',
+    game: '遊戲'
+  },
+  fileAgent:{
+    helpText: '點擊或拖曳檔案至此',
+    errorType: '檔案類型錯誤',
+    errorSize: '檔案大小超過限制',
+  },
   api: {
     // 🔻models > user.js > cartSchema
     userCartProductRequired: '購物車商品必填',

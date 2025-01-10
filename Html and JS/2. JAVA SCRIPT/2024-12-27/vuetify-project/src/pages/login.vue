@@ -105,3 +105,9 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<route lang="yaml">
+  meta:
+  # 只能在沒有登入的狀況下看到登入頁面
+    title: 'nav.login'
+</route>

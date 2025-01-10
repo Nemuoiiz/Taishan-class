@@ -103,3 +103,8 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<route lang="yaml">
+meta:
+  title: 'nav.login'
+</route>
