@@ -61,7 +61,7 @@ const swiper = new Swiper('#swiper', {
 
 // GSAP ---------------------------------------------------------------------------------
 // 註冊 plugin
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText)
 
 $('#navbar .main-link, .backtop a').each(function (index, link) {
 	$(this).on('click', function (e) {
@@ -270,3 +270,111 @@ function playStarTimeline(stars) {
 // 會將函式功能串接在一起，第一個函式回傳值會傳給第二個函式，第二個函式回傳值會傳給第三個函式，以此類推……
 const playStar = gsap.utils.pipe(createStar, setStarTween, playStarTimeline)
 playStar(30)
+
+
+// 浮空的島 ------------------------------------------------
+const float_tl = gsap.timeline({
+	scrollTrigger: {
+		trigger: 'body',
+		start: 'top 100%',
+		end: 'bottom 100%',
+		scrub:5,
+	},
+	ease:'none',
+})
+
+float_tl
+	.from('.float-wrap-01', {
+		left:'-30%',
+	})
+
+	.from('.float-wrap-02', {
+		right:'-30%',
+	},'<')
+
+	.from('.float-wrap-03', {
+		bottom:'-100%',
+	}, '<')
+	
+
+// 用本身去控制上下浮動
+$('.float-island').each(function (index, island) {
+	gsap.to(island, {
+		y: 50 * (index + 1),
+		duration: 10 * (index + 1),
+		repeat: -1,
+		yoyo: true,
+		ease:'power1, inOut'
+	})
+})
+
+
+// SplitText ------------------------------------------
+gsap.set('#splitText', {
+	perspective: 400,		// 值越小透視效果越強	
+})
+
+const tl = gsap.timeline({
+	repeat: -1,
+	repeatDelay:8,
+})
+
+// 將段落文字轉成陣列
+const paragraphs = gsap.utils.toArray('#splitText p')
+console.log(paragraphs)		// [p, p, p, p, p]
+
+
+/* 
+最外為 map 回傳的陣列容器
+[
+	['char', 'char', 'char', 'char', 'char' .....],	 <--- SplitText
+	['char', 'char', 'char', 'char', 'char' .....],	 <--- SplitText
+	['char', 'char', 'char', 'char', 'char' .....],	 <--- SplitText
+	['char', 'char', 'char', 'char', 'char' .....],	 <--- SplitText
+	['char', 'char', 'char', 'char', 'char' .....],	 <--- SplitText
+]
+
+*/
+const splitTexts = paragraphs.map(function (p) {
+	// ['char', 'char', 'char', 'char', 'char' .....]
+	return new SplitText(p, {
+		type: 'chars',
+		charsClass: 'charBg'
+	})
+})
+
+console.log(splitTexts)		// [SplitText, SplitText, SplitText, SplitText, SplitText]
+
+splitTexts.forEach(function (splitText) {
+	const chars = splitText.chars
+	tl.from(
+		chars,
+		{
+			// 進場
+			y: 80,
+			rotationX: 0,
+			rotationY: 180,
+			scale: 2,
+			transformOrigin: '0% 50% -100',
+			opacity: 0,
+			duration: 2,
+			ease: 'back',
+			stagger: 0.1,
+
+			onComplete(){
+			gsap.to(chars, {
+				delay:3,
+				duration: 2,
+				opacity: 0,
+				scale: 2,
+				y: 80,
+				rotationX: 180,
+				rotationY: 0,
+				transformOrigin: '0% 50% -100',
+				ease: 'back',
+				stagger: 0.1,
+			})
+		}
+		}, '+=3'	// 下一組動畫必須延遲 3s 才能進場，因為前一組離場動畫有設定延遲 3s
+	)
+})
