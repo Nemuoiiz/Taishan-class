@@ -11,5 +11,9 @@ router.post('/login', auth.login, CUser.login)
 router.get('/profile', auth.jwt, CUser.profile)
 router.patch('/refresh', auth.jwt, CUser.refresh)
 router.delete('/logout', auth.jwt, CUser.logout)
+// 取購物車
+router.get('/cart', auth.jwt, CUser.getCart)
+// 把東西放回購物車
+router.patch('/cart', auth.jwt, CUser.updateCart)
 
 export default router
