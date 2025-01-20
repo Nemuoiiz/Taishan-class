@@ -31,9 +31,8 @@ export const login = (req, res, next) => {
       }
     }
     // 將查詢到的登入使用者放入 req 中給後續的 controller 或 middleware 使用
-    req.user = user
-    // 繼續下一步
-    next()
+    req.user = user // 將驗證後的 user 資料放到 req 中
+    next() // 呼叫 next() 將請求傳遞給下一個中間件
   })(req, res, next)
 }
 

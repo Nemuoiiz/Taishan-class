@@ -110,7 +110,7 @@ export const logout = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
-    const result = await User.findById(req.user._id, 'cart').populate('cart.product')
+    const result = await User.findById(req.user._id, 'cart').populate('cart.product') // 透過 populate 取得商品資料
     res.status(StatusCodes.OK).json({
       success: true,
       message: '',
