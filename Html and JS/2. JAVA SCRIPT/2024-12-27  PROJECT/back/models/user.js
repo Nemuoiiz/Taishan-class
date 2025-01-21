@@ -85,11 +85,11 @@ schema.pre('save', function (next) {
     // 自己寫驗證
     if (user.password.length < 4) {
       const error = new Error.ValidationError()
-      error.addError('password', new Error.ValidationError({ message: 'userPasswordTooShort' }))
+      error.addError('password', new Error.ValidatorError({ message: 'userPasswordTooShort' }))
       next(error)
     } else if (user.password.length > 20) {
       const error = new Error.ValidationError()
-      error.addError('password', new Error.ValidationError({ message: 'userPasswordTooLong' }))
+      error.addError('password', new Error.ValidatorError({ message: 'userPasswordTooLong' }))
       next(error)
     } else {
       user.password = bcrypt.hashSync(user.password, 10)
