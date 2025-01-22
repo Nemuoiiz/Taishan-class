@@ -86,7 +86,7 @@ const schema = new Schema(
 // 🔗：https://mongoosejs.com/docs/tutorials/virtuals.html
 // schema.virtual(欄位名稱).get(資料產生方式)
 // 建立不存在的動態虛擬欄位 => 例如狀態列數字
-// 資料產生方式 function 內的 this 代表一筆資料
+// 資料產生方式 function 內的 this 代表現在要處理的那筆資料
 schema.virtual('cartQuantity').get(function () {
   const user = this
   return user.cart.reduce((total, current) => {
@@ -99,26 +99,30 @@ schema.virtual('cartQuantity').get(function () {
 // .pre 為 mongoose 提供之語法
 // schema.pre('save') 資料保存之前要做的
 // create --> validate -(!)-> saveDB
-// mongoose 驗證之後，存入資料庫之前執行動作 => 偵測到錯誤就不會存入
+// 'mongoose 驗證之後，存入資料庫之前' 執行動作 => 偵測到錯誤就不會存入
 schema.pre('save', function (next) {
   const user = this
-  // 密碼欄位有修改再處理
+  // 只有當密碼被修改時才進行驗證與加密
   if (user.isModified('password')) {
     // 自己寫驗證
     if (user.password.length < 4) {
+      // ValidationError  代表整個物件的驗證錯誤，可以包含多個 ValidatorError
+      // ValidatorError   代表單一欄位的驗證錯誤
       const error = new Error.ValidationError()
+      // 'password' => 發生錯誤的欄位
+      // message    => 發生錯誤的訊息
       error.addError('password', new Error.ValidatorError({ message: 'userPasswordTooShort' }))
-      next(error)
+      next(error) // 提前返回，避免繼續執行
     } else if (user.password.length > 20) {
       const error = new Error.ValidationError()
-      error.addError('password', new Error.ValidatiorError({ message: 'userPasswordTooLong' }))
+      error.addError('password', new Error.ValidatorError({ message: 'userPasswordTooLong' }))
       next(error)
     } else {
-      // 使用者密碼 = 加密套件 bcrypt(加密內容, 加鹽次數)
+      // 使用者密碼 = 加密套件 bcrypt.hashSync(密碼, 加鹽次數)
       user.password = bcrypt.hashSync(user.password, 10)
     }
   }
-  // 很重要要記得寫
+  // 繼續執行 'save()' 很重要要記得寫
   next()
 })
 
