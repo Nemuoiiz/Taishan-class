@@ -12,6 +12,10 @@ export default {
   userCartProductRequired: '使用者購物車商品必填',
   userCartQuantityRequired: '使用者購物車數量必填',
   userCartQuantityTooSmall: '使用者購物車數量不符',
+  // back > controllers > user.js
+  userAccountDuplicate: '使用者帳號重複',
+  // back > controllers > user.js
+  serverError: '伺服器錯誤',
   // back > index.js
   requestFormatError: '請求格式錯誤',
 }

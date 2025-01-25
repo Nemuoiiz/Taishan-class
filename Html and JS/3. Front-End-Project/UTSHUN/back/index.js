@@ -1,7 +1,10 @@
+// 本體
 import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
+// 引入路由
+import routerUser from './routers/user.js'
 
 mongoose
   .connect(process.env.DB_URL)
@@ -23,6 +26,10 @@ app.use((error, req, res, next) => {
   })
 })
 
+// 路由
+app.use('/user', routerUser)
+
+// 連接埠
 app.listen(process.env.PORT || 4000, () => {
   console.log('伺服器啟動')
 })
