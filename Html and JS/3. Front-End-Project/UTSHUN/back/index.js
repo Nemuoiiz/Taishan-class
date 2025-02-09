@@ -5,6 +5,8 @@ import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
 // 引入路由
 import routerUser from './routers/user.js'
+// 引入登入驗證檔案
+import './passport.js'
 
 mongoose
   .connect(process.env.DB_URL)

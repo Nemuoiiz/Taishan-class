@@ -1,5 +1,6 @@
 import User from '../models/user.js'
 import { StatusCodes } from 'http-status-codes'
+import jwt from 'jsonwebtoken'
 
 // 處理使用者註冊（創建帳號）的 controller 函式
 // 1. 接收前端送來的請求（包含使用者的註冊資訊）
@@ -32,4 +33,44 @@ export const create = async (req, res) => {
       })
     }
   }
+}
+
+export const login = async (req, res) => {
+  try {
+    // jwt.sign(儲存資料, SECRET密鑰, 設定)
+    // jwt 可以使用 base64 破解，因此不要放密碼
+    // req.user => auth.js > login 存入的資料
+    const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
+    req.user.tokens.push(token)
+    await req.user.save()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+      // 回給前端會使用到的資訊
+      result: {
+        token, // token
+        account: req.user.account, // 帳號
+        role: req.user.role, // 是否為管理員
+        cart: req.user.cartQuantity, // 購物車
+      },
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'serverError',
+    })
+  }
+}
+
+export const profile = async (req, res) => {
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: '',
+    result: {
+      account: req.user.account,
+      role: req.user.role,
+      cart: req.user.cartQuantity,
+    },
+  })
 }

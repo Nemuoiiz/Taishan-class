@@ -1,4 +1,7 @@
+import { zhHant } from 'vuetify/locale'
+
 export default {
+  $vuetify:zhHant,
   api: {
     // back > models > user.js
     userAccountRequired: '使用者帳號必填',
