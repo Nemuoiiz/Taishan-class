@@ -7,6 +7,8 @@ import { StatusCodes } from 'http-status-codes'
 import routerUser from './routers/user.js'
 // 引入登入驗證檔案
 import './passport.js'
+// 引入 cors 處理跨網域的請求
+import cors from 'cors'
 
 mongoose
   .connect(process.env.DB_URL)
@@ -19,6 +21,9 @@ mongoose
   })
 
 const app = express()
+
+// 跨域全開 (最簡單的寫法)
+app.use(cors())
 
 app.use(express.json())
 app.use((error, req, res, next) => {
