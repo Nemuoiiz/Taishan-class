@@ -28,9 +28,9 @@ const schema = new Schema(
     // 帳號
     account: {
       type: String,
-      required: [true, 'userAccountRequired'],
-      minlength: [4, 'userAccountTooShort'],
-      maxlength: [20, 'userAccountTooLong'],
+      required: [true, '帳號必填'],
+      minlength: [4, '帳號長度不足'],
+      maxlength: [20, '帳號長度超出限制'],
       unique: true,
       // 格式驗證
       validate: {
@@ -38,7 +38,7 @@ const schema = new Schema(
           // .isAlphanumeric() 判斷是否為英數字
           return validator.isAlphanumeric(value)
         },
-        message: 'userAccountInvalid',
+        message: '帳號格式不符',
       },
     },
     // 密碼
@@ -46,19 +46,19 @@ const schema = new Schema(
       type: String,
       // 只要求必填
       // 加密後密碼可能長度不一，故需以其他方式驗證長度
-      required: [true, 'userPasswordRequired'],
+      required: [true, '密碼必填'],
     },
     // 信箱
     email: {
       type: String,
-      required: [true, 'userEmailRequired'],
+      required: [true, '信箱必填'],
       unique: true,
       validate: {
         validator(value) {
           return validator.isEmail(value)
         },
         // email 格式不對
-        message: 'userEmailInvalid',
+        message: '信箱格式不符',
       },
     },
     // 保存 jwt
@@ -111,11 +111,11 @@ schema.pre('save', function (next) {
       const error = new Error.ValidationError()
       // 'password' => 發生錯誤的欄位
       // message    => 發生錯誤的訊息
-      error.addError('password', new Error.ValidatorError({ message: 'userPasswordTooShort' }))
+      error.addError('password', new Error.ValidatorError({ message: '密碼長度不足' }))
       next(error) // 提前返回，避免繼續執行
     } else if (user.password.length > 20) {
       const error = new Error.ValidationError()
-      error.addError('password', new Error.ValidatorError({ message: 'userPasswordTooLong' }))
+      error.addError('password', new Error.ValidatorError({ message: '密碼長度超出限制' }))
       next(error)
     } else {
       // 使用者密碼 = 加密套件 bcrypt.hashSync(密碼, 加鹽次數)

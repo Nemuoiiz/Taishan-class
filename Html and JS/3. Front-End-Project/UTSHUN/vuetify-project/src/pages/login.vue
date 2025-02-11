@@ -1,9 +1,9 @@
-<!-- 註冊頁面 -->
+<!-- 帳號登入頁面 -->
 <template>
   <v-container>
     <v-row justify="center">
       <v-col cols="12">
-        <h1 class="text-center">註冊帳號</h1>
+        <h1 class="text-center">登入帳號</h1>
       </v-col>
 
       <v-divider></v-divider>
@@ -29,26 +29,10 @@
             minlength="4" maxlength="20" counter
           />
 
-            <!-- 密碼驗證 -->
-          <v-text-field
-            v-model="passwordConfirm.value.value"
-            type="password"
-            :error-messages="passwordConfirm.errorMessage.value"
-            label="確認密碼"
-            minlength="4" maxlength="20" counter
-          />
-
-            <!-- 信箱 -->
-          <v-text-field
-            v-model="email.value.value"
-            :error-messages="email.errorMessage.value"
-            label="信箱"
-          />
-
             <!-- btn 的 display 為 inline，不可直接下 tac -->
             <div class="text-center">
               <!-- :loading="isSumbmitting" 如果送出中就顯示 loading -->
-              <v-btn :loading="isSubmitting" type="submit" color="primary">建立帳號</v-btn>
+              <v-btn :loading="isSubmitting" type="submit" color="primary">登入</v-btn>
             </div>
           </v-form>
       </v-col>
@@ -86,28 +70,12 @@ const createSnackbar = useSnackbar()
       value => validator.isAlphanumeric(value))
     ,
 
-    // 🔻 信箱
-    email: yup
-      .string()
-      .required('信箱必填')
-      .test(
-        'isEmail', '信箱格式不符',
-        value => validator.isEmail(value)),
-
     // 🔻 密碼
     password: yup
       .string()
       .required('密碼必填')
       .min(4, '密碼長度不足')
       .max(20, '密碼長度超出限制'),
-
-    // 🔻 驗證密碼
-    passwordConfirm: yup
-      .string()
-      // .oneOf(陣列, 訊息)  必須要是陣列內其中一個值
-      // .ref(欄位名稱)      取得欄位的值
-      // .ref('password')   password 欄位的值
-      .oneOf([yup.ref('password')], '密碼不符')
   })
 
   // 💡 一定要先建立 From 再建立 Field，順序不可變動
@@ -121,20 +89,17 @@ const createSnackbar = useSnackbar()
   // 🔻 建立欄位
   // 要跟 account: yup 設定的名稱一樣
   const account = useField('account')
-  const email = useField('email')
   const password = useField('password')
-  const passwordConfirm = useField('passwordConfirm')
 
 // 驗證是否表單內容都 OK，確認完成後才會執行 function
 const submit = handleSubmit(async (values) => {
   try {
-    await api.post('/user', {
+    const result = await api.post('/login', {
       account: values.account,
-      email: values.email,
       password: values.password
     })
     createSnackbar({
-      text: '註冊成功',
+      text: '登入成功',
       snackbarProps: {
         color: 'green'
       }

@@ -32,11 +32,11 @@ passport.use(
       } catch (error) {
         console.log(error)
         if (error.message === 'ACCOUNT') {
-          return done(null, null, { message: 'userNotFound' })
+          return done(null, null, { message: '查無使用者' })
         } else if (error.message === 'PASSWORD') {
-          return done(null, null, { message: 'userPasswordIncorrect' })
+          return done(null, null, { message: '使用者驗證錯誤' })
         } else {
-          return done(null, null, { message: 'serverError' })
+          return done(null, null, { message: '伺服器錯誤' })
         }
       }
     },
@@ -96,13 +96,13 @@ passport.use(
       } catch (error) {
         console.log(error)
         if (error.message === 'USER') {
-          return done(null, null, { message: 'userNotFound' })
+          return done(null, null, { message: '查無使用者' })
         } else if (error.message === 'TOKEN') {
-          return done(null, null, { message: 'userTokenInvalid' })
+          return done(null, null, { message: '使用者驗證錯誤' })
         } else if (error.message === 'EXPIRED') {
-          return done(null, null, { message: 'userTokenExpired' })
+          return done(null, null, { message: '使用者驗證過期' })
         } else {
-          return done(null, null, { message: 'serverError' })
+          return done(null, null, { message: '伺服器錯誤' })
         }
       }
     },

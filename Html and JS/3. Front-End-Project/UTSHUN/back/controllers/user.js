@@ -18,7 +18,7 @@ export const create = async (req, res) => {
     if (error.name === 'MongoServerError' && error.code === 11000) {
       res.status(StatusCodes.CONFLICT).json({
         success: false,
-        message: 'userAccountDuplicate',
+        message: '使用者帳號重複',
       })
     } else if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
@@ -29,7 +29,7 @@ export const create = async (req, res) => {
     } else {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: 'serverError',
+        message: '伺服器錯誤',
       })
     }
   }
@@ -58,7 +58,7 @@ export const login = async (req, res) => {
     console.log(error)
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
-      message: 'serverError',
+      message: '伺服器錯誤',
     })
   }
 }

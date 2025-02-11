@@ -18,7 +18,7 @@ export const login = (req, res, next) => {
         info.message = 'requestFormatError'
       }
       // 對不同的訊息使用不同的狀態碼回應
-      if (info.message === 'serverError') {
+      if (info.message === '伺服器錯誤') {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           success: false,
           message: info.message,
@@ -49,7 +49,7 @@ export const jwt = (req, res, next) => {
         })
       }
       // 伺服器錯誤，可能是打錯字或出 bug
-      else if (info.message === 'serverError') {
+      else if (info.message === '伺服器錯誤') {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           success: false,
           message: info.message,

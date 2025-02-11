@@ -26,12 +26,13 @@ export default {
     productPriceRequired: '商品價格必填',
     productPriceTooSmall: '商品價格不符',
     productImageRequired: '商品圖片必填',
-    productDescriptionequired: '商品說明必填',
+    productDescriptionRequired: '商品說明必填',
     productCategoryRequired: '商品分類必填',
     productCategoryInvalid: '商品分類不符',
     productSellRequired: '商品上下架必填',
     // back > passport.js
     userNotFound: '查無使用者',
     userTokenInvalid: '使用者驗證錯誤',
+    userTokenExpired: '使用者驗證過期',
   },
 }
