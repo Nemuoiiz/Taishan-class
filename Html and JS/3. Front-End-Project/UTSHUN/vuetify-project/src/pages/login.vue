@@ -47,9 +47,13 @@
   import validator from 'validator'
   import { useAxios } from '@/composables/axios'
   import { useSnackbar } from 'vuetify-use-dialog'
+  import { useRouter } from 'vue-router'
+  import { useUserStore } from '@/stores/user'
 
 const { api } = useAxios()
 const createSnackbar = useSnackbar()
+const router = useRouter()
+const user = useUserStore()
 
   // 使用 yup 執行物件的驗證
   const schema = yup.object({
@@ -94,16 +98,19 @@ const createSnackbar = useSnackbar()
 // 驗證是否表單內容都 OK，確認完成後才會執行 function
 const submit = handleSubmit(async (values) => {
   try {
-    const result = await api.post('/login', {
+    // axios 的東西會在 data 內
+    const { data } = await api.post('/user/login', {
       account: values.account,
       password: values.password
     })
+    user.login(data.result)
     createSnackbar({
       text: '登入成功',
       snackbarProps: {
         color: 'green'
       }
     })
+    router.push('/')
   }catch (error) {
     console.log(error)
     createSnackbar({

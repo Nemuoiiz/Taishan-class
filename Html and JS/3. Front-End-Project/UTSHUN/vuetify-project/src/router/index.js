@@ -5,13 +5,52 @@
  */
 
 // Composables
-import { createRouter, createWebHashHistory } from 'vue-router/auto'
+// START_LOCALTION => 起始位置，每次進入頁面時讀取網址進行第一次導航
+import { createRouter, createWebHashHistory, START_LOCATION  } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
+import { useAxios } from '@/composables/axios'
+import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: setupLayouts(routes),
+})
+
+// 進入頁面前執行，使用 jwt 取得 token
+// 第一次進頁面前使用者資料
+router.beforeEach(async (to, from, next) => {
+  const { apiAuth } = useAxios()
+  const user = useUserStore()
+
+  // 如果是第一次導航 && 已登入過有 JWT
+  if (from === START_LOCATION && user.isLoggedIn) {
+    try {
+      const { data } = await apiAuth.get('/user/profile')
+      user.login(data.result)
+    } catch (error) {
+      console.log(error)
+      // 錯誤就登出
+      user.logout()
+    }
+  }
+
+  // // 路由守衛
+  // // 已經登入就丟回首頁
+  // if (user.isLoggedIn && ['/login', '/register'].includes(to.path)) {
+  //   next('/')
+  //   // 檢查目標路由是否需要登入，但用戶尚未登入
+  // } else if (to.meta.login && !user.isLoggedIn) {
+  //   // 將未登入的用戶導向登入頁
+  //   next('/login')
+  //   // 檢查目標路由是否需要管理員權限，但用戶不是管理員時
+  // } else if (to.meta.admin && !user.isAdmin) {
+  //   // 將沒有管理員權限的用戶導向首頁
+  //   next('/')
+  // } else {
+    // 繼續導航
+    next()
+  // }
 })
 
 // Workaround for https://github.com/vitejs/vite/issues/11804

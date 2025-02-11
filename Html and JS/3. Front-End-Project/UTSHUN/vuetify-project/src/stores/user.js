@@ -21,8 +21,33 @@ export const useUserStore = defineStore('user', () => {
     return role.value === UserRole.ADMIN
   })
 
+  const login = (data) => {
+    if(data.token){
+      token.value = data.token
+    }
+    account.value = data.account
+    role.value = data.role
+    cart.value = data.cart
+  }
+
+  // 登出 => 全部變為預設值
+  const logout = () => {
+    token.value = ''
+    account.value = ''
+    role.value = UserRole.USER
+    cart.value = 0
+  }
+
+
   return {
     token, account, role, cart,
     isLoggedIn, isAdmin,
+    login, logout,
+  }
+}, {
+  // 要把資料存在 localstorage (只存放 token)
+  persist: {
+    key: 'shop-user',
+    pick: ['token']
   }
 })
