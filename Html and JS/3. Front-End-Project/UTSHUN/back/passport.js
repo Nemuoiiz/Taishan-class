@@ -55,7 +55,7 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET,
       // 讓後面的 function 能使用 req(request) 的資訊
       passReqToCallback: true,
-      // 🔸 允許過期的 jwt 通過
+      // 🔸 允許過期的 jwt 通過（過期例外）
       ignoreExpiration: true,
     },
     // req = 請求資訊，有設定 passReqToCallback 才能用
@@ -66,7 +66,7 @@ passport.use(
         // 因為沒有提供原始的 jwt，所以利用套件語法取得
         const token = passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken()(req)
 
-        // 🔸 手動加入檢查過期的驗證
+        // 🔸 手動加入檢查過期的驗證（過期例外）
         // 只有 refresh 和 logout 允許過期的 jwt
         // payload.exp = jwt 過期時間，單位為秒
         // nwe Date().getTime() = 目前時間，單位為毫秒

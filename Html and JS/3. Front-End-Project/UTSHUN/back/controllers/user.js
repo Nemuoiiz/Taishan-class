@@ -74,3 +74,51 @@ export const profile = async (req, res) => {
     },
   })
 }
+
+// token 舊換新來延長驗證通過資格
+export const refresh = async (req, res) => {
+  try {
+    // 以使用者的 token 去找索引，來看看有沒有請求的 token
+    const idx = req.user.tokens.findIndex((token) => token === req.token)
+    // 再簽一組新的 token
+    const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
+    // 新的直接換掉舊的
+    req.user.tokens[idx] = token
+    await req.user.save()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+      // 新的 token
+      result: token,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'serverError',
+    })
+  }
+}
+
+// 登出後把 token 刪除
+export const logout = async (req, res) => {
+  try {
+    // 找索引
+    const idx = req.user.tokens.findIndex((token) => token === req.token)
+    // 從索引開始刪除一個 token
+    req.user.tokens.splice(idx, 1)
+    // 刪除後保存狀態
+    await req.user.save()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+      // 登出不需要回復 result
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'serverError',
+    })
+  }
+}
