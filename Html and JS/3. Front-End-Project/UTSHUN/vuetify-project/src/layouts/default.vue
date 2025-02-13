@@ -61,7 +61,7 @@ const logout = async () => {
   }
   user.logout()
   createSnackbar({
-    text: '成功登出',
+    text: '登出成功',
     snackbarProps: {
       color: 'green'
     }

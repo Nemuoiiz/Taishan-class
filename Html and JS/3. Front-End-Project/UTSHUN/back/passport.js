@@ -100,7 +100,7 @@ passport.use(
         } else if (error.message === 'TOKEN') {
           return done(null, null, { message: '使用者驗證錯誤' })
         } else if (error.message === 'EXPIRED') {
-          return done(null, null, { message: '使用者驗證過期' })
+          return done(null, null, { message: '登入過期' })
         } else {
           return done(null, null, { message: '伺服器錯誤' })
         }

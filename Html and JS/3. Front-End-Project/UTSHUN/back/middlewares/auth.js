@@ -71,12 +71,14 @@ export const jwt = (req, res, next) => {
   })(req, res, next)
 }
 
+// 檢查是否為管理員
 export const admin = (req, res, next) => {
   if (req.user.role !== UserRole.ADMIN) {
+    // 狀態碼：403
     res.status(StatusCodes.FORBIDDEN).json({
       success: false,
-      // 使用者權限不足
-      message: 'userPermissionDenied',
+      // userPermissionDenied
+      message: '使用者權限不足',
     })
   } else {
     next()
