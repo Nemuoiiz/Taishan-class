@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
 // 引入路由
 import routerUser from './routers/user.js'
+import routerProduct from './routers/product.js'
 // 引入登入驗證檔案
 import './passport.js'
 // 引入 cors 處理跨網域的請求
@@ -29,12 +30,13 @@ app.use(express.json())
 app.use((error, req, res, next) => {
   res.status(StatusCodes.BAD_REQUEST).json({
     success: false,
-    message: 'requestFormatError',
+    message: '請求格式錯誤',
   })
 })
 
 // 路由
 app.use('/user', routerUser)
+app.use('/product', routerProduct)
 
 // 連接埠
 app.listen(process.env.PORT || 4000, () => {

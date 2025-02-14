@@ -11,4 +11,41 @@ cloudinary.config({
 })
 
 // 設定上傳方
-const 
+const upload = multer({
+  storage: new CloudinaryStorage({ cloudinary }),
+  fileFilter(req, file, callback) {
+    console.log(file)
+    // 過濾上傳的檔案 (只允許 jpeg、png)
+    // file = 檔案資訊
+    // callback(錯誤, 是否允許)
+    if (['image/jpeg', 'image/png'].includes(file.mimetype)) {
+      // 允許通過
+      callback(null, true)
+    } else {
+      // 不通過
+      callback(null, false)
+    }
+  },
+  // 檔案限制
+  limits: {
+    // 限制檔案尺寸 1MB
+    fileSize: 1024 * 1024,
+  },
+})
+
+// 圖片上傳時預設的錯誤處理
+export default (req, res, next) => {
+  // function 執行：upload.single('image')()
+  // function 傳入的資料，error錯誤的話再處理：(req, res, (error) => {})
+  upload.single('image')(req, res, (error) => {
+    if (error) {
+      console.log(error)
+      res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        message: '上傳失敗',
+      })
+    } else {
+      next()
+    }
+  })
+}
