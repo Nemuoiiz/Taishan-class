@@ -103,6 +103,7 @@ const submit = handleSubmit(async (values) => {
       account: values.account,
       password: values.password
     })
+    // controllers > user.js > login 的 result
     user.login(data.result)
     createSnackbar({
       text: '登入成功',
@@ -122,3 +123,9 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<route lang="yaml">
+  meta:
+  # 只能在沒有登入的狀況下看到登入頁面
+    title: '登入'
+</route>

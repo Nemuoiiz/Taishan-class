@@ -21,6 +21,12 @@ export const useUserStore = defineStore('user', () => {
     return role.value === UserRole.ADMIN
   })
 
+  // 產生大頭貼
+  const avatarName = computed(() => {
+    return account.value || "Guest"
+  })
+
+  // controllers > user.js > login 的 result 的 data
   const login = (data) => {
     if(data.token){
       token.value = data.token
@@ -41,7 +47,7 @@ export const useUserStore = defineStore('user', () => {
 
   return {
     token, account, role, cart,
-    isLoggedIn, isAdmin,
+    isLoggedIn, isAdmin, avatarName,
     login, logout,
   }
 }, {

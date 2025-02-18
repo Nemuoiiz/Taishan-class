@@ -11,4 +11,14 @@ const router = Router()
 // 4. product.create = 商品新增 (controllers > product.js)
 router.post('/', auth.jwt, auth.admin, upload, product.create)
 
+// 取商品資料
+// 1. 大家都看的到 (沒有登入的人看的)
+router.get('/', product.get)
+// 2. 給管理員看的 (包含未上架)，需經過 jwt 認證
+router.get('/all', auth.jwt, auth.admin, product.getAll)
+// 3. 單個商品 (指定id)，沒有登入也可以看
+router.get('/:id', product.getId)
+// 4. 編輯商品
+router.patch('/:id', auth.jwt, auth.admin, upload, product.edit)
+
 export default router
