@@ -61,7 +61,7 @@ const schema = new Schema(
         },
       },
     },
-    // 商品狀態
+    // 新舊與否
     used: {
       type: Boolean,
       required: true,
