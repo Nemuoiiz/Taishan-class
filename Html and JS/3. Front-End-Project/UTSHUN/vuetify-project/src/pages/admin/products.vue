@@ -205,8 +205,8 @@ const openDialog = (item) => {
     name.value.value = item.name
     price.value.value = item.price
     description.value.value = item.description
-    category.value.value = item.category
-    subcategory.value.value = item.subcategory
+    category.value.value = item.category.main // 確保 category 是字串
+    subcategory.value.value = item.category.sub // 確保 subcategory 是字串
     used.value.value = item.used
     usedNote.value.value = item.usedNote
     sell.value.value = item.sell
