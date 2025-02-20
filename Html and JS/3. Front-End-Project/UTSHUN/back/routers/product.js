@@ -19,6 +19,6 @@ router.get('/all', auth.jwt, auth.admin, product.getAll)
 // 3. 單個商品 (指定id)，沒有登入也可以看
 router.get('/:id', product.getId)
 // 4. 編輯商品
-router.patch('/:id', product.edit)
+router.patch('/:id', auth.jwt, auth.admin, upload, product.edit)
 
 export default router

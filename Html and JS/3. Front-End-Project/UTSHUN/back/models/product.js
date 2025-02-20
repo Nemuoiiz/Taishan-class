@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Query } from 'mongoose'
 
 // 商品分類
 const validCategories = {
@@ -54,7 +54,11 @@ const schema = new Schema(
         validate: {
           validator: function (value) {
             // 允許的子分類
-            const allowedSubCategories = validCategories[this.category.main] || []
+            let data = this
+            if (this instanceof Query) {
+              data = this._update.$set
+            }
+            const allowedSubCategories = validCategories[data.category.main] || []
             return value === '' || allowedSubCategories.includes(value)
           },
           message: '商品子分類不符',

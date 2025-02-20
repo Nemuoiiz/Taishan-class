@@ -9,6 +9,7 @@ export const create = async (req, res) => {
     // https://www.npmjs.com/package/multer-storage-cloudinary
     // req.file 會有三個資料可以取得：filename (檔案id)、path (檔案網址)、size
     req.body.image = req.file?.path || ''
+    console.log('req.body', req.body)
     const result = await Product.create(req.body)
     res.status(StatusCodes.OK).json({
       success: true,
@@ -115,11 +116,26 @@ export const edit = async (req, res) => {
     // 不用加 || '' ，不然商品圖片會變成空的文字，造成編輯錯誤
     req.body.image = req.file?.path
 
-    const result = await Product.findByIdAndUpdate(req.params.id, req.body, {
-      runValidators: true,
-      // 回傳新東西
-      new: true,
-    }).orFail(new Error('NOT FOUND'))
+    const result = await Product.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        category: {
+          main: req.body['category.main'],
+          sub: req.body['category.sub'],
+        },
+        sell: req.body.sell,
+        used: req.body.used,
+        usedNote: req.body.usedNote,
+      },
+      {
+        runValidators: true,
+        // 回傳新東西
+        new: true,
+      },
+    ).orFail(new Error('NOT FOUND'))
 
     res.status(StatusCodes.OK).json({
       success: true,
@@ -127,6 +143,7 @@ export const edit = async (req, res) => {
       result,
     })
   } catch (error) {
+    console.log('controller product edit', error)
     if (error.name === 'CastError' || error.message === 'ID') {
       res.status(StatusCodes.BAD_REQUEST).json({
         success: false,

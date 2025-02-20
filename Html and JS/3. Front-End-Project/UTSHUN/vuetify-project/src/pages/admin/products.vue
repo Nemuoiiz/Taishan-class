@@ -62,7 +62,7 @@
 
   <!-- 新增商品的對話窗 -->
   <v-dialog v-model="dialog.open" persistent="">
-    <v-form>
+    <v-form :disabled="isSubmitting" @submit.prevent="submit">
       <v-card>
         <!-- 標題 -->
         <v-card-title>{{ dialog.id ? '編輯商品' : '新增商品' }}</v-card-title>
@@ -83,16 +83,17 @@
 
           <!-- 選單 -->
           <v-select
-            v-model="selectedCategory"
+            v-model="category.value.value"
             :error-messages="category.errorMessage.value"
             :items="categoryOptions"
             label="商品主分類"
             item-title="text"
             item-value="value"
+            @update:model-value="onCategoryUpdate(true)"
           ></v-select>
 
           <v-select
-            v-model="selectedSubcategory"
+            v-model="subcategory.value.value"
             :error-messages="subcategory.errorMessage.value"
             :items="filteredSubcategories"
             label="商品子分類"
@@ -137,11 +138,13 @@
             :error-text="{ type: '檔案類型錯誤', size: '檔案尺寸超過 1MB' }"
             ></VueFileAgent>
         </v-card-text>
+
         <!-- 動作按鈕 -->
         <v-card-actions>
           <v-btn @click="closeDialog">取消</v-btn>
           <v-btn type="submit" :loading="isSubmitting">確認</v-btn>
         </v-card-actions>
+
       </v-card>
     </v-form>
   </v-dialog>
@@ -210,7 +213,12 @@ const openDialog = (item) => {
     used.value.value = item.used
     usedNote.value.value = item.usedNote
     sell.value.value = item.sell
+  } else {
+    // 重設分類選項
+    category.value.value = ''
+    subcategory.value.value = ''
   }
+  onCategoryUpdate()
   dialog.value.open = true
 }
 
@@ -221,6 +229,9 @@ const closeDialog = () => {
   dialog.value.id = ''
   dialog.value.open = false
   fileAgent.value.deleteFileRecord()
+  // 重設分類選項
+  category.value.value = ''
+  subcategory.value.value = ''
 }
 
 
@@ -234,17 +245,9 @@ const categoryOptions = ref([
   { text: '上妝用具', value: '上妝用具', subcategories: ['刷具', '粉底刮刀', '美妝蛋'] }
 ])
 
-// **選擇的主分類**
-const selectedCategory = ref('')
 
 // **計算對應的子分類選項**
-const filteredSubcategories = computed(() => {
-  const category = categoryOptions.value.find(c => c.value === selectedCategory.value)
-  return category ? category.subcategories : []
-})
-
-// **選擇的子分類**
-const selectedSubcategory = ref('')
+const filteredSubcategories = ref([])
 
 // **表單驗證 Schema**
 const schema = computed(() =>
@@ -266,15 +269,12 @@ const schema = computed(() =>
       .oneOf(categoryOptions.value.map(c => c.value), '分類不存在'),
     subcategory: yup
       .string()
-      .when('category', {
-      is: val => {
-        const selectedCategory = categoryOptions.value.find(c => c.value === val)
-        return selectedCategory && selectedCategory.subcategories.length > 0
-      },
-        then: yup
-          .string()
-          .required('請選擇子分類')
-    }),
+      .test('subcategory', '請選擇子分類', function (value) {
+        const category = categoryOptions.value.find(c => c.value === this.parent.category)
+        if (!category) return false
+        if (this.parent.category === '唇部彩妝') return true
+        return category.subcategories.includes(value)
+      }),
     sell: yup
       .boolean()
       .required('販售狀態必填'),
@@ -316,6 +316,73 @@ const fileAgent = ref(null)
 const fileRecords = ref([])
 const rawFileRecords = ref([])
 
+const onCategoryUpdate = (reset = false) => {
+  const selectedCategory = categoryOptions.value.find(c => c.value === category.value.value)
+  filteredSubcategories.value = selectedCategory ? selectedCategory.subcategories : []
+  if (reset) {
+    subcategory.resetField()
+  }
+}
+
+// 新增、編輯的提交
+const submit = handleSubmit(async (values) => {
+  console.log('handleSubmit的地方')
+  // 先檢查有沒有錯誤
+  if (fileRecords.value[0]?.error) return
+  // 做新增但沒有選圖的話也 return
+  if (dialog.value.id.length === 0 && fileRecords.value.length === 0) {
+    createSnackbar({
+      text: '商品圖片必填',
+      snackbarProps: {
+        color: 'red'
+      }
+    })
+    return
+  }
+
+  try {
+    const fd = new FormData()
+    // fd.append(key, value)
+    fd.append('name', values.name)
+    fd.append('price', values.price)
+    fd.append('description', values.description)
+    fd.append('category.main', values.category)
+    fd.append('category.sub', values.subcategory)
+    fd.append('sell', values.sell)
+    fd.append('used', values.used)
+    fd.append('usedNote', values.usedNote)
+
+    if (fileRecords.value.length > 0) {
+      fd.append('image', fileRecords.value[0].file)
+    }
+
+    // fileRecords 的長度大於 0 (如果有檔案)
+    // 就加入 fileRecords 陣列內
+    if (dialog.value.id.length > 0) {
+      await apiAuth.patch('/product/' + dialog.value.id, fd)
+    } else {
+      await apiAuth.post('/product', fd)
+    }
+
+    products.splice(0, products.length)
+    getProducts()
+    createSnackbar({
+      text: dialog.value.id.length > 0 ? '商品編輯成功' : '商品新增成功',
+      snackbarProps: {
+        color: 'green'
+      }
+    })
+    closeDialog()
+  } catch (error) {
+    console.log(error)
+    createSnackbar({
+      text: error?.response?.data?.message || '發生未知錯誤',
+      snackbarProps: {
+        color: 'red'
+      }
+    })
+  }
+})
 
 </script>
 <route lang="yaml">
