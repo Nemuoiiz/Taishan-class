@@ -298,7 +298,7 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     sell: false,
     used: false,
     description: '',
-    usedNote: null, // 因為 yup 設定 nullable
+    usedNote: '',
   }
 })
 

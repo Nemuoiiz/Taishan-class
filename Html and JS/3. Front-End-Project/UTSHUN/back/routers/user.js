@@ -14,5 +14,9 @@ router.get('/profile', auth.jwt, user.profile)
 router.patch('/refresh', auth.jwt, user.refresh)
 // .delete() 刪除
 router.delete('/logout', auth.jwt, user.logout)
+// .get 取使用者的購物車
+router.get('/cart', auth.jwt, user.getCart)
+// .patch 修改使用者的購物車
+router.patch('/cart', auth.jwt, user.updateCart)
 
 export default router

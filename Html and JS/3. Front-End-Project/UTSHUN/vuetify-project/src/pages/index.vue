@@ -17,33 +17,33 @@
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useAxios } from '@/composables/axios'
-// import ProductCard from '@/components/ProductCard.vue'
+import ProductCard from '@/components/ProductCard.vue'
 
 const { api } = useAxios()
 
 // 一頁兩筆
-// const ITEMS_PER_PAGE = 2
+const ITEMS_PER_PAGE = 8
 // 商品頁碼
-// const currentPage = ref(1)
+const currentPage = ref(1)
 // 總頁數 => 無條件進位
-// const totalPage = computed(() => Math.ceil(products.value.length / ITEMS_PER_PAGE))
+const totalPage = computed(() => Math.ceil(products.value.length / ITEMS_PER_PAGE))
 
 const products = ref([])
-// const search = ref('')
+const search = ref('')
 // 商品換頁
-// const filteredProducts = computed(() => {
-//   return products.value
-//     .filter(product => product.name.toLowerCase().includes(search.value.toLowerCase()))
-//     // 一頁 2 筆
-//     // 第 1 頁 = 0 ~ 1
-//     // 第 2 頁 = 2 ~ 3
-//     // 第 3 頁 = 4 ~ 5
-//     // .slice(開始索引, 結束索引)
-//     // 不包含結束索引
-//     .slice((currentPage.value - 1) * ITEMS_PER_PAGE, currentPage.value * ITEMS_PER_PAGE)
-// })
+const filteredProducts = computed(() => {
+  return products.value
+    .filter(product => product.name.toLowerCase().includes(search.value.toLowerCase()))
+    // 一頁 2 筆
+    // 第 1 頁 = 0 ~ 1
+    // 第 2 頁 = 2 ~ 3
+    // 第 3 頁 = 4 ~ 5
+    // .slice(開始索引, 結束索引)
+    // 不包含結束索引
+    .slice((currentPage.value - 1) * ITEMS_PER_PAGE, currentPage.value * ITEMS_PER_PAGE)
+})
 
 
 const getProducts = async () => {
