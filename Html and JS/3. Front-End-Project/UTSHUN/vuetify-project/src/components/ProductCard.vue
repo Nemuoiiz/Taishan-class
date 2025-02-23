@@ -16,6 +16,7 @@
 
 // 定義外層可以傳哪些資料進來
 defineProps({
+  // 停用下一行的命名規則，_id不是駝峰會有警告
   // eslint-disable-next-line vue/prop-name-casing
   _id: {
     type: String,
