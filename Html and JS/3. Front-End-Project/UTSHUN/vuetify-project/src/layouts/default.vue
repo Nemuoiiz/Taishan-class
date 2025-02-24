@@ -1,5 +1,7 @@
 <template>
-  <v-app-bar :color="`rgba(134, 193, 149)`">
+  <v-app-bar
+    :color="`rgba(134, 193, 149, 0.9)`"
+  >
     <v-container class="d-flex align-center">
       <!-- 網站標題 -->
       <v-btn to="/" :active="false">UTSHUN</v-btn>

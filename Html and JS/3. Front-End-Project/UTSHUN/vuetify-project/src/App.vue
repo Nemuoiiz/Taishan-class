@@ -8,3 +8,14 @@
 <!-- <script setup>
   //
 </script> -->
+
+<style>
+@font-face {
+  font-family: 'Iansui';
+  src: url('@/assets/fonts/Iansui-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Iansui', serif;
+}
+</style>

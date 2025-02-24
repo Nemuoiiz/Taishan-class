@@ -1,20 +1,25 @@
 <template>
-  <v-container class="video-carousel-container" fluid>
-    <!-- 影片播放 -->
-    <transition name="fade" mode="in-out">
-      <video
-        v-if="currentVideo"
-        :key="currentVideo"
-        class="carousel-video"
-        autoplay
-        loop
-        muted
-        playsinline
-      >
-        <source :src="currentVideo" type="video/mp4" />
-        你的瀏覽器不支援影片播放
-      </video>
-    </transition>
+    <!-- 輪播圖 -->
+    <v-carousel hide-delimiters :show-arrows="false" fuild>
+      <v-carousel-item v-for="(video, index) in videoSources" :key="index">
+        <video class="carousel-video" autoplay muted playsinline loop>
+          <source :src="video" type="video/mp4" />
+          你的瀏覽器不支援影片播放
+        </video>
+      </v-carousel-item>
+    </v-carousel>
+
+  <!-- 品牌故事 -->
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <v-row align="center">
+          <v-icon size="40">mdi-leaf</v-icon>
+          <h1 class="mb-0">品牌故事</h1>
+        </v-row>
+          <p>UTSHUN 是一個專門製作手工皂的品牌，我們的產品不含化學添加物，對肌膚溫和且保濕。</p>
+      </v-col>
+    </v-row>
   </v-container>
 
   <!-- 商品搜尋區 -->
@@ -34,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useAxios } from '@/composables/axios'
 import ProductCard from '@/components/ProductCard.vue'
 
@@ -48,17 +53,6 @@ const videoSources = ref([
   '/videos/v-04.mp4',
   '/videos/v-05.mp4',
 ])
-
-const currentVideoIndex = ref(0)
-const currentVideo = computed(() => videoSources.value[currentVideoIndex.value])
-
-const changeVideo = () => {
-  currentVideoIndex.value = (currentVideoIndex.value + 1) % videoSources.value.length
-}
-
-onMounted(() => {
-  setInterval(changeVideo, 10000) // 每10秒切換一次影片
-})
 
 // 一頁 8 筆
 const ITEMS_PER_PAGE = 8
@@ -85,23 +79,25 @@ getProducts()
 </script>
 
 <style scoped>
-.video-carousel-container {
-  padding: 0; /* 移除內邊距 */
+.carousel-container {
+  padding: 0;
+  margin: 0;
+  height: 100vh; /* 設置容器高度為 100vh */
 }
 
 .carousel-video {
-  width: 100vw; /* 設置影片寬度為視窗寬度 */
-  height: 100vh; /* 設置影片高度為視窗高度 */
-  object-fit: cover; /* 讓影片滿版不變形 */
+  width: 100vw; /* 設置影片寬度為 100vw */
+  height: 100vh; /* 設置影片高度為 100vh */
+  object-fit: cover; /* 保持影片比例並覆蓋容器 */
 }
 
+/* 淡入淡出效果 */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 3s;
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to {
-  opacity: 0;
+  opacity: 0.1;
 }
-
 </style>
 
 <route lang="yaml">
