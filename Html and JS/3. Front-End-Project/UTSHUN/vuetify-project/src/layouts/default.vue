@@ -1,90 +1,95 @@
-<!-- 網頁基礎架構 -->
 <template>
-  <!-- 導覽列 -->
-  <v-app-bar
-    :color="`rgba(134, 193, 149, ${1 - Math.min(scrollY / 300, 1)})`"
-    :elevation="scrollY > 50 ? 4 : 0"
-    scroll-behavior="fade-image"
-  >
+  <v-app-bar :color="`rgba(134, 193, 149)`">
     <v-container class="d-flex align-center">
+      <!-- 網站標題 -->
       <v-btn to="/" :active="false">UTSHUN</v-btn>
 
       <v-spacer/>
 
-      <!-- 選單按鈕 -->
-      <template v-for="nav of navs" :key="nav.to">
-        <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">{{ nav.text }}</v-btn>
+      <!-- 主要導覽列（首頁、品牌故事、活動專區、愛心捐贈）-->
+      <template v-for="nav in navs" :key="nav.to">
+        <v-btn :to="nav.to">{{ nav.text }}</v-btn>
       </template>
-      <!-- 登出按鈕獨立顯示 -->
-      <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ '登出' }}</v-btn>
+
+      <v-spacer/>
+
+      <!-- 管理者導覽列 -->
+      <template v-if="user.isLoggedIn && user.isAdmin">
+        <v-btn to="/admin" icon>
+          <v-icon>mdi-cog</v-icon>
+        </v-btn>
+        <v-btn icon @click="logout">
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
+      </template>
+
+      <!-- 一般使用者導覽列 -->
+      <template v-else>
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+        <v-btn to="/cart" icon>
+          <v-icon>mdi-cart</v-icon>
+          <!-- 購物車數量 -->
+          <v-badge v-if="user.cart" :content="user.cart" floating color="red"></v-badge>
+        </v-btn>
+
+        <!-- 使用者選單 -->
+        <v-menu>
+          <template #activator="{ props }">
+            <v-btn v-bind="props" icon>
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-if="!user.isLoggedIn" to="/login">登入</v-list-item>
+            <v-list-item v-if="!user.isLoggedIn" to="/register">註冊</v-list-item>
+            <v-list-item v-if="user.isLoggedIn" to="/orders">使用者訂單</v-list-item>
+            <v-list-item v-if="user.isLoggedIn" @click="logout">登出</v-list-item>
+          </v-list>
+        </v-menu>
+      </template>
     </v-container>
   </v-app-bar>
 
   <v-main>
-    <router-view>
-    </router-view>
+    <router-view></router-view>
   </v-main>
 </template>
 
 <script setup>
-// 導覽列會根據有沒有登入顯示不同內容 (動態) 因此要使用 computed
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { computed } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { useAxios } from '@/composables/axios';
-import { useSnackbar } from 'vuetify-use-dialog'
-import { useRouter } from 'vue-router'
+import { useSnackbar } from 'vuetify-use-dialog';
+import { useRouter } from 'vue-router';
 
-const user = useUserStore()
-// 登出需使用到 jwt
-const { apiAuth } = useAxios()
-const createSnackbar = useSnackbar()
-const router = useRouter()
+const user = useUserStore();
+const { apiAuth } = useAxios();
+const createSnackbar = useSnackbar();
+const router = useRouter();
 
-// 導覽列項目
-const navs = computed(() => {
-  return [
-    // 使用 text: t() 去接 zhHant.js 的 export default 內容
-    { to: '/register', text:'註冊', icon: 'mdi-account-plus',show: !user.isLoggedIn},
-    { to: '/login', text:'登入' , icon: 'mdi-account-arrow-left' ,show: !user.isLoggedIn},
-    { to: '/cart', text:'購物車', icon: 'mdi-cart' ,show:user.isLoggedIn},
-    { to: '/orders', text:'訂單' , icon: 'mdi-format-list-bulleted',show:user.isLoggedIn},
-    { to: '/admin', text:'管理' , icon: 'mdi-cog',show:user.isLoggedIn && user.isAdmin},
-    ]
-})
+// 主要導覽列（所有人都會看到）
+const navs = computed(() => [
+  { to: "/", text: "首頁" },
+  { to: "/about", text: "品牌故事" },
+  { to: "/products", text: "再生商品" },
+  { to: "/events", text: "活動專區" },
+  { to: "/donation", text: "愛心捐贈" }
+]);
 
 // 登出
 const logout = async () => {
   try {
-    await apiAuth.delete('/user/logout')
+    await apiAuth.delete('/user/logout');
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-  user.logout()
+  user.logout();
   createSnackbar({
     text: '登出成功',
-    snackbarProps: {
-      color: 'green'
-    }
-  })
-  // 在購物車頁面登出後回首頁
-  router.push('/')
-}
-
-
-
-const scrollY = ref(0);
-
-// 監聽滾動事件
-const updateScroll = () => {
-  scrollY.value = window.scrollY;
+    snackbarProps: { color: 'green' }
+  });
+  router.push('/');
 };
-
-onMounted(() => {
-  window.addEventListener('scroll', updateScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', updateScroll);
-});
-
 </script>
