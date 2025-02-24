@@ -47,7 +47,6 @@ const videoSources = ref([
   '/videos/v-03.mp4',
   '/videos/v-04.mp4',
   '/videos/v-05.mp4',
-  '/videos/v-06.mp4',
 ])
 
 const currentVideoIndex = ref(0)
@@ -94,6 +93,13 @@ getProducts()
   width: 100vw; /* 設置影片寬度為視窗寬度 */
   height: 100vh; /* 設置影片高度為視窗高度 */
   object-fit: cover; /* 讓影片滿版不變形 */
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>
