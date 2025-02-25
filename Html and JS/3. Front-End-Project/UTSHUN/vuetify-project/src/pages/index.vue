@@ -23,16 +23,16 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col cols="4" class="hover-strory">
+    <v-row class="d-flex  justify-center">
+      <v-col cols="3" class="hover-strory">
         <img class="story-pic" src="../assets/images/index-01.jpg" alt="資源共享共創價值"/>
         <div class="hidden-text">Share</div>
       </v-col>
-      <v-col cols="4" class="hover-strory">
+      <v-col cols="3" class="hover-strory">
         <img class="story-pic" src="../assets/images/index-02.jpg" alt="永續循環減少浪費" />
         <div class="hidden-text">Reuse</div>
       </v-col>
-      <v-col cols="4" class="hover-strory">
+      <v-col cols="3" class="hover-strory">
         <img class="story-pic" src="../assets/images/index-03.jpg" alt="友善社群溫暖互助" />
         <div class="hidden-text">Care</div>
       </v-col>
@@ -108,8 +108,8 @@ const videoSources = ref([
 
 /* 理念 --------------------------------------- */
 .story-pic {
-  width: 100%;
-  height: 600px;
+  width: 90%;
+  height: 500px;
   object-fit: cover;
   border-radius: 200px;
   transition: transform 0.3s ease; /* 可加上平滑變化效果 */
@@ -125,7 +125,7 @@ const videoSources = ref([
   font-family: "Croissant One", serif;
   position: absolute;
   bottom: 0px;
-  left: 50%;
+  left: 46%;
   transform: translateX(-50%);
 
   color: rgb(131, 110, 110);
@@ -192,6 +192,9 @@ const videoSources = ref([
 }
 
 #story {
+  position: relative;
+  top: 50px;
+  left: 50px;
   justify-content: flex-start;
   align-items: center; /* 垂直置中 */
   width: 100%; /* 確保它能夠撐滿整個行 */
