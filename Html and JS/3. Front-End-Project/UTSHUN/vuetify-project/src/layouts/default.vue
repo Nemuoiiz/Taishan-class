@@ -1,15 +1,22 @@
 <template>
-  <v-app>
-    <v-app-bar :color="`rgba(159, 190, 155, 0.9)`" class="floating" height="80">
+  <v-app style="background-color: #eee8df; font-family: 'Croissant One', seri">
+    <v-app-bar
+      elevation="4"
+      :color="`rgba(159, 190, 155, 0.5)`"
+      class="floating"
+      height="100"
+      scroll-behavior="elevate"
+>
       <v-container class="d-flex align-center" style="height: 100%;">
         <!-- 網站標題 -->
-        <v-btn to="/" :active="false">UTSHUN</v-btn>
+        <v-btn to="/" :active="false" style="font-size: 30px; text-transform: none;">U-tshun</v-btn>
 
         <v-spacer/>
 
         <!-- 主要導覽列（首頁、品牌故事、活動專區、愛心捐贈）-->
-        <template v-for="nav in navs" :key="nav.to">
-          <v-btn :to="nav.to">{{ nav.text }}</v-btn>
+        <template v-for="(nav, index) in navs" :key="nav.to">
+          <v-btn :to="nav.to" class="nav-btn">{{ nav.text }}</v-btn>
+          <span v-if="index < navs.length - 1" class="nav-divider">｜</span>
         </template>
 
         <v-spacer/>
@@ -42,11 +49,11 @@
                 <v-icon>mdi-account</v-icon>
               </v-btn>
             </template>
-            <v-list>
-              <v-list-item v-if="!user.isLoggedIn" to="/login">登入</v-list-item>
-              <v-list-item v-if="!user.isLoggedIn" to="/register">註冊</v-list-item>
-              <v-list-item v-if="user.isLoggedIn" to="/orders">使用者訂單</v-list-item>
-              <v-list-item v-if="user.isLoggedIn" @click="logout">登出</v-list-item>
+            <v-list style="font-size: 16px;font-family: 'Croissant One', seri">
+              <v-list-item v-if="!user.isLoggedIn" to="/login">Login</v-list-item>
+              <v-list-item v-if="!user.isLoggedIn" to="/register">Register</v-list-item>
+              <v-list-item v-if="user.isLoggedIn" to="/orders">User orders</v-list-item>
+              <v-list-item v-if="user.isLoggedIn" @click="logout">logout</v-list-item>
             </v-list>
           </v-menu>
         </template>
@@ -73,11 +80,10 @@ const router = useRouter();
 
 // 主要導覽列（所有人都會看到）
 const navs = computed(() => [
-  { to: "/", text: "首頁" },
-  { to: "/about", text: "品牌故事" },
-  { to: "/products", text: "再生商品" },
-  { to: "/events", text: "活動專區" },
-  { to: "/donation", text: "愛心捐贈" }
+  { to: "/about", text: "About" },
+  { to: "/products", text: "Product" },
+  { to: "/events", text: "Activity" },
+  { to: "/donation", text: "Donation" }
 ]);
 
 // 登出
@@ -96,14 +102,40 @@ const logout = async () => {
 };
 </script>
 
+
+<style>
+/* 全局背景顏色設定 */
+.v-app {
+  background-color: #eee8df;
+}
+</style>
+
 <style scoped>
+
 /* 讓 navbar 浮在上方但不影響內容 */
 .floating {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000; /* 確保它在最上層 */
+  backdrop-filter: blur(10px); /* 增加毛玻璃效果 */
+}
+
+/* 讓 v-main 不會被遮住 */
+.v-main {
+  padding-top: 0px; /* 讓內容不會被 navbar 壓住 */
+}
+
+.nav-btn {
+  font-size: 20px;
+}
+
+/* 分隔線 */
+.nav-divider {
+  margin: 0 5px;
+  font-size: 25px;
+  color: rgb(131, 158, 120); /* 可依需求改變顏色 */
 }
 
 </style>

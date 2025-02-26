@@ -17,7 +17,7 @@
       <!-- 標題 -->
       <v-col cols="12">
         <v-row id="story" class="title">
-          <h1>Story&nbsp;</h1>
+          <h1>About&nbsp;</h1>
           <v-icon size="50">mdi-leaf</v-icon>
         </v-row>
       </v-col>
@@ -62,7 +62,7 @@
       </v-col>
 
       <v-col cols="6" class="d-flex align-center justify-center">
-        <img src="../assets/images/carousel-3.jpg" style="height: 300px; width: 1000px"/>
+        <img class="p-pic" src="../assets/images/carousel-3.jpg"/>
       </v-col>
     </v-row>
   </v-container>
@@ -151,7 +151,7 @@ const videoSources = ref([
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7); /* 半透明白色遮罩 */
+  background-color: rgb(237, 231, 222, 0.7); /* 半透明白色遮罩 */
   opacity: 0; /* 預設不顯示 */
   /* 讓遮罩有過渡效果 */
   transition: opacity 0.3s ease;
@@ -180,6 +180,14 @@ const videoSources = ref([
 .hover-strory img {
   position: relative;
   z-index: 1; /* 圖片在遮罩下方，文字在最上層 */
+}
+
+/* 商品區圖片 */
+.p-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50px;
 }
 
 /* 標題文字 */
