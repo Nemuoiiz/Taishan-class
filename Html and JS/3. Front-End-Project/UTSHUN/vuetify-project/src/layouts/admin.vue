@@ -13,7 +13,10 @@
     </v-list>
     <v-divider></v-divider>
     <v-list>
-      <v-list-item v-for="nav in navs" :key="nav.to" :prepend-icon="nav.icon" :title="nav.text" :to="nav.to"></v-list-item>
+      <!-- 直接將導航項目寫死 -->
+      <v-list-item :key="'product'" :prepend-icon="'mdi-shopping'" :title="'商品管理'" to="/admin/products"></v-list-item>
+      <v-list-item :key="'orders'" :prepend-icon="'mdi-format-list-bulleted'" :title="'訂單管理'" to="/admin/orders"></v-list-item>
+      <v-list-item :key="'home'" :prepend-icon="'mdi-home'" :title="'返回首頁'" to="/"></v-list-item>
     </v-list>
   </v-navigation-drawer>
   <v-main>
@@ -21,8 +24,8 @@
   </v-main>
 </template>
 
+
 <script setup>
-import { computed } from 'vue';
 import { useUserStore } from '@/stores/user';
 import Avatar from "vue-boring-avatars";
 
@@ -31,11 +34,20 @@ const user = useUserStore();
 // 用來動態生成頭貼顏色
 const colors = ["#9EBD98", "#FFCD57", "#F8B58C"];
 
-const navs = computed(() => {
-  return [
-    { to: '/admin/products', text: '商品管理', icon: 'mdi-shopping' },
-    { to: '/admin/orders', text: '訂單管理', icon: 'mdi-format-list-bulleted' },
-    { to: '/', text: '返回首頁', icon: 'mdi-home' },
-  ]
-});
 </script>
+
+<style scoped>
+.v-navigation-drawer {
+  background-color: #97ac94;
+  color: #eee8df;
+}
+
+.v-list-item-title {
+  font-size: 26px; /* 調整這裡的文字大小 */
+}
+
+.v-main {
+  background-color: #eee8df;
+  font-size: 30px;
+}
+</style>

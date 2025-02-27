@@ -2,7 +2,7 @@
   <v-app style="background-color: #eee8df; font-family: 'Croissant One', seri">
     <v-app-bar
       elevation="4"
-      :color="`rgba(159, 190, 155, 0.5)`"
+      :color="`rgba(159, 190, 155, 0.6)`"
       class="floating"
       height="100"
       scroll-behavior="elevate"
@@ -60,7 +60,7 @@
       </v-container>
     </v-app-bar>
 
-    <v-main>
+    <v-main :class="{ 'no-padding': $route.meta.title === '首頁' }">
       <router-view></router-view>
     </v-main>
   </v-app>
@@ -124,11 +124,14 @@ const logout = async () => {
 
 /* 讓 v-main 不會被遮住 */
 .v-main {
-  padding-top: 0px; /* 讓內容不會被 navbar 壓住 */
+  padding-top: 100px; /* 讓內容不會被 navbar 壓住 */
+}
+.no-padding {
+  padding-top: 0px !important; /* 如果是首頁，移除 padding */
 }
 
 .nav-btn {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /* 分隔線 */

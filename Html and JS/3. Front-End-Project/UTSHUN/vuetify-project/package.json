@@ -13,6 +13,7 @@
     "@boindil/vue-file-agent-next": "^1.0.5",
     "@mdi/font": "7.4.47",
     "axios": "^1.7.9",
+    "gsap": "^3.12.7",
     "pinia-plugin-persistedstate": "^4.2.0",
     "roboto-fontface": "*",
     "validator": "^13.12.0",

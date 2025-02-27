@@ -8,6 +8,7 @@
   </v-container>
 </template>
 
+
 <route lang="yaml">
   meta:
     layout: admin

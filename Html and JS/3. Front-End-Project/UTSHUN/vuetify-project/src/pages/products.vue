@@ -3,7 +3,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-text-field v-model="search" prepend-inner-icon="mdi-magnify"></v-text-field>
+        <v-text-field v-model="search" class="mt-10" prepend-inner-icon="mdi-magnify"></v-text-field>
       </v-col>
       <v-col v-for="product of filteredProducts" :key="product._id" cols="12" md="6" lg="3" >
         <product-card v-bind="product"></product-card>
@@ -57,6 +57,11 @@ const getProducts = async () => {
 }
 getProducts()
 </script>
+
+
+<style>
+
+</style>
 
 
 <route lang="yaml">
