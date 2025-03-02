@@ -1,6 +1,6 @@
 <template>
   <v-container class="video-carousel-container" fluid>
-    <!-- 影片輪播 -->
+    <!--🔻影片輪播 -->
     <v-carousel hide-delimiters :show-arrows="false" cycle height="100vh" interval="9000">
       <v-carousel-item v-for="(video, index) in videoSources" :key="index" eager>
         <video class="carousel-video" autoplay muted playsinline loop>
@@ -11,7 +11,7 @@
     </v-carousel>
   </v-container>
 
-    <!-- 品牌故事 -------------------------------------------------->
+    <!-- 🔻品牌故事 -------------------------------------------------->
   <v-container class="mt-10 mb-10">
     <v-row>
       <!-- 標題 -->
@@ -39,7 +39,7 @@
     </v-row>
   </v-container>
 
-  <!-- 商品引薦區--------------------------------------------- -->
+  <!-- 🔻商品引薦區--------------------------------------------- -->
   <v-container>
     <v-row>
       <!-- 標題 -->
@@ -58,12 +58,29 @@
           經篩選分類，確保安全與品質，同時減少浪費。<br>
           分享美麗，讓每件彩妝找到最適合的歸屬！
         </div>
-        <v-btn>see more</v-btn>
+        <v-btn rounded="xl">see more</v-btn>
       </v-col>
 
       <v-col cols="6" class="d-flex align-center justify-center">
         <img class="p-pic" src="../assets/images/carousel-3.jpg"/>
       </v-col>
+    </v-row>
+  </v-container>
+
+  <!-- 🔻活動專區---------------------------------------------- -->
+  <v-container class="mt-10 mb-10">
+    <v-row>
+      <!-- 標題 -->
+      <v-col cols="12">
+        <v-row id="activity" class="title">
+          <h1>Activity&nbsp;</h1>
+          <v-icon size="50">mdi-leaf</v-icon>
+        </v-row>
+      </v-col>
+    </v-row>
+
+    <v-row class="d-flex  justify-center">
+
     </v-row>
   </v-container>
 

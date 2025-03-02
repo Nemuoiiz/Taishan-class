@@ -82,7 +82,7 @@ const router = useRouter();
 const navs = computed(() => [
   { to: "/about", text: "About" },
   { to: "/products", text: "Product" },
-  { to: "/events", text: "Activity" },
+  { to: "/activity", text: "Activity" },
   { to: "/donation", text: "Donation" }
 ]);
 
