@@ -1,10 +1,44 @@
 <!-- 帳號登入頁面 -->
 <template>
+  <v-container fluid style="padding: 0;margin: 0;">
+    <v-row>
+      <v-col cols="4">
+        <img src="https://picsum.photos/1920/1080/?random=7">
+      </v-col>
+      <v-col cols="4">
+        <img src="https://picsum.photos/1920/1080/?random=8">
+      </v-col>
+      <v-col cols="4">
+        <img src="https://picsum.photos/1920/1080/?random=9">
+      </v-col>
+      <div>彩妝新賰，永續再生。</div>
+    </v-row>
+  </v-container>
+
+  <v-container>
+    <v-row>
+    <v-col cols="6">
+      <h1>About Ū-tshun</h1>
+      <p>有賰，誕生於對美麗與永續的深刻思考。</p>
+      <br>
+      <div>
+        我們發現，許多彩妝品只使用了幾次，就因為個人口味改變、購物衝動或新品推出而被閒置，最終成為浪費。但其實，這些彩妝仍然擁有價值，只要妥善保存與流通，就能延續它們的生命，減少資源浪費。<br>
+        「有賰」在台語中意指「有剩餘」，但我們相信，剩餘不代表無用，而是另一種可能的開始。<br>
+        有賰，不只是「多餘」，更是「有春」，象徵著新生與再利用的契機。<br>
+        我們的目標是建立一個安心交易的二手彩妝平台，讓閒置彩妝找到新主人，延續它的價值。我們倡導「美麗不浪費，彩妝再重生」，希望透過這個平台，讓每一支口紅、每一盤眼影，都能繼續發揮它的魅力。<br>
+        在ū-tshun，每一次交易不僅是物品的流動，更是對環境的友善選擇。讓我們一起用行動支持永續時尚，讓美麗與地球共存，讓「有賰」成為一種負責任的生活態度。</div>
+    </v-col>
+    <v-col cols="6">
+      <img style="width: 100%;" src="../assets/images/about-u.jpg">
+    </v-col>
+  </v-row>
+  </v-container>
+
   <v-container>
     <!-- 第一行 -->
     <v-row justify="space-between" align="center">
       <v-col cols="6">
-        <img ref="image1" class="circle" src="../assets/images/carousel-1.jpg">
+        <img ref="image1" class="circle" src="../assets/images/cosmetic.png">
       </v-col>
       <v-col cols="6">
         <h3 ref="text1">資源共享，共創價值</h3>
@@ -19,14 +53,14 @@
         <p ref="desc2">打造化妝品的二次生命，減少閒置與丟棄，推動環保與永續時尚，讓美麗更有意義。</p>
       </v-col>
       <v-col cols="6">
-        <img ref="image2" class="circle" src="../assets/images/carousel-2.jpg">
+        <img ref="image2" class="circle" src="../assets/images/no-plastic.png">
       </v-col>
     </v-row>
 
     <!-- 第三行 -->
     <v-row justify="space-between" align="center">
       <v-col cols="6">
-        <img ref="image3" class="circle" src="../assets/images/carousel-3.jpg">
+        <img ref="image3" class="circle" src="../assets/images/love.png">
       </v-col>
       <v-col cols="6">
         <h3 ref="text3">友善社群，溫暖互助</h3>
@@ -94,7 +128,7 @@ onMounted(() => {
 <style>
 
 body {
-  font-size: 30px;
+  font-size: 24px;
   background-color: #eee8df;
 }
 
